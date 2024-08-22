@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+const get = require('../controllers/rootGET')
 
-router.get('/', (req, res)=> {
-    res.send('ok')
-})
 
-export default router
+router.get('/', get)
+
+module.exports = router

@@ -3,7 +3,7 @@ const app = express()
 
 const PORT = process.env.PORT || 3003
 
-import rootRoute from '../routes/root'
+const rootRoute = require('../routes/root')
 app.use('/', rootRoute)
 
 
