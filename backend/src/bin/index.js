@@ -8,8 +8,8 @@ const rootRoute = require('../routes/root')
 app.use('/', rootRoute)
 
 // db
-const runDB = require('../config/database')
-runDB().catch(console.dir)
+const database = require('../config/database')
+
 
 
 app.listen(PORT, ()=> {

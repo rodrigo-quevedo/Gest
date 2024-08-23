@@ -8,9 +8,9 @@ async function run() {
     await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    await mongoose.disconnect();
-  }
+  } catch(err) {console.log(err)} 
 }
 
-module.exports = run
+const database = run().catch(console.dir);
+
+module.exports = database
