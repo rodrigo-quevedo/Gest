@@ -1,6 +1,6 @@
-import './AddProductForm.css'
+import './FormAgregarProducto.css'
 
-const URL_EXPRESS_APP = process.env.URL_EXPRESS_APP;
+const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
 const handleSubmit = (e) => {
     e.preventDefault();
