@@ -1,9 +1,16 @@
 import './AddProductForm.css'
 
+const URL_EXPRESS_APP = process.env.URL_EXPRESS_APP;
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+}
+
 const AddProductForm = () => {
     return (
         <div className="container">
-            <form action="http://localhost:3003/" method="POST">
+            <form action={URL_EXPRESS_APP} method="GET" 
+            onSubmit={handleSubmit}>
                 <label for="product">Product: </label>
                 <input 
                 type="text" 
