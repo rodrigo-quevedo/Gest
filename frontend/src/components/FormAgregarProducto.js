@@ -1,5 +1,7 @@
 import './FormAgregarProducto.css'
 
+// en entorno de development: estoy usando un .env para esta variable
+// en entorno production: cargo esta variable en el hosting
 const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
 const form = document.getElementById("formAgregarProducto")
@@ -15,26 +17,32 @@ const handleSubmit = (e) => {
             )
         )
     })
-    .then((res)=> {
-        res.json()
+    .then((ResponseObj)=> {
+        ResponseObj.json()
+        .then(
+            (ObjOfBodyOfResponse) => {
+                if (ObjOfBodyOfResponse.success) {
+                    agregarProductoProp(ObjOfBodyOfResponse.producto)
+                }
+                else {}
+            }
+        )
     })
 }
 
-const AddProductForm = () => {
+const AgregarProductoForm = ({agregarProductoProp}) => {
     return (
-        <div className="container">
-            <form onSubmit={handleSubmit} id="formAgregarProducto">
-                <label for="product">Product: </label>
-                <input 
-                type="text" 
-                class="input"
-                id="product"
-                name="product"/>
+        <form onSubmit={handleSubmit} id="formAgregarProducto">
+            <label for="producto">Product: </label>
+            <input 
+            type="text" 
+            class="input"
+            id="producto"
+            name="product"/>
 
-                <input type="submit" value="Añadir producto"/>
-            </form>
-        </div>
+            <input type="submit" value="Añadir producto"/>
+        </form>
     )
 }
 
-export default AddProductForm
+export default AgregarProductoForm
