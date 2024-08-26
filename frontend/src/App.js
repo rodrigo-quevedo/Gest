@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 
 //components
-import FormAgregarProducto from './components/FormAgregarProducto';
+import SectionAgregarProducto from './components/SectionAgregarProducto';
 
 function App() {
   return (
     <>
-        <FormAgregarProducto />
+        <SectionAgregarProducto />
     </>
   );
 }
