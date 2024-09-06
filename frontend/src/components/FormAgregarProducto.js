@@ -7,6 +7,7 @@ const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 const AgregarProductoForm = ({agregarProductoProp}) => {
 
     const handleSubmit = (e) => {
+        console.log("Entering handleSubmit")
         e.preventDefault();
     
         fetch(URL_EXPRESS_APP, {
@@ -15,20 +16,30 @@ const AgregarProductoForm = ({agregarProductoProp}) => {
                 Object.fromEntries(
                     new FormData(document.getElementById("formAgregarProducto"))
                 )
-            )
+            ),
+            // body: JSON.stringify({myRequest: "REQUEST OK"}),//test
+            headers: {
+                'Content-Type': 'application/json'
+            }
             
         })
-        .then((ResponseObj)=> {
-            ResponseObj.json()
+        .then((ResponseBodyJSONString)=> {
+            console.log('respuesta del server ok:', ResponseBodyJSONString)
+            ResponseBodyJSONString.json()
             .then(
-                (ObjOfBodyOfResponse) => {
-                    if (ObjOfBodyOfResponse.success) {
-                        agregarProductoProp(ObjOfBodyOfResponse.producto)
+                (ResponseBodyObj) => {
+                    if (JSON.parse(ResponseBodyObj).success) {
+                        // agregarProductoProp(ResponseBodyObj.producto)
+                        console.log('Producto agregado correctamente:', JSON.parse(ResponseBodyObj))
                     }
-                    else {}
+                    else {
+                        console.log('El servidor indica que hubo un error:',JSON.parse(ResponseBodyObj))
+                    }
                 }
             )
+            .catch((err)=> {console.log(err)})
         })
+        .catch((err)=> {console.log(err)}) 
     }
 
 
