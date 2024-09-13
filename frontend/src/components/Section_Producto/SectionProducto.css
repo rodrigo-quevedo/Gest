@@ -1,5 +1,13 @@
-.container {
+.containerSectionProducto {
     width: 40%;
     background: lightcyan;
     height: 300px;
+}
+
+@media (width <= 400px){
+    .containerSectionProducto {
+        width: 100%;
+        background: red;
+        height: 300px;
+    }
 }

@@ -21,7 +21,7 @@ const AgregarProductoSection = () => {
     // }
 
     return (
-        <section className="container">
+        <section className="containerSectionProducto">
             <FormAgregarProducto/>
             
             <ListaProductos />
