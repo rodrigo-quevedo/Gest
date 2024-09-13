@@ -2,8 +2,8 @@ import {useState} from 'react'
 
 import './SectionProducto.css'
 
-import FormAgregarProducto from "./Agregar Producto/FormAgregarProducto"
-import ListaProductos from './Lista Productos/ListaProductos'
+import FormAgregarProducto from "./Agregar_Producto/FormAgregarProducto"
+import ListaProductos from './Lista_Productos/ListaProductos'
 
 
 const AgregarProductoSection = () => {
@@ -22,8 +22,7 @@ const AgregarProductoSection = () => {
 
     return (
         <section className="container">
-            <FormAgregarProducto 
-            agregarProductoProp={agregarProducto}/>
+            <FormAgregarProducto/>
             
             <ListaProductos />
 

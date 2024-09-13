@@ -1,8 +1,8 @@
 import './FormAgregarProducto.css'
 
-import {URL_EXPRESS_APP} from '../../../App'
+const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 
-const AgregarProductoForm = ({agregarProductoProp}) => {
+const AgregarProductoForm = () => {
 
     const handleSubmit = (e) => {
         console.log("Entering handleSubmit")
@@ -21,9 +21,9 @@ const AgregarProductoForm = ({agregarProductoProp}) => {
             }
             
         })
-        .then((ResponseBodyJSONString)=> {
-            console.log('respuesta del server ok:', ResponseBodyJSONString)
-            ResponseBodyJSONString.json()
+        .then((Response)=> {
+            console.log('respuesta del server ok:', Response)
+            Response.json()
             .then(
                 (ResponseBodyObj) => {
                     if (JSON.parse(ResponseBodyObj).success) {
