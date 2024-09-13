@@ -1,8 +1,6 @@
 import './FormAgregarProducto.css'
 
-// en entorno de development: estoy usando un .env para esta variable
-// en entorno production: cargo esta variable en el hosting
-const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
+import {URL_EXPRESS_APP} from '../../../App'
 
 const AgregarProductoForm = ({agregarProductoProp}) => {
 
