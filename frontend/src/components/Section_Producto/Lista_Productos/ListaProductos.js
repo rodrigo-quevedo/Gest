@@ -5,8 +5,8 @@ import {useState} from 'react'
 const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 let URL_PRODUCTOS = URL_EXPRESS_APP + `/productos`
 
-const ListaProductos = () => {
-    const [pedirLista, setPedirLista] = useState(true)
+const ListaProductos = ({pedirLista, setPedirLista}) => {
+
     const [listaProductos, setListaProductos] = useState(<p>No se pudo obtener la lista de productos del servidor</p>)
 
     const getProductos = () => {
@@ -21,7 +21,7 @@ const ListaProductos = () => {
                 let productos = JSON.parse(BodyOfResponseJSONString)                
                 setListaProductos(
                     productos.map((producto) => {
-                        return <li className="productoEnLista">{producto.product}</li>
+                        return <li key={producto.product} className="productoEnLista">{producto.product}</li>
                     })
                 )
             })

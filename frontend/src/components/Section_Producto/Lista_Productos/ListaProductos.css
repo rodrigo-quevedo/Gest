@@ -1,6 +1,6 @@
 .containerListaProducto {
     width: 40%;
-    height: 300px;
+    min-height: 300px;
 }
 /* lo dejo así porque me es más fácil testear con una pantalla mobile, 
 después lo hago bien */
@@ -9,7 +9,7 @@ después lo hago bien */
         width: 100%;
         background: rgb(0, 0, 0);
         color: purple;
-        height: 300px;
+        min-height: 300px;
         padding: 5% 0;
     }
 }

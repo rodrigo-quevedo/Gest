@@ -7,24 +7,13 @@ import ListaProductos from './Lista_Productos/ListaProductos'
 
 
 const AgregarProductoSection = () => {
-
-    // const [productos, setProductos] = useState([])
-
-    // const agregarProducto = (producto) => {
-        
-    //     setProductos([...productos, 
-    //         <li key={producto.id}>
-    //             <span>{producto.product}</span>
-    //         </li>
-    //     ]
-    //     )
-    // }
+    const [pedirLista, setPedirLista] = useState(true)
 
     return (
         <section className="containerSectionProducto">
-            <FormAgregarProducto/>
+            <FormAgregarProducto setPedirLista={setPedirLista}/>
             
-            <ListaProductos />
+            <ListaProductos pedirLista={pedirLista} setPedirLista={setPedirLista}/>
 
         </section>
     )

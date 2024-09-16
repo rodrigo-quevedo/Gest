@@ -2,7 +2,7 @@ import './FormAgregarProducto.css'
 
 const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 
-const AgregarProductoForm = () => {
+const AgregarProductoForm = ({setPedirLista}) => {
 
     const handleSubmit = (e) => {
         console.log("Entering handleSubmit")
@@ -29,6 +29,7 @@ const AgregarProductoForm = () => {
                     if (JSON.parse(ResponseBodyObj).success) {
                         // agregarProductoProp(ResponseBodyObj.producto)
                         console.log('Producto agregado correctamente:', JSON.parse(ResponseBodyObj))
+                        setPedirLista(true)
                     }
                     else {
                         console.log('El servidor indica que hubo un error:',JSON.parse(ResponseBodyObj))
