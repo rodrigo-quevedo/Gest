@@ -26,21 +26,27 @@ export default function FormularioCompra ()  {
             </div>
 
             <div className="eleccionPrecio">
-                <label for="precioUnitario"  onClick={()=>console.log('unitario')}>Precio unitario</label>
-                <label for="precioTotal" 
-                onClick={()=>console.log('total')}>Precio total</label>
+                <label 
+                for="precioUnitario"  
+                onClick={()=>setPrecioUnitario(true)}
+                className={precioUnitario ? "precioElegido" : "precioInactivo"}
+                >Precio unitario</label>
+                <label 
+                for="precioTotal" 
+                onClick={()=>setPrecioUnitario(false)}
+                className={ ! precioUnitario ? "precioElegido" : "precioInactivo"}
+                >Precio total</label>
             </div>
 
             {precioUnitario ?
-            <div>
-             <input type="number" id="precioUnitario" placeholder="$ 0"/>
+            <div className="eleccionPrecioInput">
+                <input type="number" id="precioUnitario" placeholder="$ 0"/>
             </div>
             :
-            <div>
+            <div className="eleccionPrecioInput">
                 <input type="number" id="precioTotal" placeholder="$ 0"/>
             </div>
             }
-
 
 
             

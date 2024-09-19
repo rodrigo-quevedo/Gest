@@ -1,3 +1,9 @@
+body {
+    padding: 0px 0;
+    background: #000000;
+    color: #9bc8eb;
+}
+
 h1 {
     text-align: left;
     /* text-decoration: 3px underline #000; */
