@@ -1,0 +1,40 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario > div {
+   display: flex;
+   flex-direction: column;
+   padding: 5px 10px;
+}
+
+.formulario > div > input {
+    height: 30px;
+    font-size: 1.2em;
+}
+
+.formulario > div > label {
+    height: 30px;
+}
+
+.eleccionPrecio {
+    flex-direction: row !important;
+    justify-content: space-evenly;
+}
+
+
+@media(width > 400px){
+    #formularioCompra {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    #formularioCompra > div {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 10px;
+     }
+
+
+}

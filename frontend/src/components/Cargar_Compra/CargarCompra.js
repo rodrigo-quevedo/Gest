@@ -2,12 +2,16 @@ import './CargarCompra.css'
 
 import { MENUS } from '../../App'
 
+import FormularioCompra from './FormularioCompra/FormularioCompra'
+
 export default function CargarCompra ({setMenu}) {
 
     return (
         <>
-            <h1>Ingresar productos</h1>
-            <button onClick={()=>setMenu(MENUS[0])}>CANCELAR</button>
+            <button className="cancelButton" onClick={()=>setMenu(MENUS[0])}>&lt;--Cancelar</button>
+            <h1>Ingresar productos:</h1>
+            <FormularioCompra/>
+            
         </>
     )
 
