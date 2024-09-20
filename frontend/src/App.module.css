@@ -1,0 +1,7 @@
+.appContainer {
+    display: flex;
+}
+
+.appContainer:nth-child(2){
+    width: 80%;
+}

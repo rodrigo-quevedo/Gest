@@ -1,6 +1,18 @@
 .navContainer {
     display: flex;
     flex-direction: column;
-    background: #fff;
-    
+    /* background: #fff; */
+    color: #fff;
+    width: 20%;
+}
+
+.navContainer > button {
+    background: transparent;
+    color: #fff;
+
+}
+
+.icon {
+    color: #9bc8eb;
+    font-size: 50px;
 }

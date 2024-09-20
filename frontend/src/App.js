@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import './App.css';
+import styles from './App.module.css';
 
 //components
 // import SectionAgregarProducto from './components/Section_Producto/SectionProducto';
@@ -16,10 +16,10 @@ import CargarVenta from './components/Cargar_Venta/CargarVenta';
 // en entorno production: cargo esta variable en el hosting
 export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
-export const MENUS = ["LISTA_PRODUCTOS", "LISTA_COMPRAS", "COMPRA", "LISTA_VENTAS", "VENTA"]
+export const MENUS = ["LISTA_PRODUCTOS", "COMPRA", "LISTA_COMPRAS", "VENTA","LISTA_VENTAS"]
 
 function App() {
-    const [menu, setMenu] = useState('LISTA')
+    const [menu, setMenu] = useState('LISTA_PRODUCTOS')
 
     function mostrarMenu(menu) {
         switch(menu) {
@@ -43,11 +43,11 @@ function App() {
     }
 
   return (
-    <>
+    <div className={styles.appContainer}>
         {/* <SectionAgregarProducto /> */}
-        {/* {mostrarMenu(menu)} */}
         <Navbar setMenu={setMenu}/>
-    </>
+        {mostrarMenu(menu)}
+    </div>
   );
 }
 
