@@ -1,4 +1,4 @@
-import './CargarVenta.css'
+import './CargarVenta.module.css'
 
 import { MENUS } from '../../App'
 

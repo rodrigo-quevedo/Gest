@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import './FormularioCompra.css'
+import './FormularioCompra.module.css'
 
 export default function FormularioCompra ()  {
 

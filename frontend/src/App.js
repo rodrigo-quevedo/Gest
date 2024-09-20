@@ -4,29 +4,39 @@ import './App.css';
 
 //components
 // import SectionAgregarProducto from './components/Section_Producto/SectionProducto';
+import Navbar from './components/Navbar/Navbar';
 import ListaProductos from './components/Lista_Productos/ListaProductos';
+import ListaCompras from './components/Lista_Compras/ListaCompras'
 import CargarCompra from './components/Cargar_Compra/CargarCompra';
+import ListaVentas from './components/Lista_Ventas/ListaVentas'
 import CargarVenta from './components/Cargar_Venta/CargarVenta';
+
 
 // en entorno de development: estoy usando un .env para esta variable
 // en entorno production: cargo esta variable en el hosting
 export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
-export const MENUS = ["LISTA", "COMPRA", "VENTA"]
+export const MENUS = ["LISTA_PRODUCTOS", "LISTA_COMPRAS", "COMPRA", "LISTA_VENTAS", "VENTA"]
 
 function App() {
     const [menu, setMenu] = useState('LISTA')
 
     function mostrarMenu(menu) {
         switch(menu) {
-            case "LISTA": {
-                return <ListaProductos setMenu={setMenu}/>
+            case "LISTA_PRODUCTOS": {
+                return <ListaProductos/>
+            }
+            case "LISTA_COMPRAS": {
+                return <ListaCompras/>
             }
             case "COMPRA": {
-                return <CargarCompra setMenu={setMenu}/>
+                return <CargarCompra/>
+            }
+            case "LISTA_VENTAS" : {
+                return <ListaVentas/>
             }
             case "VENTA" : {
-                return <CargarVenta setMenu={setMenu}/>
+                return <CargarVenta/>
             }
 
         }
@@ -35,7 +45,8 @@ function App() {
   return (
     <>
         {/* <SectionAgregarProducto /> */}
-        {mostrarMenu(menu)}
+        {/* {mostrarMenu(menu)} */}
+        <Navbar setMenu={setMenu}/>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import './ListaProductos.css'
+import styles from './ListaProductos.module.css'
 
 import {MENUS} from '../../App'
 
@@ -15,8 +15,10 @@ export default function ListaProductos ({setMenu}) {
     return (
         <section>
             <h1>Lista de productos</h1>
-            <button onClick={()=>setMenu(MENUS[1])}>Ingresar nuevos productos</button>
-            <button onClick={()=>setMenu(MENUS[2])}>Ingresar venta</button>
+            <button className={styles.menuButton}
+            onClick={()=>setMenu(MENUS[1])}>Ingresar nuevos productos</button>
+            <button className={styles.menuButton}
+            onClick={()=>setMenu(MENUS[2])}>Ingresar venta</button>
         </section>
     )
 }
