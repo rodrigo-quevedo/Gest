@@ -4,15 +4,25 @@
     /* background: #fff; */
     color: #fff;
     width: 20%;
+    height: 100vh;
+    justify-content: space-evenly;
+    flex-shrink: 0;
 }
 
 .navContainer > button {
     background: transparent;
     color: #fff;
-
+    max-height: 20%;
 }
 
 .icon {
     color: #9bc8eb;
     font-size: 50px;
+}
+
+@media (width < 800px) {
+    .navContainer{
+        width: 100%;
+        max-width: 100vw;
+    }
 }

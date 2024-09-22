@@ -1,7 +1,19 @@
 .appContainer {
     display: flex;
+    height: 100vh;
 }
 
 .appContainer:nth-child(2){
     width: 80%;
+}
+
+
+@media (width < 800px){
+    /* .appContainer{
+        flex-direction: column;
+    } */
+    
+    .appContainer:nth-child(2){
+        width: 100%;
+    }
 }
