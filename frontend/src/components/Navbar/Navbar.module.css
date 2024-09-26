@@ -2,7 +2,8 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    width: 10%;
+    min-width: 10vw;
+    max-width: 10vw;
 
     justify-content: space-evenly;
     
@@ -22,12 +23,17 @@
     font-size: 50px;
 }
 
-@media (width < 800px) {
+@media (width < 600px) {
     .navContainer{
         flex-direction: row;
         width: 100vw;
+        min-width: 100vw;
         height: 20vh;
-        position: absolute;
+        position: fixed;
         bottom: 0;
+    }
+    
+    .navContainer > button {
+        max-width: 20vw;
     }
 }

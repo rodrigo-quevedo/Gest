@@ -1,0 +1,15 @@
+/* .container{
+    display: inline-block;
+    max-height: 100vh;
+    overflow: hidden scroll;
+
+    scrollbar-color: red transparent;
+    scrollbar-width: thin;
+}
+
+
+@media (width < 600px) {
+    .container {
+        max-height: 80vh;
+    }
+} */
