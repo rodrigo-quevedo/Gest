@@ -1,19 +1,31 @@
 .appContainer {
     display: flex;
+    flex-direction: row;
     height: 100vh;
+
+    overflow: hidden scroll;
+    scrollbar-color: #9bc8eb transparent;
+    scrollbar-width: thin;
 }
 
+/* :nth-child(2) es el componente Pantalla. Uso nth-child(2) porque el elemento puede variar (es el resultado de una funcion). Y no uso clases, porque tendría que poner la clase dentro del componente en sí, y por lo tanto tendría que armar un CSS para cada componente Pantalla en específico (que de hecho lo tengo que hacer, pero POR AHORA prefiero hacer esto aca).*/
 .appContainer:nth-child(2){
-    width: 80%;
+    height: 100vh;
+    width: 90%;
+
+
 }
 
 
 @media (width < 800px){
-    /* .appContainer{
+    .appContainer{
         flex-direction: column;
-    } */
+    }
     
-    .appContainer:nth-child(2){
-        width: 100%;
+    .appContainer:nth-child(1){
+        color: red;
+        height: 80vh;
+        overflow: hidden scroll;
+
     }
 }
