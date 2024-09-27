@@ -45,7 +45,7 @@
     color: #b7ff00;
 
 }
-.navContainer > button:focus {
+.seleccionado {
     -webkit-animation: colorTitilante 2s infinite;
     animation:colorTitilante 2s infinite;
 }
@@ -62,7 +62,6 @@
     background:rgb(255, 0, 0);
     color: #fff;    
 }
-
 
 
 

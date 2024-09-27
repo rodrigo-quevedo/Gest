@@ -26,17 +26,17 @@ function App() {
             case "LISTA_PRODUCTOS": {
                 return <ListaProductos/>
             }
-            case "LISTA_COMPRAS": {
-                return <ListaCompras/>
-            }
             case "COMPRA": {
                 return <CargarCompra/>
             }
-            case "LISTA_VENTAS" : {
-                return <ListaVentas/>
+            case "LISTA_COMPRAS": {
+                return <ListaCompras/>
             }
             case "VENTA" : {
                 return <CargarVenta/>
+            }
+            case "LISTA_VENTAS" : {
+                return <ListaVentas/>
             }
 
         }
@@ -45,7 +45,7 @@ function App() {
   return (
     <div className={styles.appContainer}>
         {/* <SectionAgregarProducto /> */}
-        <Navbar setMenu={setMenu}/>
+        <Navbar setMenu={setMenu} menu={menu}/>
         {mostrarMenu(menu)}
     </div>
   );
