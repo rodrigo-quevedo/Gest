@@ -32,7 +32,7 @@
 }
 
 /* Interacciones */
-.navContainer > button:hover {
+.navContainer > button:hover, .navContainer > button:focus {
     background:rgb(81, 0, 0);
     cursor: pointer;
 
@@ -40,17 +40,23 @@
     transition: 100ms all;
 
     padding: 5px;
-    font-size: .9em;
+    /* font-size: .9em; */
     
-    -webkit-animation:name 2s infinite;
-    animation:name 2s infinite;
+    color: #b7ff00;
+    /* -webkit-animation:name 2s infinite;
+    animation:name 2s infinite; */
+}
+/* 
+@keyframes name {
+   0% {color: white}
+   100% {color: #b7ff00}
+} */
+
+.navContainer > button:active  {
+    background:rgb(255, 0, 0);
+    color: #fff;
 }
 
-@keyframes name {
-    0% {color:magenta;}
-   50% {color: white}
-   100% {color: magenta}
-}
 
 .icon {
     color: inherit;
