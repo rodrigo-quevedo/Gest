@@ -16,6 +16,10 @@
 
     color: rgb(0, 96, 128);
 }
+::selection{
+    background: #b7ff00;
+    color: #000;
+}
 
 /* Este es el div adentro del <div> container de Pantalla. */
 .appContainer:nth-child(1) > div {
@@ -23,7 +27,7 @@
     max-height: 100vh;
     overflow: hidden auto;
 
-    scrollbar-color: red transparent;
+    scrollbar-color: rgb(187, 0, 0) transparent;
     scrollbar-width: thin;
     
 }

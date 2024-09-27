@@ -28,34 +28,42 @@
     background: rgb(40, 0, 0);
     color: #fff;
 
-    transition: 100ms all;
+    transition: 150ms all;
 }
 
 /* Interacciones */
-.navContainer > button:hover, .navContainer > button:focus {
+.navContainer > button:hover, 
+.navContainer > button:focus {
     background:rgb(81, 0, 0);
     cursor: pointer;
 
     transform:scale(1.04);
-    transition: 100ms all;
+    transition: 150ms all;
 
     padding: 5px;
-    /* font-size: .9em; */
     
     color: #b7ff00;
-    /* -webkit-animation:name 2s infinite;
-    animation:name 2s infinite; */
+
 }
-/* 
-@keyframes name {
-   0% {color: white}
-   100% {color: #b7ff00}
-} */
+.navContainer > button:focus {
+    -webkit-animation: colorTitilante 2s infinite;
+    animation:colorTitilante 2s infinite;
+}
+
+@keyframes colorTitilante {
+   0% {color: white; background: rgb(81, 0, 0)}
+   50% {color: #b7ff00; background: red;}
+   100% {color: white; background: rgb(81, 0, 0)}
+}
+
+
 
 .navContainer > button:active  {
     background:rgb(255, 0, 0);
-    color: #fff;
+    color: #fff;    
 }
+
+
 
 
 .icon {
