@@ -2,25 +2,59 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    min-width: 10vw;
-    max-width: 10vw;
-
-    justify-content: space-evenly;
+    min-width: 100px;
+    width: 10vw;
+    max-width: 125px;
+    /* Una buena alternativa a min-width: 10vh es flex-shrink: 0, así Navbar nunca se va a achicar si alguna Pantalla crece de más. 
+    Es decir, Navbar va a tener un tamaño consistente al clickear en cualquier Pantalla.*/
+    flex-shrink: 0;
+    /* Es mejor poner flex: 1; en los flex items (<button>s) */
+    /* justify-content: space-evenly; */
     
     color: #fff;
 }
 
 .navContainer > button {
-    /* max-height: 20%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 
+    flex: 1;
+    margin: 10px;
 
-    background: transparent;
+    border-radius: 5px;
+    border: 0;
+    background: rgb(40, 0, 0);
     color: #fff;
+
+    transition: 100ms all;
+}
+
+/* Interacciones */
+.navContainer > button:hover {
+    background:rgb(81, 0, 0);
+    cursor: pointer;
+
+    transform:scale(1.04);
+    transition: 100ms all;
+
+    padding: 5px;
+    font-size: .9em;
+    
+    -webkit-animation:name 2s infinite;
+    animation:name 2s infinite;
+}
+
+@keyframes name {
+    0% {color:magenta;}
+   50% {color: white}
+   100% {color: magenta}
 }
 
 .icon {
-    color: #9bc8eb;
-    font-size: 50px;
+    color: inherit;
+    font-size: 300%;
 }
 
 @media (width < 600px) {
@@ -34,6 +68,13 @@
     }
     
     .navContainer > button {
+        margin: 0.5vw;
+
         max-width: 20vw;
+        font-size: 2.2vw;
+    }
+
+    .icon {
+        font-size: 6vw;
     }
 }
