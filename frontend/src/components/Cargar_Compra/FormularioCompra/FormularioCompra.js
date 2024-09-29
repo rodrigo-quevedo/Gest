@@ -1,14 +1,14 @@
 import {useState} from 'react'
 
-import './FormularioCompra.module.css'
+import styles from './FormularioCompra.module.css'
 
 export default function FormularioCompra ()  {
 
     const [precioUnitario, setPrecioUnitario] = useState(true)
 
     return (
-        <form id="formularioCompra" class="formulario">
-            <div className="just_a_div">
+        <form id="formularioCompra" className={styles.formulario}>
+            <div className={styles.just_a_div}>
                 <label for="nombreProducto">Nombre del producto</label>
                 <input type="text" id="nombreProducto" placeholder="Producto"/>
            </div>
@@ -25,25 +25,25 @@ export default function FormularioCompra ()  {
                 <input type="text" id="marcaProducto" placeholder="Marca"/>
             </div>
 
-            <div className="eleccionPrecio">
+            <div className={styles.eleccionPrecio}>
                 <label 
                 for="precioUnitario"  
                 onClick={()=>setPrecioUnitario(true)}
-                className={precioUnitario ? "precioElegido" : "precioInactivo"}
+                className={precioUnitario ? styles.precioElegido : styles.precioInactivo}
                 >Precio unitario</label>
                 <label 
                 for="precioTotal" 
                 onClick={()=>setPrecioUnitario(false)}
-                className={ ! precioUnitario ? "precioElegido" : "precioInactivo"}
+                className={ ! precioUnitario ? styles.precioElegido : styles.precioInactivo}
                 >Precio total</label>
             </div>
 
             {precioUnitario ?
-            <div className="eleccionPrecioInput">
+            <div className={styles.eleccionPrecioInput}>
                 <input type="number" id="precioUnitario" placeholder="$ 0"/>
             </div>
             :
-            <div className="eleccionPrecioInput">
+            <div className={styles.eleccionPrecioInput}>
                 <input type="number" id="precioTotal" placeholder="$ 0"/>
             </div>
             }
