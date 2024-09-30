@@ -1,6 +1,6 @@
 import styles from './Navbar.module.css'
 
-import { MENUS } from '../../App'
+import { MENUS } from '../../App_Despues_De_Login'
 
 //icons
 import { FaClipboardList } from "react-icons/fa";

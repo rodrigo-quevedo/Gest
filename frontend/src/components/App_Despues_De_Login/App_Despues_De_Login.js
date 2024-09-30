@@ -1,15 +1,15 @@
 import {useState} from 'react'
 
-import styles from './App.module.css';
+import styles from './App_Despues_De_Login.module.css';
 
 //components
 // import SectionAgregarProducto from './components/Section_Producto/SectionProducto';
-import Navbar from './components/Navbar/Navbar';
-import ListaProductos from './components/Lista_Productos/ListaProductos';
-import ListaCompras from './components/App_Despues_Logeo/Main/Lista_Compras/ListaCompras'
-import CargarCompra from './components/App_Despues_Logeo/Main/Cargar_Compra/CargarCompra';
-import ListaVentas from './components/App_Despues_Logeo/Main/Lista_Ventas/ListaVentas'
-import CargarVenta from './components/Cargar_Venta/CargarVenta';
+import Navbar from './Header/Navbar/Navbar';
+import ListaProductos from './Main/Lista_Productos/ListaProductos';
+import ListaCompras from './Main/Lista_Compras/ListaCompras'
+import CargarCompra from './Main/Cargar_Compra/CargarCompra';
+import ListaVentas from './Main/Lista_Ventas/ListaVentas'
+import CargarVenta from './Main/Cargar_Venta/CargarVenta';
 
 
 // en entorno de development: estoy usando un .env para esta variable
@@ -18,7 +18,7 @@ export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 
 export const MENUS = ["LISTA_PRODUCTOS", "COMPRA", "LISTA_COMPRAS", "VENTA","LISTA_VENTAS"]
 
-function App() {
+function App_Despues_De_Login() {
     const [menu, setMenu] = useState('LISTA_PRODUCTOS')
 
     function mostrarMenu(menu) {
@@ -57,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default App_Despues_De_Login;

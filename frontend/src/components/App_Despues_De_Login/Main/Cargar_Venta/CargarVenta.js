@@ -1,6 +1,6 @@
 import './CargarVenta.module.css'
 
-import { MENUS } from '../../App'
+import { MENUS } from '../../App_Despues_De_Login'
 
 export default function CargarVenta ({setMenu}) {
 
