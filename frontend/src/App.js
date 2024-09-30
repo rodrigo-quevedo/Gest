@@ -44,7 +44,6 @@ function App() {
 
   return (
     <div className={styles.appContainer}>
-        {/* <SectionAgregarProducto /> */}
         <Navbar setMenu={setMenu} menu={menu}/>
         {mostrarMenu(menu)}
     </div>

@@ -8,7 +8,7 @@ export default function FormularioCompra ()  {
 
     return (
         <form id="formularioCompra" className={styles.formulario}>
-            <div className={styles.just_a_div}>
+            <div>
                 <label for="nombreProducto">Nombre del producto</label>
                 <input type="text" id="nombreProducto" placeholder="Producto"/>
            </div>
@@ -47,9 +47,6 @@ export default function FormularioCompra ()  {
                 <input type="number" id="precioTotal" placeholder="$ 0"/>
             </div>
             }
-
-
-            
 
         </form>
     )

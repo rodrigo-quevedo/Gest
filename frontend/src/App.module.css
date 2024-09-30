@@ -2,7 +2,12 @@
     display: flex;
     flex-direction: row;
     max-height: 100vh;
+    /* justify-content: space-between; */
 
+
+    background: #000;
+    color: rgb(255, 49, 49);
+    
     /* esto lo pongo porque sale un scrollbar, a pesar de que todos los containers tienen el mismo height. 
     Ej: <body> tiene height: 606px, <div #root> tambien, <nav> y Pantalla tambien, los <div> adentro de Pantalla tambien.
     Es decir, no hay razon para que salga el scrollbar. 
@@ -13,8 +18,6 @@
 /* :nth-child(1) es el componente Pantalla. Uso nth-child(1) porque el elemento puede variar (es el resultado de una funcion). Y no uso clases, porque tendría que poner la clase dentro del componente en sí, y por lo tanto tendría que armar un CSS para cada componente Pantalla en específico (que de hecho lo tengo que hacer, pero POR AHORA prefiero hacer esto aca).*/
 .appContainer:nth-child(1){
     max-height: 100vh !important;
-
-    color: rgb(0, 96, 128);
 }
 ::selection{
     background: #b7ff00;
@@ -34,6 +37,7 @@
 
 @media (width < 600px){
     .appContainer{
+        display: flex;
         flex-direction: column;
         overflow: auto;
     }

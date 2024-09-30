@@ -1,4 +1,5 @@
-.formulario {
+
+/* .formulario {
     display: flex;
     flex-direction: column;
     border: 1px solid #9bc8eb;
@@ -31,10 +32,6 @@
     width: 100%;
     padding: 0 !important;
     margin: 0;
-}
-
-.eleccionPrecio > label{
-    /* width: 50%; */
 }
 
 .eleccionPrecioInput {
@@ -78,4 +75,4 @@
      }
 
 
-}
+} */
