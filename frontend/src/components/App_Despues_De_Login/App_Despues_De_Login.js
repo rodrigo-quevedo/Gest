@@ -4,7 +4,7 @@ import styles from './App_Despues_De_Login.module.css';
 
 //components
 // import SectionAgregarProducto from './components/Section_Producto/SectionProducto';
-import Navbar from './Header/Navbar/Navbar';
+import Navbar from './App_Navbar/Navbar/Navbar';
 import ListaProductos from './Main/Lista_Productos/ListaProductos';
 import ListaCompras from './Main/Lista_Compras/ListaCompras'
 import CargarCompra from './Main/Cargar_Compra/CargarCompra';
@@ -18,25 +18,25 @@ export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP
 
 export const MENUS = ["LISTA_PRODUCTOS", "COMPRA", "LISTA_COMPRAS", "VENTA","LISTA_VENTAS"]
 
-function App_Despues_De_Login() {
+function App_Despues_De_Login({setWebpageTitle}) {
     const [menu, setMenu] = useState('LISTA_PRODUCTOS')
 
     function mostrarMenu(menu) {
         switch(menu) {
             case "LISTA_PRODUCTOS": {
-                return <ListaProductos/>
+                return <ListaProductos setWebpageTitle={setWebpageTitle}/>
             }
             case "COMPRA": {
-                return <CargarCompra/>
+                return <CargarCompra setWebpageTitle={setWebpageTitle}/>
             }
             case "LISTA_COMPRAS": {
-                return <ListaCompras/>
+                return <ListaCompras setWebpageTitle={setWebpageTitle}/>
             }
             case "VENTA" : {
-                return <CargarVenta/>
+                return <CargarVenta setWebpageTitle={setWebpageTitle}/>
             }
             case "LISTA_VENTAS" : {
-                return <ListaVentas/>
+                return <ListaVentas setWebpageTitle={setWebpageTitle}/>
             }
 
         }

@@ -1,6 +1,9 @@
 import styles from './ListaVentas.module.css'
 
-export default function ListaVentas () {
+export default function ListaVentas ({setWebpageTitle}) {
+
+    setWebpageTitle('Historial de ventas')
+
     return (
         <div>
             <section>

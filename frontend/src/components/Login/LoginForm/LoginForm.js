@@ -2,11 +2,14 @@ import styles from './LoginForm.module.css'
 
 import Lista_Cuentas_Demo from './Lista_Cuentas_Demo/Lista_Cuentas_Demo'
 
-function LoginForm ({setMenu}) {
+function LoginForm ({setWebpageTitle}) {
+
+    setWebpageTitle('Ingresar')
+
     return (
         <div>
             <section>
-                <h1>Login</h1>
+                <h1>Ingresa con tu usuario</h1>
 
                 <form>
                     <div>

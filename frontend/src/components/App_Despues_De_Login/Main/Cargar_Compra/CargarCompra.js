@@ -2,9 +2,11 @@ import {useState} from 'react'
 
 import styles from './CargarCompra.module.css'
 
-export default function CargarCompra () {
+export default function CargarCompra ({setWebpageTitle}) {
     
     const [precioUnitario, setPrecioUnitario] = useState(true)
+
+    setWebpageTitle('Ingresar producto')
 
     return (
         <section className={styles.flexContainer}>

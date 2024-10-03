@@ -1,6 +1,9 @@
 import styles from './ListaCompras.module.css'
 
-export default function ListaCompras () {
+export default function ListaCompras ({setWebpageTitle}) {
+
+    setWebpageTitle('Historial de productos ingresados')
+
     return (
         <div>
             <section className={styles.container}>

@@ -1,6 +1,9 @@
 import './Registrarse.module.css'
 
-function Registrarse ({setMenu}) {
+function Registrarse ({setWebpageTitle}) {
+
+    setWebpageTitle('Registrarse')
+
     return (
         <div>
         <h1>Registrarse</h1>

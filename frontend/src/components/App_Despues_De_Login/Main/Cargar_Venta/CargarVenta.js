@@ -2,7 +2,9 @@ import './CargarVenta.module.css'
 
 import { MENUS } from '../../App_Despues_De_Login'
 
-export default function CargarVenta ({setMenu}) {
+export default function CargarVenta ({setMenu, setWebpageTitle}) {
+
+    setWebpageTitle('Registrar venta')
 
     return (
         <div>

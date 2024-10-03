@@ -10,16 +10,18 @@ import { FaLinkedin } from "react-icons/fa";
 import LoginForm from './LoginForm/LoginForm'
 import Registrarse from './Registrarse/Registrarse'
 
-const MENUS = ['LOGIN', 'REGISTRARSE']
+import Footer from '../Footer/Footer'
 
-function elegirMenu (menu, setMenuArg) {
-    switch(menu) {
-        case MENUS[0] : {
-            return <LoginForm setMenu={setMenuArg}/>
+const MENUS_LOGIN = ['LOGIN', 'REGISTRARSE']
+
+function elegirMenu (menuLoginArg, setWebpageTitleArg) {
+    switch(menuLoginArg) {
+        case MENUS_LOGIN[0] : {
+            return <LoginForm setWebpageTitle={setWebpageTitleArg}/>
         }
         
-        case MENUS[1] : {
-            return <Registrarse setMenu={setMenuArg}/>
+        case MENUS_LOGIN[1] : {
+            return <Registrarse setWebpageTitle={setWebpageTitleArg}/>
         }
         
     }
@@ -27,8 +29,8 @@ function elegirMenu (menu, setMenuArg) {
 
 
 
-function Login () {
-    const [menu, setMenu] = useState(MENUS[0])
+function Login ({setWebpageTitle}) {
+    const [menuLogin, setMenuLogin] = useState(MENUS_LOGIN[0])
 
     return (
         <div className={styles.container}>
@@ -40,25 +42,18 @@ function Login () {
 
                 <nav className={styles.navbar}>
                     <button 
-                    className={menu === MENUS[0]? `${styles.headerButton} ${styles.seleccionado}` : styles.headerButton}
-                    onClick={()=> {setMenu(MENUS[0], setMenu)}}>Login</button>
+                    className={menuLogin === MENUS_LOGIN[0]? `${styles.headerButton} ${styles.seleccionado}` : styles.headerButton}
+                    onClick={()=> {setMenuLogin(MENUS_LOGIN[0])}}>Ingresar</button>
                     <button 
-                    className={menu === MENUS[1]? `${styles.headerButton} ${styles.seleccionado}` : styles.headerButton}
-                    onClick={()=> {setMenu(MENUS[1], setMenu)}}>Registrarse</button>
+                    className={menuLogin === MENUS_LOGIN[1]? `${styles.headerButton} ${styles.seleccionado}` : styles.headerButton}
+                    onClick={()=> {setMenuLogin(MENUS_LOGIN[1])}}>Registrarse</button>
                 </nav>
             </header>
             <main>
-                {elegirMenu(menu)}
+                {elegirMenu(menuLogin, setWebpageTitle)}
             </main>
-            <footer className={styles.footer}>
-                <p>Inicio del proyecto: Septiembre de 2024.</p>
-                <p>Última update: Septiembre de 2024</p>
-                <p>Rodrigo Martín Quevedo - Programador Web</p>
-                <nav className={styles.footerNavbar}>
-                    <a href="https://github.com/rodrigo-quevedo"><FaGithub /> GitHub</a>
-                    <a href="https://www.linkedin.com/in/martinquevedo"><FaLinkedin/> LinkedIn</a>
-                </nav>
-            </footer>
+
+            <Footer />
         </div>
     )
 
