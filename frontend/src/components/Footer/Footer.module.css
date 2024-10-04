@@ -1,0 +1,39 @@
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+
+    font-size: .5em;
+    background: var(--footer-background-color);
+    color: var(--footer-color);
+}
+
+.footer > * {
+    width: 20%;
+}
+
+.footerNavbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 0;
+    margin: 0;
+}
+
+.footerNavbar > a {
+    color: rgb(255, 0, 234);
+    text-decoration: none;
+}
+
+.footerNavbar > a:visited {
+    color: cyan;
+}
+
+.footerNavbar > a:hover {
+    color: orange;
+}
+
