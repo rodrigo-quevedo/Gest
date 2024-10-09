@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
 import Header from '../Header/Header_container/Header'
-import Main from '../Main/Main_container/Main'
-import Footer from '../Footer/Footer'
+// import Main from '../Main/Main_container/Main'
+// import Footer from '../Footer/Footer'
 
 import {LOGIN_SCREENS, SESSION_SCREENS} from '../../config/config'
 
@@ -16,15 +16,19 @@ function App() {
     return (
         <>
             <Header 
-                isAuth={isAuth} 
+                isAuth={isAuth}
+                loginScreen={loginScreen}
+                setLoginScreen={setLoginScreen}
             />
 
-            <Main 
+            {/* <Main 
                 isAuth={isAuth}
                 setIsAuth={setIsAuth} 
+                loginScreen={loginScreen}
+                sessionScreen={sessionScreen}
             />
 
-            <Footer />
+            <Footer /> */}
         </>
     )
 }

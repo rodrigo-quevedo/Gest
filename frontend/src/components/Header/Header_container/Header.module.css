@@ -1,0 +1,44 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-height: 100px;
+    height: 100px;
+
+    padding: 0 20px;
+
+    color: #fff;
+    background: #111134;
+}
+
+.websiteBanner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.websiteBanner > h1 {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    
+
+    font-size: min(4vw, 25px);
+}
+
+.websiteBanner > img {
+    width: 20vw;
+    max-width: 90px;
+}
+
+/* A los 600 px se rompe el Header,
+hace falta media query ahí. */
+
+@media (width < 600px) {
+    .headerContainer {
+        flex-direction: column;
+        max-height: fit-content;
+        height: fit-content;
+    }
+}
