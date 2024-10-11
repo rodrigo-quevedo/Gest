@@ -1,0 +1,50 @@
+/* Hay bastante superposición con el LogginHeader.module.css */
+.navContainer {
+    padding: 0 2vw 0 0;
+}
+
+.headerNavButton {
+    margin: 0 2.5px;
+
+    padding: 20px;
+
+    border-radius: 100px;
+    border: 0;
+
+    font-size: min(3vw, 15px);
+    background: transparent;
+    color: #fff;
+
+    transition: 1s all;
+}
+
+.headerNavButton:hover {
+    cursor: pointer;
+
+    background:#000;
+    color: #272778;
+
+    transition: 1s all;
+}
+
+.headerNavButton:active {
+    color: purple;
+}
+
+@media (width < 600px) {
+    .navContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .headerNavButton {
+        width: 100%;
+        margin: 5px;
+
+        background: #fff;
+        color: #272778;
+    }
+
+    
+}

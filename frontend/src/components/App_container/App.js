@@ -7,7 +7,7 @@ import Header from '../Header/Header_container/Header'
 import {LOGIN_SCREENS, SESSION_SCREENS} from '../../config/config'
 
 function App() {
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(true);
 
     const [loginScreen, setLoginScreen] = useState(LOGIN_SCREENS.LOGIN)
     const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
@@ -19,6 +19,8 @@ function App() {
                 isAuth={isAuth}
                 loginScreen={loginScreen}
                 setLoginScreen={setLoginScreen}
+                sessionScreen={sessionScreen}
+                setSessionScreen={setSessionScreen}
             />
 
             {/* <Main 

@@ -40,5 +40,12 @@ hace falta media query ahí. */
         flex-direction: column;
         max-height: fit-content;
         height: fit-content;
+        padding: 20px;
     }
+
+    .websiteBanner {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
 }

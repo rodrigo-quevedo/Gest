@@ -2,14 +2,18 @@ import styles from './SessionHeader.module.css'
 
 function SessionHeader () {
     return (
-        <nav>
-            <button>
-                Perfil
-            </button>
+        <nav className={styles.navContainer}>
 
-            <button>
+            {/* "Perfil" no tiene mucho sentido, la app hace todo lo necesario sin usar esto. */}
+            {/* <button className={styles.headerNavButton}>
+                Perfil
+            </button> */}
+
+            <button 
+                className={styles.headerNavButton}>
                 Cerrar sesión
             </button>
+
         </nav>
     )
 }
