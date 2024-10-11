@@ -1,6 +1,6 @@
 import styles from './SessionHeader.module.css'
 
-function SessionHeader () {
+function SessionHeader ({setPopupCerrarSesion}) {
     return (
         <nav className={styles.navContainer}>
 
@@ -10,7 +10,9 @@ function SessionHeader () {
             </button> */}
 
             <button 
-                className={styles.headerNavButton}>
+                className={styles.headerNavButton}
+                onClick={()=>setPopupCerrarSesion(true)}
+            >
                 Cerrar sesión
             </button>
 

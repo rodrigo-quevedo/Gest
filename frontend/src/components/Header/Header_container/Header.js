@@ -5,7 +5,7 @@ import website_icon from '../../../media/website_icon.png'
 import LoginHeader from '../LoginHeader/LoginHeader'
 import SessionHeader from '../SessionHeader/SessionHeader'
 
-function Header({isAuth, loginScreen, setLoginScreen}) {
+function Header({isAuth, loginScreen, setLoginScreen, setPopupCerrarSesion}) {
 
     return (
         <header className={styles.headerContainer}>
@@ -19,7 +19,9 @@ function Header({isAuth, loginScreen, setLoginScreen}) {
 
             {/* Aca se elige entre mostrar [Login/Registrarse] o [Perfil/Cerrar sesión] */}
             {isAuth ? 
-                <SessionHeader/> 
+                <SessionHeader
+                setPopupCerrarSesion={setPopupCerrarSesion}
+                /> 
                 : 
                 <LoginHeader
                     loginScreen={loginScreen}

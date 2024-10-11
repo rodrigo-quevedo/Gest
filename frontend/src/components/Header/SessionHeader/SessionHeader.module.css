@@ -22,13 +22,15 @@
     cursor: pointer;
 
     background:#000;
-    color: #272778;
+    color: #9999ff;
 
     transition: 1s all;
 }
 
 .headerNavButton:active {
     color: purple;
+    
+    transition: none;
 }
 
 @media (width < 600px) {
