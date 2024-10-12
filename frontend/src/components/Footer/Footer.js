@@ -10,8 +10,8 @@ function Footer (){
         <p>Última update: Septiembre de 2024</p>
         <p>Rodrigo Martín Quevedo - Programador Web</p>
         <nav className={styles.footerNavbar}>
-            <a href="https://github.com/rodrigo-quevedo"><FaGithub /> GitHub</a>
-            <a href="https://www.linkedin.com/in/martinquevedo"><FaLinkedin/> LinkedIn</a>
+            <a href="https://github.com/rodrigo-quevedo"><FaGithub /> Mira mis otros proyectos</a>
+            <a href="https://www.linkedin.com/in/martinquevedo"><FaLinkedin/> Agregame a LinkedIn</a>
         </nav>
     </footer>
     )
