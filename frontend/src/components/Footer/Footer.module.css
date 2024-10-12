@@ -52,3 +52,12 @@
         height: fit-content;
     }
 }
+
+@media (width > 600px)
+and (height > 300px) 
+and (height < 750px) {
+    .footer {
+        max-height: fit-content;
+        height: fit-content;
+    }
+}
