@@ -3,8 +3,8 @@
     justify-content: space-between;
     align-items: center;
 
-    max-height: 100px;
-    height: 100px;
+    max-height: 16.5vh;
+    height: 16.5vh;
 
     padding: 0 20px;
 
@@ -48,4 +48,23 @@ hace falta media query ahí. */
         padding-bottom: 20px;
     }
 
+}
+
+/* El height en pantallas altas no alcanza */
+@media (height > 650px) {
+    .headerContainer {
+        max-height: 21.5vh;
+        height: 21.5vh;
+    }
+}
+
+@media 
+(width > 300px) 
+and (width < 600px) 
+and (height > 650px)
+and (height < 920px) {
+    .headerContainer {
+        max-height: 28.5vh;
+        height: 28.5vh;
+    }
 }

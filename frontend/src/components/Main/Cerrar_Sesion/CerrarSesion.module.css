@@ -4,10 +4,9 @@
     justify-content: center;
     align-items: center;
     
-    /* max-height: calc(100vh - 100px - 40px); */
-    /* height: calc(100vh - 100px - 40px); */
-    max-height: 77vh;
-    height: 77vh;
+    /* En teoría desde acá puedo setear el height general del Header */
+    max-height: 71.6vh;
+    height: 71.6vh;
 
     background: #ddd;
 }
@@ -49,9 +48,10 @@
     background: #4040fe;
 }
 
-@media (width < 600px) {
+@media (width < 600px ) {
     .mainContainer {
-        max-height: 52vh;
-        height: 52vh;
+        /* max-height: 51.5vh;
+        height: 51.5vh; */
     }
 }
+
