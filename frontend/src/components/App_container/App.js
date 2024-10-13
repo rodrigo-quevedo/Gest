@@ -1,46 +1,64 @@
 import {useState} from 'react'
 
 import Header from '../Header/Header_container/Header'
-// import Main from '../Main/Main_container/Main'
+import Main from '../Main/Main_container/Main'
 import CerrarSesion from '../Main/Cerrar_Sesion/CerrarSesion'
 import Footer from '../Footer/Footer'
 
-import {LOGIN_SCREENS, SESSION_SCREENS} from '../../config/config'
+import {AUTHENTICATION_SCREENS, SESSION_SCREENS} from '../../config/config'
 
 function App() {
     const [isAuth, setIsAuth] = useState(true);
 
-    const [loginScreen, setLoginScreen] = useState(LOGIN_SCREENS.LOGIN)
-    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
-
     const [popupCerrarSesion, setPopupCerrarSesion] = useState(true)
-
+    
+    const [authenticationScreen, setAuthenticationScreen] = useState(AUTHENTICATION_SCREENS.LOGIN)
+    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
+    
 
     return (
         <>
             <Header 
-                isAuth={isAuth}
-                loginScreen={loginScreen}
-                setLoginScreen={setLoginScreen}
-                sessionScreen={sessionScreen}
-                setSessionScreen={setSessionScreen}
-                setPopupCerrarSesion={setPopupCerrarSesion}
+                //elegir entre [Ingresar/Registrarse] o [CerrarSesion]:
+                isAuth={isAuth} 
+                
+                //elegir entre Ingresar o Registrarse (esto es para darle un estilo distinto al botón del menu seleccionado):
+                authenticationScreen={authenticationScreen} 
+                
+                //setear [Ingresar/Registrarse] al hacer click:
+                setAuthenticationScreen={setAuthenticationScreen} 
+                
+                //activar el popup [CerrarSesion] al hacer click: setPopupCerrarSesion(true)
+                setPopupCerrarSesion={setPopupCerrarSesion} 
             />
 
             {popupCerrarSesion ? 
                
                 <CerrarSesion
-                setIsAuth={setIsAuth}
-                setPopupCerrarSesion={setPopupCerrarSesion}
-            />
+                    //cerrar la sesión: setIsAuth(false)
+                    setIsAuth={setIsAuth} 
+                    
+                    //cerrar el popup Cerrar Sesión: setPopupCerrarSesion(false)
+                    setPopupCerrarSesion={setPopupCerrarSesion} 
+                />
             :
-               // <Main 
-                //     isAuth={isAuth}
-                //     setIsAuth={setIsAuth} 
-                //     loginScreen={loginScreen}
-                //     sessionScreen={sessionScreen}
-                // />
-                <main></main> 
+               <Main 
+                    //elegir entre authentication screens o session screens:
+                    isAuth={isAuth}
+
+                    //ingresar a la sesión con una cuenta: setIsAuth(true)
+                    setIsAuth={setIsAuth} 
+
+                    //elegir authentication screen [Ingresar/Registrarse]:
+                    authenticationScreen={authenticationScreen}
+
+                    //elegir la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
+                    sessionScreen={sessionScreen}
+
+                    //setear la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
+                    setSessionScreen={setSessionScreen}
+                />
+
             
             }
             <Footer />

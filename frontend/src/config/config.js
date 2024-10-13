@@ -3,7 +3,7 @@
 export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
 
-export const LOGIN_SCREENS = {
+export const AUTHENTICATION_SCREENS = {
     LOGIN: 'LOGIN',
     REGISTRARSE: 'REGISTRARSE'
 }

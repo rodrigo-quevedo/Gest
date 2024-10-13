@@ -1,53 +1,67 @@
-import {useState} from 'react'
-
 import styles from './Session.module.css';
 
-//components
 import Navbar from '../Navbar/Navbar'
-import ListaProductos from '../Screens/Lista_Productos/ListaProductos'
-import ListaCompras from '../Screens/Historial_Productos/HistorialProductos'
-import CargarCompra from '../Screens/Ingresar_Productos/Ingresar_Productos_container/IngresarProductos'
-import ListaVentas from '../Screens/Historial_Ventas/HistorialVentas'
-import CargarVenta from '../Screens/Registrar_Ventas/RegistrarVentas'
 
+//session screens:
+// import ListaProductos from '../Screens/Lista_Productos/ListaProductos'
+// import ListaCompras from '../Screens/Historial_Productos/HistorialProductos'
+// import CargarCompra from '../Screens/Ingresar_Productos/Ingresar_Productos_container/IngresarProductos'
+// import ListaVentas from '../Screens/Historial_Ventas/HistorialVentas'
+// import CargarVenta from '../Screens/Registrar_Ventas/RegistrarVentas'
 
-export const MENUS = ["LISTA_PRODUCTOS", "COMPRA", "LISTA_COMPRAS", "VENTA","LISTA_VENTAS"]
+// import {SESSION_SCREENS} from '../../../../config/config'
 
-function Session({setWebpageTitle}) {
-    const [sessionMain, setSessionMain] = useState('LISTA_PRODUCTOS')
-
-    function mostrarScreen(screen) {
-        switch(screen) {
-            case "LISTA_PRODUCTOS": {
-                return <ListaProductos setWebpageTitle={setWebpageTitle}/>
-            }
-            case "COMPRA": {
-                return <CargarCompra setWebpageTitle={setWebpageTitle}/>
-            }
-            case "LISTA_COMPRAS": {
-                return <ListaCompras setWebpageTitle={setWebpageTitle}/>
-            }
-            case "VENTA" : {
-                return <CargarVenta setWebpageTitle={setWebpageTitle}/>
-            }
-            case "LISTA_VENTAS" : {
-                return <ListaVentas setWebpageTitle={setWebpageTitle}/>
-            }
-
-        }
+function Session(
+    {
+        sessionScreen, 
+        setSessionScreen
     }
+) {
+
+    // function mostrarScreen(screen) {
+    //     switch(screen) {
+    //         case "LISTA_PRODUCTOS": {
+    //             return <ListaProductos />
+    //         }
+    //         case "COMPRA": {
+    //             return <CargarCompra />
+    //         }
+    //         case "LISTA_COMPRAS": {
+    //             return <ListaCompras />
+    //         }
+    //         case "VENTA" : {
+    //             return <CargarVenta />
+    //         }
+    //         case "LISTA_VENTAS" : {
+    //             return <ListaVentas />
+    //         }
+
+    //     }
+    // }
 
   return (
     <div className={styles.appContainer}>
+
         <section className={styles.appHeader}>
-            <Navbar setMenu={setSessionMain} menu={sessionMain}/>
+            
+            <Navbar 
+                setMenu={setSessionMain} 
+                menu={sessionMain}
+            />
+
         </section>
         
+
         <section className={styles.appMain}>
-            {mostrarScreen(sessionMain)}
+            {
+                // mostrarScreen(sessionScreen)
+            }
         </section>
+
     </div>
-  );
+
+  )
+
 }
 
-export default Session;
+export default Session

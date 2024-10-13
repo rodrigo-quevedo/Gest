@@ -2,8 +2,8 @@ import styles from './Login.module.css'
 
 import Lista_Cuentas_Demo from '../Lista_Cuentas_Demo/Lista_Cuentas_Demo'
 
-function Login () {
-    document.querySelector('title').innerText = 'Login';
+function Ingresar () {
+    document.querySelector('title').innerText = 'Ingresar';
 
     return (
         <div>
@@ -32,4 +32,4 @@ function Login () {
     )
 }
 
-export default Login
+export default Ingresar

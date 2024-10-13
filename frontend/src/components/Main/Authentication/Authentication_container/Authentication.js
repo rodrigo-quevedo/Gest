@@ -1,30 +1,31 @@
-import {useState} from 'react'
-
 import styles from './Login.module.css'
 
-import LoginForm from './LoginForm/LoginForm'
-import Registrarse from './Registrarse/Registrarse'
+import Ingresar from '../Ingresar/Ingresar_container/Ingresar'
+import Registrarse from '../Registrarse/Registrarse'
 
+import {AUTHENTICATION_SCREENS} from '../../../../config/config'
 
-
-const MENUS_LOGIN = ['LOGIN', 'REGISTRARSE']
-
-function elegirMain (menuLoginArg, setWebpageTitleArg) {
-    switch(menuLoginArg) {
-        case MENUS_LOGIN[0] : {
-            return <LoginForm setWebpageTitle={setWebpageTitleArg}/>
-        }
-        
-        case MENUS_LOGIN[1] : {
-            return <Registrarse setWebpageTitle={setWebpageTitleArg}/>
-        }
-        
+function Authentication (
+    {
+        setIsAuth,
+        authenticationScreen
     }
-}
+) {
+    
+    function elegirMain (menuLoginArg, setWebpageTitleArg) {
+        switch(menuLoginArg) {
+            case MENUS_LOGIN[0] : {
+                return <LoginForm setWebpageTitle={setWebpageTitleArg}/>
+            }
+            
+            case MENUS_LOGIN[1] : {
+                return <Registrarse setWebpageTitle={setWebpageTitleArg}/>
+            }
+            
+        }
+    }
+    
 
-
-
-function Authentication ({setWebpageTitle}) {
     const [menuLogin, setMenuLogin] = useState(MENUS_LOGIN[0])
 
     return (
@@ -35,4 +36,4 @@ function Authentication ({setWebpageTitle}) {
 
 }
 
-export default Authentication;
+export default Authentication

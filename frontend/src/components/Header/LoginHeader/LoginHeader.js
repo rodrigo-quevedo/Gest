@@ -1,6 +1,6 @@
 import styles from './LoginHeader.module.css'
 
-import {LOGIN_SCREENS} from '../../../config/config'
+import {AUTHENTICATION_SCREENS} from '../../../config/config'
 
 function LoginHeader ({loginScreen, setLoginScreen}) {
     return (
@@ -8,26 +8,26 @@ function LoginHeader ({loginScreen, setLoginScreen}) {
             
             <button 
                 className = {
-                    loginScreen === LOGIN_SCREENS.LOGIN ?   
+                    loginScreen === AUTHENTICATION_SCREENS.LOGIN ?   
                         `${styles.headerNavButton} ${styles.buttonSeleccionado}` 
                         : 
                         styles.headerNavButton 
                 }
 
-                onClick={ ()=> {setLoginScreen(LOGIN_SCREENS.LOGIN)} }
+                onClick={ ()=> {setLoginScreen(AUTHENTICATION_SCREENS.LOGIN)} }
             >
                 Ingresar
             </button>
             
             <button 
                 className = {
-                    loginScreen === LOGIN_SCREENS.REGISTRARSE ?   
+                    loginScreen === AUTHENTICATION_SCREENS.REGISTRARSE ?   
                         `${styles.headerNavButton} ${styles.buttonSeleccionado}` 
                         : 
                         styles.headerNavButton
                 }
 
-                onClick={ ()=> {setLoginScreen(LOGIN_SCREENS.REGISTRARSE)} }
+                onClick={ ()=> {setLoginScreen(AUTHENTICATION_SCREENS.REGISTRARSE)} }
             >
                 Registrarse
             </button>

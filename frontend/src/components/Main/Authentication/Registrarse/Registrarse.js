@@ -1,7 +1,7 @@
 import './Registrarse.module.css'
 
-function Registrarse () {
-
+function Registrarse (
+) {
     document.querySelector('title').innerText = 'Registrarse';
 
     return (
