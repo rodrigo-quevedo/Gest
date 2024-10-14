@@ -1,4 +1,4 @@
-import styles from './Login.module.css'
+import styles from './Authentication.module.css'
 
 import Ingresar from '../Ingresar/Ingresar_container/Ingresar'
 import Registrarse from '../Registrarse/Registrarse'
@@ -12,26 +12,37 @@ function Authentication (
     }
 ) {
     
-    function elegirMain (menuLoginArg, setWebpageTitleArg) {
-        switch(menuLoginArg) {
-            case MENUS_LOGIN[0] : {
-                return <LoginForm setWebpageTitle={setWebpageTitleArg}/>
+    function elegirScreen (authenticationScreenArg) {
+
+        switch(authenticationScreenArg) {
+
+            case AUTHENTICATION_SCREENS.LOGIN : {
+                return (
+
+                    <Ingresar 
+                        setIsAuth={setIsAuth}
+                    />
+
+                )
             }
             
-            case MENUS_LOGIN[1] : {
-                return <Registrarse setWebpageTitle={setWebpageTitleArg}/>
+            case AUTHENTICATION_SCREENS.REGISTRARSE : {
+                return <Registrarse/>
             }
             
         }
+
     }
     
 
-    const [menuLogin, setMenuLogin] = useState(MENUS_LOGIN[0])
-
     return (
+
         <div className={styles.container}>
-            {elegirMain(menuLogin, setWebpageTitle)}
+            {
+                elegirScreen(authenticationScreen)
+            }
         </div>
+
     )
 
 }
