@@ -2,31 +2,38 @@ import styles from './Header.module.css'
 
 import website_icon from '../../../media/website_icon.png'
 
-import LoginHeader from '../LoginHeader/LoginHeader'
+import AuthenticationHeader from '../AuthenticationHeader/AuthenticationHeader'
 import SessionHeader from '../SessionHeader/SessionHeader'
 
-function Header({isAuth, loginScreen, setLoginScreen, setPopupCerrarSesion}) {
+function Header({isAuth, authenticationScreen, setAuthenticationScreen, setPopupCerrarSesion}) {
 
     return (
         <header className={styles.headerContainer}>
 
             {/* Website logo + title */}
             <div className={styles.websiteBanner}>
-                <img src={website_icon} alt="Gest - Gestor de inventario"/>
+                <img 
+                    src={website_icon} 
+                    alt="Gest - Gestor de inventario"/
+                >
                 <h1>Gestor de inventario</h1>
             </div>
 
 
             {/* Aca se elige entre mostrar [Login/Registrarse] o [Perfil/Cerrar sesión] */}
             {isAuth ? 
+
                 <SessionHeader
-                setPopupCerrarSesion={setPopupCerrarSesion}
+                    setPopupCerrarSesion={setPopupCerrarSesion}
                 /> 
-                : 
-                <LoginHeader
-                    loginScreen={loginScreen}
-                    setLoginScreen={setLoginScreen}
+
+            : 
+
+                <AuthenticationHeader
+                    authenticationScreen={authenticationScreen}
+                    setAuthenticationScreen={setAuthenticationScreen}
                 />
+
             }
 
         </header>

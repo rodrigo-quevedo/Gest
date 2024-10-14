@@ -27,20 +27,29 @@
 .headerNavButton:hover {
     cursor: pointer;
 
-    background:#000;
+    background:#aaa;
     color: #272778;
 
     transition: 1s all;
 }
 
 .headerNavButton:active {
-    color: purple;
+    background: #000;
+    color: #AFAFFF;
+
+    transition: none;
 }
 
-@media (width < 600px) {
+
+/* Esta media query va en conjunto con la del Header */
+@media (width < 700px) {
     .navContainer {
         display: flex;
         flex-direction: column;
+
+        height: fit-content;
+        max-height: fit-content;
+
         width: 100%;
     }
 
@@ -49,5 +58,5 @@
         margin: 5px;
     }
 
-    
 }
+

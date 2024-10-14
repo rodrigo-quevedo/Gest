@@ -33,7 +33,7 @@
     transition: none;
 }
 
-@media (width < 600px) {
+@media (width < 700px) {
     .navContainer {
         display: flex;
         flex-direction: column;

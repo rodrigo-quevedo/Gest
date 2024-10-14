@@ -8,9 +8,9 @@ import Footer from '../Footer/Footer'
 import {AUTHENTICATION_SCREENS, SESSION_SCREENS} from '../../config/config'
 
 function App() {
-    const [isAuth, setIsAuth] = useState(true);
+    const [isAuth, setIsAuth] = useState(false);
 
-    const [popupCerrarSesion, setPopupCerrarSesion] = useState(true)
+    const [popupCerrarSesion, setPopupCerrarSesion] = useState(false)
     
     const [authenticationScreen, setAuthenticationScreen] = useState(AUTHENTICATION_SCREENS.LOGIN)
     const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)

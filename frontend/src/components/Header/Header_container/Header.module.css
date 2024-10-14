@@ -32,10 +32,10 @@
     max-width: 90px;
 }
 
-/* A los 600 px se rompe el Header,
+/* A los 700 px se rompe el Header,
 hace falta media query ahí. */
 
-@media (width < 600px) {
+@media (width < 700px) {
     .headerContainer {
         flex-direction: column;
         max-height: fit-content;
@@ -51,15 +51,15 @@ hace falta media query ahí. */
 }
 
 /* El height en pantallas altas no alcanza */
-@media (height > 650px) {
+/* @media (height > 650px) {
     .headerContainer {
         max-height: 21.5vh;
         height: 21.5vh;
     }
-}
+} */
 
-@media 
-(width > 300px) 
+/* @media 
+    (width > 300px) 
 and (width < 600px) 
 and (height > 650px)
 and (height < 920px) {
@@ -67,4 +67,4 @@ and (height < 920px) {
         max-height: 28.5vh;
         height: 28.5vh;
     }
-}
+} */

@@ -1,6 +1,6 @@
 import styles from './Session.module.css';
 
-import Navbar from '../Navbar/Navbar'
+// import Navbar from '../Navbar/Navbar'
 
 //session screens:
 // import ListaProductos from '../Screens/Lista_Productos/ListaProductos'
@@ -44,10 +44,10 @@ function Session(
 
         <section className={styles.appHeader}>
             
-            <Navbar 
+            {/* <Navbar 
                 setMenu={setSessionMain} 
                 menu={sessionMain}
-            />
+            /> */}
 
         </section>
         
