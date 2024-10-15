@@ -1,20 +1,46 @@
 import styles from './Lista_Cuentas_Demo.module.css'
 
+import { FaUserAlt } from "react-icons/fa";
+
 function Lista_Cuentas_Demo () {
     return (
-        <section>
-            <h2>O usa una cuenta demo (ya tiene cargado productos, compras, ventas, etc.):</h2>
-
+        <section className={styles.container}>
+            <div className={styles.textContainer}>
+                <h2>Usar una cuenta demo</h2>
+                <p>Ya tiene cargado productos, compras, ventas, etc.</p>
+            </div>
             {/* Solo es un placeholder. Esta lista en realidad se saca de un FETCH al backend */}
-            <ul>
+            <ul className={styles.listContainer}>
                 <li>
-                    <button>sabroso23</button>
+                    <button 
+                        className={styles.botonCuenta}
+                    >
+                        <span className={styles.cuentaDemoIcon}>
+                            <FaUserAlt />
+                        </span>
+                        sabroso23
+                    </button>
                 </li>
                 <li>
-                    <button>otro_usuario</button>
+                    <button 
+                        className={styles.botonCuenta}
+                    >
+                        <span className={styles.cuentaDemoIcon}>
+                            <FaUserAlt />
+                        </span>
+                        otro_usuario
+                    </button>
                 </li>
                 <li>
-                    <button>multicuentaxd</button>
+                    <button 
+                        className={styles.botonCuenta}
+                    >
+                        <span className={styles.cuentaDemoIcon}>
+                            <FaUserAlt />
+                        </span>
+                        
+                        multicuentaxd
+                    </button>
                 </li>
             </ul>
         </section>

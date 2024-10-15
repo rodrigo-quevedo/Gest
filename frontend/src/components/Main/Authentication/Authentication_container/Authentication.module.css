@@ -1,10 +1,13 @@
 .container {
-    height: 71.5vh;
-    font-size: 1em;
-
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+
+    /* justify-content: center; */
+    align-items: center;
+    
+    min-height: 71.5vh;
+    height: fit-content;
+
 }
 
 

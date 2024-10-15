@@ -8,7 +8,7 @@ function Ingresar () {
     return (
         <div className={styles.container}>
             <section className={styles.ingresarSection}>
-                <h1>Ingresa con tu cuenta</h1>
+                <h1>Ingresar</h1>
 
                 <form id="ingresarForm" className={styles.form}>
                     <div className={styles.inputContainer}>
