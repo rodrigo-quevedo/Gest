@@ -1,5 +1,3 @@
-import styles from './Main.module.css'
-
 import Authentication from '../Authentication/Authentication_container/Authentication'
 import Session from '../Session/Session_container/Session'
 

@@ -72,7 +72,8 @@
 .botonCuenta:focus {
     cursor: pointer;
 
-    color: #7e7eff !important;
+    color: #fff !important;
+    background: #2c2c8a;
 
     transform: scale(1.1);
     transition: 1s all;

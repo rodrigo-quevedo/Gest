@@ -1,58 +1,70 @@
-.appContainer {
+.sessionContainer {
     display: flex;
     flex-direction: row;
-    max-height: 100vh;
-    /* justify-content: space-between; */
+    
+    /* este es el minimo height para <main> */
+    height: 80vh;
+    max-height: 80vh;
 
+    background: #111134;
 
-    background: #000;
-    color: rgb(255, 49, 49);
+    padding: 1vw;
     
     /* esto lo pongo porque sale un scrollbar, a pesar de que todos los containers tienen el mismo height. 
     Ej: <body> tiene height: 606px, <div #root> tambien, <nav> y Pantalla tambien, los <div> adentro de Pantalla tambien.
     Es decir, no hay razon para que salga el scrollbar. 
     Tampoco hay paddings o margins que provoquen un overflow. */
-    overflow: hidden;
+    /* overflow: scroll; */
+    /* scrollbar-gutter: auto; */
 }
 
-/* :nth-child(1) es el componente Pantalla. Uso nth-child(1) porque el elemento puede variar (es el resultado de una funcion). Y no uso clases, porque tendría que poner la clase dentro del componente en sí, y por lo tanto tendría que armar un CSS para cada componente Pantalla en específico (que de hecho lo tengo que hacer, pero POR AHORA prefiero hacer esto aca).*/
-.appContainer:nth-child(1){
-    max-height: 100vh !important;
+
+.navbarContainer{
+    max-height: 100%;
+    
+    max-width: fit-content;
+    
+    flex: 1;
+    margin-right: 1vw;
 }
-::selection{
-    background: #b7ff00;
-    color: #000;
-}
+
 
 /* Este es el div adentro del <div> container de Pantalla. */
-.appContainer:nth-child(1) > div {
-    display: inline-block;
+.screenContainer{
+    /* display: inline-block;
     max-height: 100vh;
     overflow: hidden auto;
 
     scrollbar-color: rgb(187, 0, 0) transparent;
-    scrollbar-width: thin;
+    scrollbar-width: thin; */
+    width: 100%;
+    margin: 0 auto;
     
+    border-radius: 10px;
+    background: #fff;
 }
 
-@media (width < 600px){
-    .appContainer{
+@media (width < 700px){
+    .sessionContainer{
         display: flex;
         flex-direction: column;
-        overflow: auto;
+        /* overflow: auto; */
+        width: 98vw;
+        max-width: 98vw;
     }
     
-    .appContainer:nth-child(1){
-        min-width: 100vw;
+    .navbarContainer {
+        max-width: 98vw;
+        /* min-width: 100vw;
         color: red;
-        min-height: 80vh;
-        max-height: 80vh !important;
-        overflow: hidden;
+        min-height: 40vh;
+        max-height: fit-content !important;
+        overflow: hidden; */
 
     }
 
-    .appContainer:nth-child(1)> div {
-        min-height: 80vh;
+    .screenContainer{
+        width: 98vw;
     }
     
 }

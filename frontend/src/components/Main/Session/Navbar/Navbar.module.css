@@ -1,19 +1,24 @@
 .navContainer {
     display: flex;
-    height: 100vh;
     flex-direction: column;
+    flex-wrap: nowrap;
+    
+
+    height: 100%;
+
     min-width: 100px;
-    width: 10vw;
-    max-width: 125px;
+    width: 12.5vw;
+    max-width: 12.5vw;
     /* Una buena alternativa a min-width: 10vh es flex-shrink: 0, así Navbar nunca se va a achicar si alguna Pantalla crece de más. 
     Es decir, Navbar va a tener un tamaño consistente al clickear en cualquier Pantalla.*/
     flex-shrink: 0;
     /* Es mejor poner flex: 1; en los flex items (<button>s) */
     /* justify-content: space-evenly; */
     
-    background: #000;
+    background: #111134;
     color: #fff;
 }
+
 
 .navContainer > button {
     display: flex;
@@ -22,63 +27,81 @@
     align-items: center;
 
     flex: 1;
-    margin: 10px;
-
-    border-radius: 5px;
+    margin: 5px 0 5px 0;
+    
+    padding: 0;
     border: 0;
-    background: rgb(40, 0, 0);
+    border-radius: 5px;
+    background: #4747DA;
     color: #fff;
 
     transition: 150ms all;
 }
+.navContainer > button:nth-of-type(1){
+    margin: 0 0 5px 0;
+}
+.navContainer > button:nth-of-type(5){
+    margin: 5px 0 0 0;
+}
+
+
+.icon {
+    font-size: 5vh;
+}
+
 
 /* Interacciones */
 .navContainer > button:hover, 
 .navContainer > button:focus {
-    background:rgb(81, 0, 0);
     cursor: pointer;
 
-    transform:scale(1.04);
-    transition: 150ms all;
+    background:#000;
+    color: #9393FF;
 
     padding: 5px;
+    transform:scale(1.04);
     
-    color: #b7ff00;
-
+    border: 1px solid #9393FF;
+    
+    transition: 150ms all;
 }
 .seleccionado {
-    -webkit-animation: colorTitilante 2s infinite;
-    animation:colorTitilante 2s infinite;
+    -webkit-animation: colorTitilante 3s infinite;
+    animation: colorTitilante 3s infinite;
 }
 
 @keyframes colorTitilante {
-   0% {color: white; background: rgb(81, 0, 0)}
-   50% {color: #b7ff00; background: red;}
-   100% {color: white; background: rgb(81, 0, 0)}
+   0% {color: #0B0B22; background: #fff}
+   50% {color: #0B0B22; background: #ACACFF;}
+   100% {color: #0B0B22; background: #fff}
 }
 
 
 
 .navContainer > button:active  {
-    background:rgb(255, 0, 0);
-    color: #fff;    
+    background:#fff;
+    color: #0B0B22;    
 }
 
 
 
-.icon {
-    color: inherit;
-    font-size: 300%;
-}
 
-@media (width < 600px) {
+
+
+@media (width < 700px) {
     .navContainer{
         flex-direction: row;
-        width: 100vw;
-        min-width: 100vw;
+
+        width: 100%;
+        min-width: 100%;
+        
         height: 20vh;
-        position: fixed;
-        bottom: 0;
+
+        /* position: fixed;
+        bottom: 0; */
+        /* En vez de position fixed, puedo buscar hacer un flex-direction: column-reverse a los containers*/
+
+        
     }
     
     .navContainer > button {
@@ -88,7 +111,4 @@
         font-size: 2.2vw;
     }
 
-    .icon {
-        font-size: 6vw;
-    }
 }

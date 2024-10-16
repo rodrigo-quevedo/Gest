@@ -1,6 +1,6 @@
 import styles from './Session.module.css';
 
-// import Navbar from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 
 //session screens:
 // import ListaProductos from '../Screens/Lista_Productos/ListaProductos'
@@ -9,7 +9,7 @@ import styles from './Session.module.css';
 // import ListaVentas from '../Screens/Historial_Ventas/HistorialVentas'
 // import CargarVenta from '../Screens/Registrar_Ventas/RegistrarVentas'
 
-// import {SESSION_SCREENS} from '../../../../config/config'
+import {SESSION_SCREENS} from '../../../../config/config'
 
 function Session(
     {
@@ -40,22 +40,24 @@ function Session(
     // }
 
   return (
-    <div className={styles.appContainer}>
+    <div className={styles.sessionContainer}>
 
-        <section className={styles.appHeader}>
-            
-            {/* <Navbar 
-                setMenu={setSessionMain} 
-                menu={sessionMain}
-            /> */}
+        <section className={styles.navbarContainer}>
+
+            <Navbar 
+                sessionScreen={sessionScreen}
+                setSessionScreen={setSessionScreen}
+            />
 
         </section>
         
 
-        <section className={styles.appMain}>
+        <section className={styles.screenContainer}>
+
             {
                 // mostrarScreen(sessionScreen)
             }
+
         </section>
 
     </div>
