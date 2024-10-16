@@ -6,6 +6,9 @@
     max-height: 16.5vh;
     height: 16.5vh;
 
+    position: sticky;
+    top: 0;
+
     padding: 0 20px;
 
     color: #fff;

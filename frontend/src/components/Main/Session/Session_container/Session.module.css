@@ -3,12 +3,13 @@
     flex-direction: row;
     
     /* este es el minimo height para <main> */
-    height: 80vh;
-    max-height: 80vh;
+    min-height: 80vh;
+    /* height: 80vh; */
+    /* max-height: 80vh; */
 
     background: #111134;
 
-    padding: 1vw;
+    padding: 0 1vw 1vw 1vw;
     
     /* esto lo pongo porque sale un scrollbar, a pesar de que todos los containers tienen el mismo height. 
     Ej: <body> tiene height: 606px, <div #root> tambien, <nav> y Pantalla tambien, los <div> adentro de Pantalla tambien.
@@ -20,12 +21,23 @@
 
 
 .navbarContainer{
-    max-height: 100%;
+    /* Esto es para cuando se haga scrolling: */
+    position: sticky;
+    top: 16.5vh;
+
+    /* 
+        Header: 16.5vh
+        Footer: 12vh
+        padding: ~4vh
+    */
+    max-height: calc(100vh - 16.5vh - 12vh - 4vh);
     
     max-width: fit-content;
     
     flex: 1;
     margin-right: 1vw;
+
+
 }
 
 
@@ -37,10 +49,13 @@
 
     scrollbar-color: rgb(187, 0, 0) transparent;
     scrollbar-width: thin; */
+    
+    height: 200vh;
+    
     width: 100%;
     margin: 0 auto;
     
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background: #fff;
 }
 

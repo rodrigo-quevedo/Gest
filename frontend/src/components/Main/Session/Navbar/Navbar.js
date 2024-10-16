@@ -110,7 +110,7 @@ export default function Navbar (
                     <RiFileList3Line/>
                 </span>
             </button>
-            
+
         </nav>
  
     )
