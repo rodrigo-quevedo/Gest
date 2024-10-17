@@ -1,7 +1,7 @@
-import './CargarVenta.module.css'
+import './RegistrarVentas.module.css'
 
 
-export default function CargarVenta () {
+function RegistrarVentas () {
     document.querySelector('title').innerText = 'Registrar venta';
 
     return (
@@ -16,3 +16,5 @@ export default function CargarVenta () {
 
     
 }
+
+export default RegistrarVentas

@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
-import styles from './CargarCompra.module.css'
+import styles from './IngresarProductos.module.css'
 
-export default function CargarCompra () {
+function IngresarProductos () {
     document.querySelector('title').innerText = 'Ingresar producto';
     
     const [precioUnitario, setPrecioUnitario] = useState(true)
@@ -70,3 +70,6 @@ export default function CargarCompra () {
 
 
 }
+
+
+export default IngresarProductos

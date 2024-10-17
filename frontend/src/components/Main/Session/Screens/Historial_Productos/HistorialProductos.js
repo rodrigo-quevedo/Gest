@@ -1,6 +1,7 @@
-import styles from './ListaCompras.module.css'
+import HistorialVentas from '../Historial_Ventas/HistorialVentas';
+import styles from './HistorialProductos.module.css'
 
-export default function ListaCompras () {
+function HistorialProductos () {
     document.querySelector('title').innerText = 'Historial de productos';
 
 
@@ -18,3 +19,5 @@ export default function ListaCompras () {
         </div>
     )
 }
+
+export default HistorialProductos

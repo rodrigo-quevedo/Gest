@@ -3,7 +3,7 @@ import {useState} from 'react'
 import styles from './ListaProductos.module.css'
 
 
-export default function ListaProductos () {
+function ListaProductos () {
     document.querySelector('title').innerText = 'Lista de productos';
     // const [productos, setProductos] = useState([])
     // const [cargarLista, setCargarLista] = useState(true)
@@ -25,3 +25,5 @@ export default function ListaProductos () {
         
     )
 }
+
+export default ListaProductos

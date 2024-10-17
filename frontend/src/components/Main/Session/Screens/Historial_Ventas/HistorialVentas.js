@@ -1,6 +1,6 @@
-import styles from './ListaVentas.module.css'
+import styles from './HistorialVentas.module.css'
 
-export default function ListaVentas () {
+function HistorialVentas () {
     document.querySelector('title').innerText = 'Historial de ventas';
     
 
@@ -12,3 +12,5 @@ export default function ListaVentas () {
         </div>
     )
 }
+
+export default HistorialVentas
