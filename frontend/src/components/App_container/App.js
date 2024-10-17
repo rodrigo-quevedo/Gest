@@ -13,7 +13,7 @@ function App() {
     const [popupCerrarSesion, setPopupCerrarSesion] = useState(false)
     
     const [authenticationScreen, setAuthenticationScreen] = useState(AUTHENTICATION_SCREENS.LOGIN)
-    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
+
     
 
     return (
@@ -51,12 +51,6 @@ function App() {
 
                     //elegir authentication screen [Ingresar/Registrarse]:
                     authenticationScreen={authenticationScreen}
-
-                    //elegir la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
-                    sessionScreen={sessionScreen}
-
-                    //setear la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
-                    setSessionScreen={setSessionScreen}
                 />
 
             

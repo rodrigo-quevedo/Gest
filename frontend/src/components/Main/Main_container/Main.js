@@ -4,8 +4,7 @@ import Session from '../Session/Session_container/Session'
 function Main (
     {
         isAuth, setIsAuth, 
-        authenticationScreen, 
-        sessionScreen, setSessionScreen
+        authenticationScreen
     }
 ) {
 
@@ -19,13 +18,7 @@ function Main (
             {/* elegir entre login screens o session screens: */}
             {isAuth ?
 
-                <Session 
-                    //elegir la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
-                    sessionScreen={sessionScreen}
-
-                    //setear la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas] al hacer click en un botón de la navbar de Session:
-                    setSessionScreen={setSessionScreen}
-                /> 
+                <Session /> 
                 
             : 
 

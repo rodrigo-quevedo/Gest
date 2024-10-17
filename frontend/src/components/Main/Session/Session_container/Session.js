@@ -1,5 +1,7 @@
 import styles from './Session.module.css';
 
+import {useState} from 'react'
+
 import Navbar from '../Navbar/Navbar'
 
 //session screens:
@@ -11,12 +13,9 @@ import Navbar from '../Navbar/Navbar'
 
 import {SESSION_SCREENS} from '../../../../config/config'
 
-function Session(
-    {
-        sessionScreen, 
-        setSessionScreen
-    }
-) {
+function Session() {
+
+    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
 
     // function mostrarScreen(screen) {
     //     switch(screen) {
@@ -45,7 +44,10 @@ function Session(
         <section className={styles.navbarContainer}>
 
             <Navbar 
+                //elegir la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
                 sessionScreen={sessionScreen}
+
+                //setear la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
                 setSessionScreen={setSessionScreen}
             />
 
