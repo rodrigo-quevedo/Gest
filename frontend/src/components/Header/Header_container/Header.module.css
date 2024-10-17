@@ -44,6 +44,8 @@ hace falta media query ahí. */
         max-height: fit-content;
         height: fit-content;
         padding: 20px;
+
+        position: static;
     }
 
     .websiteBanner {

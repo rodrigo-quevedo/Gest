@@ -51,7 +51,7 @@ export default function Navbar (
                 onClick={()=>setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)}
 
             >
-                Ingresar nuevos productos
+                Ingresar productos
                 <span className={styles.icon}>
                     <FaTruckLoading/>
                 </span>
@@ -69,7 +69,7 @@ export default function Navbar (
                 onClick={()=>setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)}
 
             >
-                Historial de productos ingresados
+                Historial de productos
                 <span className={styles.icon}>
                     <HiClipboardDocumentList/>
                 </span>

@@ -97,6 +97,7 @@
         
         height: 20vh;
 
+
         /* position: fixed;
         bottom: 0; */
         /* En vez de position fixed, puedo buscar hacer un flex-direction: column-reverse a los containers*/
@@ -105,9 +106,11 @@
     }
     
     .navContainer > button {
-        margin: 0.5vw;
+        /* El !important es para cancelar los margin especiales del nth-of-type(1 y 5) en desktop */
+        margin: 0.5vw !important;
 
-        max-width: 20vw;
+        width: 20vw;
+        max-width: 20vw; 
         font-size: 2.2vw;
     }
 

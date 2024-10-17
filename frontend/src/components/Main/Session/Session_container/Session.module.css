@@ -30,7 +30,7 @@
         Footer: 12vh
         padding: ~4vh
     */
-    max-height: calc(100vh - 16.5vh - 12vh - 4vh);
+    max-height: calc(100vh - 16.5vh - 12vh - 2vh);
     
     max-width: fit-content;
     
@@ -54,7 +54,7 @@
     
     width: 100%;
     margin: 0 auto;
-    
+
     /* border-radius: 10px; */
     background: #fff;
 }
@@ -63,13 +63,21 @@
     .sessionContainer{
         display: flex;
         flex-direction: column;
-        /* overflow: auto; */
-        width: 98vw;
-        max-width: 98vw;
+
+        
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
     }
     
     .navbarContainer {
-        max-width: 98vw;
+        position: sticky;
+        top: 0;
+
+        
+        margin: 0;
+        max-width: 100%;
         /* min-width: 100vw;
         color: red;
         min-height: 40vh;
@@ -79,7 +87,8 @@
     }
 
     .screenContainer{
-        width: 98vw;
+        margin: 0;
+        max-width: 100%;
     }
     
 }
