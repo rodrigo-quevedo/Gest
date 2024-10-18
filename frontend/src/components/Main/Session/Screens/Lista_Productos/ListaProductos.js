@@ -26,7 +26,7 @@ function elegirSearchboxClass(searchBoxState) {
         }
 
         case SEARCHBOX_STATE.FETCH_SUCCESS : {
-            return styles.searchBox
+            return `${styles.searchBox} ${styles.searchBoxFetchSuccess}`
         }
     }
 }
@@ -42,13 +42,53 @@ function ListaProductos () {
 
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
+
+    const [listaProductos, setListaProductos] = useState([{
+        producto: '-',
+        cantidad: '-',
+        precio_unitario: '-',
+        marca: '-',
+        proveedor: '-'
+    }])
+
+
+    // SearchBox submit effect:
     useEffect(()=>{
         if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
             document.getElementById('searchBoxInput').blur()
 
-            setTimeout(()=>{setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)}, 3000)
+            setTimeout(()=>{
+                setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
+
+                setListaProductos([
+                    {
+                        producto: 'Arroz Fino 1kg',
+                        cantidad: 10,
+                        precio_unitario: 2400.00,
+                        marca: 'Doscientos hermanos',
+                        proveedor: 'Almacén Distribuidora'
+                    },
+                    {
+                        producto: 'Arroz Fino 1kg',
+                        cantidad: 20,
+                        precio_unitario: 2000.00,
+                        marca: 'Sovimandi',
+                        proveedor: 'Almacén Distribuidora'
+                    },
+                    {
+                        producto: 'Arroz Integral 1kg',
+                        cantidad: 8,
+                        precio_unitario: 3000.00,
+                        marca: 'Doscientos hermanos',
+                        proveedor: 'Pritiado Distribuidora'
+                    },
+                ])
+            
+            }, 3000)
         }
     }, [searchBoxState])
+
+
 
     return (
 
@@ -114,10 +154,12 @@ function ListaProductos () {
 
             </form>
 
+
+
             {/* Lista de productos: */}
             <div 
-                className={searchBoxState === SEARCHBOX_STATE.CLICKED ? 
-                        `${styles.tableContainer} ${styles.tableContainerOff}`
+                className={searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS ? 
+                        `${styles.tableContainer} ${styles.tableContainerLoaded}`
                     :
                         styles.tableContainer
                 }
@@ -139,13 +181,26 @@ function ListaProductos () {
                     </thead>
 
                     <tbody>
-                        <tr>
+                        {
+                            listaProductos.map(productoObj => {
+                                return (
+                                    <tr>
+                                        <td>{productoObj.producto}</td>
+                                        <td>{productoObj.cantidad}</td>
+                                        <td>{productoObj.precio_unitario}</td>
+                                        <td>{productoObj.marca}</td>
+                                        <td>{productoObj.proveedor}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        {/* <tr>
                             <td>-</td>
                             <td>-</td>
                             <td>-</td>
                             <td>-</td>
                             <td>-</td>
-                        </tr>
+                        </tr> */}
                     </tbody>
 
                 </table>

@@ -82,6 +82,12 @@
     transition: 1s all;
 }
 
+.searchBoxFetchSuccess{
+    background: #fff !important;
+    border: 1px solid #ccc;
+    transition: none;
+}
+
 .loadingIcon {
     width: 20px; height: 20px;
     animation: 1s infinite rotateLoadingIcon linear;
@@ -117,7 +123,9 @@
 }
 
 .tableContainerLoaded {
-    box-shadow: 1px 1px 10px #111134;
+    box-shadow: 1px 1px 15px #111134;
+    
+    transition: 1s all;
 }
 
 .tableContainer > table {
