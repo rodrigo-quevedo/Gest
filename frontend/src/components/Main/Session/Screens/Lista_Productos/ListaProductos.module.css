@@ -74,13 +74,33 @@
 .searchBoxSubmitted {
     transform: scale(1);
 
-    background: #000;
+    background: #111134;
     color: #fff;
 
     pointer-events: none;
 
     transition: 1s all;
 }
+
+.loadingIcon {
+    width: 20px; height: 20px;
+    animation: 1s infinite rotateLoadingIcon linear;
+}
+
+@keyframes rotateLoadingIcon {
+    0% {transform: rotateZ(0deg)}
+    25% {transform: rotateZ(180deg)}
+    50% {transform: rotateZ(360deg)}
+    75% {transform: rotateZ(540deg)}
+    100% {transform: rotateZ(720deg)}
+}
+
+
+
+
+
+
+
 
 /* Table styles */
 
@@ -114,7 +134,9 @@
 }
 
 .tableContainer > table > thead > tr > th {
+    min-width: 100px;
     width: 20%;
+
     box-sizing: border-box;
     
     padding: 5px;

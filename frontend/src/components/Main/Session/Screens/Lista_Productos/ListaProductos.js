@@ -1,8 +1,11 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 import styles from './ListaProductos.module.css'
 
 import { FaSearch } from "react-icons/fa";
+import { VscLoading } from "react-icons/vsc";
+
+
 
 import {SEARCHBOX_STATE} from '../../../../../config/config'
 
@@ -22,6 +25,9 @@ function elegirSearchboxClass(searchBoxState) {
             return `${styles.searchBox} ${styles.searchBoxSubmitted}`
         }
 
+        case SEARCHBOX_STATE.FETCH_SUCCESS : {
+            return styles.searchBox
+        }
     }
 }
 
@@ -36,6 +42,14 @@ function ListaProductos () {
 
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
+    useEffect(()=>{
+        if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
+            document.getElementById('searchBoxInput').blur()
+
+            setTimeout(()=>{setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)}, 3000)
+        }
+    }, [searchBoxState])
+
     return (
 
         <section className={styles.container}>
@@ -47,7 +61,7 @@ function ListaProductos () {
             <form 
                 id="searchBoxForm_ListaProductos"
                 onSubmit={(e)=>{
-                    e.preventDefault();
+                    e.preventDefault()
 
                     setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
                 }}
@@ -61,15 +75,32 @@ function ListaProductos () {
                         elegirSearchboxClass(searchBoxState)
                     }
                     onClick={()=>{
-                        document.getElementById('searchBoxInput').focus();
-                        setSearchBoxState(SEARCHBOX_STATE.CLICKED)
+                        if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
+                            
+                        }
+                        else if (searchBoxState === SEARCHBOX_STATE.DEFAULT){
+                            document.getElementById('searchBoxInput').focus();
+                            setSearchBoxState(SEARCHBOX_STATE.CLICKED)
+                        }
                     }}
-                    onBlur={()=>setSearchBoxState(SEARCHBOX_STATE.DEFAULT)}
+                    onBlur={()=>{
+                        if (searchBoxState !== SEARCHBOX_STATE.SUBMIT) {
+                            setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
+                        }
+                    }}
                 >
 
-                    <span>
-                        <FaSearch />    
-                    </span>
+                    {
+                        searchBoxState === SEARCHBOX_STATE.SUBMIT ?
+                                <span className={styles.loadingIcon}>
+                                    <VscLoading/>
+                                </span>
+                            :
+                                <span className={styles.searchBoxIcon}>
+                                    <FaSearch />
+                                </span>
+                    }
+                       
 
                     <input 
                         type='text'
@@ -80,14 +111,17 @@ function ListaProductos () {
 
                 </div>
 
+
             </form>
 
             {/* Lista de productos: */}
             <div 
                 className={searchBoxState === SEARCHBOX_STATE.CLICKED ? 
-                    `${styles.tableContainer} ${styles.tableContainerOff}`
+                        `${styles.tableContainer} ${styles.tableContainerOff}`
                     :
-                    styles.tableContainer}
+                        styles.tableContainer
+                }
+                id="tableContainer"
             >
 
                 <table >
