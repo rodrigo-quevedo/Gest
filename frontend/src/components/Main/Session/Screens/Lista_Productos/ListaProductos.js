@@ -181,26 +181,21 @@ function ListaProductos () {
                     </thead>
 
                     <tbody>
+
                         {
                             listaProductos.map(productoObj => {
                                 return (
                                     <tr>
                                         <td>{productoObj.producto}</td>
                                         <td>{productoObj.cantidad}</td>
-                                        <td>{productoObj.precio_unitario}</td>
+                                        <td>${productoObj.precio_unitario}</td>
                                         <td>{productoObj.marca}</td>
                                         <td>{productoObj.proveedor}</td>
                                     </tr>
                                 )
                             })
                         }
-                        {/* <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr> */}
+
                     </tbody>
 
                 </table>
