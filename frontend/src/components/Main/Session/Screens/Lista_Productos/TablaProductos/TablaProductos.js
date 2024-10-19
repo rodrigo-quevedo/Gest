@@ -9,7 +9,7 @@ function TablaProductos ({
 }) {
     return (
         <div 
-        className={searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS ? 
+            className={searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS ? 
                 `${styles.tableContainer} ${styles.tableContainerLoaded}`
             :
                 styles.tableContainer
@@ -35,12 +35,21 @@ function TablaProductos ({
                     {
                         listaProductos.map(productoObj => {
                             return (
-                                <tr>
-                                    <td>{productoObj.producto}</td>
-                                    <td>{productoObj.cantidad}</td>
-                                    <td>${productoObj.precio_unitario}</td>
-                                    <td>{productoObj.marca}</td>
-                                    <td>{productoObj.proveedor}</td>
+                                // <tr key={productoObj.id}>
+                                //     <td>{productoObj.producto}</td>
+                                //     <td>{productoObj.cantidad}</td>
+                                //     <td>${productoObj.precio_unitario}</td>
+                                //     <td>{productoObj.marca}</td>
+                                //     <td>{productoObj.proveedor}</td>
+                                // </tr>
+
+                                // test con json placeholder:
+                                <tr key={productoObj.id}>
+                                    <td>{productoObj.name}</td>
+                                    <td>{productoObj.email}</td>
+                                    <td>${productoObj.phone}</td>
+                                    <td>{productoObj.username}</td>
+                                    <td>{productoObj.website}</td>
                                 </tr>
                             )
                         })

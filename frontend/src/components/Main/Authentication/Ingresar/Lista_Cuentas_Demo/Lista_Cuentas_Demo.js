@@ -18,7 +18,7 @@ function Lista_Cuentas_Demo () {
                         <span className={styles.cuentaDemoIcon}>
                             <FaUserAlt />
                         </span>
-                        sabroso23
+                        cuentademo1
                     </button>
                 </li>
                 <li>
@@ -39,7 +39,7 @@ function Lista_Cuentas_Demo () {
                             <FaUserAlt />
                         </span>
                         
-                        multicuentaxd
+                        cuentademo3
                     </button>
                 </li>
             </ul>
