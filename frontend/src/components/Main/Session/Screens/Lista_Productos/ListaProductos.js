@@ -1,44 +1,20 @@
-import {useState, useEffect} from 'react'
-
+//css
 import styles from './ListaProductos.module.css'
 
-import { FaSearch } from "react-icons/fa";
-import { VscLoading } from "react-icons/vsc";
+//hooks
+import {useState, useEffect} from 'react'
 
-
-
+//config
 import {SEARCHBOX_STATE} from '../../../../../config/config'
+import {URL_LISTA_PRODUCTOS} from '../../../../../config/config'
 
-
-function elegirSearchboxClass(searchBoxState) {
-    switch(searchBoxState) {
-        
-        case SEARCHBOX_STATE.DEFAULT : {
-            return styles.searchBox
-        }
-
-        case SEARCHBOX_STATE.CLICKED : {
-            return `${styles.searchBox} ${styles.searchBoxSelected}`
-         }
-
-        case SEARCHBOX_STATE.SUBMIT : {
-            return `${styles.searchBox} ${styles.searchBoxSubmitted}`
-        }
-
-        case SEARCHBOX_STATE.FETCH_SUCCESS : {
-            return `${styles.searchBox} ${styles.searchBoxFetchSuccess}`
-        }
-    }
-}
+//componentes
+import SearchBox from './SearchBox/SearchBox';
+import TablaProductos from './TablaProductos/TablaProductos'
 
 
 function ListaProductos () {
     document.querySelector('title').innerText = 'Lista de productos';
-    // const [productos, setProductos] = useState([])
-    // const [cargarLista, setCargarLista] = useState(true)
-
-    // const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
-    // const URL_LISTA_PRODUCTOS = URL_EXPRESS_APP + '/productos'
 
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
@@ -52,11 +28,12 @@ function ListaProductos () {
     }])
 
 
-    // SearchBox submit effect:
+    // Esto se activa SOLO cuando el usuario hizo un submit:
     useEffect(()=>{
         if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
             document.getElementById('searchBoxInput').blur()
 
+            // Esto esta hardcodeado, en realidad debería ser un fetch:
             setTimeout(()=>{
                 setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
 
@@ -96,111 +73,16 @@ function ListaProductos () {
 
             <h1>Lista de productos</h1>
 
+            <SearchBox 
+                searchBoxState={searchBoxState}
+                setSearchBoxState={setSearchBoxState}
+            />
 
-            {/* SearchBox: */}
-            <form 
-                id="searchBoxForm_ListaProductos"
-                onSubmit={(e)=>{
-                    e.preventDefault()
-
-                    setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
-                }}
-            >
-                <div 
-                    className={ 
-                        elegirSearchboxClass(searchBoxState)
-                    }
-                    onClick={()=>{
-                        if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
-                            
-                        }
-                        else if (searchBoxState === SEARCHBOX_STATE.DEFAULT){
-                            document.getElementById('searchBoxInput').focus();
-                            setSearchBoxState(SEARCHBOX_STATE.CLICKED)
-                        }
-                    }}
-                    onBlur={()=>{
-                        if (searchBoxState !== SEARCHBOX_STATE.SUBMIT) {
-                            setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
-                        }
-                    }}
-                >
-
-                    {
-                        searchBoxState === SEARCHBOX_STATE.SUBMIT ?
-                                <span className={styles.loadingIcon}>
-                                    <VscLoading/>
-                                </span>
-                            :
-                                <span className={styles.searchBoxIcon}>
-                                    <FaSearch />
-                                </span>
-                    }
-                       
-
-                    <input 
-                        type='text'
-                        placeholder='Buscar producto'
-                        id="searchBoxInput"
-                        autoComplete='false'
-                        onFocus={()=>setSearchBoxState(SEARCHBOX_STATE.CLICKED)}
-
-                    />
-
-                </div>
-
-
-            </form>
-
-
-
-            {/* Lista de productos: */}
-            <div 
-                className={searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS ? 
-                        `${styles.tableContainer} ${styles.tableContainerLoaded}`
-                    :
-                        styles.tableContainer
-                }
-                id="tableContainer"
-            >
-
-                <table >
-
-                    <thead>
-
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
-                            <th>Marca</th>
-                            <th>Proveedor</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {
-                            listaProductos.map(productoObj => {
-                                return (
-                                    <tr>
-                                        <td>{productoObj.producto}</td>
-                                        <td>{productoObj.cantidad}</td>
-                                        <td>${productoObj.precio_unitario}</td>
-                                        <td>{productoObj.marca}</td>
-                                        <td>{productoObj.proveedor}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            <TablaProductos
+                searchBoxState={searchBoxState}
+                listaProductos={listaProductos}
+            />
             
-
         </section>
         
     )
