@@ -29,7 +29,8 @@
     font-size: 15px;
 
 
-    transition: 1s all;
+    /* transition: 1s box-shadow, transform, font-size; */
+    transition: 1s box-shadow, 1s transform, 1s font-size;
 }
 
 .searchBox > input {

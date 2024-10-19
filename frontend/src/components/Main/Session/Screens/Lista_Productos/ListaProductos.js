@@ -108,10 +108,6 @@ function ListaProductos () {
             >
                 <div 
                     className={ 
-                        // searchBoxState === SEARCHBOX_STATE.CLICKED ?
-                        //     `${styles.searchBox} ${styles.searchBoxSelected}`    
-                        // :
-                        //     styles.searchBox
                         elegirSearchboxClass(searchBoxState)
                     }
                     onClick={()=>{
@@ -146,7 +142,9 @@ function ListaProductos () {
                         type='text'
                         placeholder='Buscar producto'
                         id="searchBoxInput"
+                        autoComplete='false'
                         onFocus={()=>setSearchBoxState(SEARCHBOX_STATE.CLICKED)}
+
                     />
 
                 </div>
