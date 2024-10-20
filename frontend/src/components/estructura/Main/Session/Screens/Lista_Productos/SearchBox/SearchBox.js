@@ -1,10 +1,13 @@
 // css
 import styles from './SearchBox.module.css'
+
 // icons
 import { FaSearch } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
+
 // config
-import {SEARCHBOX_STATE} from '../../../../../../config/config'
+import {SEARCHBOX_STATE} from '../../../../../../../config/config'
+
 // logica
 import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
 import fetchBackend from '../fetch_backend/fetchBackend';

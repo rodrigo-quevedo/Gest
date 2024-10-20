@@ -3,7 +3,7 @@ import styles from './Authentication.module.css'
 import Ingresar from '../Ingresar/Ingresar_container/Ingresar'
 import Registrarse from '../Registrarse/Registrarse'
 
-import {AUTHENTICATION_SCREENS} from '../../../../config/config'
+import {AUTHENTICATION_SCREENS} from '../../../../../config/config'
 
 function Authentication (
     {

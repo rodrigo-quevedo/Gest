@@ -5,7 +5,7 @@ import Main from '../Main/Main_container/Main'
 import CerrarSesion from '../Main/Cerrar_Sesion/CerrarSesion'
 import Footer from '../Footer/Footer'
 
-import {AUTHENTICATION_SCREENS, SESSION_SCREENS} from '../../config/config'
+import {AUTHENTICATION_SCREENS, SESSION_SCREENS} from '../../../config/config'
 
 function App() {
     const [isAuth, setIsAuth] = useState(true);

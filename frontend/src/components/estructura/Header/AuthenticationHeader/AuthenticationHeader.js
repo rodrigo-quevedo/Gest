@@ -1,6 +1,6 @@
 import styles from './AuthenticationHeader.module.css'
 
-import {AUTHENTICATION_SCREENS} from '../../../config/config'
+import {AUTHENTICATION_SCREENS} from '../../../../config/config'
 
 function AuthenticationHeader ({authenticationScreen, setAuthenticationScreen}) {
     return (

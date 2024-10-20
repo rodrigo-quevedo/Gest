@@ -1,6 +1,6 @@
 import styles from './TablaProductos.module.css'
 
-import {SEARCHBOX_STATE} from '../../../../../../config/config'
+import {SEARCHBOX_STATE} from '../../../../../../../config/config'
 
 
 function TablaProductos ({

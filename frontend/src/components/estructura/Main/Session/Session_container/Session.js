@@ -11,7 +11,7 @@ import HistorialProductos from '../Screens/Historial_Productos/HistorialProducto
 import RegistrarVentas from '../Screens/Registrar_Ventas/RegistrarVentas'
 import HistorialVentas from '../Screens/Historial_Ventas/HistorialVentas'
 
-import {SESSION_SCREENS} from '../../../../config/config'
+import {SESSION_SCREENS} from '../../../../../config/config'
 
 function Session() {
 

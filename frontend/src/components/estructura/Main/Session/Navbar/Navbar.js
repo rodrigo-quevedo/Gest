@@ -1,5 +1,5 @@
+// css
 import styles from './Navbar.module.css'
-
 
 //icons
 import { FaClipboardList } from "react-icons/fa";
@@ -7,7 +7,9 @@ import { FaTruckLoading } from "react-icons/fa";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import { FaCashRegister } from "react-icons/fa";
 import { RiFileList3Line } from "react-icons/ri";
-import { SESSION_SCREENS } from '../../../../config/config';
+
+// config
+import { SESSION_SCREENS } from '../../../../../config/config';
 
 
 export default function Navbar (

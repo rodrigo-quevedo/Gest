@@ -1,6 +1,6 @@
 import styles from './Header.module.css'
 
-import website_icon from '../../../media/website_icon.png'
+import website_icon from '../../../../media/website_icon.png'
 
 import AuthenticationHeader from '../AuthenticationHeader/AuthenticationHeader'
 import SessionHeader from '../SessionHeader/SessionHeader'

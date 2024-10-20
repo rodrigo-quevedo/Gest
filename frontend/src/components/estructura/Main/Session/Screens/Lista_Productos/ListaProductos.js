@@ -5,8 +5,7 @@ import styles from './ListaProductos.module.css'
 import {useState, useEffect} from 'react'
 
 //config
-import {SEARCHBOX_STATE} from '../../../../../config/config'
-import {URL_LISTA_PRODUCTOS} from '../../../../../config/config'
+import {SEARCHBOX_STATE, URL_LISTA_PRODUCTOS} from '../../../../../../config/config'
 
 //componentes
 import SearchBox from './SearchBox/SearchBox';
