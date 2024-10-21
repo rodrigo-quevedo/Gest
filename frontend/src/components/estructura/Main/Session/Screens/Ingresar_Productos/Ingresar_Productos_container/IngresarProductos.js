@@ -1,70 +1,61 @@
-import {useState} from 'react'
-
+//css
 import styles from './IngresarProductos.module.css'
+
+//components
+import FormInput from '../../../../../../componentes_reutilizables/FormInput/FormInput';
+import FormSubmitButton from '../../../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
 
 function IngresarProductos () {
     document.querySelector('title').innerText = 'Ingresar producto';
-    
-    const [precioUnitario, setPrecioUnitario] = useState(true)
 
 
     return (
-        <section className={styles.flexContainer}>
-            <div className={styles.container}>
+        <section className={styles.container}>
+
                 <h1>Nuevo producto</h1>
 
-                <form id="formularioCompra" className={styles.formulario}>
-                    <div>
-                        <label for="nombreProducto">Nombre del producto</label>
-                        <input type="text" id="nombreProducto" placeholder="Producto"/>
-                    </div>
+                <form 
+                    id="formularioCompra" 
+                    className={styles.formulario}
+                >
+                    
+                    <FormInput 
+                        idInput='producto'
+                        type='texto'
+                        texto='Nombre del producto'
+                    />
 
-                    <div>
-                        <label for="cantidadProducto">Cantidad</label>
-                        <input type="number" id="cantidadProducto" placeholder="0"/>
-                    </div>
+                    <FormInput 
+                        idInput='cantidad'
+                        type='number'
+                        texto='Cantidad'
+                    />
+
+                    <FormInput 
+                        idInput='precio_unitario'
+                        type='number'
+                        texto='Precio unitario'
+                    />
+
+                    <FormInput 
+                        idInput='marca'
+                        type='text'
+                        texto='Marca'
+                    />
+
+                    <FormInput 
+                        idInput='proveedor'
+                        type='text'
+                        texto='Proveedor'
+                    />
 
 
-                    <div>
-                        <label for="marcaProducto">Marca</label>
-                        <input type="text" id="marcaProducto" placeholder="Marca"/>
-                    </div>
-
-                    <div className={styles.eleccionPrecio}>
-                        <label 
-                        for="precioUnitario"  
-                        onClick={()=>setPrecioUnitario(true)}
-                        className={precioUnitario ? styles.precioElegido : styles.precioInactivo}
-                        >Precio unitario</label>
-                        <label 
-                        for="precioTotal" 
-                        onClick={()=>setPrecioUnitario(false)}
-                        className={ ! precioUnitario ? styles.precioElegido : styles.precioInactivo}
-                        >Precio total</label>
-                    </div>
-
-                    {precioUnitario ?
-                        <div className={styles.eleccionPrecioInput}>
-                            <input type="number" id="precioUnitario" placeholder="$ 0"/>
-                        </div>
-                    :
-                        <div className={styles.eleccionPrecioInput}>
-                            <input type="number" id="precioTotal" placeholder="$ 0"/>
-                        </div>
-                    }
-
-                    <div>
-                        <label for="proveedor">Proveedor</label>
-                        <input id="proveedor" />
-                    </div>
-
-                    <div>
-                        <input type="submit" value="Enviar"/>
-                    </div>
+                    <FormSubmitButton 
+                        text='Enviar'
+                    />
 
                 </form>
 
-            </div>
         </section>
     )
 

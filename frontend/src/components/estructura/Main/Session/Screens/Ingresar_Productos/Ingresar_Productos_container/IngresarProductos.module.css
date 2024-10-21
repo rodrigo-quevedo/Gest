@@ -1,12 +1,6 @@
-.flexContainer {
-    flex: 1;
-}
-
 .container {
     text-align: center;
+    padding: 5% 0;
 }
 
-.formulario {
-    width: 100%;
-}
 
