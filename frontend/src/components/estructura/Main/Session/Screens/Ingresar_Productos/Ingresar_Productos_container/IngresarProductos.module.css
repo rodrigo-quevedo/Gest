@@ -1,6 +1,43 @@
 .container {
     text-align: center;
-    padding: 5% 0;
+    padding-bottom: 5%;
+
+    max-width: 60vw;
+    margin: 0 auto;
 }
 
+.container > h1 {
+    color: #111134;
+}
 
+.container > form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    max-height: 50vh;
+}
+
+.container > form > * {
+    max-width: 45%;
+}
+
+@media (width < 700px) {
+    .container {
+        max-width: 85vw;
+    }
+
+    .container > form {
+        flex-wrap: nowrap;
+        
+        max-height: fit-content;
+    }
+
+    .container > form > * {
+        max-width: 100%;
+    }
+
+}
