@@ -1,5 +1,8 @@
 import styles from './Registrarse.module.css'
 
+import FormInput from '../../../../componentes_reutilizables/FormInput/FormInput';
+import FormSubmitButton from '../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+
 function Registrarse (
 ) {
     document.querySelector('title').innerText = 'Registrarse';
@@ -9,25 +12,27 @@ function Registrarse (
             <h1>Registrarse</h1>
 
             <form>
-                <div className={styles.inputContainer}>
-                    <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario"/>
-                </div>
 
-                <div className={styles.inputContainer}>
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" />
-                </div>
+                <FormInput 
+                    idInput='usuario'
+                    type='text'
+                    texto='Usuario'
+                />
 
-                <div className={styles.inputContainer}>
-                    <label for="confirmPassword">Repetir contraseña</label>
-                    <input type="password" id="confirmPassword" />
-                </div>
+                <FormInput 
+                    idInput='password'
+                    type='password'
+                    texto='Contraseña'
+                />
 
-                <input 
-                    type='submit' 
-                    value='Registrarse'
-                    className={styles.submitButton}
+                <FormInput 
+                    idInput='confirmPassword'
+                    type='password'
+                    texto='Repetir contraseña'
+                />
+
+                <FormSubmitButton 
+                    texto="Registrarse"
                 />
             </form>
         </div>
