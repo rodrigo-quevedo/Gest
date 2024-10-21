@@ -2,6 +2,10 @@ import styles from './Ingresar.module.css'
 
 import Lista_Cuentas_Demo from '../Lista_Cuentas_Demo/Lista_Cuentas_Demo'
 
+import FormInput from '../../../../../componentes_reutilizables/FormInput/FormInput';
+import FormSubmitButton from '../../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+
+
 const actualizarTitle = () => {
     document.querySelector('title').innerText = 'Ingresar';
 }
@@ -18,29 +22,35 @@ function Ingresar (
 
     return (
         <div className={styles.container}>
+
             <section className={styles.ingresarSection}>
+
                 <h1>Ingresar</h1>
 
                 <form 
-                    id="ingresarForm" className={styles.form}
+                    id="ingresarForm" 
+                    className={styles.form}
                     onSubmit={(e)=>handleSubmit(e, setIsAuth)}
                 >
-                    <div className={styles.inputContainer}>
-                        <label for="usuario">Usuario</label>
-                        <input type="text" id="usuario"/>
-                    </div>
 
-                    <div className={styles.inputContainer}>
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" />
-                    </div>
-
-                    <input 
-                        type='submit' 
-                        value='Ingresar'
-                        className={styles.submitButton}
+                    <FormInput 
+                        idInput='usario'
+                        type='text'
+                        texto='Usuario'
                     />
+
+                    <FormInput 
+                        idInput='password'
+                        type='password'
+                        texto='Contraseña'
+                    />
+
+                    <FormSubmitButton 
+                        texto='Ingresar'
+                    />
+
                 </form>
+
             </section>
             
 
