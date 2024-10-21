@@ -7,9 +7,9 @@ function FormInput ({
 }) {
     return (
         <div className={styles.inputContainer}>
-            <label for={idInput}>{texto}</label>
-             <input type={type} id={idInput}/>
-         </div>
+            <label htmlFor={idInput}>{texto}</label>
+            <input type={type} id={idInput}/>
+        </div>
     )
 }
 

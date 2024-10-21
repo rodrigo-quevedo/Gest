@@ -1,0 +1,32 @@
+.submitButton {
+    border-radius: 5px;
+    width: 80%;
+    padding: 20px 10px;
+    
+    border: 0;
+    background: #111134;
+    color: #fff;
+
+    margin-top: 10px;
+
+    transition: 1s all;
+}
+
+.submitButton:hover {
+    cursor: pointer;
+    background: #ccc;
+    color: #272778;
+}
+
+.submitButton:focus {
+    background: #fff;
+    color: #111134;
+    border: 1px solid #000;
+}
+
+.submitButton:active {
+    background: #000;
+    color: #AFAFFF;
+
+    transition: none;
+}
