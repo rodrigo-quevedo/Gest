@@ -1,14 +1,18 @@
+//css
 import styles from './Ingresar.module.css'
 
+//componentes
 import Lista_Cuentas_Demo from '../Lista_Cuentas_Demo/Lista_Cuentas_Demo'
-
 import FormInput from '../../../../../componentes_reutilizables/FormInput/FormInput';
 import FormSubmitButton from '../../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+import FetchStatusText from '../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
 
+//config
+import { FETCH_STATUS } from '../../../../../../config/config';
 
-const actualizarTitle = () => {
-    document.querySelector('title').innerText = 'Ingresar';
-}
+//logica
+import { useState } from 'react';
+
 
 const handleSubmit = (e, setIsAuth) => {
     e.preventDefault();
@@ -18,7 +22,16 @@ const handleSubmit = (e, setIsAuth) => {
 function Ingresar (
     {setIsAuth}
 ) {
-    actualizarTitle();
+    document.querySelector('title').innerText = 'Ingresar';
+
+    // Esto va cambiando según lo que pase en el fetch:
+    const [fetchStatus, setFetchStatus] = useState({
+        status: FETCH_STATUS.ERROR,
+        //En este caso no necesito success message, porque paso directamente a las Screens
+        // successMessage: 'Credenciales correctas',
+        errorMessage: 'Credenciales inválidas'
+    })
+
 
     return (
         <div className={styles.container}>
@@ -54,9 +67,14 @@ function Ingresar (
 
                     <FormSubmitButton 
                         texto='Ingresar'
+                        fetchStatus={fetchStatus}
                     />
 
                 </form>
+
+                <FetchStatusText 
+                    fetchStatus={fetchStatus}
+                />
 
             </section>
             
