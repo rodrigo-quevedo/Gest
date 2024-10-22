@@ -25,3 +25,9 @@ export const SEARCHBOX_STATE = {
     FETCH_SUCCESS: 'FETCH_SUCCESS'
 }
 
+export const FETCH_STATUS = {
+    DEFAULT: 'DEFAULT',
+    SUBMIT: 'SUBMIT',
+    SUCCESS: 'SUCCESS',
+    ERROR: 'ERROR'
+}

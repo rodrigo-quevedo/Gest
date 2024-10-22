@@ -4,10 +4,25 @@ import styles from './IngresarProductos.module.css'
 //components
 import FormInput from '../../../../../../componentes_reutilizables/FormInput/FormInput';
 import FormSubmitButton from '../../../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+import FetchStatusText from '../../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
+
+//config
+import {FETCH_STATUS} from '../../../../../../../config/config'
+
+// logica
+import {useState} from 'react'
+import fetchBackend from '../fetch_backend/fetchBackend';
+
 
 function IngresarProductos () {
     document.querySelector('title').innerText = 'Ingresar producto';
 
+    // Esto va cambiando según lo que pase en el fetch:
+    const [fetchStatus, setFetchStatus] = useState({
+        status: FETCH_STATUS.SUCCESS,
+        successMessage: 'Producto ingresado con éxito',
+        errorMessage: 'Error: No se pudo ingresar el producto'
+    })
 
     return (
         <section className={styles.container}>
@@ -55,6 +70,10 @@ function IngresarProductos () {
                     />
 
                 </form>
+
+                <FetchStatusText 
+                    fetchStatus={fetchStatus}
+                />
 
         </section>
     )
