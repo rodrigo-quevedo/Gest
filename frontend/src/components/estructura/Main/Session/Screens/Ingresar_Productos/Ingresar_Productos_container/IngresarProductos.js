@@ -19,7 +19,7 @@ function IngresarProductos () {
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.ERROR,
+        status: FETCH_STATUS.SUCCESS,
         successMessage: 'Producto ingresado con éxito',
         errorMessage: 'Error: No se pudo ingresar el producto'
     })
@@ -31,7 +31,12 @@ function IngresarProductos () {
 
                 <form 
                     id="formularioCompra" 
-                    className={styles.formulario}
+                    className={
+                        fetchStatus.status === FETCH_STATUS.SUBMIT ? 
+                            `${styles.formularioLoading}`
+                        :
+                            null
+                    }
                 >
                     
                     <FormInput 

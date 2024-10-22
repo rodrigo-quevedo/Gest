@@ -41,3 +41,8 @@
     }
 
 }
+
+
+.formularioLoading {
+    pointer-events: none;
+}
