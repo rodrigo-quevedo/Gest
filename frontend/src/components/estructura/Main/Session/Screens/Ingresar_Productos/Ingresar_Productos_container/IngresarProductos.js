@@ -41,32 +41,50 @@ function IngresarProductos () {
                     
                     <FormInput 
                         idInput='producto'
-                        type='texto'
+                        type='text'
                         texto='Nombre del producto'
+
+                        required='true'
                     />
 
                     <FormInput 
                         idInput='cantidad'
                         type='number'
                         texto='Cantidad'
+
+                        min='0'
+                        max='9999'
+                        esPrecio='false'
+
+                        required='true'
                     />
 
                     <FormInput 
                         idInput='precio_unitario'
                         type='number'
                         texto='Precio unitario'
+
+                        min='0'
+                        max='999999999'
+                        esPrecio='true'
+
+                        required='true'
                     />
 
                     <FormInput 
                         idInput='marca'
                         type='text'
                         texto='Marca'
+
+                        required='true'
                     />
 
                     <FormInput 
                         idInput='proveedor'
                         type='text'
                         texto='Proveedor'
+
+                        required='true'
                     />
 
 

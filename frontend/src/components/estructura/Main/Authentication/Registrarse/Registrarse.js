@@ -17,18 +17,26 @@ function Registrarse (
                     idInput='usuario'
                     type='text'
                     texto='Usuario'
+
+                    required='true'
+
+                    esUsuario='true'
                 />
 
                 <FormInput 
                     idInput='password'
                     type='password'
                     texto='Contraseña'
+
+                    required='true'
                 />
 
                 <FormInput 
                     idInput='confirmPassword'
                     type='password'
                     texto='Repetir contraseña'
+
+                    required='true'
                 />
 
                 <FormSubmitButton 

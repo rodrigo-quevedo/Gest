@@ -37,13 +37,20 @@ function Ingresar (
                         idInput='usario'
                         type='text'
                         texto='Usuario'
+
+                        required='true'
+
+                        esUsuario='true'
                     />
 
                     <FormInput 
                         idInput='password'
                         type='password'
                         texto='Contraseña'
+
+                        required='true'
                     />
+
 
                     <FormSubmitButton 
                         texto='Ingresar'
