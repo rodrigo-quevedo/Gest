@@ -1,13 +1,16 @@
-import styles from './FormSubmitButton.module.css'
+//logica
+import elegirClass from './elegir_class/elegirClass'
+
 
 function FormSubmitButton ({
-    texto
+    text,
+    fetchStatus
 }) {
     return (
         <input 
             type='submit' 
-            value={texto}
-            className={styles.submitButton}
+            value={text}
+            className={elegirClass(fetchStatus.status)}
         />
     )
 }

@@ -30,3 +30,16 @@
 
     transition: none;
 }
+
+
+/* Uso !important porque estas
+ propiedades están sobreescribiendo a las
+ de otras clases */
+.loading {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    
+    cursor:progress !important;
+    pointer-events: none !important;
+}
