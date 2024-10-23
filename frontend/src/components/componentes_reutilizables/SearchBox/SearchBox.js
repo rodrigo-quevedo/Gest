@@ -9,11 +9,11 @@ import { FaSearch } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
 
 // config
-import {SEARCHBOX_STATE} from '../../../../../../../config/config'
+import {SEARCHBOX_STATE} from '../../../config/config'
 
 // logica
 import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
-import fetchBackend from '../fetch_backend/fetchBackend';
+import fetchBackend from './fetch_backend/fetchBackend';
 
 
 //Searchbox es un componente que va (preferentemente, pero no es obligatorio) en conjunto con una tabla, debido a que toma una URL, le hace un GET, y el resultado lo guarda en un state (con el parámetro 'setter'), el cual pertenece al parent component. Luego, en ese parent component, se puede pasar el state a un child component, por ejemplo una tabla, para cargar esos datos del GET.
@@ -42,7 +42,7 @@ function SearchBox({
 
     useEffect(()=>{
         if (searchBoxState === SEARCHBOX_STATE.SUBMIT) {
-            // document.getElementById('searchBoxInput').blur()
+            document.getElementById('searchBoxInput').blur()
         }
     }, [searchBoxState])
 
@@ -55,7 +55,7 @@ function SearchBox({
 
             setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
-            // Necesito: URL, Lista, StateEstilos
+            // Necesito: URL, Lista, StateSearchbox
             // fetchBackend(setSearchBoxState, URL, setter)
             
             //fetch de prueba

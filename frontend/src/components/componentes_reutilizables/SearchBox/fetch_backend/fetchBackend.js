@@ -1,4 +1,4 @@
-import { SEARCHBOX_STATE } from "../../../../../../../config/config"
+import { SEARCHBOX_STATE } from "../../../../config/config"
 
 // Nota: Solo hace fetchs GET
 
