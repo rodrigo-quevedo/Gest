@@ -2,14 +2,14 @@
 import styles from './ListaProductos.module.css'
 
 //hooks
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 //config
 import {SEARCHBOX_STATE, URL_LISTA_PRODUCTOS} from '../../../../../../config/config'
 
 //componentes
-import SearchBox from './SearchBox/SearchBox';
-import TablaProductos from './TablaProductos/TablaProductos'
+import SearchBox from '../../../../../componentes_reutilizables/SearchBox/SearchBox';
+import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable'
 
 
 function ListaProductos () {
@@ -28,8 +28,6 @@ function ListaProductos () {
     }])
 
 
-
-
     return (
 
         <section className={styles.container}>
@@ -41,13 +39,47 @@ function ListaProductos () {
                 searchBoxState={searchBoxState}
                 setSearchBoxState={setSearchBoxState}
                 // Pasandole otra URL puedo utilizar el componente SearchBox en otro lugar.
-                URL_LISTA_PRODUCTOS={URL_LISTA_PRODUCTOS}
-                setListaProductos={setListaProductos}
+                // URL={URL_LISTA_PRODUCTOS}
+                URL='https://jsonplaceholder.typicode.com/users'
+                setter={setListaProductos}
             />
 
-            <TablaProductos
+            <TablaReutilizable
                 searchBoxState={searchBoxState}
-                listaProductos={listaProductos}
+                arrayState={listaProductos}
+
+                tableHeaders={
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Marca</th>
+                        <th>Proveedor</th>
+                     </tr>
+                }
+
+                mapCallback={
+                    (stateObj) => {
+                        return (
+                            // <tr key={productoObj.id}>
+                            //     <td>{productoObj.producto}</td>
+                            //     <td>{productoObj.cantidad}</td>
+                            //     <td>${productoObj.precio_unitario}</td>
+                            //     <td>{productoObj.marca}</td>
+                            //     <td>{productoObj.proveedor}</td>
+                            // </tr>
+
+                            // test con json placeholder:
+                            <tr key={stateObj.id}>
+                                <td>{stateObj.name}</td>
+                                <td>{stateObj.email}</td>
+                                <td>${stateObj.phone}</td>
+                                <td>{stateObj.username}</td>
+                                <td>{stateObj.website}</td>
+                            </tr>
+                        )
+                    }
+                }
             />
             
         </section>

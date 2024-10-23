@@ -49,19 +49,15 @@ function SearchBox({
 
     return (
         <form 
-        id="searchBoxForm_ListaProductos"
-        onSubmit={(e)=>{
-            e.preventDefault()
+            id="searchBoxForm_ListaProductos"
+            onSubmit={(e)=>{
+                e.preventDefault()
 
-            setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
+                setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
-            // Necesito: URL, Lista, StateSearchbox
-            // fetchBackend(setSearchBoxState, URL, setter)
-            
-            //fetch de prueba
-            fetchBackend(setSearchBoxState, 'https://jsonplaceholder.typicode.com/users', setter)
-        }}
-    >
+                fetchBackend(setSearchBoxState, URL, setter)
+            }}
+        >
             <div 
                 className={ 
                     elegirSearchboxClass(searchBoxState, styles, SEARCHBOX_STATE)
