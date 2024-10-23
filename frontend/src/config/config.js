@@ -2,8 +2,18 @@
 // en entorno production: cargo esta variable en el hosting
 export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
-export const URL_LISTA_PRODUCTOS = URL_EXPRESS_APP + '/productos'
-export const URL_INGRESAR_PRODUCTOS = URL_EXPRESS_APP + '/productos'
+//session URL
+export const URL_LISTA_PRODUCTOS = URL_EXPRESS_APP + '/productos' //GET
+export const URL_INGRESAR_PRODUCTOS = URL_EXPRESS_APP + '/historial_productos' //POST
+export const URL_HISTORIAL_PRODUCTOS = URL_EXPRESS_APP + '/historial_productos' //GET
+export const URL_REGISTRAR_VENTAS = URL_EXPRESS_APP + '/historial_ventas' //POST
+export const URL_HISTORIAL_VENTAS = URL_EXPRESS_APP + '/historial_ventas' //GET
+
+//auth URL
+export const URL_REGISTRARSE = URL_EXPRESS_APP + '/registrarse' //POST
+export const URL_INGRESAR = URL_EXPRESS_APP + '/ingresar' //POST
+export const URL_CERRAR_SESION = URL_EXPRESS_APP + '/cerrar_sesion' //GET
+
 
 
 export const AUTHENTICATION_SCREENS = {
