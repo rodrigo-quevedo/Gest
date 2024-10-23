@@ -10,7 +10,7 @@ import FetchStatusText from '../../../../../../componentes_reutilizables/FetchSt
 import {FETCH_STATUS} from '../../../../../../../config/config'
 
 // logica
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import fetchBackend from '../fetch_backend/fetchBackend';
 
 
@@ -24,19 +24,46 @@ function IngresarProductos () {
         errorMessage: 'Error: No se pudo ingresar el producto'
     })
 
+    // // Esto es para resetear el formulario
+    // useEffect(()=>{
+
+    // }, [fetchStatus])
+
     return (
         <section className={styles.container}>
 
                 <h1>Nuevo producto</h1>
 
                 <form 
-                    id="formularioCompra" 
+                    
+                    id="formIngresarProductos" 
+                    
                     className={
                         fetchStatus.status === FETCH_STATUS.SUBMIT ? 
-                            `${styles.formularioLoading}`
+                            styles.formularioLoading
                         :
                             null
                     }
+
+                    onSubmit={(e)=>{
+                        e.preventDefault();
+
+                        //al ser asíncrono, no hace falta cambiar el fetchStatus state a submit dentro de esta funcion
+                        fetchBackend(
+                            setFetchStatus,
+                            Object.fromEntries(
+                                new FormData(
+                                    document.getElementById('formIngresarProductos')
+                                )
+                            )
+                        );
+
+                        setFetchStatus({
+                            status: FETCH_STATUS.SUBMIT,
+                            successMessage: null,
+                            errorMessage: null
+                        })
+                    }}
                 >
                     
                     <FormInput 

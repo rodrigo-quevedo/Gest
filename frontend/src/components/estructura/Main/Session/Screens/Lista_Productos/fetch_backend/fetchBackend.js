@@ -3,7 +3,7 @@ import { SEARCHBOX_STATE } from "../../../../../../../config/config"
 // Nota: Solo hace fetchs GET
 
 function fetchBackend (setSearchBoxState, URL, setState) {
-    console.log('Entrando al fetch')
+    console.log('Entrando al fetch');
 
     fetch(URL, {
         method: 'GET',

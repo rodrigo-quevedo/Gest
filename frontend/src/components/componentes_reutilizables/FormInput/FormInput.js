@@ -25,8 +25,9 @@ function FormInput ({
     
                             type={type} 
                             id={idInput}
+                            name={idInput}
     
-                            maxLength='20' //
+                            maxLength='20'
                             pattern='^[A-Za-z0-9]{0,20}$'
                             title={"Solo son válidos: letras mayúsculas, letras minúsculas y números. NO se aceptan caracteres especiales. Máximo 20 caracteres."}
                         />
@@ -44,6 +45,7 @@ function FormInput ({
 
                         type={type} 
                         id={idInput}
+                        name={idInput}
 
                         maxLength='50'
                         pattern='^[A-Za-z0-9 ]{0,50}$'
@@ -65,6 +67,7 @@ function FormInput ({
 
                         type={type} 
                         id={idInput}
+                        name={idInput}
 
                         maxLength='30'
                         pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{10,30}$'
@@ -88,6 +91,7 @@ function FormInput ({
 
                             type={type} 
                             id={idInput}
+                            name={idInput}
 
                             step="0.01"
                             min={min}
@@ -108,6 +112,7 @@ function FormInput ({
 
                             type={type} 
                             id={idInput}
+                            name={idInput}
                             
                             min={min}
                             max={max}

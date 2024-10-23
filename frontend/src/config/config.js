@@ -3,6 +3,7 @@
 export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
 
 export const URL_LISTA_PRODUCTOS = URL_EXPRESS_APP + '/productos'
+export const URL_INGRESAR_PRODUCTOS = URL_EXPRESS_APP + '/productos'
 
 
 export const AUTHENTICATION_SCREENS = {
