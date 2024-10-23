@@ -24,10 +24,14 @@ function IngresarProductos () {
         errorMessage: 'Error: No se pudo ingresar el producto'
     })
 
-    // // Esto es para resetear el formulario
-    // useEffect(()=>{
+    // Esto es para resetear el formulario
+    useEffect(()=>{
+        
+        if (fetchStatus.status === FETCH_STATUS.SUCCESS) {
+            document.getElementById('formIngresarProductos').reset()
+        }
 
-    // }, [fetchStatus])
+    }, [fetchStatus])
 
     return (
         <section className={styles.container}>
