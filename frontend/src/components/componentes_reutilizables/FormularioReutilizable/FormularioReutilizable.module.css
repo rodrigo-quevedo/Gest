@@ -22,14 +22,14 @@
 
 
 @media (width < 700px) {
-    .container > .formContainer {
+    .formContainer {
         flex-direction: column;
         flex-wrap: nowrap;
         
         max-height: fit-content;
     }
 
-    .container > .formContainer > * {
+    .formContainer > * {
         max-width: 100%;
     }
 }
