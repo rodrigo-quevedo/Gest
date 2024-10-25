@@ -4,20 +4,19 @@ import styles from './Ingresar.module.css'
 //componentes
 import Lista_Cuentas_Demo from '../Lista_Cuentas_Demo/Lista_Cuentas_Demo'
 import FormInput from '../../../../../componentes_reutilizables/FormInput/FormInput';
-import FormSubmitButton from '../../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+import FormularioReutilizable from '../../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
 import FetchStatusText from '../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
+
+//react
+import { useState, useEffect } from 'react';
 
 //config
 import { FETCH_STATUS } from '../../../../../../config/config';
+// import { URL_INGRESAR } from '../../../../../../config/config';
+const test_URL_INGRESAR = 'https://httpbin.org/post'
 
-//logica
-import { useState } from 'react';
 
 
-const handleSubmit = (e, setIsAuth) => {
-    e.preventDefault();
-    setIsAuth(true);
-}
 
 function Ingresar (
     {setIsAuth}
@@ -32,6 +31,15 @@ function Ingresar (
         errorMessage: 'Credenciales inválidas'
     })
 
+    // Este effect es para pasar a Session
+    useEffect(()=>{
+    
+        if (fetchStatus.status === FETCH_STATUS.SUCCESS) {
+            setIsAuth(true);
+        }
+
+    }, [fetchStatus])
+
 
     return (
         <div className={styles.container}>
@@ -40,37 +48,34 @@ function Ingresar (
 
                 <h1>Ingresar</h1>
 
-                <form 
-                    id="ingresarForm" 
-                    className={styles.form}
-                    onSubmit={(e)=>handleSubmit(e, setIsAuth)}
-                >
 
-                    <FormInput 
-                        idInput='usario'
-                        type='text'
-                        texto='Usuario'
+                <FormularioReutilizable 
+                    fetchStatus={fetchStatus}
+                    setFetchStatus={setFetchStatus}
+                    fetchURL={test_URL_INGRESAR}
+                    formInputs={
+                        <>
+                            <FormInput 
+                                idInput='usario'
+                                type='text'
+                                texto='Usuario'
 
-                        required='true'
+                                required='true'
 
-                        esUsuario='true'
-                    />
+                                esUsuario='true'
+                            />
 
-                    <FormInput 
-                        idInput='password'
-                        type='password'
-                        texto='Contraseña'
+                            <FormInput 
+                                idInput='password'
+                                type='password'
+                                texto='Contraseña'
 
-                        required='true'
-                    />
+                                required='true'
+                            />
+                        </>
+                    }
+                />
 
-
-                    <FormSubmitButton 
-                        texto='Ingresar'
-                        fetchStatus={fetchStatus}
-                    />
-
-                </form>
 
                 <FetchStatusText 
                     fetchStatus={fetchStatus}
