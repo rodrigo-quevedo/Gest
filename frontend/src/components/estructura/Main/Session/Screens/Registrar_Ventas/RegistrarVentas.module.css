@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+    padding-bottom: 5%;
+
+    max-width: 60vw;
+    margin: 0 auto;
+}
+
+.container > h1 {
+    color: #111134;
+}
+
+
+@media (width < 700px) {
+    .container {
+        max-width: 85vw;
+    }
+
+}
