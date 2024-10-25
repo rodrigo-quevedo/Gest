@@ -3,14 +3,17 @@ import styles from './Registrarse.module.css'
 
 //components
 import FormInput from '../../../../componentes_reutilizables/FormInput/FormInput';
-import FormSubmitButton from '../../../../componentes_reutilizables/FormSubmitButton/FormSubmitButton';
+import FormularioReutilizable from '../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
 import FetchStatusText from '../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
+
+//react
+import { useState } from 'react';
 
 //config
 import { FETCH_STATUS } from '../../../../../config/config';
+// import { URL_REGISTRARSE } from '../../../../../config/config';
+const test_URL_REGISTRARSE = 'https://httpbin.org/post'
 
-//logica
-import { useState } from 'react';
 
 
 function Registrarse (
@@ -30,40 +33,41 @@ function Registrarse (
 
             <h1>Registrarse</h1>
 
-            <form>
 
-                <FormInput 
-                    idInput='usuario'
-                    type='text'
-                    texto='Usuario'
+            <FormularioReutilizable 
+                fetchStatus={fetchStatus}
+                setFetchStatus={setFetchStatus}
+                fetchURL={test_URL_REGISTRARSE}
+                formInputs={
+                    <>
+                        <FormInput 
+                            idInput='usuario'
+                            type='text'
+                            texto='Usuario'
 
-                    required='true'
+                            required='true'
 
-                    esUsuario='true'
-                />
+                            esUsuario='true'
+                        />
 
-                <FormInput 
-                    idInput='password'
-                    type='password'
-                    texto='Contraseña'
+                        <FormInput 
+                            idInput='password'
+                            type='password'
+                            texto='Contraseña'
 
-                    required='true'
-                />
+                            required='true'
+                        />
 
-                <FormInput 
-                    idInput='confirmPassword'
-                    type='password'
-                    texto='Repetir contraseña'
+                        <FormInput 
+                            idInput='confirmPassword'
+                            type='password'
+                            texto='Repetir contraseña'
 
-                    required='true'
-                />
-
-                <FormSubmitButton 
-                    texto="Registrarse"
-                    fetchStatus={fetchStatus}
-                />
-
-            </form>
+                            required='true'
+                        />
+                    </>
+                }
+            />
 
             <FetchStatusText 
                 fetchStatus={fetchStatus}
