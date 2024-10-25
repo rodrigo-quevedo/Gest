@@ -1,13 +1,12 @@
 //config
-import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
-import { FETCH_STATUS } from "../../../../../../../config/config"
+import { FETCH_STATUS } from "../../../../config/config"
 
 
-function fetchBackend (setFetchStatus, nameValuePairs) {
+function fetchBackend (URL, setFetchStatus, nameValuePairs) {
 
     console.log('Entrando al fetch');
 
-    fetch('https://httpbin.org/post', {
+    fetch(URL, {
         method: 'POST',
         mode: 'cors',
 
