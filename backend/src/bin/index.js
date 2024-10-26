@@ -8,7 +8,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 // routes
-
+const useRouters = require('../config/useRouters')
+useRouters(app);
 
 // db
 const database = require('../config/database')
