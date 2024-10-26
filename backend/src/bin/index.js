@@ -8,10 +8,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 // routes
-const rootRoute = require('../routes/root')
-const productosRoute = require('../routes/productos')
-app.use('/', rootRoute)
-app.use('/productos', productosRoute)
+
 
 // db
 const database = require('../config/database')
