@@ -14,9 +14,12 @@ useRouters(app);
 // db
 const database = require('../config/database')
 
+//test de las validation mongoose
+const testValidation = require('../tests/models/mongoose_validation')
+testValidation();
 
 
-
-app.listen(PORT, ()=> {
+app.listen(PORT, async ()=> {
     console.log(`Express app running on PORT: ${PORT}`)
+
 })
