@@ -15,7 +15,7 @@ useRouters(app);
 const database = require('../config/database')
 
 //test de las validation mongoose
-const testValidation = require('../tests/models/mongoose_validation')
+const testValidation = require('../tests/models/mongoose_validation_Usuarios')
 testValidation();
 
 
