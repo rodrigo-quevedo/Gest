@@ -56,7 +56,7 @@ function Ingresar (
                     formInputs={
                         <>
                             <FormInput 
-                                idInput='usario'
+                                idInput='usuario'
                                 type='text'
                                 texto='Usuario'
 
