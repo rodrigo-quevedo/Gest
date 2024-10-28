@@ -5,9 +5,9 @@ const testValidation = async () => {
 
         const usuarioCreado = await Historial_ProductosModel.create({
             producto: 'aslfjalsdfk',
-            cantidad: 1000000000000,
-            precio: 1203912039.10293019230129301,
-            marca: 'asdlfjlsdf',
+            cantidad: 100,
+            precio_unitario: 1203912039.10293019230129301,
+            marca: 'asdlfjlsdsdf88',
             proveedor: 'aslfjasfdjsdlafjk'
         })
 

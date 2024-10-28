@@ -20,12 +20,21 @@ const Historial_ProductosSchema = new mongoose.Schema({
     },
     precio_unitario : {
         type: mongoose.Decimal128,
-        min: 0,
-        max: 999999999,
+        required: true,
+        //min y max son built-in validators del type Number
+        // min: 0,
+        // max: 999999999,
         //si le hago el set, no necesito get,porque se inserta con 2 digitos directamente
         set: v => {
           return new mongoose.Types.Decimal128(v.toFixed(2));
+        },
+        validate: {
+            validator : (v) => {
+                return v > 0 && v < 999999999
+            },
+            message : 'Min value is 0, max value is 999999999 (value is {VALUE})'
         }
+        
     },
     marca :  {
         type: String,
