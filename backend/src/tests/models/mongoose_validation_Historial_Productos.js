@@ -1,12 +1,14 @@
-const UsuariosModel = require('../../models/Authentication/Usuarios')
-
+const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
 
 const testValidation = async () => {
     try {
 
-        const usuarioCreado = await UsuariosModel.create({
-            usuario: 'safd123',
-            password: 'asdf123asdffdsA'
+        const usuarioCreado = await Historial_ProductosModel.create({
+            producto: 'aslfjalsdfk',
+            cantidad: 1000000000000,
+            precio: 1203912039.10293019230129301,
+            marca: 'asdlfjlsdf',
+            proveedor: 'aslfjasfdjsdlafjk'
         })
 
         console.log(
