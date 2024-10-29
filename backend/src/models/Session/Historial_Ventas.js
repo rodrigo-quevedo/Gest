@@ -51,7 +51,11 @@ const Historial_VentasSchema = new mongoose.Schema({
         match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/
     },
     fechaHora : {
-        type : Date
+        type : Date,
+        required: true
     }  
 })
 
+const Historial_VentasModel = mongoose.model('Historial_Ventas', Historial_VentasSchema)
+
+module.exports = Historial_VentasModel

@@ -6,10 +6,10 @@ const testValidation = async () => {
         const usuarioCreado = await Historial_VentasModel.create({
             producto: 'aslfjalsdfk',
             cantidad: 100,
-            precio_unitario: 1203912039.10293019230129301,
+            precio_unitario: 12039.10293019230129301,
             marca: 'asdlfjlsdsdf88',
             proveedor: 'aslfjasfdjsdlafjk',
-            fechaHora: new Date()
+            fechaHora: '2024-10-15T03:01:00.415Z'
         })
 
         console.log(
