@@ -49,7 +49,11 @@ const Historial_ProductosSchema = new mongoose.Schema({
         minLength: 0,
         maxLength: 50,
         match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/
-    }
+    },
+    fechaHora : {
+        type : Date,
+        required: true
+    }  
 
 })
 

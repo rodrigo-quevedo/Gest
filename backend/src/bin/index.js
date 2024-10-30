@@ -18,8 +18,8 @@ const database = require('../config/database')
 const testValidationUsuarios = require('../tests/models/mongoose_validation_Usuarios')
 testValidationUsuarios();
 
-// const testValidationHistorial_Productos = require('../tests/models/mongoose_validation_Historial_Productos')
-// testValidationHistorial_Productos()
+const testValidationHistorial_Productos = require('../tests/models/mongoose_validation_Historial_Productos')
+testValidationHistorial_Productos()
 
 const testValidationHistorial_Ventas = require('../tests/models/mongoose_validation_Historial_Ventas')
 testValidationHistorial_Ventas() 
