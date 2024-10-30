@@ -24,6 +24,9 @@ testValidationHistorial_Productos()
 const testValidationHistorial_Ventas = require('../tests/models/mongoose_validation_Historial_Ventas')
 testValidationHistorial_Ventas() 
 
+const testValidationLista_Productos = require('../tests/models/mongoose_validation_Lista_Productos')
+testValidationLista_Productos() 
+
 
 
 app.listen(PORT, async ()=> {
