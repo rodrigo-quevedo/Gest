@@ -26,24 +26,53 @@ const Backups_ListSchema = new mongoose.Schema({
 
 const Backups_ListModel = Backups_ListConnection.model('Backups_List', Backups_ListSchema)
 
-const handle_backups = async (description) => {
+
+
+
+const get_last_backup_number = async (description) => {
     
     console.log('preparing to backup collections...')
 
     const existingBackups = await Backups_ListModel.find({}).sort({id: 'desc'}).exec()
-    if (existingBackups.length ==! 0) {
-        const lastId = existingBackups[0]
-        console.log('last backup is:', lastId)
+    
+    // console.log('existing backups result:', existingBackups)
+
+    if (existingBackups.length > 0) {
+        
+        const lastBackupDoc = existingBackups[0]
+
+        console.log('last backup is:', lastBackupDoc.id)
+        const newBackupNumber = lastBackupDoc.id + 1;
+
+
+        console.log('añadiendo backup a lista de backups')
+        console.log(
+            await Backups_ListModel.create({
+                id: newBackupNumber, 
+                backupDescription: description 
+            })
+        )
+
+
+        return newBackupNumber
+
     }
+
     else {
+        console.log('no backups list found')
         console.log(
             await Backups_ListModel.create({
                 id: 1, 
                 backupDescription: description 
             })
         )
+
+        return 1
     }
+
+
+
 
 }
 
-module.exports = handle_backups
+module.exports = get_last_backup_number
