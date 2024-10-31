@@ -7,7 +7,8 @@ const UsuariosSchema = new mongoose.Schema({
         required: true,
         minLength: 0,
         maxLength: 20,
-        match: /^[a-zA-ZÀ-ÿñÑ0-9]{0,20}$/
+        match: /^[a-zA-ZÀ-ÿñÑ0-9]{0,20}$/,
+        unique: true
     },
 
     password: {
@@ -16,6 +17,11 @@ const UsuariosSchema = new mongoose.Schema({
         minLength: 10,
         maxLength: 30,
         match: /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*[0-9])[a-zA-Z0-9ñÑ]{10,30}$/
+    },
+
+    isDemo: {
+        type: Boolean,
+        required: true
     }
     
 })
