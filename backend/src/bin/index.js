@@ -14,6 +14,13 @@ useRouters(app);
 // db
 const database = require('../config/database')
 
+//resetear collections para luego testear
+const handleBackups = require('../tests/models/collections_backup_model')
+handleBackups('testing backup')
+
+const resetCollections = require('../tests/models/reset_collections')
+resetCollections()
+
 //test de las validation mongoose
 const testValidationUsuarios = require('../tests/models/mongoose_validation_Usuarios')
 testValidationUsuarios();
@@ -26,6 +33,7 @@ testValidationHistorial_Ventas()
 
 const testValidationLista_Productos = require('../tests/models/mongoose_validation_Lista_Productos')
 testValidationLista_Productos() 
+
 
 
 

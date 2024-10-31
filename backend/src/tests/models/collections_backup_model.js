@@ -1,0 +1,49 @@
+//default connection
+const mongoose = require('mongoose')
+
+//backup connection
+const backups = process.env.DB_URL_BACKUPS;
+const Backups_ListConnection = mongoose.createConnection(backups);
+
+const Backups_ListSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: true,
+        min: 0,
+        validate : {
+            validator : Number.isInteger,
+            message: "La ID del backup debe ser un numero entero"
+        }
+    },
+    backupDescription: {
+        type: String,
+        required: true,
+        minLength: 0,
+        maxLength: 80,
+        match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,80}$/
+    }
+})
+
+const Backups_ListModel = Backups_ListConnection.model('Backups_List', Backups_ListSchema)
+
+const handle_backups = async (description) => {
+    
+    console.log('preparing to backup collections...')
+
+    const existingBackups = await Backups_ListModel.find({}).sort({id: 'desc'}).exec()
+    if (existingBackups.length ==! 0) {
+        const lastId = existingBackups[0]
+        console.log('last backup is:', lastId)
+    }
+    else {
+        console.log(
+            await Backups_ListModel.create({
+                id: 1, 
+                backupDescription: description 
+            })
+        )
+    }
+
+}
+
+module.exports = handle_backups
