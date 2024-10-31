@@ -13,10 +13,17 @@ useRouters(app);
 
 // db
 const database = require('../config/database')
+const initializeMongooseModels = require('../config/initializeMongooseModels')
+initializeMongooseModels()
+
+
+
+
+
 
 //backup de las collections para resetearlas (solo testing)
-const do_collections_backup = require('../tests/models/do_collections_backup')
-do_collections_backup('another backup') 
+// const do_collections_backup = require('../tests/models/do_collections_backup')
+// do_collections_backup('another backup') 
 
 //resetear collections para luego testear
 // const resetCollections = require('../tests/models/reset_collections')
