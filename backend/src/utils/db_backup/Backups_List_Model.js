@@ -21,6 +21,10 @@ const Backups_ListSchema = new mongoose.Schema({
         minLength: 0,
         maxLength: 80,
         match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,80}$/
+    },
+    fechaHora : {
+        type: Date,
+        required: true
     }
 })
 

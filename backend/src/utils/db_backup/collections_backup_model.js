@@ -1,8 +1,6 @@
 const Backups_ListModel = require('./Backups_List_Model')
 
 
-
-
 const get_last_backup_number = async (description) => {
     
     console.log('preparing to backup collections...')
@@ -23,7 +21,8 @@ const get_last_backup_number = async (description) => {
         console.log(
             await Backups_ListModel.create({
                 id: newBackupNumber, 
-                backupDescription: description 
+                backupDescription: description,
+                fechaHora: new Date()
             })
         )
 
@@ -37,7 +36,8 @@ const get_last_backup_number = async (description) => {
         console.log(
             await Backups_ListModel.create({
                 id: 1, 
-                backupDescription: description 
+                backupDescription: description,
+                fechaHora: new Date()
             })
         )
 
