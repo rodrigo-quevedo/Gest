@@ -25,11 +25,25 @@ function fetchBackend (URL, setFetchStatus, nameValuePairs) {
     .then(res=> res.json()
         .then((response)=> {
             
-            setFetchStatus({
-                status: FETCH_STATUS.SUCCESS,
-                successMessage: `Producto ingresado con éxito:\n${JSON.stringify(response)}`,
-                errorMessage: null
-            })
+            //el body de la response viene en formato JSON string
+            const parsedResponse = JSON.parse(response)
+
+            if (parsedResponse.success) {
+                setFetchStatus({
+                    status: FETCH_STATUS.SUCCESS,
+                    successMessage: parsedResponse.message,
+                    errorMessage: null
+                })
+            }
+
+            else {
+                setFetchStatus({
+                    status: FETCH_STATUS.ERROR,
+                    successMessage: null,
+                    errorMessage: parsedResponse.message
+                })
+            }
+
         })
         .catch(err=>{
             
@@ -39,7 +53,7 @@ function fetchBackend (URL, setFetchStatus, nameValuePairs) {
             setFetchStatus({
                 status: FETCH_STATUS.ERROR,
                 successMessage: null,
-                errorMessage: `No se pudo ingresar el producto.\n${err}`
+                errorMessage: `Frontend error: while parsing json response.\n${err}`
             })
         })
     )
@@ -51,7 +65,7 @@ function fetchBackend (URL, setFetchStatus, nameValuePairs) {
         setFetchStatus({
             status: FETCH_STATUS.ERROR,
             successMessage: null,
-            errorMessage: `No se pudo ingresar el producto.\n${err}`
+            errorMessage: `Frontend error: while fetching.\n${err}`
         })
     })
 }
