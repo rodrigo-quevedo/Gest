@@ -23,11 +23,11 @@ require('../utils/db_backup/schedule_collections_backup') ()
 
 
 //backup de las collections para resetearlas (solo testing)
-// const do_collections_backup = require('../tests/models/do_collections_backup')
+// const do_collections_backup = require('../utils/db_backup/do_collections_backup')
 // do_collections_backup('another backup') 
 
 //resetear collections para luego testear
-// const resetCollections = require('../tests/models/reset_collections')
+// const resetCollections = require('../utils/reset_db_collections/reset_collections')
 // resetCollections()
 
 
