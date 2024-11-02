@@ -11,8 +11,8 @@ import { useState } from 'react';
 
 //config
 import { FETCH_STATUS } from '../../../../../config/config';
-// import { URL_REGISTRARSE } from '../../../../../config/config';
-const test_URL_REGISTRARSE = 'https://httpbin.org/post'
+import { URL_REGISTRARSE } from '../../../../../config/config';
+// const test_URL_REGISTRARSE = 'https://httpbin.org/post'
 
 
 
@@ -22,9 +22,9 @@ function Registrarse (
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.ERROR,
-        successMessage: 'Se registró al usuario correctamente.',
-        errorMessage: 'Credenciales inválidas'
+        status: FETCH_STATUS.DEFAULT,
+        successMessage: null,
+        errorMessage: null
     })
 
     return (
@@ -37,7 +37,7 @@ function Registrarse (
             <FormularioReutilizable 
                 fetchStatus={fetchStatus}
                 setFetchStatus={setFetchStatus}
-                fetchURL={test_URL_REGISTRARSE}
+                fetchURL={URL_REGISTRARSE}
                 formInputs={
                     <>
                         <FormInput 
