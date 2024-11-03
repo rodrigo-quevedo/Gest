@@ -1,7 +1,7 @@
 const OPTIONS = (req, res) => {
 
     //logs
-    console.log(`${new Date()}: OPTIONS request en '/registrarse'`)
+    console.log(`OPTIONS request en /registrarse: ${new Date()}`)
     console.log(`body de la request:`, req.body)
 
     //CORS
