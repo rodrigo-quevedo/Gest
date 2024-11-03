@@ -11,6 +11,19 @@ const POST =  async (req, res) => {
         "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT
     })
 
+    if (
+        req.body.password 
+        && req.body.confirmPassword 
+        && req.body.password !== req.body.confirmPassword
+    ) {
+        res.status(400).json({
+            success: false,
+            message: 'Las contraseñas no coinciden. Intente nuevamente.'
+        })
+
+        return;
+    }
+
     try {
         const usuarioCreado = await UsuariosModel.create({
             usuario: req.body.usuario,
@@ -19,19 +32,17 @@ const POST =  async (req, res) => {
         })
 
         if (usuarioCreado) {
+            //LOG
+            console.log(`Usuario creado: ${req.body}`)
 
+            //server response
             res.status(200).json({
                 success: true,
-                message: 'Usuario creado con exito!.'
+                message: `Usuario creado con exito!. Usuario: ${req.body.usuario}`
             })
         }
-
-        //creo que no hace falta porque salta un error y es manejado por el catch{}
-        // else {
-        //     console.log('Server: Error al crear el usuario')
-        // }
-
     }
+
     catch (err){
         console.log(err)
 
@@ -52,7 +63,7 @@ const POST =  async (req, res) => {
         
         
         //error "unique" para usuarios repetidos:
-        if (err.errorResponse.code === 11000){
+        if (err.errorResponse?.code === 11000){
             res.status(500).json({
                 success: false,
                 message: `El usuario '${req.body.usuario}' ya existe.`
