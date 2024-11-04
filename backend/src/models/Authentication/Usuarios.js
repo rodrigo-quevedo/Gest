@@ -5,9 +5,9 @@ const UsuariosSchema = new mongoose.Schema({
     usuario: {
         type: [String, "Este campo debe ser tipo String"],
         required: [true, "Es obligatorio llenar este campo."],
-        minLength: [0, "La cantidad mínima de caracteres es 0."],
+        minLength: [6, "La cantidad mínima de caracteres es 6."],
         maxLength: [20, "La cantidad máxima de caracteres es 20."],
-        match: [/^[a-zA-ZÀ-ÿñÑ0-9]{0,20}$/, "Solo son válidos las letras mayúsculas, las letras minúsculas y los números. NO se aceptan caracteres especiales. Máximo 20 caracteres."],
+        match: [/^[a-zA-ZÀ-ÿñÑ0-9]{6,20}$/, "Solo son válidos las letras mayúsculas, las letras minúsculas y los números. NO se aceptan caracteres especiales. Mínimo 6 y máximo 20 caracteres."],
         unique: true//este tira un error de MongoDB, no de mongoose, así que lo manejo aparte.
     },
 
