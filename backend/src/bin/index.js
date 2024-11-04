@@ -14,7 +14,7 @@ useRouters(app);
 // db
 const database = require('../config/database')
 require('../config/initializeMongooseModels') ()
-require('../utils/db_backup/schedule_collections_backup') ()
+require('../utils/db_backup/schedule_collections_backup') (0)
 
 
 

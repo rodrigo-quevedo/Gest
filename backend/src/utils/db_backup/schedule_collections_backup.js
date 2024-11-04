@@ -4,18 +4,31 @@
 
 const do_collections_backup = require('./do_collections_backup')
 
-const schedule_collections_backup = async () => {
-    
+const schedule_collections_backup = async (trial) => {
+
     console.log('configurando backups programados...')
 
     const fechaHoraActual = new Date()
     
     const Backups_List_Model = require('./Backups_List_Model')
-    const ultimaFechaHora = await Backups_List_Model.find({}).sort({fechaHora: -1}).exec()
+    let ultimaFechaHora = await Backups_List_Model.find({}).sort({fechaHora: -1}).exec()
 
     console.log('ultima fecha hora:', ultimaFechaHora)
 
-    evaluate_backup(fechaHoraActual, ultimaFechaHora)
+    if (ultimaFechaHora) {
+        ultimaFechaHora = ultimaFechaHora[0].fechaHora
+        evaluate_backup(fechaHoraActual, ultimaFechaHora)
+    }
+    else {
+        if (trial >= 3) return;
+
+        setTimeout(
+            ()=> {
+                schedule_collections_backup(trial+1)
+            }
+            , (1000 * 20)
+        )
+    }
 
     setTimeout(
         ()=> {
