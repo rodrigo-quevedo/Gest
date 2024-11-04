@@ -11,10 +11,28 @@ const POST =  async (req, res) => {
         "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT
     })
 
-    if (
-        req.body.password 
-        && req.body.confirmPassword 
-        && req.body.password !== req.body.confirmPassword
+    //validacion
+
+
+    if (req.body.password === undefined) {
+        res.status(400).json({
+            success: false,
+            message: 'password: El campo es obligatorio.'
+        })
+
+        return;
+    }
+
+    if (req.body.confirmPassword === undefined){
+        res.status(400).json({
+            success: false,
+            message: 'confirmPassword: El campo es obligatorio.'
+        })
+
+        return;
+    }
+
+    if (req.body.password !== req.body.confirmPassword
     ) {
         res.status(400).json({
             success: false,
@@ -50,7 +68,12 @@ const POST =  async (req, res) => {
             let errors = {};
       
             Object.keys(err.errors).forEach((key) => {
-              errors[key] = err.errors[key].message;
+                if (err.errors[key].name === "CastError") {
+                    errors[key] = `Tipo de dato incorrecto: ${err.errors[key].message}`;    
+                }
+                else {
+                    errors[key] = err.errors[key].message;
+                }
             });
       
             res.status(400).json({

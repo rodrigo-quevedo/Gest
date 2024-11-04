@@ -15,7 +15,7 @@ useRouters(app);
 const database = require('../config/database')
 require('../config/initializeMongooseModels') ()
 require('../utils/db_backup/schedule_collections_backup') (0)
-
+require('../config/disableAutoCast') ()
 
 
 

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const UsuariosSchema = new mongoose.Schema({
     
     usuario: {
-        type: [String, "Este campo debe ser tipo String"],
+        type: String,
         required: [true, "Es obligatorio llenar este campo."],
         minLength: [6, "La cantidad mínima de caracteres es 6."],
         maxLength: [20, "La cantidad máxima de caracteres es 20."],
@@ -12,7 +12,7 @@ const UsuariosSchema = new mongoose.Schema({
     },
 
     password: {
-        type: [String, "Este campo debe ser tipo String"],
+        type: String, 
         required: [true, "Es obligatorio llenar este campo."],
         minLength: [10, "La cantidad mínima de caracteres es 10."],
         maxLength: [30, "La cantidad máxima de caracteres es 30."],
@@ -20,7 +20,7 @@ const UsuariosSchema = new mongoose.Schema({
     },
 
     isDemo: {
-        type: [Boolean, "Este campo debe ser tipo Boolean"],
+        type: Boolean,
         required:  [true, "Es obligatorio llenar este campo."],
     }
     
