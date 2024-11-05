@@ -2,10 +2,8 @@ function useRouters (app) {
 
     const registrarseRoute = require('../routes/Authentication/registrarse')
     app.use('/registrarse', registrarseRoute)
-    const ingresarRoute = require('../routes/Authentication/ingresar')
-    app.use('/ingresar', ingresarRoute)
-    const cerrar_sesionRoute = require('../routes/Authentication/cerrar_sesion')
-    app.use('/cerrar_sesion', cerrar_sesionRoute)
+    const sessionRoute = require('../routes/Authentication/session')
+    app.use('/session', sessionRoute)
 
     const productosRoute = require('../routes/Session/productos')
     app.use('/productos', productosRoute)
