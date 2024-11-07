@@ -1,3 +1,4 @@
+const SessionsModel = require('../../../models/Authentication/Sessions')
 const UsuariosModel = require('../../../models/Authentication/Usuarios')
 
 const bcrypt = require('bcrypt')
@@ -92,9 +93,30 @@ const POST = async (req, res) => {
             return;
         }
     
+        //validacion de credenciales
         if (bcrypt.compareSync(req.body.password, usuarioEncontrado.password) ){
+            
+            //credenciales validas, se crea Session
             console.log('El usuario y la contraseña son válidos')
 
+            const minutes = process.env.SESSION_EXPIRATION_MINUTES
+
+
+            const usuarioSession = await SessionsModel.create({
+                expiresAt: new Date(new Date().getTime() + (1000 * 60 * minutes)),
+                usuario: req.body.usuario
+            })
+
+            console.log('usuarioSession: ', usuarioSession)
+
+            //ahora ya con la session construida, podemos armar un JWT para mandarle al usuario (cliente)
+            console.log(usuarioSession._id.toString())
+            
+
+
+            //Para que cada cliente tenga 1 jwt, lo que tenemos que hacer es ponerlo en una cookie.
+            //Realmente no tenemos alternativa, salvo alguna db del navegador.
+            //State no podemos usar, ya que es algo global. (no estoy seguro)
             res.status(200).json({
                 success: true,
                 message: `Credenciales correctas!`

@@ -1,15 +1,8 @@
 const mongoose = require('mongoose')
 
 const SessionsSchema = new mongoose.Schema({
-    id: {//esto va en el payload del jwt
-        type: Number,
-        required: true,
-        min: 0,
-        validate : {
-            validator : Number.isInteger,
-            message   : '{VALUE} no es un entero'
-        }
-    },
+    //En vez de un custom id, puedo usar el ObjectID de mongoDB.
+    //Esto va en el payload del jwt.
 
     expiresAt: {//esto tambien va en el payload del jwt
         type: Date,
