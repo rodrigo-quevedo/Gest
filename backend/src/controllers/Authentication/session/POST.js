@@ -1,7 +1,3 @@
-const SessionsModel = require('../../../models/Authentication/Sessions')
-const UsuariosModel = require('../../../models/Authentication/Usuarios')
-
-const bcrypt = require('bcrypt')
 
 const POST = async (req, res) => {
     
@@ -71,6 +67,7 @@ const POST = async (req, res) => {
 
     //Si no retonó con todas las validaciones de arriba, su formato es valido.
     //Ahora podemos comparar 'usuario' y 'password' contra la db:
+    const UsuariosModel = require('../../../models/Authentication/Usuarios')
     try {
         const usuarioEncontrado = await UsuariosModel.findOne({
             usuario: req.body.usuario
@@ -94,6 +91,7 @@ const POST = async (req, res) => {
         }
     
         //validacion de credenciales
+        const bcrypt = require('bcrypt')
         if (bcrypt.compareSync(req.body.password, usuarioEncontrado.password) ){
             
             //credenciales validas, se crea Session
@@ -101,7 +99,8 @@ const POST = async (req, res) => {
 
             const minutes = process.env.SESSION_EXPIRATION_MINUTES
 
-
+            const SessionsModel = require('../../../models/Authentication/Sessions')
+            
             const usuarioSession = await SessionsModel.create({
                 expiresAt: new Date(new Date().getTime() + (1000 * 60 * minutes)),
                 usuario: req.body.usuario
@@ -112,6 +111,23 @@ const POST = async (req, res) => {
             //ahora ya con la session construida, podemos armar un JWT para mandarle al usuario (cliente)
             console.log(usuarioSession._id.toString())
             
+            const jwt = require('jsonwebtoken')
+            var sessionJWT = jwt.sign(
+                { 
+                    //Estos datos son legibles con un decodificador Base64Url.
+                    //Aun asi, los datos son INMUTABLES, ya que el jwt se construye con este objeto (payload) y la primary key.
+                    //-> Si se cambiara el objeto, osea, el payload, se deberia cifrar el jwt con la MISMA private key para que el metodo jwt.verify() lo valide.
+                    //-> Es decir, la fortaleza del jwt para que sea inmutable es la fortaleza de la private key (aca yo la guardé en la variable de entorno JWT_PRIVATE_KEY)
+
+                    //Conclusion: Que el usuario o la id de la session sean legibles no hace daño, ya que son inmutables.
+                    //Por ejemplo: Un usuario no puede cambiarse el usuario a 'admin' o lo que sea, porque el payload del jwt es inmutable. Si el usuario llega a cambiar el payload, debe adivinar una PRIVATE KEY, construir el jwt modificado con ella, y enviar el jwt al servidor, pero allí en el servidor el metodo jwt.verify() lo va a invalidar ya que es imposible adivinar una PRIVATE KEY robusta. Por eso la importancia de usar una private key robusta en el metodo jwt.sign().
+
+                    usuario: usuarioSession.usuario,
+                    sessionId: usuarioSession._id.toString()
+                }, 
+                process.env.JWT_PRIVATE_KEY
+            );
+
 
 
             //Para que cada cliente tenga 1 jwt, lo que tenemos que hacer es ponerlo en una cookie.
