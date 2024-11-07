@@ -12,8 +12,8 @@ import { useState, useEffect } from 'react';
 
 //config
 import { FETCH_STATUS } from '../../../../../../config/config';
-// import { URL_INGRESAR } from '../../../../../../config/config';
-const test_URL_INGRESAR = 'https://httpbin.org/post'
+import { URL_INGRESAR } from '../../../../../../config/config';
+// const test_URL_INGRESAR = 'https://httpbin.org/post'
 
 
 
@@ -52,7 +52,7 @@ function Ingresar (
                 <FormularioReutilizable 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
-                    fetchURL={test_URL_INGRESAR}
+                    fetchURL={URL_INGRESAR}
                     formInputs={
                         <>
                             <FormInput 
