@@ -53,6 +53,7 @@ require('../config/disableAutoCast') ()
 
 if (process.env.NODE_ENV === 'development'){
     console.log('dev server...')
+    const http = require('http')
     const https = require('https')
     const fs = require('fs');
 
@@ -63,10 +64,11 @@ if (process.env.NODE_ENV === 'development'){
         cert: cert
     };
 
-    var server = https.createServer(options, app);
-
-    server.listen(PORT, () => {
-        console.log("server starting on port : " + PORT)
+    http.createServer(app).listen(PORT+1, ()=>{
+        console.log("http server starting on port : " , (PORT+1))
+    })
+    https.createServer(options, app).listen(PORT, () => {
+        console.log("httpS server starting on port : " + PORT)
     });
 
 }
