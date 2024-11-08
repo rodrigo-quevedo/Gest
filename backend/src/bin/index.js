@@ -7,6 +7,12 @@ const PORT = process.env.PORT || 3003
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
+//cookie parsing: las cookies de la request van a ser accesibles con req.cookies, en vez de tener que parsear el header 'Cookies' a mano.
+//Nota: La autenticación solo va a funcionar en clientes tipo Navegador Web.
+// const cookies = require('cookies')
+// app.use(cookies.express())
+
+
 // routes
 const useRouters = require('../config/useRouters')
 useRouters(app);
@@ -16,7 +22,6 @@ const database = require('../config/database')
 require('../config/initializeMongooseModels') ()
 require('../utils/db_backup/schedule_collections_backup') (0)
 require('../config/disableAutoCast') ()
-
 
 
 
@@ -46,8 +51,31 @@ require('../config/disableAutoCast') ()
 // testValidationLista_Productos()
 
 
+if (process.env.NODE_ENV === 'development'){
+    console.log('dev server...')
+    const https = require('https')
+    const fs = require('fs');
 
-app.listen(PORT, async ()=> {
-    console.log(`Express app running on PORT: ${PORT}`)
+    var key = fs.readFileSync('./src/config/certs/my-key.pem');
+    var cert = fs.readFileSync('./src/config/certs/my-cert.pem');
+    var options = {
+        key: key,
+        cert: cert
+    };
 
-})
+    var server = https.createServer(options, app);
+
+    server.listen(PORT, () => {
+        console.log("server starting on port : " + PORT)
+    });
+
+}
+
+
+else if (process.env.NODE_ENV === 'production'){
+    app.listen(PORT, async ()=> {
+        console.log(`Express app running on PORT: ${PORT}`)
+    
+    })
+
+}

@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 .env
 deprecated_or_not_used
+src/config/certs
