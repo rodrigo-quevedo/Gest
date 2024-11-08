@@ -133,6 +133,29 @@ const POST = async (req, res) => {
             //Para que cada cliente tenga 1 jwt, lo que tenemos que hacer es ponerlo en una cookie.
             //Realmente no tenemos alternativa, salvo alguna db del navegador.
             //State no podemos usar, ya que es algo global. (no estoy seguro)
+            //En cualquier caso, lo voy a implementar con cookies ya que las maneja el navegador y me ahorro implementar algo del lado del frontend (del cliente).
+            //ej: si quiero usar state, tengo que implementarlo en el frontend tambien.
+            //En cambio, las cookies las puedo agregar y borrar desde el servidor.
+            
+            //poner el jwt en la cookie
+            // const cookies = require('cookies')
+            // new cookies(req, res)
+
+            // const sessionCookieOptions = require('../../../config/sessionCookieOptions')
+            res.cookies.set('jwt', sessionJWT, {
+                maxAge: 1000 * 60 * process.env.SESSION_EXPIRATION_MINUTES, //10 mins
+                // path: '/',// this is the default value
+                domain: process.env.DOMAIN_REACT_CLIENT,//parece que localhost no es un dominio valido
+                httpOnly: true,
+                // partitioned: false;//esto igualmente no esta implementado por todos los navegadores aun (https://caniuse.com/?search=partitioned)
+                sameSite: false,
+                secure: true
+            })
+            console.log('existing cookies', req.cookies.get('jwt'))
+            console.log(req.headers)
+
+
+
             res.status(200).json({
                 success: true,
                 message: `Credenciales correctas!`
