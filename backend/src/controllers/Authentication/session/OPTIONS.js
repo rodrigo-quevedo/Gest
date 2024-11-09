@@ -8,7 +8,9 @@ const OPTIONS = (req, res) => {
     res.header({
         "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
         "Access-Control-Allow-Methods" : "POST, DELETE",
-        "Access-Control-Allow-Headers": "Content-Type"
+        "Access-Control-Allow-Headers": "Content-Type",
+        //cookie cors
+        "Access-Control-Allow-Credentials" : "true"
     })
     
     //response

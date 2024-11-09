@@ -10,6 +10,9 @@ function fetchBackend (URL, setFetchStatus, nameValuePairs) {
         method: 'POST',
         mode: 'cors',
 
+        //cookie cors
+        credentials: "include",
+
         headers: {
             //'Accept': formatos que este fetch del navegador puede entender:
 

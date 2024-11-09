@@ -9,8 +9,9 @@ app.use(express.json())
 
 //cookie parsing: las cookies de la request van a ser accesibles con req.cookies, en vez de tener que parsear el header 'Cookies' a mano.
 //Nota: La autenticación solo va a funcionar en clientes tipo Navegador Web.
-const cookies = require('cookies')
-app.use(cookies.express())
+//Nota 2: Express ya viene con res.cookie() para responder con un 'Set-Cookie'.
+const cookieParser = require("cookie-parser")
+app.use(cookieParser())
 
 
 // routes

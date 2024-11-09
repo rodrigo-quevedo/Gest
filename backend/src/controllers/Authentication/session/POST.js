@@ -7,7 +7,9 @@ const POST = async (req, res) => {
 
     //CORS
     res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT
+        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
+        //cookie cors
+        "Access-Control-Allow-Credentials": "true"
     })
 
     //validacion
@@ -142,16 +144,25 @@ const POST = async (req, res) => {
             // new cookies(req, res)
 
             // const sessionCookieOptions = require('../../../config/sessionCookieOptions')
-            res.cookies.set('jwt', sessionJWT, {
+            // res.cookies.set('jwt', sessionJWT, {
+            //     maxAge: 1000 * 60 * process.env.SESSION_EXPIRATION_MINUTES, //10 mins
+            //     // path: '/',// this is the default value
+            //     domain: process.env.DOMAIN_REACT_CLIENT,//parece que localhost no es un dominio valido
+            //     httpOnly: true,
+            //     // partitioned: false;//esto igualmente no esta implementado por todos los navegadores aun (https://caniuse.com/?search=partitioned)
+            //     sameSite: "none",
+            //     secure: true,
+
+            // })
+
+            res.cookie('jwt', sessionJWT, {
                 maxAge: 1000 * 60 * process.env.SESSION_EXPIRATION_MINUTES, //10 mins
-                // path: '/',// this is the default value
-                domain: process.env.DOMAIN_REACT_CLIENT,//parece que localhost no es un dominio valido
+                sameSite: 'none',
+                secure: true,
                 httpOnly: true,
-                // partitioned: false;//esto igualmente no esta implementado por todos los navegadores aun (https://caniuse.com/?search=partitioned)
-                sameSite: false,
-                secure: true
+                partitioned: true
             })
-            console.log('existing cookies', req.cookies.get('jwt'))
+            // console.log('existing cookies', req.cookies.get('jwt'))
             console.log(req.headers)
 
 
