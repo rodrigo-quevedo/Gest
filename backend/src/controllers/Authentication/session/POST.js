@@ -159,11 +159,10 @@ const POST = async (req, res) => {
                 maxAge: 1000 * 60 * process.env.SESSION_EXPIRATION_MINUTES, //10 mins
                 sameSite: 'none',
                 secure: true,
-                httpOnly: true,
-                partitioned: true
+                httpOnly: true
             })
             // console.log('existing cookies', req.cookies.get('jwt'))
-            console.log(req.headers)
+            console.log(req.cookies)
 
 
 

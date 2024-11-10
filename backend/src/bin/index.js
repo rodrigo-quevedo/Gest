@@ -24,7 +24,8 @@ require('../config/initializeMongooseModels') ()
 require('../utils/db_backup/schedule_collections_backup') (0)
 require('../config/disableAutoCast') ()
 
-
+//crear cuentas demo
+require('../utils/cuentas_demo/crear_cuentas_demo')()
 
 
 
