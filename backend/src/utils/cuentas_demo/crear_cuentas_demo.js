@@ -8,7 +8,7 @@ async function crear_cuentas_demo  () {
         try {
             const usuarioCreado = await UsuariosModel.create({
                 usuario: `UsuarioDemo${numeroUsuario++}`,
-                password: bcrypt.hashSync('abc123ABC', 10),//password encriptada
+                password: bcrypt.hashSync(process.env.CUENTAS_DEMO_PASSWORD, 10),//password encriptada
                 isDemo: true
             })
     

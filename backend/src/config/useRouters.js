@@ -1,10 +1,15 @@
 function useRouters (app) {
 
+    //authentication
     const registrarseRoute = require('../routes/Authentication/registrarse')
     app.use('/registrarse', registrarseRoute)
     const sessionRoute = require('../routes/Authentication/session')
     app.use('/session', sessionRoute)
+    const cuentas_demoRoute = require('../routes/Authentication/cuentas_demo')
+    app.use('/cuentas_demo', cuentas_demoRoute)
 
+
+    //session
     const productosRoute = require('../routes/Session/productos')
     app.use('/productos', productosRoute)
     const historial_productosRoute = require('../routes/Session/historial_productos')
