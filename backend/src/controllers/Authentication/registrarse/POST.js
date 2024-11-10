@@ -10,7 +10,8 @@ const POST =  async (req, res) => {
 
     //CORS
     res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT
+        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
+        "Access-Control-Allow-Credentials": "true"
     })
 
     //validacion
