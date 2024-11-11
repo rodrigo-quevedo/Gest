@@ -2,7 +2,7 @@
 import { FETCH_STATUS } from "../../../../config/config"
 
 
-function fetchBackend (URL, setFetchStatus, nameValuePairs) {
+function fetchBackend (URL, setFetchStatus, fetchBody) {
 
     console.log('Entrando al fetch');
 
@@ -23,7 +23,7 @@ function fetchBackend (URL, setFetchStatus, nameValuePairs) {
             'Content-Type': 'application/json'
         },
 
-        body: JSON.stringify(nameValuePairs)
+        body: JSON.stringify(fetchBody)
     })
 
     .then(res=> { console.log(res); res.json()

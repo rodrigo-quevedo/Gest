@@ -2,7 +2,7 @@
 import styles from './FormularioReutilizable.module.css'
 
 //react
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 //componentes
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -18,9 +18,11 @@ function FormularioReutilizable({
     fetchStatus,
     setFetchStatus,
     fetchURL,
+    fetchBody,//opcional
     formInputs
 }) {
-    
+
+
     // Esto es para resetear el formulario
     useEffect(()=>{
         
@@ -49,16 +51,29 @@ function FormularioReutilizable({
             onSubmit={(e)=>{
                 e.preventDefault();
 
-                //al ser asíncrono, no hace falta cambiar el fetchStatus state a submit dentro de esta funcion
-                fetchBackend(
-                    fetchURL,
-                    setFetchStatus,
-                    Object.fromEntries(
-                        new FormData(
-                            document.getElementById('formIngresarProductos')
+                //aca tengo que setear el body de lo que voy a enviar al POST en /sessions
+                //esto es opcional, cuando obtengo el body por afuera del formulario:
+                if (fetchBody.usuario && fetchBody.password){
+                    fetchBackend(
+                        fetchURL,
+                        setFetchStatus,
+                        fetchBody
+                    );
+                }
+                
+                else {
+                    //al ser asíncrono, no hace falta cambiar el fetchStatus state a submit dentro de esta funcion
+                    fetchBackend(
+                        fetchURL,
+                        setFetchStatus,
+                        Object.fromEntries(
+                            new FormData(
+                                document.getElementById('formIngresarProductos')
+                            )
                         )
-                    )
-                );
+                    );
+                }
+
 
                 setFetchStatus({
                     status: FETCH_STATUS.SUBMIT,

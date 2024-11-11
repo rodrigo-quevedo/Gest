@@ -23,9 +23,23 @@ function Ingresar (
 ) {
     document.querySelector('title').innerText = 'Ingresar';
 
+    //body del fetch
+    const [credenciales, setCredenciales] = useState({
+        usuario: false,
+        password: false
+    })
+
+    //este effect es para actualizar las credenciales y triggerear un submit
+    useEffect(()=>{
+        
+        console.log('dentro del effect de credenciales')
+        console.log(credenciales)
+
+    }, [credenciales])
+
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.ERROR,
+        status: FETCH_STATUS.DEFAULT,
         //En este caso no necesito success message, porque paso directamente a las Screens
         // successMessage: 'Credenciales correctas',
         errorMessage: 'Credenciales inválidas'
@@ -38,6 +52,7 @@ function Ingresar (
             setIsAuth(true);
         }
 
+        console.log('dentro del effect de fetchStatus')
     }, [fetchStatus])
 
 
@@ -53,6 +68,7 @@ function Ingresar (
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
                     fetchURL={URL_INGRESAR}
+                    fetchBody={credenciales}
                     formInputs={
                         <>
                             <FormInput 
@@ -63,6 +79,8 @@ function Ingresar (
                                 required='true'
 
                                 esUsuario='true'
+
+                                value={credenciales.usuario?credenciales.usuario: null}
                             />
 
                             <FormInput 
@@ -71,6 +89,8 @@ function Ingresar (
                                 texto='Contraseña'
 
                                 required='true'
+
+                                value={credenciales.password?credenciales.usuario:null}
                             />
                         </>
                     }
@@ -84,7 +104,9 @@ function Ingresar (
             </section>
             
 
-            <Lista_Cuentas_Demo />
+            <Lista_Cuentas_Demo 
+                setCredenciales={setCredenciales}
+            />
             
         </div>
     )

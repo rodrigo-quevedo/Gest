@@ -1,6 +1,6 @@
 import styles from './Lista_Cuentas_Demo.module.css'
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 import { FaUserAlt } from "react-icons/fa";
 
@@ -10,7 +10,6 @@ import fetch_cuentas_demo from './fetch_cuentas_demo/fetch_cuentas_demo';
 function Lista_Cuentas_Demo ({
     setCredenciales
 }) {
-
 
     const [cuentasDemo, setCuentasDemo] = useState()
     if (cuentasDemo) {console.log('Already fetched.')}
@@ -29,7 +28,12 @@ function Lista_Cuentas_Demo ({
                 <ul className={styles.listContainer}>
                     {cuentasDemo.map((cuentaDemoObj)=>{
                         return (
-                            <li>
+                            <li
+                                onClick={()=> setCredenciales({
+                                    usuario: cuentaDemoObj.usuario,
+                                    password: cuentaDemoObj.password
+                                })}
+                            >
                                 <button 
                                 className={styles.botonCuenta}
                                 >
