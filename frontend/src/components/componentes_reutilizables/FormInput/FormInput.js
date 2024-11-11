@@ -8,7 +8,8 @@ function FormInput ({
     max,
     esPrecio,
     esUsuario,
-    required
+    required,
+    value
 }) {
 
     switch(type) {
@@ -22,6 +23,7 @@ function FormInput ({
                         <input 
                             autoComplete='off'
                             required={required}
+                            value={value?value: null}
     
                             type={type} 
                             id={idInput}
@@ -43,6 +45,7 @@ function FormInput ({
                     <input 
                         autoComplete='off'
                         required={required}
+                        value={value?value: null}
 
                         type={type} 
                         id={idInput}
@@ -66,6 +69,7 @@ function FormInput ({
                     <input 
                         autoComplete='off'
                         required={required}
+                        value={value?value: null}
 
                         type={type} 
                         id={idInput}
@@ -91,6 +95,7 @@ function FormInput ({
                         <input 
                             autoComplete='off'
                             required={required}
+                            value={value?value: null}
 
                             type={type} 
                             id={idInput}
@@ -112,6 +117,7 @@ function FormInput ({
                         <input 
                             autoComplete='off'
                             required={required}
+                            value={value?value: null}
 
                             type={type} 
                             id={idInput}
