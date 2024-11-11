@@ -13,6 +13,7 @@ export const URL_HISTORIAL_VENTAS = URL_EXPRESS_APP + '/historial_ventas' //GET
 export const URL_REGISTRARSE = URL_EXPRESS_APP + '/registrarse' //POST
 export const URL_INGRESAR = URL_EXPRESS_APP + '/session' //POST
 export const URL_CERRAR_SESION = URL_EXPRESS_APP + '/session' //DELETE
+export const URL_CUENTAS_DEMO = URL_EXPRESS_APP + '/cuentas_demo' //GET
 
 
 

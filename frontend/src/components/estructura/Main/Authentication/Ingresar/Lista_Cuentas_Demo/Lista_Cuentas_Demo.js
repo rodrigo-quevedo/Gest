@@ -1,49 +1,55 @@
 import styles from './Lista_Cuentas_Demo.module.css'
 
+import {useState} from 'react'
+
 import { FaUserAlt } from "react-icons/fa";
 
-function Lista_Cuentas_Demo () {
+import fetch_cuentas_demo from './fetch_cuentas_demo/fetch_cuentas_demo';
+
+
+function Lista_Cuentas_Demo ({
+    setCredenciales
+}) {
+
+
+    const [cuentasDemo, setCuentasDemo] = useState()
+    if (cuentasDemo) {console.log('Already fetched.')}
+    else {fetch_cuentas_demo(setCuentasDemo)}
+    console.log('cuentas demo:', cuentasDemo)
+    
+    
     return (
         <section className={styles.container}>
             <div className={styles.textContainer}>
                 <h2>Usar una cuenta demo</h2>
                 <p>Ya tiene cargado productos, compras, ventas, etc.</p>
             </div>
-            {/* Solo es un placeholder. Esta lista en realidad se saca de un FETCH al backend */}
-            <ul className={styles.listContainer}>
-                <li>
-                    <button 
-                        className={styles.botonCuenta}
-                    >
-                        <span className={styles.cuentaDemoIcon}>
-                            <FaUserAlt />
-                        </span>
-                        cuentademo1
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        className={styles.botonCuenta}
-                    >
-                        <span className={styles.cuentaDemoIcon}>
-                            <FaUserAlt />
-                        </span>
-                        otro_usuario
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        className={styles.botonCuenta}
-                    >
-                        <span className={styles.cuentaDemoIcon}>
-                            <FaUserAlt />
-                        </span>
-                        
-                        cuentademo3
-                    </button>
-                </li>
-            </ul>
+
+            {cuentasDemo ? 
+                <ul className={styles.listContainer}>
+                    {cuentasDemo.map((cuentaDemoObj)=>{
+                        return (
+                            <li>
+                                <button 
+                                className={styles.botonCuenta}
+                                >
+                                    <span className={styles.cuentaDemoIcon}>
+                                        <FaUserAlt />
+                                    </span>
+                                    {cuentaDemoObj.usuario}
+                                </button>
+                            </li>
+                            )
+                        })
+                    }
+                </ul>
+                :
+                <p>'Cargando...'</p>
+            }
+
         </section>
+
+
     )
 }
 
