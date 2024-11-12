@@ -50,29 +50,19 @@ function FormularioReutilizable({
 
             onSubmit={(e)=>{
                 e.preventDefault();
-
-                //aca tengo que setear el body de lo que voy a enviar al POST en /sessions
-                //esto es opcional, cuando obtengo el body por afuera del formulario:
-                if (fetchBody.usuario && fetchBody.password){
-                    fetchBackend(
-                        fetchURL,
-                        setFetchStatus,
-                        fetchBody
-                    );
-                }
                 
-                else {
-                    //al ser asíncrono, no hace falta cambiar el fetchStatus state a submit dentro de esta funcion
-                    fetchBackend(
-                        fetchURL,
-                        setFetchStatus,
-                        Object.fromEntries(
-                            new FormData(
-                                document.getElementById('formIngresarProductos')
-                            )
+                //al ser asíncrono, no hace falta cambiar el fetchStatus state a submit dentro de esta funcion
+
+                fetchBackend(
+                    fetchURL,
+                    setFetchStatus,
+                    Object.fromEntries(
+                        new FormData(
+                            document.getElementById('formIngresarProductos')
                         )
-                    );
-                }
+                    )
+                );
+                
 
 
                 setFetchStatus({

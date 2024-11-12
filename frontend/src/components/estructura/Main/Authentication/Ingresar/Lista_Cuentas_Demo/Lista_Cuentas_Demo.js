@@ -8,7 +8,8 @@ import fetch_cuentas_demo from './fetch_cuentas_demo/fetch_cuentas_demo';
 
 
 function Lista_Cuentas_Demo ({
-    setCredenciales
+    setCredenciales,
+    setCanUpdate
 }) {
 
     const [cuentasDemo, setCuentasDemo] = useState()
@@ -29,10 +30,15 @@ function Lista_Cuentas_Demo ({
                     {cuentasDemo.map((cuentaDemoObj)=>{
                         return (
                             <li
-                                onClick={()=> setCredenciales({
-                                    usuario: cuentaDemoObj.usuario,
-                                    password: cuentaDemoObj.password
-                                })}
+                                onClick={()=> {
+                                    setCredenciales({
+                                        usuario: cuentaDemoObj.usuario,
+                                        password: cuentaDemoObj.password
+                                    })
+                            
+                                    setCanUpdate(true) 
+                                    }
+                                }
                             >
                                 <button 
                                 className={styles.botonCuenta}

@@ -29,11 +29,17 @@ function Ingresar (
         password: false
     })
 
+    //fix de no poder cambiar los inputs cuando se cambia el state credenciales
+    const [canUpdate, setCanUpdate] = useState(false)
+
+
     //este effect es para actualizar las credenciales y triggerear un submit
     useEffect(()=>{
         
         console.log('dentro del effect de credenciales')
         console.log(credenciales)
+
+        setCanUpdate(false)
 
     }, [credenciales])
 
@@ -80,7 +86,7 @@ function Ingresar (
 
                                 esUsuario='true'
 
-                                value={credenciales.usuario?credenciales.usuario: null}
+                                value={credenciales.usuario && canUpdate ? credenciales.usuario: null}
                             />
 
                             <FormInput 
@@ -90,7 +96,7 @@ function Ingresar (
 
                                 required='true'
 
-                                value={credenciales.password?credenciales.usuario:null}
+                                value={credenciales.password && canUpdate ? credenciales.password : null}
                             />
                         </>
                     }
@@ -106,6 +112,7 @@ function Ingresar (
 
             <Lista_Cuentas_Demo 
                 setCredenciales={setCredenciales}
+                setCanUpdate={setCanUpdate}
             />
             
         </div>
