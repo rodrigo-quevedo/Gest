@@ -124,7 +124,8 @@ const POST = async (req, res) => {
                     //Conclusion: Que el usuario o la id de la session sean legibles no hace daño, ya que son inmutables.
                     //Por ejemplo: Un usuario no puede cambiarse el usuario a 'admin' o lo que sea, porque el payload del jwt es inmutable. Si el usuario llega a cambiar el payload, debe adivinar una PRIVATE KEY, construir el jwt modificado con ella, y enviar el jwt al servidor, pero allí en el servidor el metodo jwt.verify() lo va a invalidar ya que es imposible adivinar una PRIVATE KEY robusta. Por eso la importancia de usar una private key robusta en el metodo jwt.sign().
 
-                    usuario: usuarioSession.usuario,
+                    //No voy a poner el usuario para que sea mas seguro.
+                    //De esta forma, el cliente solo tiene la session, y para atacar a otro usuario, el cliente deberá adivinar una session existente de ese otro usuario (o las credenciales, pero eso es otro tipo de ataque).
                     sessionId: usuarioSession._id.toString()
                 }, 
                 process.env.JWT_PRIVATE_KEY
