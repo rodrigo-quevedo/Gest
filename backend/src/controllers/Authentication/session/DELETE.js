@@ -48,9 +48,10 @@ const DELETE =  async (req, res) => {
     }
     
     //aca estoy comprobando que se hasheó el token con mi misma private key (verificación de integridad)
+    let jwtPayload = null;
     try{
         const jwt = require('jsonwebtoken')
-        const jwtPayload = jwt.verify(req.cookies.jwt, process.env.JWT_PRIVATE_KEY)
+        jwtPayload = jwt.verify(req.cookies.jwt, process.env.JWT_PRIVATE_KEY)
     }
     catch(err){
         console.log(err)
@@ -88,16 +89,16 @@ const DELETE =  async (req, res) => {
         return;
     }
     
-    //eliminar session en DB (la session se guarda en la DB para guardar su tiempo de expiracion. Ese tiempo de expiracion es independiente del tiempo de expiracion de la cookie)
+    //buscar que la sessionId del jwt exista
+    const mongoose = require('mongoose')
+    const SessionsModel = require('../../../models/Authentication/Sessions')
+    
+    let sessionInJwtPayload = null;
     try {
-        const mongoose = require('mongoose')
-        const SessionsModel = require('../../../models/Authentication/Sessions')
-
-        //buscar que la sessionId del jwt exista
-        const sessionInJwtPayload = await SessionsModel.findById(new mongoose.Types.ObjectId(jwtPayload.sessionId))
-
         
-
+        sessionInJwtPayload = await SessionsModel.findById(new mongoose.Types.ObjectId(jwtPayload.sessionId))
+        
+        console.log('session:', sessionInJwtPayload)
     }
     catch(err){
         console.log(err)
@@ -112,7 +113,29 @@ const DELETE =  async (req, res) => {
         
         return;
     }
-    
+
+    //eliminar session en DB (la session se guarda en la DB para guardar su tiempo de expiracion. Ese tiempo de expiracion es independiente del tiempo de expiracion de la cookie)
+    try {
+        const sessionBorrada = await SessionsModel.findOneAndDelete(sessionInJwtPayload)
+        
+        console.log('session borrada:', sessionBorrada)
+    }
+    catch(err){//error en el borrado del documento perteneciente al sessionId
+        console.log(err)
+
+        //si bien no encuentro la sesion en la DB, se la voy a borrar de la cookie (aunque si la copio, el cliente la puede crear nuevamente; pero claro, no me afecta, ya que va a pasar lo mismo, no voy a encontrar la sesion)
+        res.clearCookie('jwt')
+
+        res.status(400).json({
+            success: false,
+            message: `No se pudo cerrar la sesión. ${err.message}`
+        })
+        
+        return;
+    }
+
+
+
     //eliminar session en frontend (cookie que se llama 'jwt')
     res.clearCookie('jwt')
     
