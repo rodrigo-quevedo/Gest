@@ -14,7 +14,9 @@ const DELETE =  async (req, res) => {
     //la validacion se hace en el middleware isAuthenticated
     //ese middleware devuelve res.locals.sessionInJwtPayload
     const sessionInJwtPayload = res.locals.sessionInJwtPayload
+    const SessionsModel = require('../../../models/Authentication/Sessions')
 
+    
     //eliminar session en DB (la session se guarda en la DB para guardar su tiempo de expiracion. Ese tiempo de expiracion es independiente del tiempo de expiracion de la cookie)
     try {
         const sessionBorrada = await SessionsModel.findOneAndDelete(sessionInJwtPayload)
