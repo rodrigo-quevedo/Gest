@@ -1,10 +1,13 @@
 function useRouters (app) {
 
+    //middleware import
+    const isAuthenticated = require('../../middleware/isAuthenticated')
+
     //authentication
     const registrarseRoute = require('../routes/Authentication/registrarse')
     app.use('/registrarse', registrarseRoute)
     const sessionRoute = require('../routes/Authentication/session')
-    app.use('/session', sessionRoute)
+    app.use('/session', isAuthenticated, sessionRoute)
     const cuentas_demoRoute = require('../routes/Authentication/cuentas_demo')
     app.use('/cuentas_demo', cuentas_demoRoute)
 
