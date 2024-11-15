@@ -48,6 +48,10 @@
     background: #4040fe;
 }
 
+.fetchStatusContainer{
+    width: 100%;
+}
+
 @media (width < 600px ) {
     .mainContainer {
         /* max-height: 51.5vh;

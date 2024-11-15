@@ -1,5 +1,14 @@
 import styles from './CerrarSesion.module.css'
 
+import {useState} from 'react'
+
+import { FETCH_STATUS } from '../../../../config/config'
+import FetchStatusText from '../../../componentes_reutilizables/FetchStatusText/FetchStatusText'
+
+import fetch_cerrar_sesion from './fetch_backend/fetch_cerrar_sesion'
+
+
+
 function CerrarSesion (
     {
         setIsAuth, 
@@ -7,6 +16,10 @@ function CerrarSesion (
     }
 ) {
     document.querySelector('title').innerText = 'Cerrar Sesión';
+
+    const [fetchStatus, setFetchStatus] = useState({
+        status: FETCH_STATUS.DEFAULT
+    })
 
     return (
         <main className={styles.mainContainer}>
@@ -20,8 +33,10 @@ function CerrarSesion (
                 <button
                     className={`${styles.button} ${styles.acceptButton}`}
                     onClick={()=>{
-                        setIsAuth(false); 
-                        setPopupCerrarSesion(false);
+                        setFetchStatus({
+                            status: FETCH_STATUS.SUBMIT
+                        })
+                        fetch_cerrar_sesion(setFetchStatus, setIsAuth, setPopupCerrarSesion)
                     }}
                 >
                     Cerrar la sesión
@@ -35,6 +50,12 @@ function CerrarSesion (
                 >
                     Cancelar
                 </button>
+
+                <div className={styles.fetchStatusContainer}>
+                    <FetchStatusText
+                        fetchStatus={fetchStatus}
+                    />
+                </div>
 
             </div>
 
