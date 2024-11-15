@@ -32,17 +32,17 @@ function Ingresar (
 
     //fix de no poder cambiar los inputs cuando se cambia el state credenciales
     const [canUpdate, setCanUpdate] = useState(false)
-
-
     //este effect es para actualizar las credenciales y triggerear un submit
     useEffect(()=>{
         
-        console.log('dentro del effect de credenciales')
-        console.log(credenciales)
+        // console.log('dentro del effect de credenciales')
+        // console.log(credenciales)
 
         setCanUpdate(false)
 
     }, [credenciales])
+
+
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
@@ -59,7 +59,7 @@ function Ingresar (
             setIsAuth(true);
         }
 
-        console.log('dentro del effect de fetchStatus')
+        // console.log('dentro del effect de fetchStatus')
     }, [fetchStatus])
 
     //ingresar con jwt apenas carga la pantalla Ingresar:

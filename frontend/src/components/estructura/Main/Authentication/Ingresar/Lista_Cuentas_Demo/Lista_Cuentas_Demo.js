@@ -13,9 +13,16 @@ function Lista_Cuentas_Demo ({
 }) {
 
     const [cuentasDemo, setCuentasDemo] = useState()
-    if (cuentasDemo) {console.log('Already fetched.')}
-    else {fetch_cuentas_demo(setCuentasDemo)}
-    console.log('cuentas demo:', cuentasDemo)
+    const [firstFetch, setFirstFetch] = useState(false)
+
+
+    useEffect(()=>{
+        if (firstFetch === false) {
+            fetch_cuentas_demo(setFirstFetch, setCuentasDemo)
+            console.log('cuentas demo:', cuentasDemo)
+        }
+    }, [firstFetch])
+
     
     
     return (
@@ -29,7 +36,7 @@ function Lista_Cuentas_Demo ({
                 <ul className={styles.listContainer}>
                     {cuentasDemo.map((cuentaDemoObj)=>{
                         return (
-                            <li
+                            <li key={cuentaDemoObj.usuario}
                                 onClick={()=> {
                                     setCredenciales({
                                         usuario: cuentaDemoObj.usuario,

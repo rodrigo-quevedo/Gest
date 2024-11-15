@@ -1,7 +1,10 @@
 const {URL_CUENTAS_DEMO} = require('../../../../../../../config/config')
 
 
-const fetch_cuentas_demo = (setCuentasDemo) => {
+const fetch_cuentas_demo = (setFirstFetch, setCuentasDemo) => {
+    
+    setFirstFetch(true)
+    
     return fetch(URL_CUENTAS_DEMO, {
         method: 'GET',//esto es el default, no hace falta
         headers: {
@@ -17,6 +20,9 @@ const fetch_cuentas_demo = (setCuentasDemo) => {
 
                 setCuentasDemo(parsedResponse.cuentasDemo);
 
+            }
+            else {
+                console.log(`Frontend: no se pudo obtener las cuentas demo. Info:${parsedResponse.message}`)
             }
         })
         .catch((err)=> {
