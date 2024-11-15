@@ -15,7 +15,8 @@ import { FETCH_STATUS } from '../../../../../../config/config';
 import { URL_INGRESAR } from '../../../../../../config/config';
 // const test_URL_INGRESAR = 'https://httpbin.org/post'
 
-
+//ingresar con jwt cookie
+import fetch_con_jwt_cookie from './fetch_con_jwt_cookie/fetch_con_jwt_cookie'
 
 
 function Ingresar (
@@ -61,6 +62,13 @@ function Ingresar (
         console.log('dentro del effect de fetchStatus')
     }, [fetchStatus])
 
+    //ingresar con jwt apenas carga la pantalla Ingresar:
+    const [firstJwtFetch, setFirstJwtFetch] = useState(false)
+    useEffect(()=>{
+        if (firstJwtFetch === false){
+            fetch_con_jwt_cookie(setFirstJwtFetch, setFetchStatus, setIsAuth);
+        }
+    }, [firstJwtFetch])
 
     return (
         <div className={styles.container}>
