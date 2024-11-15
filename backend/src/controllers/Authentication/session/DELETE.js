@@ -4,12 +4,9 @@ const DELETE =  async (req, res) => {
     console.log(`Se recibio DELETE en /session: ${new Date()}`)
     console.log(`body de la request:`, req.body)
 
-    //CORS
-    res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
-        //cookie cors
-        "Access-Control-Allow-Credentials": "true"
-    })
+    //(cors establecido con middleware cors_basico)
+
+
 
     //la validacion se hace en el middleware isAuthenticated
     //ese middleware devuelve res.locals.sessionInJwtPayload

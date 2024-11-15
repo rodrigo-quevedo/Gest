@@ -5,12 +5,7 @@ const POST = async (req, res) => {
     console.log(`Se recibio POST en /session: ${new Date()}`)
     console.log(`body de la request:`, req.body)
 
-    //CORS
-    res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
-        //cookie cors
-        "Access-Control-Allow-Credentials": "true"
-    })
+    //CORS con middleware cors_basico
 
     //validacion
     if (!req.body.usuario) {

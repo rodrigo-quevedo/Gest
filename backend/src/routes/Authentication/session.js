@@ -9,11 +9,12 @@ const DELETEcontroller = require('../../controllers/Authentication/session/DELET
 
  //middleware import
  const isAuthenticated = require('../../middleware/isAuthenticated')
+ const cors_basico = require('../../middleware/cors_basico')
 
 //routing
 router.options('/', OPTIONScontroller)
-router.post('/', POSTcontroller)//ingresar
-router.delete('/', isAuthenticated, DELETEcontroller)//cerrar sesion
+router.post('/', cors_basico, POSTcontroller)//ingresar
+router.delete('/', cors_basico, isAuthenticated, DELETEcontroller)//cerrar sesion
 
 //export
 module.exports = router
