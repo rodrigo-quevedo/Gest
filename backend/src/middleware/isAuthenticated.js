@@ -17,7 +17,11 @@ const isAuthenticated = async (req, res, next)=> {
 
     //-->Esta validacion de abajo no se si es necesaria, ya que en teoria la cookie está en formato string, pero por si las dudas:
     if (typeof req.cookies?.jwt !== 'string') {
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
 
         res.status(400).json({
             success: false,
@@ -28,7 +32,11 @@ const isAuthenticated = async (req, res, next)=> {
     }
     //formato JWT
     if (/^[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*\.[A-Za-z0-9-_]*$/.test(req.cookies?.jwt) === false) {
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
 
         res.status(400).json({
             success: false,
@@ -47,7 +55,11 @@ const isAuthenticated = async (req, res, next)=> {
     catch(err){
         console.log(err)
         
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
 
         res.status(400).json({
             success: false,
@@ -59,7 +71,11 @@ const isAuthenticated = async (req, res, next)=> {
 
     //validacion del jwt payload 'sessionId'
     if (typeof jwtPayload.sessionId !== 'string') {
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
         
         res.status(400).json({
             success: false,
@@ -70,7 +86,11 @@ const isAuthenticated = async (req, res, next)=> {
     }
     //nota: en MongoDB, el ObjectId tiene un string de 24 caracteres hexadecimales
     if (/^[0-9a-fA-F]{24}$/.test(jwtPayload.sessionId) === false) {
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
         
         res.status(400).json({
             success: false,
@@ -95,7 +115,11 @@ const isAuthenticated = async (req, res, next)=> {
         console.log(err)
 
         //si bien no encuentro la sesion en la DB, se la voy a borrar de la cookie (aunque si la copio, el cliente la puede crear nuevamente; pero claro, no me afecta, ya que va a pasar lo mismo, no voy a encontrar la sesion)
-        res.clearCookie('jwt')
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
 
         res.status(400).json({
             success: false,
@@ -105,7 +129,26 @@ const isAuthenticated = async (req, res, next)=> {
         return;
     }
 
+    //verificar que la sesión no caducó aún (comprobar expiresAt)
+    console.log('expiresAt:', sessionInJwtPayload.expiresAt)
+    console.log('comparando con: ',  new Date(new Date().getTime()))
 
+    if (sessionInJwtPayload.expiresAt < new Date(new Date().getTime())) {
+        console.log(`La sesión ya caducó.`)
+    
+        res.clearCookie('jwt', {
+            sameSite: 'none',
+            secure: true,
+            httpOnly: true
+        })
+    
+        res.status(400).json({
+            success: false,
+            message: `La sesión ya caducó.`
+        })
+        
+        return;
+    }
     
 
     //El middleware isAuthenticated le pasa la session del jwt a los siguientes middlewares.

@@ -23,20 +23,20 @@ const fetch_cerrar_sesion = (setFetchStatus, setIsAuth, setPopupCerrarSesion) =>
             else {
                 setFetchStatus({
                     status: FETCH_STATUS.ERROR,
-                    errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Error: ${parsedRes.message}`
+                    errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Presione F5 o recargue la página para ingresar nuevamente. Info: ${parsedRes.message}`
                 })
             }
         })
 
         .catch((err)=>setFetchStatus({
             status: FETCH_STATUS.ERROR,
-            errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Error: al parsear body JSON de la respuesta. ${err}`
+            errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Presione F5 o recargue la página para ingresar nuevamente. Error: ${err}`
         }))
     )
 
     .catch((err)=>setFetchStatus({
         status: FETCH_STATUS.ERROR,
-        errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Error: al hacer fetch. ${err}`
+        errorMessage: `No se pudo cerrar la sesión. Aún así, se borrará automáticamente en 10 minutos. Presione F5 o recargue la página para ingresar nuevamente. Error: ${err}`
     }))
 }
 
