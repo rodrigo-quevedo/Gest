@@ -13,12 +13,27 @@ const UsuariosSchema = new mongoose.Schema({
 
     password: {
         type: String, 
-        required: [true, "Es obligatorio llenar este campo."],
+        required: [true, "Es obligatorio llenar este campo."]
     },
 
     isDemo: {
         type: Boolean,
-        required:  [true, "Es obligatorio llenar este campo."],
+        required:  [true, "Es obligatorio llenar este campo."]
+    },
+
+    idListaProductos: {
+        type: mongoose.Types.ObjectId,
+        required:  [true, "Es obligatorio llenar este campo."]
+    },
+
+    idHistorialProductos: {
+        type: mongoose.Types.ObjectId,
+        required:  [true, "Es obligatorio llenar este campo."]
+    },
+
+    idHistorialVentas: {
+        type: mongoose.Types.ObjectId,
+        required:  [true, "Es obligatorio llenar este campo."]
     }
     
 })
