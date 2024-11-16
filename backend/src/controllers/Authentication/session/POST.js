@@ -7,7 +7,28 @@ const POST = async (req, res) => {
 
     //CORS con middleware cors_basico
 
-    //validacion
+    
+    //ingreso con jwt cookie en middleware ingresar_con_jwt_cookie
+    if (res.locals?.sessionInJwtPayload) {
+        res.status(200).json({
+            success: true,
+            message: `Ingreso con éxito usando el jwt.`
+        })
+
+        return;
+    }
+
+    if (req.body.usuario === undefined && req.body.password === undefined ) {
+        res.status(400).json({
+            success: false,
+            message: `No hay niguna sesión guardada en el navegador. Por favor, ingrese nuevamente.`
+        })
+
+        return;
+    }
+    
+    
+    //validacion del req.body (en el front se llenó el formulario y se envió)
     if (!req.body.usuario) {
         res.status(400).json({
             success: false,
