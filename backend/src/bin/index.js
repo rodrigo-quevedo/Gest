@@ -19,15 +19,22 @@ const useRouters = require('../config/useRouters')
 useRouters(app);
 
 // db
-const database = require('../config/database')
+require('../config/database') ()
+
+// inicializar modelos mongoose
 require('../config/initializeMongooseModels') ()
+
+// programar backups
 require('../utils/db_backup/schedule_collections_backup') (0)
+
+// sacar el autocast para el type String de mongoose
 require('../config/disableAutoCast') ()
 
-//crear cuentas demo
+// crear cuentas demo
 require('../utils/cuentas_demo/crear_cuentas_demo')()
 
-
+// eliminar sesiones expiradas
+require('../config/eliminateExpiredSessions') ()
 
 //backup de las collections para resetearlas (solo testing)
 // const do_collections_backup = require('../utils/db_backup/do_collections_backup')
@@ -35,7 +42,7 @@ require('../utils/cuentas_demo/crear_cuentas_demo')()
 
 //resetear collections para luego testear
 // const resetCollections = require('../utils/reset_db_collections/reset_collections')
-// resetCollections()
+// resetCollections()//NO USAR SIN PROBAR QUE FUNCIONA EL BACKUP
 
 
 //test de las validation mongoose
