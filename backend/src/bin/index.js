@@ -19,7 +19,7 @@ const useRouters = require('../config/useRouters')
 useRouters(app);
 
 // db
-require('../config/database') ()
+require('../config/database')
 
 // inicializar modelos mongoose
 require('../config/initializeMongooseModels') ()

@@ -1,20 +1,42 @@
 const UsuariosModel = require('../../models/Authentication/Usuarios')
 
+const Lista_ProductosModel = require('../../models/Session/Lista_Productos')
+const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
+const Historial_VentasModel = require('../../models/Session/Historial_Ventas')
+
 const bcrypt = require('bcrypt')
 async function crear_cuentas_demo  () {
     let numeroUsuario = 0;
+
     
     for (let i=0; i<4; i++){
         try {
+
+            //crear lista productos, historial productos, historial ventas para un nuevo usuario
+            const listaProductosCreada = await Lista_ProductosModel.create({
+                listaProductos: []
+            })
+            const historialProductosCreado = await Historial_ProductosModel.create({
+                historialProductos: []
+            })
+            const historialVentasCreado = await Historial_VentasModel.create({
+                historialVentas: []
+            })
+
+            //crear usuario
             const usuarioCreado = await UsuariosModel.create({
                 usuario: `UsuarioDemo${numeroUsuario++}`,
                 password: bcrypt.hashSync(process.env.CUENTAS_DEMO_PASSWORD, 10),//password encriptada
-                isDemo: true
+                isDemo: true,
+                idListaProductos: listaProductosCreada._id,
+                idHistorialProductos: historialProductosCreado._id,
+                idHistorialVentas: historialVentasCreado._id
             })
     
             if (usuarioCreado) {
                 //LOG
-                console.log(`Usuario creado: ${await UsuariosModel.find({usuario: `UsuarioDemo${numeroUsuario-1}`})}`)
+                console.log('Usuario creado:', usuarioCreado)
+                console.log(`Usuario creado luego de buscarlo en la DB: ${await UsuariosModel.findById(usuarioCreado._id)}`)
 
         
             }

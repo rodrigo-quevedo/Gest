@@ -1,5 +1,9 @@
 const UsuariosModel = require('../../../models/Authentication/Usuarios')
 
+const Lista_ProductosModel = require('../../models/Session/Lista_Productos')
+const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
+const Historial_VentasModel = require('../../models/Session/Historial_Ventas')
+
 const bcrypt = require('bcrypt')
 
 const POST =  async (req, res) => {
@@ -67,20 +71,35 @@ const POST =  async (req, res) => {
     }
 
     try {
+
+        //crear lista productos, historial productos, historial ventas para un nuevo usuario
+        const listaProductosCreada = await Lista_ProductosModel.create({
+            listaProductos: []
+        })
+        const historialProductosCreado = await Historial_ProductosModel.create({
+            historialProductos: []
+        })
+        const historialVentasCreado = await Historial_VentasModel.create({
+            historialVentas: []
+        })
+
         const usuarioCreado = await UsuariosModel.create({
             usuario: req.body.usuario,
             password: bcrypt.hashSync(req.body.password, 10),//password encriptada
-            isDemo: false
+            isDemo: false,
+            idListaProductos: listaProductosCreada._id,
+            idHistorialProductos: historialProductosCreado._id,
+            idHistorialVentas: historialVentasCreado._id
         })
 
         if (usuarioCreado) {
             //LOG
-            console.log(`Usuario creado: ${await UsuariosModel.find({usuario: req.body.usuario})}`)
+            console.log(`Usuario creado: ${await UsuariosModel.findById(usuarioCreado._id)}`)
 
             //server response
             res.status(200).json({
                 success: true,
-                message: `Usuario creado con exito!. Usuario: ${req.body.usuario}`
+                message: `Usuario creado con exito!. Usuario: ${usuarioCreado.usuario}`
             })
         }
     }
