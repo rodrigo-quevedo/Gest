@@ -1,8 +1,8 @@
 const UsuariosModel = require('../../../models/Authentication/Usuarios')
 
-const Lista_ProductosModel = require('../../models/Session/Lista_Productos')
-const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
-const Historial_VentasModel = require('../../models/Session/Historial_Ventas')
+const Lista_ProductosModel = require('../../../models/Session/Lista_Productos')
+const Historial_ProductosModel = require('../../../models/Session/Historial_Productos')
+const Historial_VentasModel = require('../../../models/Session/Historial_Ventas')
 
 const bcrypt = require('bcrypt')
 

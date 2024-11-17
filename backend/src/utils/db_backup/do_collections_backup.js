@@ -4,6 +4,7 @@ const get_last_backup_number = require('./collections_backup_model')
 
 //collections a las que hacerles backup:
 const UsuariosModel = require('../../models/Authentication/Usuarios')
+const SessionsModel = require('../../models/Authentication/Sessions')
 const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
 const Historial_VentasModel = require('../../models/Session/Historial_Ventas')
 const Lista_ProductosModel = require('../../models/Session/Lista_Productos')
@@ -20,8 +21,11 @@ const do_backup = async (description) => {
     
     console.log('creando collections...')
     const Usuarios = await UsuariosModel.find({});
-    // console.log('collection Usuarios:',Usuarios)
-    console.log( await backup_connection.collection('Usuarios').insertMany(Usuarios) )
+    // console.log(Usuarios)
+        // console.log( await backup_connection.collection('Usuarios').insertMany(Usuarios) )//capaz tenga que usar el mongodb driver aca
+
+    const Sessions = await SessionsModel.find({});
+    console.log( await backup_connection.collection('Sessions').insertMany(Sessions) )
     
     const Historial_Productos = await Historial_ProductosModel.find({});
     console.log( await backup_connection.collection('Historial_Productos').insertMany(Historial_Productos) )
