@@ -131,11 +131,19 @@ const isAuthenticated = async (req, res, next)=> {
 
     //verificar que la sesión no caducó aún (comprobar expiresAt)
     console.log('expiresAt:', sessionInJwtPayload.expiresAt)
-    console.log('comparando con: ',  new Date(new Date().getTime()))
+    console.log('comparando con: ',  new Date())
 
-    if (sessionInJwtPayload.expiresAt < new Date(new Date().getTime())) {
+    if (sessionInJwtPayload.expiresAt < new Date()) {
         console.log(`La sesión ya caducó.`)
     
+        //intento eliminarla de la DB, y si no se elimina ahora, se va a eliminar luego con la funcion de src/config/eliminateExpiredSessions.js
+        const sessionDeleted = await SessionsModel.findByIdAndDelete(sessionInJwtPayload._id).exec()
+
+        if (sessionDeleted) {
+            console.log('Session deleted: ', sessionDeleted)
+        }
+
+        //aun asi, voy a borrar la cookie del navegador asi el usuario debe logearse de nuevo
         res.clearCookie('jwt', {
             sameSite: 'none',
             secure: true,
