@@ -30,9 +30,9 @@ const fetch_con_jwt_cookie = (setFirstJwtFetch, setFetchStatus, setIsAuth)=> {
             }
             else {
                 setFetchStatus({
-                    status: FETCH_STATUS.ERROR,
-                    errorMessage: `No se pudo ingresar con la sesión guardada en el navegador. ${parsedRes.message}`
+                    status: FETCH_STATUS.DEFAULT,
                 })
+                console.log(`No se pudo ingresar con la sesión guardada en el navegador. ${parsedRes.message}`)
             }
         })
 
