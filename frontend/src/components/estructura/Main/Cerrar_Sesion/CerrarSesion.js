@@ -34,7 +34,8 @@ function CerrarSesion (
                     className={`${styles.button} ${styles.acceptButton}`}
                     onClick={()=>{
                         setFetchStatus({
-                            status: FETCH_STATUS.SUBMIT
+                            status: FETCH_STATUS.SUBMIT,
+                            submitMessage: `Cerrando sesión...`
                         })
                         fetch_cerrar_sesion(setFetchStatus, setIsAuth, setPopupCerrarSesion)
                     }}

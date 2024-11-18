@@ -22,9 +22,7 @@ function Registrarse (
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.DEFAULT,
-        successMessage: null,
-        errorMessage: null
+        status: FETCH_STATUS.DEFAULT
     })
 
     return (
@@ -37,6 +35,7 @@ function Registrarse (
             <FormularioReutilizable 
                 fetchStatus={fetchStatus}
                 setFetchStatus={setFetchStatus}
+                submitMessage={"Registrando usuario..."}
                 fetchURL={URL_REGISTRARSE}
                 formInputs={
                     <>

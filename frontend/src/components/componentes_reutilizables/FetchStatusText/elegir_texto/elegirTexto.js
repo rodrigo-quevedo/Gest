@@ -9,7 +9,7 @@ function elegirTexto (fetchStatus) {
         }
 
         case FETCH_STATUS.SUBMIT : {
-            return 'Cargando datos enviados...'
+            return fetchStatus.submitMessage
         }
 
         case FETCH_STATUS.SUCCESS : {

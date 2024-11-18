@@ -6,7 +6,8 @@ const fetch_con_jwt_cookie = (setFirstJwtFetch, setFetchStatus, setIsAuth)=> {
     setFirstJwtFetch(true)
 
     setFetchStatus({
-        status: FETCH_STATUS.SUBMIT
+        status: FETCH_STATUS.SUBMIT,
+        submitMessage: `Buscando sesión guardada en el navegador...`
     })
 
     fetch(URL_INGRESAR, {

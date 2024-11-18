@@ -2,7 +2,7 @@
 import styles from './FormularioReutilizable.module.css'
 
 //react
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 //componentes
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -17,8 +17,8 @@ import fetchBackend from './fetch_backend/fetchBackend';
 function FormularioReutilizable({
     fetchStatus,
     setFetchStatus,
+    submitMessage,
     fetchURL,
-    fetchBody,//opcional
     formInputs
 }) {
 
@@ -27,7 +27,7 @@ function FormularioReutilizable({
     useEffect(()=>{
         
         if (fetchStatus.status === FETCH_STATUS.SUCCESS) {
-            document.getElementById('formIngresarProductos').reset()
+            document.getElementById('formularioReutilizable').reset()
         }
 
     }, [fetchStatus])
@@ -39,7 +39,7 @@ function FormularioReutilizable({
 
         <form
                     
-            id="formIngresarProductos" 
+            id="formularioReutilizable" 
             
             className={
                 fetchStatus.status === FETCH_STATUS.SUBMIT ? 
@@ -58,7 +58,7 @@ function FormularioReutilizable({
                     setFetchStatus,
                     Object.fromEntries(
                         new FormData(
-                            document.getElementById('formIngresarProductos')
+                            document.getElementById('formularioReutilizable')
                         )
                     )
                 );
@@ -67,8 +67,7 @@ function FormularioReutilizable({
 
                 setFetchStatus({
                     status: FETCH_STATUS.SUBMIT,
-                    successMessage: null,
-                    errorMessage: null
+                    submitMessage: submitMessage
                 })
             }}
          >

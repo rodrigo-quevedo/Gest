@@ -81,6 +81,7 @@ function Ingresar (
                 <FormularioReutilizable 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
+                    submitMessage={`Iniciando sesión...`}
                     fetchURL={URL_INGRESAR}
                     fetchBody={credenciales}
                     formInputs={
