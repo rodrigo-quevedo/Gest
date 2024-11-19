@@ -70,6 +70,22 @@ const POST =  async (req, res) => {
         return;
     }
 
+    //validar si el usuario no existe:
+    const usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
+
+    if (usuarioExistente) {
+        console.log(`El usuario ${usuarioExistente} ya existe`)
+
+        res.status(400).json({
+            success: false,
+            message: `El usuario ya existe: ${usuarioCreado.usuario}`
+        })
+
+        return
+    }
+
+
+    //una vez validado que el usuario no existe, se puede crear el usuario:
     try {
 
         //crear lista productos, historial productos, historial ventas para un nuevo usuario

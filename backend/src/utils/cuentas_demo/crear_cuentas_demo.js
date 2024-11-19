@@ -10,6 +10,16 @@ async function crear_cuentas_demo  () {
 
     
     for (let i=0; i<4; i++){
+        let nombreUsuario = `UsuarioDemo${numeroUsuario++}`
+
+        const usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
+
+        if (usuarioExistente) {
+            console.log(`El usuario ${usuarioExistente} ya existe`)
+            continue
+        }
+
+        //si no existe, entonces empezar a crear el usuario:
         try {
 
             //crear lista productos, historial productos, historial ventas para un nuevo usuario
@@ -25,7 +35,7 @@ async function crear_cuentas_demo  () {
 
             //crear usuario
             const usuarioCreado = await UsuariosModel.create({
-                usuario: `UsuarioDemo${numeroUsuario++}`,
+                usuario: nombreUsuario,
                 password: bcrypt.hashSync(process.env.CUENTAS_DEMO_PASSWORD, 10),//password encriptada
                 isDemo: true,
                 idListaProductos: listaProductosCreada._id,
