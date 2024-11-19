@@ -11,8 +11,8 @@ import FetchStatusText from '../../../../../../componentes_reutilizables/FetchSt
 
 //config
 import {FETCH_STATUS} from '../../../../../../../config/config'
-// import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
-const test_URL_INGRESAR_PRODUCTOS = 'https://httpbin.org/post'
+import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
+
 
 
 
@@ -21,9 +21,7 @@ function IngresarProductos () {
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.SUCCESS,
-        successMessage: 'Producto ingresado con éxito',
-        errorMessage: 'Error: No se pudo ingresar el producto'
+        status: FETCH_STATUS.DEFAULT
     })
 
 
@@ -36,7 +34,8 @@ function IngresarProductos () {
                 <FormularioReutilizable 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
-                    fetchURL={test_URL_INGRESAR_PRODUCTOS}
+                    submitMessage={"Ingresando producto..."}
+                    fetchURL={URL_INGRESAR_PRODUCTOS}
                     formInputs={
                         <>
                             <FormInput 
