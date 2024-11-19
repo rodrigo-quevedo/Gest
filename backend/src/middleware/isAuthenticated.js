@@ -110,6 +110,8 @@ const isAuthenticated = async (req, res, next)=> {
         sessionInJwtPayload = await SessionsModel.findById(new mongoose.Types.ObjectId(jwtPayload.sessionId))
         
         console.log('session:', sessionInJwtPayload)
+
+        if (!sessionInJwtPayload) {throw new Error('No se encontró la sesión.')}
     }
     catch(err){
         console.log(err)

@@ -17,15 +17,6 @@ const POST = async (req, res) => {
 
         return;
     }
-
-    if (req.body.usuario === undefined && req.body.password === undefined ) {
-        res.status(400).json({
-            success: false,
-            message: `No hay niguna sesión guardada en el navegador. Por favor, ingrese nuevamente.`
-        })
-
-        return;
-    }
     
     
     //validacion del req.body (en el front se llenó el formulario y se envió)
