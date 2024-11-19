@@ -37,8 +37,9 @@ require('../utils/cuentas_demo/crear_cuentas_demo')()
 require('../config/eliminateExpiredSessions') ()
 
 //backup de las collections para resetearlas (solo testing)
+//(ahora si funciona joya con el mongodb driver, ademas le agregué un check para que vea instanceof Array y length > 0)
 // const do_collections_backup = require('../utils/db_backup/do_collections_backup')
-// do_collections_backup('another backup') 
+// do_collections_backup('backup con mongodb driver') 
 
 //resetear collections para luego testear
 // const resetCollections = require('../utils/reset_db_collections/reset_collections')
