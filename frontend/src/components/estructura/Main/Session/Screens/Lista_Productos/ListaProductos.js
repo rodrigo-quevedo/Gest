@@ -5,7 +5,8 @@ import styles from './ListaProductos.module.css'
 import {useState} from 'react'
 
 //config
-import {SEARCHBOX_STATE, URL_LISTA_PRODUCTOS} from '../../../../../../config/config'
+import {SEARCHBOX_STATE} from '../../../../../../config/config'
+import {URL_LISTA_PRODUCTOS} from '../../../../../../config/config'
 
 //componentes
 import SearchBox from '../../../../../componentes_reutilizables/SearchBox/SearchBox';
@@ -39,8 +40,7 @@ function ListaProductos () {
                 searchBoxState={searchBoxState}
                 setSearchBoxState={setSearchBoxState}
                 // Pasandole otra URL puedo utilizar el componente SearchBox en otro lugar.
-                // URL={URL_LISTA_PRODUCTOS}
-                URL='https://jsonplaceholder.typicode.com/users'
+                URL= {URL_LISTA_PRODUCTOS}
                 setter={setListaProductos}
             />
 
@@ -61,21 +61,12 @@ function ListaProductos () {
                 mapCallback={
                     (stateObj) => {
                         return (
-                            // <tr key={productoObj.id}>
-                            //     <td>{productoObj.producto}</td>
-                            //     <td>{productoObj.cantidad}</td>
-                            //     <td>${productoObj.precio_unitario}</td>
-                            //     <td>{productoObj.marca}</td>
-                            //     <td>{productoObj.proveedor}</td>
-                            // </tr>
-
-                            // test con json placeholder:
                             <tr key={stateObj.id}>
-                                <td>{stateObj.name}</td>
-                                <td>{stateObj.email}</td>
-                                <td>${stateObj.phone}</td>
-                                <td>{stateObj.username}</td>
-                                <td>{stateObj.website}</td>
+                                <td>{stateObj.producto}</td>
+                                <td>{stateObj.cantidad}</td>
+                                <td>${stateObj.precio_unitario}</td>
+                                <td>{stateObj.marca}</td>
+                                <td>{stateObj.proveedor}</td>
                             </tr>
                         )
                     }

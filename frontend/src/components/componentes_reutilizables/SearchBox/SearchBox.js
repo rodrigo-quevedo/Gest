@@ -55,7 +55,16 @@ function SearchBox({
 
                 setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
-                fetchBackend(setSearchBoxState, URL, setter)
+                fetchBackend(
+                    setSearchBoxState, 
+                    URL, 
+                    setter,
+                    Object.fromEntries(
+                        new FormData(
+                            document.getElementById('searchBoxForm_ListaProductos')
+                        )
+                    )
+                )
             }}
         >
             <div 

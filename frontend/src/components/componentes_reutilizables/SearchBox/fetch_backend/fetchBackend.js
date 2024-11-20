@@ -2,12 +2,19 @@ import { SEARCHBOX_STATE } from "../../../../config/config"
 
 // Nota: Solo hace fetchs GET
 
-function fetchBackend (setSearchBoxState, URL, setState) {
+function fetchBackend (setSearchBoxState, URL, setState, fetchBody) {
     console.log('Entrando al fetch');
 
     fetch(URL, {
         method: 'GET',
-        mode: 'cors'
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",//format of sent content
+            
+            "Accept": "application/json"//accepted format by the browser
+        },
+        body: JSON.parse(fetchBody)
     })
     .then(response => {
             console.log(response)
