@@ -1,9 +1,12 @@
-const POST =  (req, res) => {
+const POST =  async (req, res) => {
     
+    console.log(`POST recibido en /historial_productos: ${new Date()}`)
     console.log('body de la request:', req.body)
+
 
     //isAuthenticated middleware me devuelve un objeto Session existente en la DB
     const userSession = res.locals.sessionInJwtPayload
+    console.log(`sesion: `, userSession)
 
     //validar body de la request:
 
@@ -166,12 +169,94 @@ const POST =  (req, res) => {
         return;
     }
 
+    //insertar doc en Historial_Productos
+    try {
+        //primero tengo que buscar el usuario
+        const UsuariosModel = require('../../../models/Authentication/Usuarios')
+        const usuarioEnSession = await UsuariosModel.find({usuario: userSession.usuario})
+        usuarioEncontrado = usuarioEnSession[0]
+        console.log(`usuario encontrado:`, usuarioEncontrado)
 
-    console.log('todo OK')
-    res.status(200).json({
-        success: true,
-        message: `todo OK`
-    })
+        if (!usuarioEncontrado?.usuario){
+            console.log('No se pudo encontrar el usuario.')
+
+            res.status(400).json({
+                success: false,
+                message: `No se pudo encontrar el usuario.`
+            })
+    
+            return;
+        }
+        //consiguir el array
+        console.log('usuario en db:',usuarioEncontrado)
+        const idHistorialProductos = usuarioEncontrado.idHistorialProductos
+        console.log('idHistorialProductos: ',idHistorialProductos) 
+
+        //cargar en el array
+        
+        const Historial_ProductosModel = require('../../../models/Session/Historial_Productos')
+        const historialProductoUsuario = await Historial_ProductosModel.findById(idHistorialProductos);
+
+            console.log('historialProductoUsuario', historialProductoUsuario)
+
+            //obtener array
+            const arrayHistorialProductos = historialProductoUsuario.historialProductos
+
+            //crear objeto a cargar
+            const pushObj = {
+                producto: req.body.producto,
+                cantidad: req.body.cantidad,
+                precio_unitario: req.body.precio_unitario,
+                marca: req.body.marca,
+                proveedor: req.body.proveedor,
+                fechaHora: new Date()
+            }
+
+            //push (para pushear tengo que usar el array)
+            arrayHistorialProductos.push(pushObj)
+
+            //save (en cambio para el save() tengo que usar el documento)
+            const pushResult = await historialProductoUsuario.save();
+            console.log(`Producto ingresado (push result): ${pushResult}`)
+            
+            if(
+                !pushResult?._id 
+                || 
+                pushResult?.historialProductos?.length < 1
+            ){
+                console.log('No se pudo cargar el producto')
+
+                res.status(400).json({
+                    success: false,
+                    message: `No se pudo cargar el producto.`
+                })
+        
+                return;
+            }
+
+
+
+            res.status(400).json({
+                success: true,
+                message: `Producto ingresado: ${pushResult?.historialProductos[0]}`
+            })
+    
+            return;
+
+
+
+    }
+    catch(err){
+        console.log(err)
+
+        res.status(400).json({
+            success: false,
+            message: err.message
+        })
+
+        return;
+    }
+
 }
 
 module.exports = POST
