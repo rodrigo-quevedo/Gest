@@ -12,9 +12,12 @@ async function crear_cuentas_demo  () {
     for (let i=0; i<4; i++){
         let nombreUsuario = `UsuarioDemo${numeroUsuario++}`
 
-        const usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
+        let usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
 
-        if (usuarioExistente.usuario) {
+        console.log('usuarioExistente:',usuarioExistente)
+        usuarioExistente = usuarioExistente[0]
+
+        if (usuarioExistente?.usuario) {
             console.log(`El usuario ${usuarioExistente} ya existe`)
             continue
         }
@@ -23,6 +26,7 @@ async function crear_cuentas_demo  () {
         try {
 
             //crear lista productos, historial productos, historial ventas para un nuevo usuario
+            
             const listaProductosCreada = await Lista_ProductosModel.create({
                 listaProductos: []
             })
@@ -32,6 +36,7 @@ async function crear_cuentas_demo  () {
             const historialVentasCreado = await Historial_VentasModel.create({
                 historialVentas: []
             })
+            
 
             //crear usuario
             const usuarioCreado = await UsuariosModel.create({
