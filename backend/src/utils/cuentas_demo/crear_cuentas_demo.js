@@ -14,7 +14,7 @@ async function crear_cuentas_demo  () {
 
         const usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
 
-        if (usuarioExistente) {
+        if (usuarioExistente.usuario) {
             console.log(`El usuario ${usuarioExistente} ya existe`)
             continue
         }
@@ -45,7 +45,7 @@ async function crear_cuentas_demo  () {
     
             if (usuarioCreado) {
                 //LOG
-                console.log('Usuario creado:', usuarioCreado)
+                console.log('Usuario creado antes de agregar en la DB:', usuarioCreado)
                 console.log(`Usuario creado luego de buscarlo en la DB: ${await UsuariosModel.findById(usuarioCreado._id)}`)
 
         
