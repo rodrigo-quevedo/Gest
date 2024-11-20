@@ -13,7 +13,7 @@ const schedule_collections_backup = async (trial) => {
     const Backups_List_Model = require('./Backups_List_Model')
     let ultimaFechaHora = await Backups_List_Model.find({}).sort({fechaHora: -1}).exec()
 
-    console.log('ultima fecha hora:', ultimaFechaHora)
+    console.log('ultima fecha hora:', ultimaFechaHora[0])
 
     if (ultimaFechaHora) {
         ultimaFechaHora = ultimaFechaHora[0].fechaHora
