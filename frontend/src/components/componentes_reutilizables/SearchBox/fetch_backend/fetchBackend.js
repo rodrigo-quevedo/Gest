@@ -1,37 +1,50 @@
 import { SEARCHBOX_STATE } from "../../../../config/config"
 
 // Nota: Solo hace fetchs GET
+// Nota 2: el metodo GET, segun REST, NO ACEPTA request body, solo url query params (lo que sigue al '?')
 
 function fetchBackend (setSearchBoxState, URL, setState, fetchBody) {
-    console.log('Entrando al fetch');
+    console.log('Entrando al fetch GET del searchbox');
 
-    fetch(URL, {
+    console.log('fetchBody before parse:', fetchBody)
+    
+    const fetchUrlQuery = new URLSearchParams(fetchBody)
+    
+    console.log('fetchBody despues del parse:', fetchUrlQuery.toString())
+    
+
+    fetch(URL + '?'+ fetchUrlQuery, {
         method: 'GET',
         mode: 'cors',
         credentials: 'include',
-        headers: {
-            "Content-Type": "application/json",//format of sent content
-            
+        headers: {     
             "Accept": "application/json"//accepted format by the browser
-        },
-        body: JSON.parse(fetchBody)
+            //Content-Type no me hace falta porque no hay body
+        }
     })
     .then(response => {
-            console.log(response)
-
-            response.json()
-            .then( json => {
+        console.log('respuesta del servidor:')
+        console.log(response)
+        
+        response.json()
+        .then( json => {
+                console.log('respuesta del servidor json:')
                 console.log(json)
 
+                if (!json.success) {
+                    console.log(`error: ${json.message}`)
+                    return;
+                }
+                
                 // La respuesta de la URL debe venir parseada. El JSON envuelve el body.
-                setState(json)
+                setState(json.message)
                 setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)  
             })
 
-            .catch(err=> {
-                console.log('Error al parsear.', err)
-                setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
-            });
+        .catch(err=> {
+            console.log('Error al parsear.', err)
+            setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
+        });
 
     })
 
