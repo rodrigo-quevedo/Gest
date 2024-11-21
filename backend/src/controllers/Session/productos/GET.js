@@ -3,7 +3,7 @@
 const GET =  async (req, res) => {
     
     console.log(`GET recibido en /productos: ${new Date()}`)
-    console.log('request query:', req.query.searchBoxInput)
+    console.log('request query:', req.query)
 
 
     //validar inputs de la req.query (acá se me complicó porque tengo que dejar pasar el '', ese me lo toma como false en javascript)
@@ -116,24 +116,44 @@ const GET =  async (req, res) => {
         //2. chequear searchBoxInput = '' para devolver todo
 
     let arrayResultado = arrayListaProductos.map((prod)=>{
+        //devolver todo
         if (req.query.searchBoxInput === '') {
             return prod
         }
 
-        //aca tengo que armar una REGEXP para devolver resultados similares
+        //devolver exact match
         else if (prod.producto === req.query.searchBoxInput) {
             return prod
         }
+        
+        //devolver resultados similares
+        else if (prod.producto.includes(req.query.searchBoxInput)){
+            return prod
+        }
 
-        return {};
+        //no devolver nada (el frontend no va a mostrar nada si el objeto está vacío)
+        return null;
     })
 
-    console.log('arrayResultado:', arrayResultado)
+    console.log('arrayResultado antes de limpiar los null:', arrayResultado)
+
+    //ahora vamos a eliminar los null
+    let arrayResultadoLimpio = []
+
+    arrayResultado.forEach(el=>{
+        if (el !== null) {
+            arrayResultadoLimpio.push(el)
+        }
+        return
+    })
+
+    console.log('arrayResultadoLimpio, DESPUES de limpiar los null:', arrayResultadoLimpio)
+
 
 
     res.status(200).json({
         success: true,
-        message: arrayResultado
+        message: arrayResultadoLimpio
     })
     return;
 
