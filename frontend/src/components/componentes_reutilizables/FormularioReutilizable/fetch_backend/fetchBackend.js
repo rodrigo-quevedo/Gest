@@ -3,8 +3,15 @@ import { FETCH_STATUS } from "../../../../config/config"
 
 
 function fetchBackend (URL, setFetchStatus, fetchBody) {
-
+    
     console.log('Entrando al fetch');
+    
+    
+    //parsear cantidad y precio_unitario
+    console.log(fetchBody)
+    fetchBody.cantidad = Number(fetchBody.cantidad)
+    fetchBody.precio_unitario = Number(fetchBody.precio_unitario)
+
 
     fetch(URL, {
         method: 'POST',
