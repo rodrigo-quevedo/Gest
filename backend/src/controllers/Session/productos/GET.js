@@ -3,12 +3,12 @@
 const GET =  async (req, res) => {
     
     console.log(`GET recibido en /productos: ${new Date()}`)
-    console.log('request body:', req.body)
+    console.log('request query:', req.query.searchBoxInput)
 
 
-    //validar inputs de la req.body (acá se me complicó porque tengo que dejar pasar el '', ese me lo toma como false en javascript)
-    if (req.body.searchBoxInput === null ||
-        req.body.searchBoxInput === undefined
+    //validar inputs de la req.query (acá se me complicó porque tengo que dejar pasar el '', ese me lo toma como false en javascript)
+    if (req.query.searchBoxInput === null ||
+        req.query.searchBoxInput === undefined
     ) {
         res.status(400).json({
             success: false,
@@ -18,19 +18,19 @@ const GET =  async (req, res) => {
         return;
     }
 
-    if (typeof req.body.searchBoxInput !== 'string') {
+    if (typeof req.query.searchBoxInput !== 'string') {
         res.status(400).json({
             success: false,
-            message: `searchBoxInput: '${req.body.searchBoxInput}' es inválido. El campo debe ser tipo String.`
+            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. El campo debe ser tipo String.`
         })
 
         return;
     }
 
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/.test(req.body.searchBoxInput) === false) {
+    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/.test(req.query.searchBoxInput) === false) {
         res.status(400).json({
             success: false,
-            message: `searchBoxInput: '${req.body.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
+            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
         })
 
         return;
@@ -55,7 +55,7 @@ const GET =  async (req, res) => {
 
     const idListaProductos = usuarioEncontrado[0].idListaProductos
         
-        //--> además, la lista viene limitada por el req.body.searchBoxInput
+        //--> además, la lista viene limitada por el req.query.searchBoxInput
     const Lista_ProductosModel = require('../../../models/Session/Lista_Productos')
     const listaEncontrada = await Lista_ProductosModel.findById(idListaProductos).exec()
     
@@ -116,16 +116,16 @@ const GET =  async (req, res) => {
         //2. chequear searchBoxInput = '' para devolver todo
 
     let arrayResultado = arrayListaProductos.map((prod)=>{
-        if (req.body.searchBoxInput === '') {
+        if (req.query.searchBoxInput === '') {
             return prod
         }
 
         //aca tengo que armar una REGEXP para devolver resultados similares
-        else if (prod.producto === req.body.searchBoxInput) {
+        else if (prod.producto === req.query.searchBoxInput) {
             return prod
         }
 
-        return;
+        return {};
     })
 
     console.log('arrayResultado:', arrayResultado)
