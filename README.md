@@ -11,10 +11,10 @@ Es una aplicación web fullstack pensada para un negocio que vende productos: se
 
 - [x] Registro y Autenticación de usuarios
 - [x] Cuentas demo (la idea es que se pueda probar la app sin tener que registrarse)
-- [ ] Cargar compras a los proveedores
+- [x] Cargar compras a los proveedores
 - [ ] Cargar ventas a los clientes
 - [ ] Historial de compras y ventas
-- [ ] Lista de productos disponibles
+- [x] Lista de productos disponibles
 
 #### Aspectos técnicos
 - Frontend: HTML, CSS (sin librerías), CSS Modules, JavaScript, React, creación de componentes reutilizables, UI responsive (versión desktop y versión mobile), fetch a la API backend, variables de entorno en React.
