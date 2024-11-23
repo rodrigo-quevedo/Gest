@@ -42,6 +42,8 @@ const GET =  async (req, res) => {
     const UsuariosModel = require('../../../models/Authentication/Usuarios')
     const usuarioEncontrado = await UsuariosModel.find({usuario: userSession.usuario}).exec()//el findOne() no me estuvo funcionando, por eso uso find() y despues el index [] del array para utilizarlos
 
+    console.log('usuarioEncontrado[0]:', usuarioEncontrado[0])
+
     if (!usuarioEncontrado[0]?.idListaProductos) {
         console.log('No se pudo encontrar al usuario')
 
