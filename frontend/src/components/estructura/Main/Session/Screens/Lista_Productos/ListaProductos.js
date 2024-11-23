@@ -2,7 +2,7 @@
 import styles from './ListaProductos.module.css'
 
 //hooks
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 //config
 import {SEARCHBOX_STATE} from '../../../../../../config/config'
@@ -15,10 +15,20 @@ import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReu
 
 function ListaProductos () {
     document.querySelector('title').innerText = 'Lista de productos';
-
+    
+    // cuando carga la pagina, buscar todos los productos
+    useEffect(()=>{
+        // console.log('component ListaProucto mounted')
+        // console.log(document.getElementById('searchBoxForm_ListaProductos'))
+        //ADVERTENCIA: hay que usar requestSubmit() en vez de submit(), porque submit NO PERMITE preventDefault() (en realidad no estoy seguro, capaz lo que ocurre es que no activa el evento 'submit').
+        //En fin, con requestSubmi() siempre se activa el atributo onSubmit del formulario
+        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+    }, [])
+    
+    
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
-
-
+    
+    
     const [listaProductos, setListaProductos] = useState([{
         id: 0,
         producto: '-',
@@ -27,7 +37,7 @@ function ListaProductos () {
         marca: '-',
         proveedor: '-'
     }])
-
+    
 
     return (
 
