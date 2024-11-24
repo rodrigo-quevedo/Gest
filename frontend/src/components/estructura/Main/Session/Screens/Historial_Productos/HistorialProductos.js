@@ -72,6 +72,7 @@ function HistorialProductos () {
                                 <td>${stateObj.precio_unitario}</td>
                                 <td>{stateObj.marca}</td>
                                 <td>{stateObj.proveedor}</td>
+                                <td>{stateObj.fechaHora}</td>
                             </tr>
                         )
                     }
