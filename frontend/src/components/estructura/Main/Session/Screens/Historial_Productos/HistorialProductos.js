@@ -2,7 +2,7 @@
 import styles from './HistorialProductos.module.css'
 
 //react
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //config
 import {SEARCHBOX_STATE} from '../../../../../../config/config'
@@ -14,6 +14,11 @@ import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReu
 
 function HistorialProductos () {
     document.querySelector('title').innerText = 'Historial de productos';
+
+    // cuando carga la pagina, buscar todo el historial
+    useEffect(()=>{
+        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+    }, [])
 
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
@@ -39,7 +44,7 @@ function HistorialProductos () {
                 setSearchBoxState={setSearchBoxState}
                 // Pasandole otra URL puedo utilizar el componente SearchBox en otro lugar.
                 // URL={URL_LISTA_PRODUCTOS}
-                URL='https://jsonplaceholder.typicode.com/users'
+                URL={URL_HISTORIAL_PRODUCTOS}
                 setter={setListaProductos}
             />
 
@@ -61,22 +66,12 @@ function HistorialProductos () {
                 mapCallback={
                     (stateObj) => {
                         return (
-                            // <tr key={productoObj.id}>
-                            //     <td>{productoObj.producto}</td>
-                            //     <td>{productoObj.cantidad}</td>
-                            //     <td>${productoObj.precio_unitario}</td>
-                            //     <td>{productoObj.marca}</td>
-                            //     <td>{productoObj.proveedor}</td>
-                            // </tr>
-
-                            // test con json placeholder:
                             <tr key={stateObj.id}>
-                                <td>{stateObj.name}</td>
-                                <td>{stateObj.email}</td>
-                                <td>${stateObj.phone}</td>
-                                <td>{stateObj.username}</td>
-                                <td>{stateObj.website}</td>
-                                <td>{stateObj.website}</td>
+                                <td>{stateObj.producto}</td>
+                                <td>{stateObj.cantidad}</td>
+                                <td>${stateObj.precio_unitario}</td>
+                                <td>{stateObj.marca}</td>
+                                <td>{stateObj.proveedor}</td>
                             </tr>
                         )
                     }
