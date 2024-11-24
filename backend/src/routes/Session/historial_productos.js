@@ -14,7 +14,7 @@ const cors_basico = require('../../middleware/cors_basico')
 
 
 //routing
-router.get('/', GETcontroller)
+router.get('/', cors_basico, isAuthenticated, GETcontroller)
 router.post('/', cors_basico, isAuthenticated, POSTcontroller)
 router.options('/', OPTIONScontroller)
 
