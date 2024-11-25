@@ -53,8 +53,8 @@ function FormInput ({
 
                         minLength='6'
                         maxLength='50'
-                        pattern='^[a-zA-ZÀ-ÿñÑ0-9 ]{6,50}$'
-                        title={"Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."}
+                        pattern='^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$'
+                        title={"Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."}
                     />
                 </div>
             )

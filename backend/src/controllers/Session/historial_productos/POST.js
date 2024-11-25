@@ -29,10 +29,10 @@ const POST =  async (req, res) => {
         return;
     }
 
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{6,50}$/.test(req.body.producto) === false) {
+    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.producto) === false) {
         res.status(400).json({
             success: false,
-            message: `producto: '${req.body.producto}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
+            message: `producto: '${req.body.producto}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
         })
 
         return;
@@ -132,10 +132,10 @@ const POST =  async (req, res) => {
         return;
     }
 
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{6,50}$/.test(req.body.marca) === false) {
+    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.marca) === false) {
         res.status(400).json({
             success: false,
-            message: `marca: '${req.body.marca}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
+            message: `marca: '${req.body.marca}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
         })
 
         return;
@@ -160,10 +160,10 @@ const POST =  async (req, res) => {
         return;
     }
 
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{6,50}$/.test(req.body.proveedor) === false) {
+    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.proveedor) === false) {
         res.status(400).json({
             success: false,
-            message: `proveedor: '${req.body.proveedor}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
+            message: `proveedor: '${req.body.proveedor}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
         })
 
         return;

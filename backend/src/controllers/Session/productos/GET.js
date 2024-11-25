@@ -27,10 +27,10 @@ const GET =  async (req, res) => {
         return;
     }
 
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/.test(req.query.searchBoxInput) === false) {
+    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$/.test(req.query.searchBoxInput) === false) {
         res.status(400).json({
             success: false,
-            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
+            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
         })
 
         return;
