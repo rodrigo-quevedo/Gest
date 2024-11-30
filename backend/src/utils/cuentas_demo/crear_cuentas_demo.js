@@ -16,12 +16,13 @@ async function crear_cuentas_demo  () {
 
 
     
-    for (let cuentaDemo of arrCuentasDemo){
-        let nombreUsuario = cuentaDemo
+    for (let cuentaDemoIndex in arrCuentasDemo){
+        let nombreUsuario = arrCuentasDemo[cuentaDemoIndex]
 
         let usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
 
         console.log('usuarioExistente:',usuarioExistente)
+
         usuarioExistente = usuarioExistente[0]
 
         if (usuarioExistente?.usuario) {
@@ -44,12 +45,65 @@ async function crear_cuentas_demo  () {
                 historialVentas: []
             })
             
-            //llenar historial_productos
+            //funcion para armar listaProductos
+            let actualizarListaProductos = (listaProductos, element, operation)=>{
+                if (operation === 'compra') {
+                    let i = listaProductos.findIndex(el=> {
+                        el.producto === element.producto
+                        &&
+                        el.marca === element.marca
+                        &&
+                        el.proveedor === element.proveedor
+                    })
+                    
+                    if (i === -1) {
+                        listaProductos.push(element)
+                        return;
+                    }
 
-            //llenar historial_ventas
+                    listaProductos[i].cantidad += element.cantidad 
+                    return
+                }
 
-            //calcular lista_productos
+                if (operation === 'venta') {
+                    let i = listaProductos.findIndex(el=> {
+                        el.producto === element.producto
+                        &&
+                        el.marca === element.marca
+                        &&
+                        el.proveedor === element.proveedor
+                    })
+                    
+                    if (i === -1) return;
 
+                    listaProductos[i].cantidad -= element.cantidad 
+                    return
+                }
+            }
+
+            //llenar historial_productos y actualizar lista_productos
+            arrCompras[cuentaDemoIndex].forEach(el => {
+                historialProductosCreado.historialProductos.push(el)
+                actualizarListaProductos(listaProductosCreada.listaProductos, el, 'compra')    
+            })
+
+            const updatedHistorialProductos = await historialProductosCreado.save()
+            console.log('updatedHistorialProductos:', updatedHistorialProductos)
+            const updatedListaProductos_1 = await listaProductosCreada.save()
+            console.log('updatedListaProductos_1:', updatedListaProductos_1)
+            
+
+            //llenar historial_ventas y actualizar lista_productos
+            arrVentas[cuentaDemoIndex].forEach(el => {
+                historialVentasCreado.historialVentas.push(el)
+                actualizarListaProductos(listaProductosCreada.listaProductos, el, 'venta') 
+            })
+            const updatedHistorialVentas = await historialProductosCreado.save()
+            console.log('updatedHistorialVentas:', updatedHistorialVentas)
+            const updatedListaProductos_2 = await listaProductosCreada.save()
+            console.log('updatedListaProductos_2', updatedListaProductos_2)
+
+            
 
             //crear usuario
             const usuarioCreado = await UsuariosModel.create({
