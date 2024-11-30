@@ -6,16 +6,16 @@ const Historial_ProductosSchema = new mongoose.Schema({
         {
             producto : {
                 type: String,
-                required: true,
-                minLength: 0,
-                maxLength: 50,
-                match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/
+                required: [true, "Es obligatorio llenar este campo."],
+                minLength: [6, "La cantidad mínima de caracteres es 6."],
+                maxLength: [20, "La cantidad máxima de caracteres es 20."],
+                match: [/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/, "Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."]
             },
             cantidad : {
                 type: Number,
-                required: true,
-                min: 0,
-                max: 9999,
+                required: [true, "Es obligatorio llenar este campo."],
+                min: [1, "El min es 1. (value es {VALUE})"],
+                max: [9999, "El max es 9999. (value es {VALUE})"],
                 validate : {
                     validator : Number.isInteger,
                     message   : '{VALUE} is not an integer value'
@@ -41,21 +41,21 @@ const Historial_ProductosSchema = new mongoose.Schema({
             },
             marca :  {
                 type: String,
-                required: true,
-                minLength: 0,
-                maxLength: 50,
-                match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/
+                required: [true, "Es obligatorio llenar este campo."],
+                minLength: [6, "La cantidad mínima de caracteres es 6."],
+                maxLength: [20, "La cantidad máxima de caracteres es 20."],
+                match: [/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/, "Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."]
             },
             proveedor:  {
                 type: String,
-                required: true,
-                minLength: 0,
-                maxLength: 50,
-                match: /^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$/
+                required: [true, "Es obligatorio llenar este campo."],
+                minLength: [6, "La cantidad mínima de caracteres es 6."],
+                maxLength: [20, "La cantidad máxima de caracteres es 20."],
+                match: [/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/, "Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."]
             },
             fechaHora : {
                 type : Date,
-                required: true
+                required: [true, "Es obligatorio llenar este campo."]
             }  
         }
     ]

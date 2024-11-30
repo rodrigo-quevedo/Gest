@@ -51,7 +51,7 @@ function IngresarProductos () {
                                 type='number'
                                 texto='Cantidad'
 
-                                min='0'
+                                min='1'
                                 max='9999'
                                 esPrecio='false'
 
@@ -63,8 +63,8 @@ function IngresarProductos () {
                                 type='number'
                                 texto='Precio unitario'
 
-                                min='0'
-                                max='999999999'
+                                min='0.01'
+                                max='999999999.99'
                                 esPrecio='true'
 
                                 required='true'
