@@ -10,12 +10,6 @@ const {arrCuentasDemo, arrCompras, arrVentas} = require('./data')
 const bcrypt = require('bcrypt')
 async function crear_cuentas_demo  () {
 
-    //conexion usando mongodb driver para agregar fechas arbitrarias (por fuera del POST a /historial_productos)
-    const {MongoClient} = require('mongodb')
-    const connection = await MongoClient.connect(process.env.DB_URL)
-
-
-    
     for (let cuentaDemoIndex in arrCuentasDemo){
         let nombreUsuario = arrCuentasDemo[cuentaDemoIndex]
 

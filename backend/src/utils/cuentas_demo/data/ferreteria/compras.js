@@ -18,7 +18,7 @@ const arrComprasFerreteria =
     {"producto": "guantes de trabajo pack 10 unidades", "cantidad": 5, "precio_unitario": 25000.30, "marca": "worksafe", "proveedor": "HERRAMIENTAS Y ARTÍCULOS DE SEGURIDAD", "fechaHora": `${new Date("2024-04-02 09:55")}`},
     {"producto": "sierra circular eléctrica", "cantidad": 4, "precio_unitario": 63200.80, "marca": "cutmaster", "proveedor": "HERRAMIENTAS DE CONSTRUCCIÓN", "fechaHora": `${new Date("2024-04-03 17:15")}`},
     {"producto": "cinta aislante 20m", "cantidad": 18, "precio_unitario": 2220.75, "marca": "insulmax", "proveedor": "FERRETERÍA Y ELECTRICIDAD", "fechaHora": `${new Date("2024-04-04 08:05")}`},
-    {"producto": "martillo", "cantidad": 1, "precio_unitario": 6180.54, "marca": "ferrum", "proveedor": "FERRETERÍA EL TORO", "fechaHora": `${new Date('2024-03-30 09:10')}`},
+    {"producto": "martillo", "cantidad": 1, "precio_unitario": 6180.54, "marca": "worksafe", "proveedor": "HERRAMIENTAS DEL SUR", "fechaHora": `${new Date('2024-03-30 09:10')}`},
     {"producto": "destornillador kit 6 piezas", "cantidad": 1, "precio_unitario": 18661.19, "marca": "toolmaster", "proveedor": "HERRAMIENTAS DEL SUR", "fechaHora": `${new Date('2024-03-30 14:25')}`},
     {"producto": "pintura esmalte 1L", "cantidad": 2, "precio_unitario": 19176.90, "marca": "pinturas del valle", "proveedor": "FERRETERÍA Y PINTURAS", "fechaHora": `${new Date('2024-04-12 11:40')}`},
     {"producto": "brocha para pintar", "cantidad": 3, "precio_unitario": 1693.19, "marca": "brushtools", "proveedor": "ARTÍCULOS DE PINTURA", "fechaHora": `${new Date('2024-04-13 16:30')}`},
