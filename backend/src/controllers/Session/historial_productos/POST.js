@@ -62,7 +62,7 @@ const POST =  async (req, res) => {
         return;
     }
 
-    if (req.body.cantidad < 0 || req.body.cantidad > 9999) {
+    if (req.body.cantidad < 1 || req.body.cantidad > 9999) {
         res.status(400).json({
             success: false,
             message: `cantidad: '${req.body.cantidad}' es inválido. El minimo es 0 y el máximo es 9999.`
@@ -106,6 +106,15 @@ const POST =  async (req, res) => {
         res.status(400).json({
             success: false,
             message: `precio_unitario: '${req.body.precio_unitario}' es inválido. El campo debe ser Integer, o Float con 1 o 2 decimales.`
+        })
+
+        return;
+    }
+
+    if (req.body.precio_unitario < 0.01 || req.body.precio_unitario > 999999999.99) {
+        res.status(400).json({
+            success: false,
+            message: `precio_unitario: '${req.body.precio_unitario}' es inválido. Valor min es 0.01 y max es 999999999.99`
         })
 
         return;

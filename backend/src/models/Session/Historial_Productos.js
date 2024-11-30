@@ -33,9 +33,9 @@ const Historial_ProductosSchema = new mongoose.Schema({
                 },
                 validate: {
                     validator : (v) => {
-                        return v > 0 && v < 999999999
+                        return v >= 0.01 && v <= 999999999.99
                     },
-                    message : 'Min value is 0, max value is 999999999 (value is {VALUE})'
+                    message : 'Min value is 0.01, max value is 999999999.99 (value is {VALUE})'
                 }
                 
             },
