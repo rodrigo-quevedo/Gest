@@ -4,13 +4,20 @@ const Lista_ProductosModel = require('../../models/Session/Lista_Productos')
 const Historial_ProductosModel = require('../../models/Session/Historial_Productos')
 const Historial_VentasModel = require('../../models/Session/Historial_Ventas')
 
+const {arrCuentasDemo, arrCompras, arrVentas} = require('./data')
+
+
 const bcrypt = require('bcrypt')
 async function crear_cuentas_demo  () {
-    let numeroUsuario = 0;
+
+    //conexion usando mongodb driver para agregar fechas arbitrarias (por fuera del POST a /historial_productos)
+    const {MongoClient} = require('mongodb')
+    const connection = await MongoClient.connect(process.env.DB_URL)
+
 
     
-    for (let i=0; i<4; i++){
-        let nombreUsuario = `UsuarioDemo${numeroUsuario++}`
+    for (let cuentaDemo of arrCuentasDemo){
+        let nombreUsuario = cuentaDemo
 
         let usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
 
@@ -37,6 +44,12 @@ async function crear_cuentas_demo  () {
                 historialVentas: []
             })
             
+            //llenar historial_productos
+
+            //llenar historial_ventas
+
+            //calcular lista_productos
+
 
             //crear usuario
             const usuarioCreado = await UsuariosModel.create({
@@ -77,7 +90,7 @@ async function crear_cuentas_demo  () {
             
             //error "unique" para usuarios repetidos:
             if (err.errorResponse?.code === 11000){
-                console.log(`El usuario '${`UsuarioDemo${numeroUsuario-1}`}' ya existe.`)
+                console.log(`El usuario ${cuentaDemo} ya existe.`)
                 
             }
         }
