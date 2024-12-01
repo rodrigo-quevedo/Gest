@@ -2,15 +2,29 @@
 import { FETCH_STATUS } from "../../../../config/config"
 
 
+
 function fetchBackend (URL, setFetchStatus, fetchBody) {
-    
     console.log('Entrando al fetch');
     
     
     //parsear cantidad y precio_unitario
     console.log(fetchBody)
-    fetchBody.cantidad = Number(fetchBody.cantidad)
-    fetchBody.precio_unitario = Number(fetchBody.precio_unitario)
+    
+    if (fetchBody.cantidad) fetchBody.cantidad = Number(fetchBody.cantidad)
+    
+    if (fetchBody.precio_unitario) fetchBody.precio_unitario = Number(fetchBody.precio_unitario)
+    //Number(undefined) devuelve NaN:
+        // > const a = {}
+        // undefined
+        // > a.nonexistent = Number(a.nonexistent)
+        // NaN
+        // > a
+        // { nonexistent: NaN }
+        // > Number(null)
+        // 0
+        // > Number(undefined)
+        // NaN
+        // >
 
 
     fetch(URL, {

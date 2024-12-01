@@ -12,7 +12,7 @@ import FetchStatusText from '../../../../../componentes_reutilizables/FetchStatu
 //config
 import {FETCH_STATUS} from '../../../../../../config/config'
 import { URL_REGISTRAR_VENTAS } from "../../../../../../config/config"
-const test_URL_REGISTRAR_VENTAS = 'https://httpbin.org/post'
+
 
 
 
@@ -21,9 +21,7 @@ function RegistrarVentas () {
 
     // Esto va cambiando según lo que pase en el fetch:
     const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.SUCCESS,
-        successMessage: 'Producto ingresado con éxito',
-        errorMessage: 'Error: No se pudo ingresar el producto'
+        status: FETCH_STATUS.DEFAULT
     })
 
     return (
@@ -35,7 +33,8 @@ function RegistrarVentas () {
             <FormularioReutilizable 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
-                    fetchURL={test_URL_REGISTRAR_VENTAS}
+                    submitMessage={"Ingresando venta..."}
+                    fetchURL={URL_REGISTRAR_VENTAS}
                     formInputs={
                         <>
                             <FormInput 
