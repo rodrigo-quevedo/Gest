@@ -4,57 +4,13 @@ const GET =  async (req, res) => {
     console.log(`GET recibido en /productos: ${new Date()}`)
     console.log('request query:', req.query)
 
-    //validar inputs de la req.query (acá se me complicó porque tengo que dejar pasar el '', ese me lo toma como false en javascript)
-    if (req.query.searchBoxInput === null ||
-        req.query.searchBoxInput === undefined
-    ) {
-        res.status(400).json({
-            success: false,
-            message: 'searchBoxInput: El campo es obligatorio.'
-        })
+    //validacion del input por middleware validarReqQuerySearchbox
 
-        return;
-    }
-
-    if (typeof req.query.searchBoxInput !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. El campo debe ser tipo String.`
-        })
-
-        return;
-    }
-
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$/.test(req.query.searchBoxInput) === false) {
-        res.status(400).json({
-            success: false,
-            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
-        })
-
-        return;
-    }
-
+    //obtener usuario por middleware
+    const usuarioEncontrado = res.locals.usuarioEncontrado
     
     //servidor responde con el historial de productos:
-    const userSession = res.locals.sessionInJwtPayload
-
-    const UsuariosModel = require('../../../models/Authentication/Usuarios')
-    const usuarioEncontrado = await UsuariosModel.find({usuario: userSession.usuario}).exec()
-
-    console.log('usuarioEncontrado[0]:', usuarioEncontrado[0])
-
-    if (!usuarioEncontrado[0]?.idListaProductos) {
-        console.log('No se pudo encontrar al usuario')
-
-        res.status(400).json({
-            success: false,
-            message: `No se pudo encontrar al usuario.`
-        })
-
-        return;
-    }
-
-    const idHistorialProductos = usuarioEncontrado[0].idHistorialProductos
+    const idHistorialProductos = usuarioEncontrado.idHistorialProductos
     
     const Historial_ProductosModel = require('../../../models/Session/Historial_Productos')
     const historialEncontrado = await Historial_ProductosModel.findById(idHistorialProductos).exec()
