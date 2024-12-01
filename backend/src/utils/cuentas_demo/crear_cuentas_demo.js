@@ -92,7 +92,7 @@ async function crear_cuentas_demo  () {
                 historialVentasCreado.historialVentas.push(el)
                 actualizarListaProductos(listaProductosCreada.listaProductos, el, 'venta') 
             })
-            const updatedHistorialVentas = await historialProductosCreado.save()
+            const updatedHistorialVentas = await historialVentasCreado.save()
             console.log('updatedHistorialVentas:', updatedHistorialVentas)
             const updatedListaProductos_2 = await listaProductosCreada.save()
             console.log('updatedListaProductos_2', updatedListaProductos_2)
