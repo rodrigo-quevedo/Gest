@@ -2,7 +2,7 @@
 import styles from './HistorialVentas.module.css'
 
 //hooks
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 //componentes
 import SearchBox from '../../../../../componentes_reutilizables/SearchBox/SearchBox';
@@ -10,8 +10,8 @@ import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReu
 
 //config
 import {SEARCHBOX_STATE} from '../../../../../../config/config'
-// import {URL_HISTORIAL_VENTAS} from '../../../../../../config/config'
-const test_URL_HISTORIAL_VENTAS = 'https://jsonplaceholder.typicode.com/users'
+import {URL_HISTORIAL_VENTAS} from '../../../../../../config/config'
+
 
 
 function HistorialVentas () {
@@ -21,16 +21,13 @@ function HistorialVentas () {
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
 
-    const [listaVentas, setListaVentas] = useState([{
-        id: 0,
-        producto: '-',
-        cantidad: '-',
-        precio_unitario: '-',
-        marca: '-',
-        proveedor: '-',
-        fechaHora: '-'
-    }])
+    const [listaVentas, setListaVentas] = useState([])
 
+
+    // cuando carga la pagina, buscar todo el historial
+    useEffect(()=>{
+        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+    }, [])
 
     return (
         <section className={styles.container}>
@@ -40,7 +37,7 @@ function HistorialVentas () {
             <SearchBox 
                 searchBoxState={searchBoxState}
                 setSearchBoxState={setSearchBoxState}
-                URL={test_URL_HISTORIAL_VENTAS}
+                URL={URL_HISTORIAL_VENTAS}
                 setter={setListaVentas}
             />
 
@@ -58,25 +55,15 @@ function HistorialVentas () {
                     </tr>
                 }
                 mapCallback={
-                    (stateObj) => {
+                    (productoObj) => {
                         return (
-                            // <tr key={productoObj.id}>
-                            //     <td>{productoObj.producto}</td>
-                            //     <td>{productoObj.cantidad}</td>
-                            //     <td>${productoObj.precio_unitario}</td>
-                            //     <td>{productoObj.marca}</td>
-                            //     <td>{productoObj.proveedor}</td>
-                            //     <td>{productoObj.fechaHora}</td>
-                            // </tr>
-
-                            // test con json placeholder:
-                            <tr key={stateObj.id}>
-                                <td>{stateObj.name}</td>
-                                <td>{stateObj.email}</td>
-                                <td>${stateObj.phone}</td>
-                                <td>{stateObj.username}</td>
-                                <td>{stateObj.website}</td>
-                                <td>{stateObj.website}</td>
+                            <tr key={productoObj.id}>
+                                <td>{productoObj.producto}</td>
+                                <td>{productoObj.cantidad}</td>
+                                <td>${productoObj.precio_unitario}</td>
+                                <td>{productoObj.marca}</td>
+                                <td>{productoObj.proveedor}</td>
+                                <td>{productoObj.fechaHora}</td>
                             </tr>
                         )
                     }
