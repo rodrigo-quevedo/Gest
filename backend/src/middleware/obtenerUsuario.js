@@ -4,7 +4,7 @@ const obtenerUsuario = async (req, res, next) => {
 
     const userSession = res.locals.sessionInJwtPayload
 
-    const UsuariosModel = require('../../../models/Authentication/Usuarios')
+    const UsuariosModel = require('../models/Authentication/Usuarios')
     const usuarioEncontrado = await UsuariosModel.find({usuario: userSession.usuario}).exec()
 
     console.log('usuarioEncontrado[0]:', usuarioEncontrado[0])
