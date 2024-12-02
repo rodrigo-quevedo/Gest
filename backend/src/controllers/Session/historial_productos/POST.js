@@ -4,201 +4,17 @@ const POST =  async (req, res) => {
     console.log('body de la request:', req.body)
 
 
-    //isAuthenticated middleware me devuelve un objeto Session existente en la DB
-    const userSession = res.locals.sessionInJwtPayload
-    console.log(`sesion: `, userSession)
+    //session validada con isAuthenticated middleware 
 
-//------------------------------------------------validar body de la request:
+    //req.body validado con validarReqBodyProducto middleware
 
-    // PRODUCTO
-    if (!req.body.producto) {
-        res.status(400).json({
-            success: false,
-            message: 'producto: El campo es obligatorio.'
-        })
-
-        return;
-    }
-
-    if (typeof req.body.producto !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `producto: '${req.body.producto}' es inválido. El campo debe ser tipo String.`
-        })
-
-        return;
-    }
-
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.producto) === false) {
-        res.status(400).json({
-            success: false,
-            message: `producto: '${req.body.producto}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
-        })
-
-        return;
-    }
-
-
-    // CANTIDAD
-    if (!req.body.cantidad) {
-        res.status(400).json({
-            success: false,
-            message: 'cantidad: El campo es obligatorio.'
-        })
-
-        return;
-    }
-
-    if (
-        typeof req.body.cantidad !== 'number' || 
-        isNaN(req.body.cantidad) ||
-        parseInt(req.body.cantidad, 10) !== req.body.cantidad
-    ) {
-        res.status(400).json({
-            success: false,
-            message: `cantidad: '${req.body.cantidad}' es inválido. El campo debe ser tipo Integer.`
-        })
-
-        return;
-    }
-
-    if (req.body.cantidad < 1 || req.body.cantidad > 9999) {
-        res.status(400).json({
-            success: false,
-            message: `cantidad: '${req.body.cantidad}' es inválido. El minimo es 0 y el máximo es 9999.`
-        })
-
-        return;
-    }
-
-
-    // PRECIO UNITARIO
-    if (!req.body.precio_unitario) {
-        res.status(400).json({
-            success: false,
-            message: 'precio_unitario: El campo es obligatorio.'
-        })
-
-        return;
-    }
-
-    //el float es más complicado, porque es check integer + check cant. decimales 
-    if (
-        typeof req.body.precio_unitario !== 'number' || 
-        isNaN(req.body.precio_unitario) || 
-        (
-            // no es integer
-            parseInt(req.body.precio_unitario, 10) !== req.body.precio_unitario
-            && // Y
-            (   
-                // tampoco es Float con 1 o 2 decimales
-                !(
-                    //(para 1 o 2 decimales, devuelve true)
-                    //los otros casos, que son los que busco para este guard,
-                    //devuelve false, pero eso no me sirve; por eso
-                    //lo doy vuelta con el "!"
-                    req.body.precio_unitario.toString().split('.')[1]?.length === 1 ||
-                    req.body.precio_unitario.toString().split('.')[1]?.length === 2
-                )
-            )
-        )
-    ) {
-        res.status(400).json({
-            success: false,
-            message: `precio_unitario: '${req.body.precio_unitario}' es inválido. El campo debe ser Integer, o Float con 1 o 2 decimales.`
-        })
-
-        return;
-    }
-
-    if (req.body.precio_unitario < 0.01 || req.body.precio_unitario > 999999999.99) {
-        res.status(400).json({
-            success: false,
-            message: `precio_unitario: '${req.body.precio_unitario}' es inválido. Valor min es 0.01 y max es 999999999.99`
-        })
-
-        return;
-    }
-
-
-
-    // MARCA
-    if (!req.body.marca) {
-        res.status(400).json({
-            success: false,
-            message: 'marca: El campo es obligatorio.'
-        })
-
-        return;
-    }
-
-    if (typeof req.body.marca !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `marca: '${req.body.marca}' es inválido. El campo debe ser tipo String.`
-        })
-
-        return;
-    }
-
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.marca) === false) {
-        res.status(400).json({
-            success: false,
-            message: `marca: '${req.body.marca}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
-        })
-
-        return;
-    }
-
-    // PROVEEDOR
-    if (!req.body.proveedor) {
-        res.status(400).json({
-            success: false,
-            message: 'proveedor: El campo es obligatorio.'
-        })
-
-        return;
-    }
+    //usuario obtenido con middleware obtenerUsuario
+    const usuarioEncontrado = res.locals.usuarioEncontrado
     
-    if (typeof req.body.proveedor !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `proveedor: '${req.body.proveedor}' es inválido. El campo debe ser tipo String.`
-        })
 
-        return;
-    }
-
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(req.body.proveedor) === false) {
-        res.status(400).json({
-            success: false,
-            message: `proveedor: '${req.body.proveedor}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
-        })
-
-        return;
-    }
-
-//------------------------------------------------insertar doc en Historial_Productos
+    //insertar doc en Historial_Productos
     try {
-        //primero tengo que buscar el usuario
-        const UsuariosModel = require('../../../models/Authentication/Usuarios')
-        const usuarioEnSession = await UsuariosModel.find({usuario: userSession.usuario})
-        const usuarioEncontrado = usuarioEnSession[0]
-        console.log(`usuario encontrado:`, usuarioEncontrado)
-        
-        
-        if (!usuarioEncontrado?.usuario){
-            console.log('No se pudo encontrar el usuario.')
-
-            res.status(400).json({
-                success: false,
-                message: `No se pudo encontrar el usuario.`
-            })
-    
-            return;
-        }
         //consiguir el array
-        console.log('usuario en db:',usuarioEncontrado)
         const idHistorialProductos = usuarioEncontrado.idHistorialProductos
         console.log('idHistorialProductos: ',idHistorialProductos) 
 
@@ -246,7 +62,7 @@ const POST =  async (req, res) => {
 
             
     
-//------------------------------------------------actualizar model Lista_Productos:
+    //actualizar model Lista_Productos:
         
         const Lista_ProductosModel = require('../../../models/Session/Lista_Productos')
         const idListaProductos = usuarioEncontrado.idListaProductos
