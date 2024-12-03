@@ -9,7 +9,10 @@ const obtenerUsuario = async (req, res, next) => {
 
     console.log('usuarioEncontrado[0]:', usuarioEncontrado[0])
 
-    if (!usuarioEncontrado[0]?.idListaProductos) {
+    if (!usuarioEncontrado[0]?.idListaProductos ||
+        !usuarioEncontrado[0]?.idHistorialProductos ||
+        !usuarioEncontrado[0]?.idHistorialVentas
+    ) {
         console.log('No se pudo encontrar al usuario')
 
         res.status(400).json({
