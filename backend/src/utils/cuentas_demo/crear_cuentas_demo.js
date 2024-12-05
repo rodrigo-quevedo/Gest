@@ -43,35 +43,52 @@ async function crear_cuentas_demo  () {
             let actualizarListaProductos = (listaProductos, element, operation)=>{
                 if (operation === 'compra') {
                     let i = listaProductos.findIndex(el=> {
-                        el.producto === element.producto
-                        &&
-                        el.marca === element.marca
-                        &&
-                        el.proveedor === element.proveedor
+                        // console.log("el:", el);
+                        // console.log("element:", element)
+
+                        return (
+                            el.producto === element.producto
+                            &&
+                            el.marca === element.marca
+                        )
+                        // &&
+                        // el.proveedor === element.proveedor
                     })
+                    // console.log("i:", i);
                     
                     if (i === -1) {
                         listaProductos.push(element)
                         return;
                     }
+                    else {
+                        listaProductos[i].cantidad += element.cantidad 
+                        listaProductos[i].precio_unitario = element.precio_unitario//va a quedar el ultimo precio
+                        listaProductos[i].proveedor = element.proveedor//y el ultimo proveedor
+                        return
+                    }
 
-                    listaProductos[i].cantidad += element.cantidad 
-                    return
                 }
 
-                if (operation === 'venta') {
+                else {
                     let i = listaProductos.findIndex(el=> {
-                        el.producto === element.producto
-                        &&
-                        el.marca === element.marca
-                        &&
-                        el.proveedor === element.proveedor
+                        // console.log("el:", el);
+                        // console.log("element:", element)
+
+                        return (
+                            el.producto === element.producto
+                            &&
+                            el.marca === element.marca
+                        )
+                        // &&
+                        // el.proveedor === element.proveedor
                     })
+                    // console.log("i", i)
                     
                     if (i === -1) return;
-
-                    listaProductos[i].cantidad -= element.cantidad 
-                    return
+                    else {
+                        listaProductos[i].cantidad -= element.cantidad 
+                        return
+                    }
                 }
             }
 
@@ -82,20 +99,20 @@ async function crear_cuentas_demo  () {
             })
 
             const updatedHistorialProductos = await historialProductosCreado.save()
-            console.log('updatedHistorialProductos:', updatedHistorialProductos)
+            // console.log('updatedHistorialProductos:', updatedHistorialProductos)
             const updatedListaProductos_1 = await listaProductosCreada.save()
-            console.log('updatedListaProductos_1:', updatedListaProductos_1)
+            // console.log('updatedListaProductos_1:', updatedListaProductos_1)
             
 
             //llenar historial_ventas y actualizar lista_productos
             arrVentas[cuentaDemoIndex].forEach(el => {
                 historialVentasCreado.historialVentas.push(el)
-                actualizarListaProductos(listaProductosCreada.listaProductos, el, 'venta') 
+                actualizarListaProductos(updatedListaProductos_1.listaProductos, el, 'venta') 
             })
             const updatedHistorialVentas = await historialVentasCreado.save()
-            console.log('updatedHistorialVentas:', updatedHistorialVentas)
-            const updatedListaProductos_2 = await listaProductosCreada.save()
-            console.log('updatedListaProductos_2', updatedListaProductos_2)
+            // console.log('updatedHistorialVentas:', updatedHistorialVentas)
+            const updatedListaProductos_2 = await updatedListaProductos_1.save()
+            // console.log('updatedListaProductos_2', updatedListaProductos_2)
 
             
 
@@ -111,7 +128,7 @@ async function crear_cuentas_demo  () {
     
             if (usuarioCreado) {
                 //LOG
-                console.log('Usuario creado antes de agregar en la DB:', usuarioCreado)
+                // console.log('Usuario creado antes de agregar en la DB:', usuarioCreado)
                 console.log(`Usuario creado luego de buscarlo en la DB: ${await UsuariosModel.findById(usuarioCreado._id)}`)
 
         
