@@ -14,7 +14,7 @@ const Lista_ProductosSchema = new mongoose.Schema({
             cantidad : {
                 type: Number,
                 required: [true, "Es obligatorio llenar este campo."],
-                min: [1, "El min es 1. (value es {VALUE})"],
+                min: [0, "El min es 0. (value es {VALUE})"],
                 max: [9999, "El max es 9999. (value es {VALUE})"],
                 validate : {
                     validator : Number.isInteger,
