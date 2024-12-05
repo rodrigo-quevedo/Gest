@@ -12,9 +12,14 @@ Es una aplicación web fullstack pensada para un negocio que vende productos: se
 - [x] Registro y Autenticación de usuarios
 - [x] Cuentas demo (la idea es que se pueda probar la app sin tener que registrarse)
 - [x] Cargar compras a los proveedores
-- [ ] Cargar ventas a los clientes
-- [ ] Historial de compras y ventas
+- [X] Cargar ventas a los clientes
+- [X] Historial de compras y ventas
 - [x] Lista de productos disponibles
+
+#### Próximos features:
+- [ ] Ver evolución de un producto (producto actual, compras y ventas que se hicieron de ese producto) en una sola página. Actualmente para hacer esto hay que tener tres pestañas distintas abiertas: una para la lista, otra para el historial de compras y otra para el historial de ventas
+- [ ] Total de gastos, ventas, margen de ganancia
+- [ ] Carrito de compras y de ventas para cargar varias operaciones juntas.
 
 #### Aspectos técnicos
 - Frontend: HTML, CSS (sin librerías), CSS Modules, JavaScript, React, creación de componentes reutilizables, UI responsive (versión desktop y versión mobile), fetch a la API backend, variables de entorno en React.
