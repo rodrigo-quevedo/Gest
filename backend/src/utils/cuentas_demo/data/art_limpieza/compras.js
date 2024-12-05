@@ -17,9 +17,9 @@ const arrComprasArtLimipieza =
     {"producto": "par guantes de látex", "cantidad": 10, "precio_unitario": 450.00, "marca": "protectclean", "proveedor": "LIMPIEZAS S.A.", "fechaHora": `${new Date("2024-04-01 14:40")}`},
     {"producto": "limpiador para pisos 1L", "cantidad": 15, "precio_unitario": 1200.75, "marca": "brillofloor", "proveedor": "PRODUCTOS DE HIGIENE Y LIMPIEZA", "fechaHora": `${new Date("2024-04-02 09:55")}`},
     {"producto": "esponja de baño x2", "cantidad": 15, "precio_unitario": 550.50, "marca": "esponjitas", "proveedor": "ARTÍCULOS DE HIGIENE", "fechaHora": `${new Date("2024-04-03 17:15")}`},
-    {"producto": "jabón en polvo 500g", "cantidad": 10, "precio_unitario": 650.99, "marca": "polvoactivo", "proveedor": "HIGIENE Y CUIDADO", "fechaHora": `${new Date("2024-04-04 08:05")}`},
-    {"producto": "acondicionador para telas 500ml", "cantidad": 6, "precio_unitario": 850.30, "marca": "softcare", "proveedor": "LIMPIEZAS DEL HOGAR", "fechaHora": `${new Date("2024-04-05 13:30")}`},
-    {"producto": "sacapuntas para escobas", "cantidad": 4, "precio_unitario": 480.20, "marca": "cleanpoint", "proveedor": "ARTÍCULOS DE HIGIENE S.A.", "fechaHora": `${new Date("2024-04-06 12:25")}`}
+    {"producto": "jabón en polvo 500g", "cantidad": 15, "precio_unitario": 650.99, "marca": "polvoactivo", "proveedor": "HIGIENE Y CUIDADO", "fechaHora": `${new Date("2024-04-04 08:05")}`},
+    {"producto": "acondicionador para telas 500ml", "cantidad": 10, "precio_unitario": 850.30, "marca": "softcare", "proveedor": "LIMPIEZAS DEL HOGAR", "fechaHora": `${new Date("2024-04-05 13:30")}`},
+    {"producto": "sacapuntas para escobas", "cantidad": 10, "precio_unitario": 480.20, "marca": "cleanpoint", "proveedor": "ARTÍCULOS DE HIGIENE S.A.", "fechaHora": `${new Date("2024-04-06 12:25")}`}
   ]
 
   module.exports = arrComprasArtLimipieza

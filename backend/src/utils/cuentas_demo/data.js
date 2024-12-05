@@ -1,8 +1,8 @@
 const arrCuentasDemo = [
     'Supermercado', 
-    'ArtículosDeLimpieza', 
+    'ArtículosLimpieza', 
     'Ferretería', 
-    'TiendaDeRopa'
+    'TiendaRopa'
 ]
 
 const arrComprasSuper = require('./data/supermercado/compras')
