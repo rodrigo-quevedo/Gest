@@ -3,9 +3,37 @@
     max-width: 100%;
 }
 
+.container > h3{
+    margin: 0;
+}
+
 
 .tableSection {
-    max-width: 100%;
+    display: grid;
+
+    grid-template-columns: repeat(24, 1fr); 
+    grid-template-areas: 
+        " . p p p p p p p p p p p p p p p p p p p p p p . "
+        " . c c c c c c c c c c c . v v v v v v v v v v ."
+    ;
+}
+
+.tableContainer{
+    text-align: left;
+}
+
+.tableContainer:nth-of-type(1) {
+    grid-area: p
+}
+.tableContainer:nth-of-type(2) {
+    grid-area: c
+}
+.tableContainer:nth-of-type(3) {
+    grid-area: v
+}
+
+.searchBoxContainer{
+    width: 100%;
 }
 
 .container > h3 {
@@ -14,12 +42,29 @@
     font-size: 15px;
 }
 
-.container > h3 > * {
-    position: relative;
-    top: 3.5px;
-    right: 3.5px;
+.container > h3 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 3px;
+    color: rgb(0, 38, 255);
 }
 
-.container > h3:nth-of-type(4) {
-    color: rgb(0, 38, 255);
+
+.tableContainer > h2 {
+    text-align: left;
+    font-size: 16px;
+}
+
+@media (width < 700px) {
+    .tableSection {
+        display: grid;
+    
+        grid-template-columns: repeat(24, 1fr); 
+        grid-template-areas: 
+            " . p p p p p p p p p p p p p p p p p p p p p p . "
+            " . c c c c c c c c c c c c c c c c c c c c c c ."
+            " . v v v v v v v v v v v v v v v v v v v v v v ."
+        ;
+    }
 }

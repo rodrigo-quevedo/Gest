@@ -7,8 +7,12 @@
     border: 1px solid #777;
     border-radius: 5px;
 
-    width: 90%;
-    margin: 30px auto;
+    /* width: 100%; default es 100% */
+    margin: 10px auto;
+
+    font-size: 13px;
+
+    text-align: center;
 }
 
 .tableContainerLoaded {
@@ -31,19 +35,21 @@
 }
 
 .tableContainer > table > thead > tr > th {
-    min-width: 100px;
+    /* min-width: 100px; */
     width: 20%;
 
     box-sizing: border-box;
     
-    padding: 2vw !important;
+    padding: 0.5vw !important;
+
+    font-weight: 100;
 
     /* border: 1px solid #555; */
 }
 
 .tableContainer > table > thead > tr > th,
 .tableContainer > table > tbody > tr > td {
-    padding: 1vw 0;
+    padding: 0.5vw 0;
  }
 
 

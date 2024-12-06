@@ -130,7 +130,7 @@ function SearchBox_resumen({
 
                         maxLength='50'
                         // Me conviene que pueda estar vacio para mandar {} y usarlo en el find()
-                        pattern='^[a-zA-ZÀ-ÿñÑ0-9 ]{0,50}$'
+                        pattern='^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$'
                         title={"Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Máximo 50 caracteres."}
                     />
 
