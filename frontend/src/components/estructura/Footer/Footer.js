@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 function Footer (){
     return (
         <footer className={styles.footer}>
-        <p>Inicio del proyecto: Septiembre de 2024.</p>
+        <p>Inicio del proyecto: 22 de Agosto de 2024.</p>
         <p>Última update: Diciembre de 2024</p>
         <p>Rodrigo Martín Quevedo - Programador Web</p>
         <nav className={styles.footerNavbar}>
