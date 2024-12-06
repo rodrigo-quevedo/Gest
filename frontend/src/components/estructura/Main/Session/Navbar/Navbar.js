@@ -2,6 +2,7 @@
 import styles from './Navbar.module.css'
 
 //icons
+import { TbFileAnalytics } from "react-icons/tb";
 import { FaClipboardList } from "react-icons/fa";
 import { FaTruckLoading } from "react-icons/fa";
 import { HiClipboardDocumentList } from "react-icons/hi2";
@@ -22,6 +23,24 @@ export default function Navbar (
     return (
 
         <nav className={styles.navContainer} role="navigation">
+
+            <button 
+
+                className={
+                    sessionScreen === SESSION_SCREENS.RESUMEN_PRODUCTO ?
+                        styles.seleccionado 
+                    : 
+                        null
+                }
+
+                onClick={()=>setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)}
+
+                >
+                Resumen de producto 
+                <span className={styles.icon}>
+                    <TbFileAnalytics/>
+                </span>
+            </button>
 
             <button 
 

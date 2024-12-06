@@ -1,0 +1,121 @@
+:global(#searchBoxForm_ListaProductos) {
+    display: inline-block;
+    max-width: max-content;
+}
+
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    
+    width: 55vw;
+    
+    padding: 1px;
+    padding-left: 10px;
+
+    border: 1px solid #111134; 
+    border-radius: 2.5px;
+    color: #111134;
+
+    font-size: 15px;
+
+
+    /* transition: 1s box-shadow, transform, font-size; */
+    transition: 1s box-shadow, 1s transform, 1s font-size;
+}
+
+.searchBox > input {
+    padding: 15px;
+    border: 0;
+    outline: 0;
+    
+    flex: 1;
+
+    max-width: 70%;
+
+    /* Esto sirve para que el <input> no tenga estilos distintos al parent <div> */
+    font-size: inherit;
+    background: inherit;
+    color: inherit;
+    font-weight: inherit;
+}
+
+.searchBox:hover {
+    cursor: text;
+
+    box-shadow: 1px 1px 10px #111134;
+
+    transition: 1s all;
+}
+/* .searchBox > input:hover {
+    background: #ccc;
+} */
+
+.searchBoxSelected {
+    transform: scale(1.05);
+    
+    
+    background: #ddd;
+    box-shadow: 1px 1px 10px #111134;
+
+    font-size: 16px;
+
+    transition: 1s all ease-in-out;
+}
+
+.searchBoxSubmitted {
+    transform: scale(1);
+
+    background: #111134;
+    color: #fff;
+
+    pointer-events: none;
+
+    transition: 1s all;
+}
+
+.searchBoxFetchSuccess{
+    background: #fff !important;
+    border: 1px solid #ccc;
+    transition: none;
+}
+
+.loadingIcon {
+    width: 20px; height: 20px;
+    animation: 1s infinite rotateLoadingIcon linear;
+}
+
+@keyframes rotateLoadingIcon {
+    0% {transform: rotateZ(0deg)}
+    25% {transform: rotateZ(180deg)}
+    50% {transform: rotateZ(360deg)}
+    75% {transform: rotateZ(540deg)}
+    100% {transform: rotateZ(720deg)}
+}
+
+.submitButton{
+    background: #111134;
+    color: #fff;
+
+    border: 0;
+    border-radius: 5px;
+
+    padding: 13px 30px;
+    margin: 20px;
+
+    transition: all 1s;
+}
+
+.submitButton > * {
+    font-size: 20px;
+}
+
+.submitButton:hover {
+    cursor:pointer;
+
+    background: #000;
+    color: #00f;
+
+    /* transform: scale(1.1); */
+    transition: all 0.5s;
+}

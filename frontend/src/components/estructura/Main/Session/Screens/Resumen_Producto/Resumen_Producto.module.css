@@ -1,0 +1,25 @@
+.container{
+    text-align: center;
+    max-width: 100%;
+}
+
+
+.tableSection {
+    max-width: 100%;
+}
+
+.container > h3 {
+    /* font-style: italic; */
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.container > h3 > * {
+    position: relative;
+    top: 3.5px;
+    right: 3.5px;
+}
+
+.container > h3:nth-of-type(4) {
+    color: rgb(0, 38, 255);
+}

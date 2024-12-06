@@ -12,13 +12,17 @@ import RegistrarVentas from '../Screens/Registrar_Ventas/RegistrarVentas'
 import HistorialVentas from '../Screens/Historial_Ventas/HistorialVentas'
 
 import {SESSION_SCREENS} from '../../../../../config/config'
+import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
 
 function Session() {
 
-    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.LISTA_PRODUCTOS)
+    const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.RESUMEN_PRODUCTO)
 
     function mostrarScreen(screen) {
         switch(screen) {
+            case SESSION_SCREENS.RESUMEN_PRODUCTO: {
+                return <Resumen_Producto />
+            }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {
                 return <ListaProductos />
             }
