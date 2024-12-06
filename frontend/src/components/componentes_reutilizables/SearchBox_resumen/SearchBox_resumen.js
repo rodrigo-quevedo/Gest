@@ -120,7 +120,7 @@ function SearchBox_resumen({
                         name='searchBoxInput'
                         
                         type='text'
-                        placeholder='Buscar producto'
+                        placeholder='Filtrar productos'
                         
                         autoComplete='off'
                         //Puedo apretar ENTER y que me traiga todo, por lo que required='false', pero no hace falta ponerlo, ya que false es el defaut

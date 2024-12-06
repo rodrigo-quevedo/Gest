@@ -11,9 +11,11 @@ import { URL_LISTA_PRODUCTOS, URL_HISTORIAL_PRODUCTOS, URL_HISTORIAL_VENTAS } fr
 import SearchBox_resumen from '../../../../../componentes_reutilizables/SearchBox_resumen/SearchBox_resumen'
 import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable';
 
-import { CiCircleInfo } from "react-icons/ci";
 import { PiSealWarningBold } from "react-icons/pi";
 
+import calcularTotalGastado from './finanza/calcularTotalGastado';
+import calcularTotalVendido from './finanza/calcularTotalVendido';
+import calcularGananciaActual from './finanza/calcularGananciaActual';
 
 function Resumen_Producto() {
 
@@ -29,10 +31,33 @@ function Resumen_Producto() {
         const [historialProductos, setHistorialProductos] = useState([])
         const [historialVentas, setHistorialVentas] = useState([])
         
+        let totalGastado = calcularTotalGastado(historialProductos)
+        let totalVendido = calcularTotalVendido(historialVentas)
+        let totalGanancia = (totalVendido - totalGastado).toFixed(2)
+        let totalMargen = calcularGananciaActual(historialProductos, historialVentas)
+        
 
     return (
         <div className={styles.container}>
             <h1>Resumen de producto</h1>
+            
+            <div className={styles.finanzaContainer}>
+                Total gastado: <span className={styles.gastado}>${totalGastado}</span>
+                Total vendido: <span className={styles.vendido}>${totalVendido}</span>
+                Neto: <span 
+                    className={
+                        totalGanancia >=0 ?
+                        styles.vendido : styles.gastado
+                    }
+                >${totalGanancia}</span>
+                <br/>
+                Ganancia sobre lo que se vendió: <span 
+                    className={
+                        totalMargen >=0 ?
+                        styles.vendido : styles.gastado
+                    }
+                >${totalMargen}</span>
+            </div>
 
             {/* <h3><CiCircleInfo/>Ingresa una palabra, ej: "sal", se van a buscar todas las coincidencias.</h3>
             <h3><CiCircleInfo/>Un nombre específico mejorará la búsqueda, ej: "aceite 1L"</h3> */}

@@ -7,6 +7,20 @@
     margin: 0;
 }
 
+.finanzaContainer{
+    font-size: max(1.5vw, 15px);
+}
+.finanzaContainer > span{
+    padding: 0 20px;
+    font-size: 20px
+}
+
+.gastado {
+    color: red;
+}
+.vendido {
+    color: green;
+}
 
 .tableSection {
     display: grid;
@@ -57,6 +71,11 @@
 }
 
 @media (width < 700px) {
+
+    .finanzaContainer > span{
+        display: block
+    }
+
     .tableSection {
         display: grid;
     
