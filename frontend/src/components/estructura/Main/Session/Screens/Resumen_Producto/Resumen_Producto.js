@@ -35,13 +35,19 @@ function Resumen_Producto() {
         let totalVendido = calcularTotalVendido(historialVentas)
         let totalGanancia = (totalVendido - totalGastado).toFixed(2)
         let totalMargen = calcularGananciaActual(historialProductos, historialVentas)
-        
+        //pongo todo en un array para poder usar TablaReutilizable
+        let arrFinanza = [{
+            totalGastado,
+            totalVendido,
+            totalGanancia,
+            totalMargen
+        }]
 
     return (
         <div className={styles.container}>
             <h1>Resumen de producto</h1>
             
-            <div className={styles.finanzaContainer}>
+            {/* <div className={styles.finanzaContainer}>
                 Total gastado: <span className={styles.gastado}>${totalGastado}</span>
                 Total vendido: <span className={styles.vendido}>${totalVendido}</span>
                 Neto: <span 
@@ -57,7 +63,7 @@ function Resumen_Producto() {
                         styles.vendido : styles.gastado
                     }
                 >${totalMargen}</span>
-            </div>
+            </div> */}
 
             {/* <h3><CiCircleInfo/>Ingresa una palabra, ej: "sal", se van a buscar todas las coincidencias.</h3>
             <h3><CiCircleInfo/>Un nombre específico mejorará la búsqueda, ej: "aceite 1L"</h3> */}
@@ -79,11 +85,42 @@ function Resumen_Producto() {
         
             <h3><PiSealWarningBold/>Se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto distinto a "Arroz" o a "ARRoz".</h3>
 
-            <div className={styles.tableGridContainer}>
+            <div className={styles.tableGridContainer} >
                 <div className={styles.tableSection}>
 
-                    <div className={styles.tableContainer}>
-                        <h2>Lista de Productos</h2>
+                    <div className={styles.tableContainer} id="finanzaTable">
+                        <h2>Finanza</h2>
+                        <TablaReutilizable
+                            searchBoxState={searchBoxState}
+                            arrayState={arrFinanza}
+
+                            tableHeaders={
+                                <tr>
+                                    <th>Total gastado</th>
+                                    <th>Total vendido</th>
+                                    <th>Neto</th>
+                                    <th>Ganancia sobre lo vendido</th>
+                                    
+                                </tr>
+                            }
+
+                            mapCallback={
+                                (stateObj) => {
+                                    return (
+                                        <tr key={stateObj.id}>
+                                            <td>${stateObj.totalGastado}</td>
+                                            <td>${stateObj.totalVendido}</td>
+                                            <td>${stateObj.totalGanancia}</td>
+                                            <td>${stateObj.totalMargen}</td>
+                                        </tr>
+                                    )
+                                }
+                            }
+                        />
+                    </div>
+
+                    <div className={styles.tableContainer} id="productosTable">
+                        <h2>Producto</h2>
                         <TablaReutilizable
                             searchBoxState={searchBoxState}
                             arrayState={listaProductos}
@@ -115,7 +152,7 @@ function Resumen_Producto() {
                     </div>
 
                     
-                    <div className={styles.tableContainer}>
+                    <div className={styles.tableContainer} id="comprasTable">
                         <h2>Compras</h2>
                         <TablaReutilizable
                             searchBoxState={searchBoxState}
@@ -149,7 +186,7 @@ function Resumen_Producto() {
                         />
                     </div>
 
-                    <div className={styles.tableContainer}>
+                    <div className={styles.tableContainer} id="ventasTable">
                         <h2>Ventas</h2>
                         <TablaReutilizable
                             searchBoxState={searchBoxState}

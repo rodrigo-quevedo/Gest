@@ -27,8 +27,9 @@
 
     grid-template-columns: repeat(24, 1fr); 
     grid-template-areas: 
-        " . p p p p p p p p p p p p p p p p p p p p p p . "
-        " . c c c c c c c c c c c . v v v v v v v v v v ."
+        " . p p p p p p p p . f f f f f f f f f f f f f . "
+        /* " . p p p p p p p p p p p p p p p p p p p p p p . " */
+        " . c c c c c c c c c c c . v v v v v v v v v v . "
     ;
 }
 
@@ -36,14 +37,27 @@
     text-align: left;
 }
 
-.tableContainer:nth-of-type(1) {
+:global(#finanzaTable) {
+    grid-area: f
+}
+:global(#productosTable) {
     grid-area: p
 }
-.tableContainer:nth-of-type(2) {
+:global(#comprasTable) {
     grid-area: c
 }
-.tableContainer:nth-of-type(3) {
+:global(#ventasTable) {
     grid-area: v
+}
+
+:global(#finanzaTable) th {
+    background: #4747DA;
+    color: #000;
+    font-weight: 500;
+}
+:global(#finanzaTable) td {
+    background: #fff;
+    color: #000;
 }
 
 .searchBoxContainer{
