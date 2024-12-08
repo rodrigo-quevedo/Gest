@@ -29,35 +29,35 @@ const GET =  async (req, res) => {
             //devolver todo
             if (req.query.searchBoxInput === '') {
                 historialVentasParseadoYFiltrado.push({
-                    producto: venta.producto,
+                    producto: venta.producto.toUpperCase(),
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
-                    marca: venta.marca,
-                    proveedor: venta.proveedor,
+                    marca: venta.marca.toUpperCase(),
+                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: formatDate(venta.fechaHora)
                 })
             }
 
             //devolver exact match
-            else if (venta.producto === req.query.searchBoxInput) {
+            else if (venta.producto.toUpperCase() === req.query.searchBoxInput.toUpperCase()) {
                 historialVentasParseadoYFiltrado.push({
-                    producto: venta.producto,
+                    producto: venta.producto.toUpperCase(),
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
-                    marca: venta.marca,
-                    proveedor: venta.proveedor,
+                    marca: venta.marca.toUpperCase(),
+                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: formatDate(venta.fechaHora)
                 })
             }
             
             //devolver resultados similares
-            else if (venta.producto.includes(req.query.searchBoxInput)){
+            else if (venta.producto.toUpperCase().includes(req.query.searchBoxInput.toUpperCase())){
                 historialVentasParseadoYFiltrado.push({
-                    producto: venta.producto,
+                    producto: venta.producto.toUpperCase(),
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
-                    marca: venta.marca,
-                    proveedor: venta.proveedor,
+                    marca: venta.marca.toUpperCase(),
+                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: formatDate(venta.fechaHora)
                 })
             }

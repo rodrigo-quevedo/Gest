@@ -37,11 +37,11 @@ const GET =  async (req, res) => {
 
     arrayHistorial = arrayHistorial.map((prodObj)=> {
         return {
-            producto: prodObj.producto,
+            producto: prodObj.producto.toUpperCase(),
             cantidad: prodObj.cantidad,
             precio_unitario: prodObj.precio_unitario.toString(),
-            marca: prodObj.marca,
-            proveedor: prodObj.proveedor,
+            marca: prodObj.marca.toUpperCase(),
+            proveedor: prodObj.proveedor.toUpperCase(),
             fechaHora: formatDate(prodObj.fechaHora)
         }
     })
@@ -57,12 +57,12 @@ const GET =  async (req, res) => {
         }
 
         //devolver exact match
-        else if (prod.producto === req.query.searchBoxInput) {
+        else if (prod.producto === req.query.searchBoxInput.toUpperCase()) {
             return prod
         }
         
         //devolver resultados similares
-        else if (prod.producto.includes(req.query.searchBoxInput)){
+        else if (prod.producto.includes(req.query.searchBoxInput.toUpperCase())){
             return prod
         }
 

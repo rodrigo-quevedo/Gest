@@ -5,57 +5,11 @@ const GET =  async (req, res) => {
     console.log(`GET recibido en /productos: ${new Date()}`)
     console.log('request query:', req.query)
 
+    //validacion de searchBoxInput por middleware
+    //usuario obtenido de middleware
+    const usuarioEncontrado = res.locals.usuarioEncontrado
 
-    //validar inputs de la req.query (acá se me complicó porque tengo que dejar pasar el '', ese me lo toma como false en javascript)
-    if (req.query.searchBoxInput === null ||
-        req.query.searchBoxInput === undefined
-    ) {
-        res.status(400).json({
-            success: false,
-            message: 'searchBoxInput: El campo es obligatorio.'
-        })
-
-        return;
-    }
-
-    if (typeof req.query.searchBoxInput !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. El campo debe ser tipo String.`
-        })
-
-        return;
-    }
-
-    if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$/.test(req.query.searchBoxInput) === false) {
-        res.status(400).json({
-            success: false,
-            message: `searchBoxInput: '${req.query.searchBoxInput}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 0 y máximo 50 caracteres.`
-        })
-
-        return;
-    }
-
-    //servidor responde con la lista:
-    const userSession = res.locals.sessionInJwtPayload
-        //--> tengo que sacar la lista productos para el usuario
-    const UsuariosModel = require('../../../models/Authentication/Usuarios')
-    const usuarioEncontrado = await UsuariosModel.find({usuario: userSession.usuario}).exec()//el findOne() no me estuvo funcionando, por eso uso find() y despues el index [] del array para utilizarlos
-
-    console.log('usuarioEncontrado[0]:', usuarioEncontrado[0])
-
-    if (!usuarioEncontrado[0]?.idListaProductos) {
-        console.log('No se pudo encontrar al usuario')
-
-        res.status(400).json({
-            success: false,
-            message: `No se pudo encontrar al usuario.`
-        })
-
-        return;
-    }
-
-    const idListaProductos = usuarioEncontrado[0].idListaProductos
+    const idListaProductos = usuarioEncontrado.idListaProductos
         
         //--> además, la lista viene limitada por el req.query.searchBoxInput
     const Lista_ProductosModel = require('../../../models/Session/Lista_Productos')
@@ -103,11 +57,11 @@ const GET =  async (req, res) => {
 
 
         return {
-            producto: prodObj.producto,
+            producto: prodObj.producto.toUpperCase(),
             cantidad: prodObj.cantidad,
             precio_unitario: prodObj.precio_unitario.toString(),
-            marca: prodObj.marca,
-            proveedor: prodObj.proveedor
+            marca: prodObj.marca.toUpperCase(),
+            proveedor: prodObj.proveedor.toUpperCase()
         }
     })
         
@@ -124,12 +78,12 @@ const GET =  async (req, res) => {
         }
 
         //devolver exact match
-        else if (prod.producto === req.query.searchBoxInput) {
+        else if (prod.producto === req.query.searchBoxInput.toUpperCase()) {
             return prod
         }
         
         //devolver resultados similares
-        else if (prod.producto.includes(req.query.searchBoxInput)){
+        else if (prod.producto.includes(req.query.searchBoxInput.toUpperCase())){
             return prod
         }
 

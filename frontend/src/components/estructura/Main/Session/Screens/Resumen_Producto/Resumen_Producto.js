@@ -83,7 +83,7 @@ function Resumen_Producto() {
             </div>
 
         
-            <h3><PiSealWarningBold/>Se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto distinto a "Arroz" o a "ARRoz".</h3>
+            <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
 
             <div className={styles.tableGridContainer} >
                 <div className={styles.tableSection}>
