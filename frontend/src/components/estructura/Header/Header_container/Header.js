@@ -14,8 +14,8 @@ function Header({isAuth, authenticationScreen, setAuthenticationScreen, setPopup
             <div className={styles.websiteBanner}>
                 <img 
                     src={website_icon} 
-                    alt="Gest - Gestor de inventario"/
-                >
+                    alt="Gest - Gestor de inventario"
+                />
                 <h1>Gestor de inventario</h1>
             </div>
 

@@ -13,6 +13,8 @@
 
     color: #fff;
     background: #111134;
+
+    z-index: 99;
 }
 
 .websiteBanner {
