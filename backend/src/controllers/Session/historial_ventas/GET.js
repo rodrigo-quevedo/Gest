@@ -25,7 +25,10 @@ const GET =  async (req, res) => {
         const historialVentasParseadoYFiltrado = []
         
         //parsear decimal128 y date + resultados de busqueda
-        historialVentasEncontrado.historialVentas.forEach(venta =>{
+        historialVentasEncontrado.historialVentas
+        .sort((a,b)=>{return a.fechaHora.getTime() - b.fechaHora.getTime()})
+        .reverse()
+        .forEach(venta =>{
             //devolver todo
             if (req.query.searchBoxInput === '') {
                 historialVentasParseadoYFiltrado.push({

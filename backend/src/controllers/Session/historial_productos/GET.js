@@ -25,12 +25,15 @@ const GET =  async (req, res) => {
 
         return;
     }
+ 
 
-    //parsear Decimal128 y date
+    //parsear Decimal128 y date, ademas ordenar date desde mas reciente a mas antigua
     let arrayHistorial = [];
-    historialEncontrado?.historialProductos.forEach( (el,i) => {
-        arrayHistorial[i] = el
-    })
+    historialEncontrado?.historialProductos
+    .sort((a,b)=> {return a.fechaHora.getTime() - b.fechaHora.getTime()})
+    .reverse()
+    .forEach(el => arrayHistorial.push(el))
+    
     console.log('primer arrayHistorial:', arrayHistorial)
 
     const formatDate = require('../../../utils/format_date/format_date')
