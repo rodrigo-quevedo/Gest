@@ -44,3 +44,9 @@ export const FETCH_STATUS = {
     SUCCESS: 'SUCCESS',
     ERROR: 'ERROR'
 }
+
+
+export const FORM_STYLE_TYPE = {
+    DEFAULT: 'DEFAULT',
+    VERTICAL: 'VERTICAL'
+}

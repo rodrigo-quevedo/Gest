@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 //config
 import { FETCH_STATUS } from '../../../../../../config/config';
 import { URL_INGRESAR } from '../../../../../../config/config';
-// const test_URL_INGRESAR = 'https://httpbin.org/post'
+import { FORM_STYLE_TYPE } from '../../../../../../config/config';
 
 //ingresar con jwt cookie
 import fetch_con_jwt_cookie from './fetch_con_jwt_cookie/fetch_con_jwt_cookie'
@@ -78,7 +78,8 @@ function Ingresar (
                 <h1>Ingresar</h1>
 
 
-                <FormularioReutilizable 
+                <FormularioReutilizable
+                    styleType={FORM_STYLE_TYPE.VERTICAL} 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
                     submitMessage={`Iniciando sesión...`}

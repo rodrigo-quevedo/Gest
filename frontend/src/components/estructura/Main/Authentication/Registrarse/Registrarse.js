@@ -12,7 +12,7 @@ import { useState } from 'react';
 //config
 import { FETCH_STATUS } from '../../../../../config/config';
 import { URL_REGISTRARSE } from '../../../../../config/config';
-// const test_URL_REGISTRARSE = 'https://httpbin.org/post'
+import { FORM_STYLE_TYPE} from "../../../../../config/config"
 
 
 
@@ -33,6 +33,7 @@ function Registrarse (
 
 
             <FormularioReutilizable 
+                styleType={FORM_STYLE_TYPE.VERTICAL}
                 fetchStatus={fetchStatus}
                 setFetchStatus={setFetchStatus}
                 submitMessage={"Registrando usuario..."}

@@ -1,5 +1,6 @@
 //css
 import styles from './FormularioReutilizable.module.css'
+import stylesVertical from './FormularioReutilizableVertical.module.css'
 
 //react
 import { useEffect } from 'react'
@@ -9,12 +10,14 @@ import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 
 //config
 import {FETCH_STATUS} from '../../../config/config'
+import { FORM_STYLE_TYPE } from '../../../config/config';
 
 //logica
 import fetchBackend from './fetch_backend/fetchBackend';
 
 
 function FormularioReutilizable({
+    styleType,
     fetchStatus,
     setFetchStatus,
     submitMessage,
@@ -22,6 +25,10 @@ function FormularioReutilizable({
     formInputs
 }) {
 
+    //para cambiar de estilos, simplemente hay que crear una variable que tenga adentro el estilo. Despues se puede poner un if() que evalúe un parámetro y elija.
+    let stylesSelected = styles;
+
+    if (styleType === FORM_STYLE_TYPE.VERTICAL) stylesSelected = stylesVertical
 
     // Esto es para resetear el formulario
     useEffect(()=>{
@@ -43,9 +50,9 @@ function FormularioReutilizable({
             
             className={
                 fetchStatus.status === FETCH_STATUS.SUBMIT ? 
-                    `${styles.formContainer} ${styles.formularioLoading}`
+                    `${stylesSelected.formContainer} ${stylesSelected.formularioLoading}`
                 :
-                    styles.formContainer
+                stylesSelected.formContainer
             }
 
             onSubmit={(e)=>{
