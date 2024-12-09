@@ -95,9 +95,10 @@
     
         grid-template-columns: repeat(24, 1fr); 
         grid-template-areas: 
+            " . f f f f f f f f f f f f f f f f f f f f f f . "
             " . p p p p p p p p p p p p p p p p p p p p p p . "
-            " . c c c c c c c c c c c c c c c c c c c c c c ."
-            " . v v v v v v v v v v v v v v v v v v v v v v ."
+            " . c c c c c c c c c c c c c c c c c c c c c c . "
+            " . v v v v v v v v v v v v v v v v v v v v v v . "
         ;
     }
 }
