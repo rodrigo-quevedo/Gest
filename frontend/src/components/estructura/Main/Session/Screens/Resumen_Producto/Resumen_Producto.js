@@ -69,18 +69,18 @@ function Resumen_Producto() {
             <h3><CiCircleInfo/>Un nombre específico mejorará la búsqueda, ej: "aceite 1L"</h3> */}
             {/* <h3><CiCircleInfo/>Se puede dejar vacio y enviar para obtener todos los productos</h3> */}
 
-            <div className={styles.searchBoxContainer}>
-                <SearchBox_resumen
-                    searchBoxState={searchBoxState}
-                    setSearchBoxState={setSearchBoxState}
-                    URL_lista={URL_LISTA_PRODUCTOS}
-                    setter_lista={setListaProductos}
-                    URL_historialProductos={URL_HISTORIAL_PRODUCTOS}
-                    setter_historialProductos={setHistorialProductos}
-                    URL_historialVentas={URL_HISTORIAL_VENTAS}
-                    setter_historialVentas={setHistorialVentas}
-                />
-            </div>
+            
+            <SearchBox_resumen
+                searchBoxState={searchBoxState}
+                setSearchBoxState={setSearchBoxState}
+                URL_lista={URL_LISTA_PRODUCTOS}
+                setter_lista={setListaProductos}
+                URL_historialProductos={URL_HISTORIAL_PRODUCTOS}
+                setter_historialProductos={setHistorialProductos}
+                URL_historialVentas={URL_HISTORIAL_VENTAS}
+                setter_historialVentas={setHistorialVentas}
+            />
+            
 
         
             <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>

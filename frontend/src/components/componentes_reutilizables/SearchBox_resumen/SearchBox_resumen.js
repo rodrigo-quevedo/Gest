@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
 import { AiOutlineEnter } from "react-icons/ai";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 // config
 import {SEARCHBOX_STATE} from '../../../config/config'
@@ -35,7 +36,19 @@ function SearchBox_resumen({
 
 
     return (
-        <>
+        <div className={styles.searchBoxContainer}>
+            <button
+                onClick={()=>{
+                    document.getElementById('searchBoxInput').value = ''
+
+                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                }}
+                className={styles.resetButton}
+            >
+                Lista completa <RiArrowGoBackFill/>
+            </button>
+
+
             <form 
                 id="searchBoxForm_ListaProductos"
                 onSubmit={(e)=>{
@@ -146,7 +159,7 @@ function SearchBox_resumen({
             >
                 <AiOutlineEnter/>
             </button>
-        </>
+        </div>
     )
 }
 

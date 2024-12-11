@@ -1,3 +1,11 @@
+.searchBoxContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+}
+
 :global(#searchBoxForm_ListaProductos) {
     display: inline-block;
     max-width: 100%;
@@ -111,6 +119,38 @@
 }
 
 .submitButton:hover {
+    cursor:pointer;
+
+    background: #000;
+    color: #00f;
+
+    /* transform: scale(1.1); */
+    transition: all 0.5s;
+}
+
+
+.resetButton{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: #111134;
+    color: #fff;
+
+    border: 0;
+    border-radius: 5px;
+
+    padding: 13px 30px;
+    margin: 20px;
+
+    transition: all 1s;
+}
+
+.resetButton > * {
+    font-size: 20px;
+}
+
+.resetButton:hover {
     cursor:pointer;
 
     background: #000;
