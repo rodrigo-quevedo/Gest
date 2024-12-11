@@ -138,7 +138,16 @@ function Resumen_Producto() {
                             mapCallback={
                                 (stateObj) => {
                                     return (
-                                        <tr key={stateObj.id}>
+                                        <tr 
+                                            key={`${stateObj.producto}_${stateObj.marca}`}
+                                            className={styles.hoveredTR}
+                                            onClick={()=>{
+                                                //establecer req body
+                                                document.getElementById('searchBoxInput').value= stateObj.producto
+                                                //fetch
+                                                document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                                            }}
+                                        >
                                             <td>{stateObj.producto}</td>
                                             <td>{stateObj.cantidad}</td>
                                             {/* <td>${stateObj.precio_unitario}</td> */}

@@ -84,6 +84,13 @@
     font-size: 16px;
 }
 
+.hoveredTR:hover{
+    cursor: pointer;
+    background: #111134;
+    color: #fff;
+}
+
+
 @media (width < 700px) {
 
     .finanzaContainer > span{
