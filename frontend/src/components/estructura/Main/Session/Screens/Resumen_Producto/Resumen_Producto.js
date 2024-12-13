@@ -129,9 +129,7 @@ function Resumen_Producto() {
                                 <tr>
                                     <th>Producto</th>
                                     <th>Cantidad Actual</th>
-                                    {/* <th>Costo unitario</th> */}
                                     <th>Marca</th>
-                                    {/* <th>Proveedor</th> */}
                                 </tr>
                             }
 
@@ -150,9 +148,7 @@ function Resumen_Producto() {
                                         >
                                             <td>{stateObj.producto}</td>
                                             <td>{stateObj.cantidad}</td>
-                                            {/* <td>${stateObj.precio_unitario}</td> */}
                                             <td>{stateObj.marca}</td>
-                                            {/* <td>{stateObj.proveedor}</td> */}
                                         </tr>
                                     )
                                 }

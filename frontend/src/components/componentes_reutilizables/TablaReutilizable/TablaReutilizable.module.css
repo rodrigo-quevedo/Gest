@@ -21,6 +21,19 @@
     transition: 1s all;
 }
 
+.tableContainerLoading {
+    background: #000;
+    color: #fff;
+    cursor: wait;
+    transition: 1s all;
+}
+.tableContainerLoading * {
+    background: #000;
+    color: #fff;
+    cursor: wait;
+    transition: 1s all;
+}
+
 .tableContainer > table {
     border-spacing: 0px;
 

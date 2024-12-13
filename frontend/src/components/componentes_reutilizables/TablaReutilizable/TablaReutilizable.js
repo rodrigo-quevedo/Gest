@@ -14,6 +14,9 @@ function TablaReutilizable ({
             className={searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS ? 
                 `${styles.tableContainer} ${styles.tableContainerLoaded}`
             :
+                searchBoxState === SEARCHBOX_STATE.SUBMIT ?
+                `${styles.tableContainer} ${styles.tableContainerLoading}`
+                :
                 styles.tableContainer
         }
     >

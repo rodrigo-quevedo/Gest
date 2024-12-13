@@ -81,10 +81,11 @@
     font-size: 16px;
 }
 
+/* Aca aunque le pongo !important, parece que se sobreescribe en TablaReutilizable */
 .hoveredTR:hover{
     cursor: pointer;
-    background: #111134;
-    color: #fff;
+    background: #111134 !important;
+    color: #fff !important;
 }
 
 
