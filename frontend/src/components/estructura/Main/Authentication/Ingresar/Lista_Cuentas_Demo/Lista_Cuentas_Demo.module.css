@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     width: calc(50vw - 10px);
+    max-height: fit-content;
     
     text-align: center;
     
