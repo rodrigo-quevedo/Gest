@@ -1,29 +1,35 @@
 .texto {
-    background: #000;
-    color: #fff;
+    width: 60%;
+    
+    background: #AFAFFF;
+    color: #111134;
+    
+    padding: 5px;
+    margin: 10px auto;
 
-    padding: 20px;
-
-    border-radius: 5px;
+    border-radius: 15px;
+    border: 1px solid #111134;
 }
 
 .submit {
     animation: 2s infinite submitAnimation;
 }
 @keyframes submitAnimation {
-    0% {color: #fff}
-    50% {color: #333}
-    100% {color: #fff}
+    0% {background: #fff}
+    50% {background: #AFAFFF}
+    100% {background: #fff}
 }
 
 
 .success {
-    background: #2bff00;
-    color: #fff;
+    border: 1px solid #62c908;
+    background: rgba(43, 255, 0, 0.152);
+    color: #62c908;
 }
 
 
 .error {
-    background: #ff0000;
-    color: #fff;
+    border: 1px solid #c92508;
+    background: #c9250820;
+    color: #c92508;
 }
