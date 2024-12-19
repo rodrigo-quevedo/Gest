@@ -17,35 +17,29 @@ const POST =  async (req, res) => {
     let productoPusheadoListaProductos;//esto luego se va a mandar como respuesta en caso de exito
 
     const pushObjHistorial = {
-        producto: req.body.producto,
+        producto: req.body.producto.toUpperCase(),
         cantidad: req.body.cantidad,
         precio_unitario: req.body.precio_unitario,
-        marca: req.body.marca,
-        proveedor: req.body.proveedor,
+        marca: req.body.marca.toUpperCase(),
+        proveedor: req.body.proveedor.toUpperCase(),
         fechaHora: new Date()
     }
 
     const pushObjListaProd = {
-        producto: req.body.producto,
+        producto: req.body.producto.toUpperCase(),
         cantidad: req.body.cantidad,
         precio_unitario: req.body.precio_unitario,
-        marca: req.body.marca,
-        proveedor: req.body.proveedor
+        marca: req.body.marca.toUpperCase(),
+        proveedor: req.body.proveedor.toUpperCase()
     }
 
     try {
-        //------insertar doc en Historial_Productos
-        //consiguir el array
+        //consiguir el array historial
         const historialProductoUsuario = await Historial_ProductosModel.findById(usuarioEncontrado.idHistorialProductos);
         console.log('historialProductoUsuario', historialProductoUsuario)
-
-
-        historialProductoUsuario.historialProductos.push(pushObjHistorial)//push (para pushear tengo que usar el array)
-        const pushResult = await historialProductoUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
-        console.log(`Producto ingresado (push result): ${pushResult}`)
             
     
-        //-----actualizar model Lista_Productos:
+        //obtener model Lista_Productos:
         const listaProductosUsuario = await Lista_ProductosModel.findById(usuarioEncontrado.idListaProductos)//como es byId, me devuelve 1 solo
         console.log('listaProductosUsuario', listaProductosUsuario)
 
@@ -60,9 +54,9 @@ const POST =  async (req, res) => {
         let prodEncontradoEnListaProductos = listaProductosUsuario.listaProductos.find((prodObj)=>{
             //aca si el array está vacío, el flag queda en false
             return (
-                prodObj.producto === pushObjListaProd.producto
+                prodObj.producto.toUpperCase() === pushObjListaProd.producto.toUpperCase()
                 &&
-                prodObj.marca === pushObjListaProd.marca
+                prodObj.marca.toUpperCase() === pushObjListaProd.marca.toUpperCase()
             )
             
             //en vez de tener 1 precio unitario para cada producto, puedo dejar solamente el ultimo precio en la Lista Productos
@@ -75,14 +69,19 @@ const POST =  async (req, res) => {
             
         })
         
-        // si no lo tiene, agregarlo
+        //agregar compra al historial de productos
+        historialProductoUsuario.historialProductos.push(pushObjHistorial)//push (para pushear tengo que usar el array)
+        const pushResult = await historialProductoUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
+        console.log(`Producto ingresado (push result): ${pushResult}`)
+
+        // si no lo tiene, agregarlo a lista productos
         if (!prodEncontradoEnListaProductos) {
 
             listaProductosUsuario.listaProductos.push(pushObjListaProd)//aca si hago el push nomas
             productoPusheadoListaProductos = await listaProductosUsuario.save()//save //esto tira un Error, asique lo agarra el catch
 
         }
-        // pero si lo tiene, actualizar el array
+        // pero si lo tiene, actualizar el array lista productos
         else {
             productoPusheadoListaProductos = await Lista_ProductosModel.findOneAndUpdate(
                 {

@@ -14,31 +14,26 @@ const POST =  async (req, res) => {
     let ventaPushedListaProductos;//esto luego se va a mandar como respuesta en caso de exito
 
     const pushVentaHistorial = {
-        producto: req.body.producto,
+        producto: req.body.producto.toUpperCase(),
         cantidad: req.body.cantidad,
         precio_unitario: req.body.precio_unitario,
-        marca: req.body.marca,
-        proveedor: req.body.proveedor,
+        marca: req.body.marca.toUpperCase(),
+        proveedor: req.body.proveedor.toUpperCase(),
         fechaHora: new Date()
     }
 
     try {
-        //------insertar doc en Historial_Productos
-        //consiguir el array
+
+        //consiguir el array historial
         const historialVentasUsuario = await Historial_VentasModel.findById(usuarioEncontrado.idHistorialVentas);
         console.log('historialVentasUsuario', historialVentasUsuario)
-
-
-        historialVentasUsuario.historialVentas.push(pushVentaHistorial)//push (para pushear tengo que usar el array)
-        const pushResult = await historialVentasUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
-        console.log(`Venta ingresada (push result): ${pushResult}`)
             
     
-        //-----actualizar model Lista_Productos:
+        //obtener model Lista_Productos:
         const listaProductosUsuario = await Lista_ProductosModel.findById(usuarioEncontrado.idListaProductos)//como es byId, me devuelve 1 solo
         console.log('listaProductosUsuario', listaProductosUsuario)
 
-        //valido si se encontró la lista de usuarios en la db:
+        //validar si se encontró la lista de usuarios en la db:
         if (!listaProductosUsuario?.listaProductos){
             console.log('No se pudo cargar la lista de productos para actualizarla')
             throw new Error('No se pudo cargar la lista de productos para actualizarla')
@@ -49,9 +44,9 @@ const POST =  async (req, res) => {
         let prodEncontradoEnListaProductos = listaProductosUsuario.listaProductos.find((prodObj)=>{
             //aca si el array está vacío, el flag queda en false
             return (
-                prodObj.producto === pushVentaHistorial.producto
+                prodObj.producto.toUpperCase() === pushVentaHistorial.producto.toUpperCase()
                 &&
-                prodObj.marca === pushVentaHistorial.marca
+                prodObj.marca.toUpperCase() === pushVentaHistorial.marca.toUpperCase()
             )  
         })
         
@@ -67,7 +62,26 @@ const POST =  async (req, res) => {
             return;
         }
 
-        // si tiene el producto, registrar la venta
+        //si la cantidad de productos va a quedar en un menor a 0, no puedo vender
+        // (no se puede vender algo que no existe):
+        if ( (prodEncontradoEnListaProductos.cantidad - pushVentaHistorial.cantidad) < 0){
+            console.log(`La cantidad a vender (${req.body.cantidad}) del producto '${req.body.producto}' marca '${req.body.marca}' es inválida. Solo hay ${prodEncontradoEnListaProductos.cantidad} disponibles.`)
+
+            res.status(400).json({
+                success: false,
+                message: `La cantidad a vender (${req.body.cantidad}) del producto '${req.body.producto}' marca '${req.body.marca}' es inválida. Solo hay ${prodEncontradoEnListaProductos.cantidad} disponibles.`
+            })
+
+            return;
+        }
+
+        // si tiene el producto y la cantidad es valida:
+        // 1. registrarla en historial de ventas
+        historialVentasUsuario.historialVentas.push(pushVentaHistorial)//push (para pushear tengo que usar el array)
+        const pushResult = await historialVentasUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
+        console.log(`Venta ingresada (push result): ${pushResult}`)
+
+        // 2. actualizar lista productos
         ventaPushedListaProductos = await Lista_ProductosModel.findOneAndUpdate(
             {
                 _id: usuarioEncontrado.idListaProductos,
@@ -87,6 +101,7 @@ const POST =  async (req, res) => {
             console.log('no se pudo actualizar el producto en Lista Productos')
             throw new Error('no se pudo actualizar el producto en Lista Productos')
         }            
+
        
     }
     catch(err){
