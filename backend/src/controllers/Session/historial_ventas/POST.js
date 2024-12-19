@@ -19,7 +19,7 @@ const POST =  async (req, res) => {
         precio_unitario: req.body.precio_unitario,
         marca: req.body.marca.toUpperCase(),
         proveedor: req.body.proveedor.toUpperCase(),
-        fechaHora: new Date()
+        fechaHora: new Date(new Date().toISOString())
     }
 
     try {

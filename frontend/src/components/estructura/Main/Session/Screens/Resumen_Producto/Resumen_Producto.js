@@ -11,6 +11,9 @@ import { URL_LISTA_PRODUCTOS, URL_HISTORIAL_PRODUCTOS, URL_HISTORIAL_VENTAS } fr
 import SearchBox_resumen from '../../../../../componentes_reutilizables/SearchBox_resumen/SearchBox_resumen'
 import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable';
 
+import formatDate from '../../../../../../utils/format_date/format_date';
+import formatTime from '../../../../../../utils/format_date/format_time';
+
 import { PiSealWarningBold } from "react-icons/pi";
 
 import calcularTotalGastado from './finanza/calcularTotalGastado';
@@ -84,6 +87,7 @@ function Resumen_Producto() {
 
         
             <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
+            <h3><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
 
             <div className={styles.tableGridContainer} >
                 <div className={styles.tableSection}>
@@ -170,7 +174,8 @@ function Resumen_Producto() {
                                     <th>Costo unitario</th>
                                     <th>Marca</th>
                                     <th>Proveedor</th>
-                                    <th>Fecha y Hora de ingreso</th>
+                                    <th>Fecha de ingreso</th>
+                                    <th>Hora de ingreso</th>
                                 </tr>
                             }
 
@@ -183,7 +188,8 @@ function Resumen_Producto() {
                                             <td>${stateObj.precio_unitario}</td>
                                             <td>{stateObj.marca}</td>
                                             <td>{stateObj.proveedor}</td>
-                                            <td>{stateObj.fechaHora}</td>
+                                            <td>{formatDate(new Date(stateObj.fechaHora))}</td>
+                                            <td>{formatTime(new Date(stateObj.fechaHora))}</td>
                                         </tr>
                                     )
                                 }
@@ -203,8 +209,8 @@ function Resumen_Producto() {
                                     <th>Cantidad vendida</th>
                                     <th>Precio unitario de venta</th>
                                     <th>Marca</th>
-                                    {/* <th>Proveedor</th> */}
-                                    <th>Fecha y Hora de venta</th>
+                                    <th>Fecha de venta</th>
+                                    <th>Hora de venta</th>
                                 </tr>
                             }
 
@@ -216,8 +222,8 @@ function Resumen_Producto() {
                                             <td>{stateObj.cantidad}</td>
                                             <td>${stateObj.precio_unitario}</td>
                                             <td>{stateObj.marca}</td>
-                                            {/* <td>{stateObj.proveedor}</td> */}
-                                            <td>{stateObj.fechaHora}</td>
+                                            <td>{formatDate(new Date(stateObj.fechaHora))}</td>
+                                            <td>{formatTime(new Date(stateObj.fechaHora))}</td>
                                         </tr>
                                     )
                                 }

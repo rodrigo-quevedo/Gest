@@ -21,7 +21,6 @@ const GET =  async (req, res) => {
         if (! historialVentasEncontrado?.historialVentas) throw new Error("historialVentasEncontrado?.historialVentas is null")
 
 
-        const formatDate = require('../../../utils/format_date/format_date')
         const historialVentasParseadoYFiltrado = []
         
         //parsear decimal128 y date + resultados de busqueda
@@ -37,7 +36,7 @@ const GET =  async (req, res) => {
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
                     proveedor: venta.proveedor.toUpperCase(),
-                    fechaHora: formatDate(venta.fechaHora)
+                    fechaHora: venta.fechaHora.toISOString()
                 })
             }
 
@@ -49,7 +48,7 @@ const GET =  async (req, res) => {
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
                     proveedor: venta.proveedor.toUpperCase(),
-                    fechaHora: formatDate(venta.fechaHora)
+                    fechaHora: venta.fechaHora.toISOString()
                 })
             }
             
@@ -61,7 +60,7 @@ const GET =  async (req, res) => {
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
                     proveedor: venta.proveedor.toUpperCase(),
-                    fechaHora: formatDate(venta.fechaHora)
+                    fechaHora: venta.fechaHora.toISOString()
                 })
             }
 

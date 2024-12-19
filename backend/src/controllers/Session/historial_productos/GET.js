@@ -35,8 +35,7 @@ const GET =  async (req, res) => {
     .forEach(el => arrayHistorial.push(el))
     
     console.log('primer arrayHistorial:', arrayHistorial)
-
-    const formatDate = require('../../../utils/format_date/format_date')
+    
 
     arrayHistorial = arrayHistorial.map((prodObj)=> {
         return {
@@ -45,7 +44,7 @@ const GET =  async (req, res) => {
             precio_unitario: prodObj.precio_unitario.toString(),
             marca: prodObj.marca.toUpperCase(),
             proveedor: prodObj.proveedor.toUpperCase(),
-            fechaHora: formatDate(prodObj.fechaHora)
+            fechaHora: prodObj.fechaHora.toISOString()
         }
     })
 
