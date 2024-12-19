@@ -49,116 +49,120 @@ function SearchBox_resumen({
             </button>
 
 
-            <form 
-                id="searchBoxForm_ListaProductos"
-                onSubmit={(e)=>{
-                    e.preventDefault()
+            <div className={styles.formAndButtonContainer}>
+                <form 
+                    id="searchBoxForm_ListaProductos"
+                    onSubmit={(e)=>{
+                        e.preventDefault()
 
-                    setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
+                        setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
-                    fetchBackend(
-                        setSearchBoxState, 
-                        URL_lista, 
-                        setter_lista,
-                        Object.fromEntries(
-                            new FormData(
-                                document.getElementById('searchBoxForm_ListaProductos')
+                        fetchBackend(
+                            setSearchBoxState, 
+                            URL_lista, 
+                            setter_lista,
+                            Object.fromEntries(
+                                new FormData(
+                                    document.getElementById('searchBoxForm_ListaProductos')
+                                )
                             )
                         )
-                    )
 
-                    fetchBackend(
-                        setSearchBoxState, 
-                        URL_historialProductos, 
-                        setter_historialProductos,
-                        Object.fromEntries(
-                            new FormData(
-                                document.getElementById('searchBoxForm_ListaProductos')
+                        fetchBackend(
+                            setSearchBoxState, 
+                            URL_historialProductos, 
+                            setter_historialProductos,
+                            Object.fromEntries(
+                                new FormData(
+                                    document.getElementById('searchBoxForm_ListaProductos')
+                                )
                             )
                         )
-                    )
 
-                    fetchBackend(
-                        setSearchBoxState, 
-                        URL_historialVentas, 
-                        setter_historialVentas,
-                        Object.fromEntries(
-                            new FormData(
-                                document.getElementById('searchBoxForm_ListaProductos')
+                        fetchBackend(
+                            setSearchBoxState, 
+                            URL_historialVentas, 
+                            setter_historialVentas,
+                            Object.fromEntries(
+                                new FormData(
+                                    document.getElementById('searchBoxForm_ListaProductos')
+                                )
                             )
                         )
-                    )
-                }}
-            >
-                <div 
-                    className={ 
-                        elegirSearchboxClass(searchBoxState, styles, SEARCHBOX_STATE)
-                    }
-
-                    onClick={()=> {
-                        if (searchBoxState === SEARCHBOX_STATE.DEFAULT){
-                            document.getElementById('searchBoxInput').focus();
-                            
-                            setSearchBoxState(SEARCHBOX_STATE.CLICKED)
-                        }
                     }}
-
-                    //blur solo se activa cuando se pierde focus.
-                    //focus solo se logra haciendo TAB o clickeando el searchbox.
-                    onBlur={()=>{
-                        //si el usuario clickeó el searchbox (CLICKED) y luego en otro lugar (blur), el searchbox vuelve a DEFAULT.
-                        //pero cuando el searchbox empieza a hacer el fetch, cambia de CLICKED a SUBMIT, y eso activa el useEffect, el cual activa un blur, para que no se pueda seguir escribiendo en el searchbox mientras está en loading el fetch.
-                        //por eso es necesario distinguir el blur cuando el searchbox está en SUBMIT, porque no queremos que el searchbox vuelva a su className default, sino que queremos que permanezca en su className de loading:
-                        if (searchBoxState !== SEARCHBOX_STATE.SUBMIT) {
-                            setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
-                        }
-                    }}
-
                 >
-                    {/* SearchBox Icon */}
-                    {
-                        searchBoxState === SEARCHBOX_STATE.SUBMIT ?
-                                <span className={styles.loadingIcon}>
-                                    <VscLoading/>
-                                </span>
-                            :
-                                <span className={styles.searchBoxIcon}>
-                                    <FaSearch />
-                                </span>
-                    }
-                    
+                    <div 
+                        className={ 
+                            elegirSearchboxClass(searchBoxState, styles, SEARCHBOX_STATE)
+                        }
 
-                    <input                 
-                        id="searchBoxInput"
-                        name='searchBoxInput'
+                        onClick={()=> {
+                            if (searchBoxState === SEARCHBOX_STATE.DEFAULT){
+                                document.getElementById('searchBoxInput').focus();
+                                
+                                setSearchBoxState(SEARCHBOX_STATE.CLICKED)
+                            }
+                        }}
+
+                        //blur solo se activa cuando se pierde focus.
+                        //focus solo se logra haciendo TAB o clickeando el searchbox.
+                        onBlur={()=>{
+                            //si el usuario clickeó el searchbox (CLICKED) y luego en otro lugar (blur), el searchbox vuelve a DEFAULT.
+                            //pero cuando el searchbox empieza a hacer el fetch, cambia de CLICKED a SUBMIT, y eso activa el useEffect, el cual activa un blur, para que no se pueda seguir escribiendo en el searchbox mientras está en loading el fetch.
+                            //por eso es necesario distinguir el blur cuando el searchbox está en SUBMIT, porque no queremos que el searchbox vuelva a su className default, sino que queremos que permanezca en su className de loading:
+                            if (searchBoxState !== SEARCHBOX_STATE.SUBMIT) {
+                                setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
+                            }
+                        }}
+
+                    >
+                        {/* SearchBox Icon */}
+                        {
+                            searchBoxState === SEARCHBOX_STATE.SUBMIT ?
+                                    <span className={styles.loadingIcon}>
+                                        <VscLoading/>
+                                    </span>
+                                :
+                                    <span className={styles.searchBoxIcon}>
+                                        <FaSearch />
+                                    </span>
+                        }
                         
-                        type='text'
-                        placeholder='Filtrar productos'
-                        
-                        autoComplete='off'
-                        //Puedo apretar ENTER y que me traiga todo, por lo que required='false', pero no hace falta ponerlo, ya que false es el defaut
 
-                        //esto lo agregué para cuando el usuario hace tab en vez de clickear:
-                        onFocus={()=>setSearchBoxState(SEARCHBOX_STATE.CLICKED)}
+                        <input                 
+                            id="searchBoxInput"
+                            name='searchBoxInput'
+                            
+                            type='text'
+                            placeholder='Filtrar productos'
+                            
+                            autoComplete='off'
+                            //Puedo apretar ENTER y que me traiga todo, por lo que required='false', pero no hace falta ponerlo, ya que false es el defaut
 
-                        maxLength='50'
-                        // Me conviene que pueda estar vacio para mandar {} y usarlo en el find()
-                        pattern='^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$'
-                        title={"Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Máximo 50 caracteres."}
-                    />
+                            //esto lo agregué para cuando el usuario hace tab en vez de clickear:
+                            onFocus={()=>setSearchBoxState(SEARCHBOX_STATE.CLICKED)}
 
-                </div>
+                            maxLength='50'
+                            // Me conviene que pueda estar vacio para mandar {} y usarlo en el find()
+                            pattern='^[a-zA-ZÀ-ÿñÑ0-9 .]{0,50}$'
+                            title={"Solo son válidos: letras mayúsculas, letras minúsculas, números, y espacios. NO se aceptan caracteres especiales. Máximo 50 caracteres."}
+                        />
+
+                    </div>
 
 
-            </form>
-            <button
-                onClick={()=>{
-                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-                }}
-                className={styles.submitButton}
-            >
-                <AiOutlineEnter/>
-            </button>
+                </form>
+                <button
+                    onClick={()=>{
+                        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                    }}
+                    className={styles.submitButton}
+                >
+                    <AiOutlineEnter/>
+                </button>
+
+
+            </div>
         </div>
     )
 }

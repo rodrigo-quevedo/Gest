@@ -3,10 +3,6 @@
     max-width: 100%;
 }
 
-.container > h3{
-    margin: 0;
-}
-
 .finanzaContainer{
     font-size: max(1.5vw, 15px);
 }
@@ -61,18 +57,19 @@
 }
 
 
-.container > h3 {
-    /* font-style: italic; */
-    font-weight: 500;
-    font-size: 15px;
-}
 
 .container > h3 {
     display: flex;
     justify-content: left;
     align-items: center;
+    
     gap: 3px;
     color: rgb(0, 38, 255);
+    
+    font-weight: 500;
+    font-size: 15px;
+    
+    margin: 0;
 }
 
 
@@ -106,4 +103,18 @@
             " . v v v v v v v v v v v v v v v v v v v v v v . "
         ;
     }
+
+    .container > h3 {
+        display: block;
+
+        margin: 3px;
+
+        font-weight: 500;
+        font-size: 10px;
+    }
+
+    .container h3 svg {
+        margin-right: 3px;
+    }
+
 }
