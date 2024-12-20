@@ -71,3 +71,9 @@
     }
     
 }
+
+@media (width < 500px){
+    .navbarContainer{
+        
+    }
+}

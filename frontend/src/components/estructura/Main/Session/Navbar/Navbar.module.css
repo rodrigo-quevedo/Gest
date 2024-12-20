@@ -17,10 +17,12 @@
     
     background: #111134;
     color: #fff;
+
+    transition: 1s all;
 }
 
 
-.navContainer > button {
+.navContainer > button, .dropDownNav > button {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -52,39 +54,52 @@
 
 /* Interacciones */
 .navContainer > button:hover, 
-.navContainer > button:focus {
+.navContainer > button:focus,
+.dropDownNav > button:hover {
     cursor: pointer;
 
-    background:#000;
-    color: #9393FF;
+    /* background:#000;
+    color: #9393FF; */
 
     padding: 5px;
-    transform:scale(1.04);
+    /* transform:scale(1.04); */
     
     border: 1px solid #9393FF;
     
     transition: 150ms all;
 }
 .seleccionado {
-    -webkit-animation: colorTitilante 3s infinite;
-    animation: colorTitilante 3s infinite;
+    /* -webkit-animation: colorTitilante 3s infinite;
+    animation: colorTitilante 3s infinite; */
+    
+    color: #0B0B22 !important; 
+    background: #fff !important;
 }
 
-@keyframes colorTitilante {
+/* @keyframes colorTitilante {
    0% {color: #0B0B22; background: #fff}
-   50% {color: #0B0B22; background: #ACACFF;}
+   50% {color: #736000; background: #fff;}
    100% {color: #0B0B22; background: #fff}
-}
+} */
 
 
 
-.navContainer > button:active  {
+.navContainer > button:active, .dropDownNav > button:active  {
     background:#fff;
     color: #0B0B22;    
 }
 
+.esconderButton, .dropDownNav > button {
+    padding: 20px 0 !important;
+    background: #0B0B22 !important;
 
+}
 
+.dropDownNav {
+    display: flex;
+    flex-direction: column;
+
+}
 
 
 
@@ -114,4 +129,36 @@
         font-size: 2.2vw;
     }
 
+}
+
+@media (width < 500px) {
+    .navContainer {
+        flex-direction: column;
+        align-items: center;
+
+        min-height: 100%;
+        height: max-content;
+
+        /* position: static; */
+
+    }
+
+    .navContainer > button {
+        max-width: 80%;
+        width: 80%;
+
+        flex-direction: row-reverse;
+        justify-content: center;
+
+        font-size: 12px;
+        gap: 6px;
+
+        padding: 5px 0;
+    }
+}
+
+.goUpButton {
+    position: sticky;
+    bottom: 0;
+    right: 0;
 }
