@@ -5,9 +5,9 @@
     /* este es el minimo height para <main> */
     min-height: 69.5vh;
 
-    background: #111134;
+    /* background: #111134; */
 
-    padding: 0 1vw 1vw 1vw;
+    padding: 0 1vw 1vw 0vw;
 }
 
 

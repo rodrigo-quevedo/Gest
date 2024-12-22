@@ -14,7 +14,7 @@ import { RiFileList3Line } from "react-icons/ri";
 
 import { FaArrowLeft } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaAngleDoubleUp } from "react-icons/fa";
+
 
 // config
 import { SESSION_SCREENS } from '../../../../../config/config';
@@ -188,19 +188,7 @@ export default function Navbar (
                         </span>
                     </button>
 
-                    <button
-                        className={styles.goUpButton}
-                        onClick={()=>{window.scrollTo({
-                            top: 0,
-                            left: 0,
-                            behavior: 'smooth'
-                          })}}
-                    >
-                        Ir arriba
-                        <span className={styles.icon}>
-                            <FaAngleDoubleUp/>
-                        </span>
-                    </button>
+
                 </div>
             }
             

@@ -18,6 +18,8 @@
     background: #111134;
     color: #fff;
 
+    padding: 1vw;
+
     transition: 1s all;
 }
 
@@ -96,8 +98,15 @@
 }
 
 .dropDownNav {
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* background: transparent !important; */
+
+}
+
+.dropDownNav > button {
+    width: 5vw;
+    position: absolute;
+    top: 0;
 
 }
 
@@ -157,8 +166,3 @@
     }
 }
 
-.goUpButton {
-    position: sticky;
-    bottom: 0;
-    right: 0;
-}

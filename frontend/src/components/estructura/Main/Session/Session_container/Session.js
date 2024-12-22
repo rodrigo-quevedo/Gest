@@ -13,6 +13,7 @@ import HistorialVentas from '../Screens/Historial_Ventas/HistorialVentas'
 
 import {SESSION_SCREENS} from '../../../../../config/config'
 import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
+import GoUpButton from '../../../../componentes_reutilizables/GoUpButton/GoUpButton';
 
 function Session() {
 
@@ -63,6 +64,8 @@ function Session() {
             {
                 mostrarScreen(sessionScreen)
             }
+
+            <GoUpButton/>
 
         </section>
 
