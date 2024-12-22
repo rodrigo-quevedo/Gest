@@ -1,0 +1,38 @@
+.goUpButton {
+    position: sticky;
+    bottom: 10vh;
+    margin-left: 85vw;
+
+    width: 70px;
+    height: 70px;
+
+    color: #fff;
+    background: #4747DA;
+    padding: 10px 12px;
+    
+    border: 0;
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: 1s all;
+}
+
+.goUpButton:hover{
+    cursor: pointer;
+    background: #111134;
+
+    transition: 1s all;
+}
+
+.goUpButton:active{
+    background: #a0a0d5;
+
+    transition: none;
+}
+
+.goUpButton span {
+    font-size: 23px;
+}
