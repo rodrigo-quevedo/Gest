@@ -21,17 +21,24 @@
     transition: 1s all;
 }
 
-.tableContainerLoading {
+/* .tableContainerLoading {
     background: #000;
     color: #fff;
     cursor: wait;
     transition: 1s all;
-}
+} */
 .tableContainerLoading * {
     background: #000;
     color: #fff;
     cursor: wait;
     transition: 1s all;
+}
+
+.tableContainerLoading :global(.tableProductSelected), .tableContainerLoading :global(.tableProductSelected) * {
+    background: #fff !important;
+    color: #000 !important;
+
+    transition: none !important;
 }
 
 .tableContainer > table {

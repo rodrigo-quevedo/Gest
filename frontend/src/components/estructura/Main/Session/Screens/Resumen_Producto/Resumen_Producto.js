@@ -48,6 +48,8 @@ function Resumen_Producto() {
             totalMargen
         }]
 
+        const [productSelected, setProductSelected] = useState();
+
     return (
         <div className={styles.container}>
             <h1>Resumen de producto</h1>
@@ -144,12 +146,21 @@ function Resumen_Producto() {
                                     return (
                                         <tr 
                                             key={`${stateObj.producto}_${stateObj.marca}`}
-                                            className={styles.hoveredTR}
-                                            onClick={()=>{
+                                            
+                                            className={productSelected === `${stateObj.producto}_${stateObj.marca}` ? 
+                                                    `${styles.hoveredTR} tableProductSelected` 
+                                                : 
+                                                    styles.hoveredTR
+                                            }
+                                            onClick={(e)=>{
                                                 //establecer req body
                                                 document.getElementById('searchBoxInput').value= stateObj.producto
+                                                
                                                 //fetch
                                                 document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+
+                                                setProductSelected(`${stateObj.producto}_${stateObj.marca}`)
+
                                             }}
                                         >
                                             <td>{stateObj.producto}</td>
