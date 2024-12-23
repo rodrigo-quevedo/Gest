@@ -36,3 +36,56 @@
 .goUpButton span {
     font-size: 23px;
 }
+
+@media (width < 700px) {
+    .goUpButton {
+        margin-left: 88%;
+    }
+}
+@media (width < 600px) {
+    .goUpButton {
+        margin-left: 85%;
+    }
+}
+
+@media (width < 500px) {
+    .goUpButton {
+        transform: scale(0.8);
+    }
+}
+@media (width < 400px) {
+    .goUpButton {
+        margin-left: 82.5%;
+        transform: scale(0.75)
+    }
+}
+@media (width < 350px) {
+    .goUpButton {
+        margin-left: 79%;
+        transform: scale(0.70)
+    }
+}
+@media (width < 300px) {
+    .goUpButton {
+        margin-left: 77%;
+        transform: scale(0.65)
+    }
+}
+
+@media (width < 250px) {
+    .goUpButton {
+        margin-left: 73%;        
+    }
+}
+
+@media (width < 210px) {
+    .goUpButton {
+        margin-left: 70%;        
+    }
+}
+
+@media (width < 195px) {
+    .goUpButton {
+        margin-left: 65%;        
+    }
+}
