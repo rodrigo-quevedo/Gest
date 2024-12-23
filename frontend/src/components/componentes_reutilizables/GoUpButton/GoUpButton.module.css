@@ -1,13 +1,13 @@
 .goUpButton {
     position: sticky;
     bottom: 10vh;
-    margin-left: 85vw;
+    margin-left: 90%;
 
     width: 70px;
     height: 70px;
 
     color: #fff;
-    background: #4747DA;
+    background: #111134;
     padding: 10px 12px;
     
     border: 0;
@@ -22,7 +22,7 @@
 
 .goUpButton:hover{
     cursor: pointer;
-    background: #111134;
+    background: #4747DA;
 
     transition: 1s all;
 }

@@ -20,6 +20,8 @@ import calcularTotalGastado from './finanza/calcularTotalGastado';
 import calcularTotalVendido from './finanza/calcularTotalVendido';
 import calcularGananciaActual from './finanza/calcularGananciaActual';
 
+import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUpButton'
+
 function Resumen_Producto() {
 
         // cuando carga la pagina, buscar todo el historial
@@ -233,6 +235,9 @@ function Resumen_Producto() {
                 </div> 
 
             </div>              
+        
+
+            <GoUpButton/>
         </div>
     )
 

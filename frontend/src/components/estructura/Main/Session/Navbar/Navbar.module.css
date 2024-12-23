@@ -18,7 +18,7 @@
     background: #111134;
     color: #fff;
 
-    padding: 1vw;
+    padding: 0 1vw;
 
     transition: 1s all;
 }
@@ -36,7 +36,7 @@
     padding: 0;
     border: 0;
     border-radius: 5px;
-    background: #4747DA;
+    background: #0B0B22;
     color: #fff;
 
     transition: 150ms all;
@@ -50,7 +50,7 @@
 
 
 .icon {
-    font-size: 5vh;
+    font-size: min(5vh, 20px);
 }
 
 
@@ -91,23 +91,24 @@
     color: #0B0B22;    
 }
 
-.esconderButton, .dropDownNav > button {
+.esconderButton{
+    background: #111134 !important;
+}
+
+.dropDownNav > button {
     padding: 20px 0 !important;
     background: #0B0B22 !important;
 
 }
 
-.dropDownNav {
-    /* display: flex; */
-    /* background: transparent !important; */
-
-}
 
 .dropDownNav > button {
     width: 5vw;
     position: absolute;
-    top: 0;
-
+    top: 21px;
+    left: 10px;
+    
+    margin: 0;
 }
 
 
