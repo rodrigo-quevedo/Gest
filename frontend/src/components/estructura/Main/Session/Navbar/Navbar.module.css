@@ -103,7 +103,7 @@
 
 
 .dropDownNav > button {
-    width: 5vw;
+    width: 80px;
     position: absolute;
     top: 21px;
     left: 10px;
@@ -139,6 +139,10 @@
         font-size: 2.2vw;
     }
 
+    .dropDownNav > button {
+        transform: scale(0.8);
+    }
+
 }
 
 @media (width < 500px) {
@@ -165,5 +169,16 @@
 
         padding: 5px 0;
     }
+
+    .dropDownNav > button {
+        transform: scale(0.65);
+        left: 5px;
+    }
 }
 
+@media (width < 350px){
+    .dropDownNav > button {
+        transform: scale(0.60);
+        left: -10px;
+    }
+}
