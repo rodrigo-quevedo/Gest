@@ -44,6 +44,7 @@ function SearchBox_resumen({
                     document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
                 }}
                 className={styles.resetButton}
+                id="searchBoxListaCompletaButton"
             >
                 Lista completa <RiArrowGoBackFill/>
             </button>

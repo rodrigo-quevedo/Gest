@@ -24,10 +24,13 @@ import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUp
 
 function Resumen_Producto() {
 
+    useEffect(()=>{
         // cuando carga la pagina, buscar todo el historial
-        useEffect(()=>{
-            document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-        }, [])
+        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+
+        // resetear estilos de producto seleccionado en tabla al clickear en "Lista completa <-|" (sin esto, al clickear ahí, se sigue marcando el último producto clickeado. No debería marcar nada, porque está buscando la lista completa.)
+        document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{setProductSelected(null)})
+    }, [])
     
         const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
     
@@ -49,6 +52,8 @@ function Resumen_Producto() {
         }]
 
         const [productSelected, setProductSelected] = useState();
+
+        
 
     return (
         <div className={styles.container}>
