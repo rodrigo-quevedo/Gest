@@ -1,52 +1,52 @@
+h1 {
+    text-align: center;
+}
 .container{
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(3, minmax(1fr, auto));
+    
     text-align: center;
     max-width: 100%;
 }
-
-.finanzaContainer{
-    font-size: max(1.5vw, 15px);
-}
-.finanzaContainer > span{
-    padding: 0 20px;
-    font-size: 20px
-}
-
-.gastado {
-    color: red;
-}
-.vendido {
-    color: green;
-}
-
+/* 
 .tableSection {
     display: grid;
 
     grid-template-columns: repeat(24, 1fr); 
     grid-template-areas: 
-        " . p p p p p p p p . f f f f f f f f f f f f f . "
-        /* " . p p p p p p p p p p p p p p p p p p p p p p . " */
+        " . p p p p p p p p . f f f f f f f f f f f f f . "        
         " . c c c c c c c c c c c . v v v v v v v v v v . "
     ;
-}
+} */
 
-.tableContainer{
-    text-align: left;
-}
+.searchBoxContainer {
+    grid-column: 1/12;
+    grid-row: 1;
 
+}
 :global(#finanzaTable) {
-    grid-area: f
+    grid-column: 12/-1;
+    grid-row: 1;
+
+    align-content: center;
 }
 :global(#productosTable) {
-    grid-area: p
-}
-:global(#comprasTable) {
-    grid-area: c
-}
-:global(#ventasTable) {
-    grid-area: v
+    grid-column: 6/-6;
+    grid-row: 2;
 }
 
-:global(#finanzaTable) th {
+
+:global(#comprasTable) {
+    grid-column: 1/15;
+    grid-row: 3;
+}
+:global(#ventasTable) {
+    grid-column: 15/-1;
+    grid-row: 3;
+}
+
+/* :global(#finanzaTable) th {
     background: #4747DA;
     color: #000;
     font-weight: 500;
@@ -54,14 +54,14 @@
 :global(#finanzaTable) td {
     background: #fff;
     color: #000;
-}
+} */
 
-
-
-.container > h3 {
-    display: flex;
+.searchBoxContainer > h3 {
+    /* display: flex;
     justify-content: left;
-    align-items: center;
+    align-items: center; */
+ 
+    text-align: left;
     
     gap: 3px;
     color: rgb(0, 38, 255);
@@ -69,10 +69,13 @@
     font-weight: 500;
     font-size: 15px;
     
-    margin: 0;
+    margin: 5px 0;
 }
 
 
+.tableContainer{
+    text-align: left;
+}
 .tableContainer > h2 {
     text-align: left;
     font-size: 16px;
@@ -96,7 +99,7 @@
         display: block
     }
 
-    .tableSection {
+    /* .tableSection {
         display: grid;
     
         grid-template-columns: repeat(24, 1fr); 
@@ -106,7 +109,7 @@
             " . c c c c c c c c c c c c c c c c c c c c c c . "
             " . v v v v v v v v v v v v v v v v v v v v v v . "
         ;
-    }
+    } */
 
     .container > h3 {
         display: block;
