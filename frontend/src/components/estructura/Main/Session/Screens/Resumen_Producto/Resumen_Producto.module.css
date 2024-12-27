@@ -26,19 +26,25 @@ h1 {
     grid-row: 1;
 }
 
-.finanzaYProductoContainer{
+/* .finanzaYProductoContainer{
     grid-column: 11/-2;
     grid-row: 1;
     
-}
-.searchBoxContainer {
-    grid-column: 1/12;
-    grid-row: 1;
-}
-/* :global(#finanzaTable) {
-    grid-column: 14/-2;
-    grid-row: 1;
 } */
+.searchBoxContainer {
+    grid-column: 1/-1;
+    grid-row: 1;
+}
+:global(#finanzaTable) {
+    /* grid-column: 14/-2;
+    grid-row: 1; */
+    grid-column: 14/-2;
+    grid-row: 2;
+}
+:global(#productoTableNotInteractive){
+    grid-column: 2/13;
+    grid-row: 2;
+}
 
 :global(#productosTable) {
     grid-column: 6/-6;
@@ -55,7 +61,7 @@ h1 {
     grid-row: 3;
 }
 
-:global(#productoTableNotInteractive) th{
+/* :global(#productoTableNotInteractive) th{
     background: #fff;
     color: #4747DA;
     font-weight: 500;
@@ -66,9 +72,9 @@ h1 {
     font-weight: 700;
     
     font-size: 16px;
-}
+} */
 
-:global(#finanzaTable) th {
+/* :global(#finanzaTable) th {
     background: #4747DA;
     color: #000;
     font-weight: 500;
@@ -78,7 +84,7 @@ h1 {
     color: #000;
     
     font-size: 18px;
-}
+} */
 
 
 .infoText {

@@ -66,7 +66,12 @@ function Resumen_Producto() {
 
     return (
         <div>
-            <h1>Resumen de producto</h1>
+
+            {productSelected !== null ? 
+                <h1>Resumen de producto: {productSelected}</h1>
+            :
+                <h1>Resumen de producto</h1>
+            }
 
             <h3 className={styles.infoText}><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
            
@@ -115,9 +120,9 @@ function Resumen_Producto() {
                                     (stateObj) => {
                                         return (
                                             <tr 
-                                                key={`${stateObj.producto}_${stateObj.marca}`}
+                                                key={stateObj.producto}
                                                 
-                                                className={productSelected === `${stateObj.producto}_${stateObj.marca}` ? 
+                                                className={productSelected === stateObj.producto ? 
                                                         `${styles.hoveredTR} tableProductSelected` 
                                                     : 
                                                         styles.hoveredTR
@@ -129,7 +134,7 @@ function Resumen_Producto() {
                                                     //fetch
                                                     document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
-                                                    setProductSelected(`${stateObj.producto}_${stateObj.marca}`)
+                                                    setProductSelected(stateObj.producto)
 
 
                                                 }}
@@ -145,9 +150,9 @@ function Resumen_Producto() {
                         </div>
                     :
                         <>
-                            <div className={styles.finanzaYProductoContainer} >
+                            {/* <div className={styles.finanzaYProductoContainer} > */}
                                 <div className={styles.tableContainer} id="productoTableNotInteractive">
-                                    {/* <h2>Producto seleccionado</h2> */}
+                                    <h2>Producto seleccionado</h2>
                                     <TablaReutilizable
                                         searchBoxState={searchBoxState}
                                         arrayState={listaProductos}
@@ -164,7 +169,7 @@ function Resumen_Producto() {
                                             (stateObj) => {
                                                 return (
                                                     <tr 
-                                                        key={`${stateObj.producto}_${stateObj.marca}`}
+                                                        key={stateObj.producto}
                                                     >
                                                         <td>{stateObj.producto}</td>
                                                         <td>{stateObj.cantidad}</td>
@@ -177,7 +182,7 @@ function Resumen_Producto() {
                                 </div>
 
                                 <div className={styles.tableContainer} id="finanzaTable">
-                                    {/* <h2>Finanza</h2> */}
+                                    <h2>Finanza</h2>
                                     <TablaReutilizable
                                         searchBoxState={searchBoxState}
                                         arrayState={arrFinanza}
@@ -187,8 +192,7 @@ function Resumen_Producto() {
                                                 <th>Total gastado</th>
                                                 <th>Total vendido</th>
                                                 <th>Neto</th>
-                                                <th>Ganancia sobre lo vendido</th>
-                                                
+                                                <th>Ganancia sobre lo vendido</th>     
                                             </tr>
                                         }
 
@@ -196,10 +200,10 @@ function Resumen_Producto() {
                                             (stateObj) => {
                                                 return (
                                                     <tr key={stateObj.id}>
-                                                        <td>${stateObj.totalGastado}</td>
-                                                        <td>${stateObj.totalVendido}</td>
-                                                        <td>${stateObj.totalGanancia}</td>
-                                                        <td>${stateObj.totalMargen}</td>
+                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
+                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
+                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
+                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
                                                     </tr>
                                                 )
                                             }
@@ -208,7 +212,7 @@ function Resumen_Producto() {
                                 </div>
 
                                 
-                            </div>
+                            {/* </div> */}
 
                             <div className={styles.tableContainer} id="comprasTable">
                                 <h2>Compras</h2>
@@ -235,7 +239,7 @@ function Resumen_Producto() {
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${stateObj.precio_unitario}</td>
+                                                    <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{stateObj.proveedor}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
@@ -249,6 +253,7 @@ function Resumen_Producto() {
 
                             <div className={styles.tableContainer} id="ventasTable">
                                 <h2>Ventas</h2>
+                                <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={historialVentas}
@@ -270,7 +275,7 @@ function Resumen_Producto() {
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${stateObj.precio_unitario}</td>
+                                                    <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
                                                     <td>{formatTime(new Date(stateObj.fechaHora))}</td>
