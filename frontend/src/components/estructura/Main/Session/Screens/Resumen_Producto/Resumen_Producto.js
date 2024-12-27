@@ -30,6 +30,13 @@ function Resumen_Producto() {
 
         // resetear estilos de producto seleccionado en tabla al clickear en "Lista completa <-|" (sin esto, al clickear ahí, se sigue marcando el último producto clickeado. No debería marcar nada, porque está buscando la lista completa.)
         document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{setProductSelected(null)})
+
+        // resetear layout al enviar la searchbox vacia
+        document.getElementById("searchBoxForm_ListaProductos").addEventListener('submit', (e)=>{
+            if (document.getElementById("searchBoxInput").value === ""){
+                setProductSelected(null)
+            }
+        })
     }, [])
     
         const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
@@ -51,18 +58,28 @@ function Resumen_Producto() {
             totalMargen
         }]
 
-        const [productSelected, setProductSelected] = useState();
+        const [productSelected, setProductSelected] = useState(null);
 
-        
 
     return (
         <div>
             <h1>Resumen de producto</h1>
 
+            <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
+            <h3><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
+
             <div className={styles.container}>
-                <div className={styles.searchBoxContainer}>
-                    
-                    
+
+                <div 
+                    className={
+                        productSelected === null ?
+                            styles.searchBoxContainerFullWidth
+                        :
+                            styles.searchBoxContainer
+                    }
+                
+                >
+
                     <SearchBox_resumen
                         searchBoxState={searchBoxState}
                         setSearchBoxState={setSearchBoxState}
@@ -73,159 +90,192 @@ function Resumen_Producto() {
                         URL_historialVentas={URL_HISTORIAL_VENTAS}
                         setter_historialVentas={setHistorialVentas}
                     />
-                
-                    <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
-                    <h3><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
-
                 </div>
 
-                <div className={styles.tableContainer} id="finanzaTable">
-                    {/* <h2>Finanza</h2> */}
-                    <TablaReutilizable
-                        searchBoxState={searchBoxState}
-                        arrayState={arrFinanza}
+                {
+                    productSelected === null ? 
+                        <div className={styles.tableContainer} id="productosTable">
+                            <h2>Productos (filtrar y/o clickear para seleccionar)</h2>
+                            <TablaReutilizable
+                                searchBoxState={searchBoxState}
+                                arrayState={listaProductos}
 
-                        tableHeaders={
-                            <tr>
-                                <th>Total gastado</th>
-                                <th>Total vendido</th>
-                                <th>Neto</th>
-                                <th>Ganancia sobre lo vendido</th>
-                                
-                            </tr>
-                        }
-
-                        mapCallback={
-                            (stateObj) => {
-                                return (
-                                    <tr key={stateObj.id}>
-                                        <td>${stateObj.totalGastado}</td>
-                                        <td>${stateObj.totalVendido}</td>
-                                        <td>${stateObj.totalGanancia}</td>
-                                        <td>${stateObj.totalMargen}</td>
+                                tableHeaders={
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad Actual</th>
+                                        <th>Marca</th>
                                     </tr>
-                                )
-                            }
-                        }
-                    />
-                </div>
+                                }
 
-                <div className={styles.tableContainer} id="productosTable">
-                    <h2>Producto</h2>
-                    <TablaReutilizable
-                        searchBoxState={searchBoxState}
-                        arrayState={listaProductos}
+                                mapCallback={
+                                    (stateObj) => {
+                                        return (
+                                            <tr 
+                                                key={`${stateObj.producto}_${stateObj.marca}`}
+                                                
+                                                className={productSelected === `${stateObj.producto}_${stateObj.marca}` ? 
+                                                        `${styles.hoveredTR} tableProductSelected` 
+                                                    : 
+                                                        styles.hoveredTR
+                                                }
+                                                onClick={(e)=>{
+                                                    //establecer req body
+                                                    document.getElementById('searchBoxInput').value= stateObj.producto
+                                                    
+                                                    //fetch
+                                                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
-                        tableHeaders={
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad Actual</th>
-                                <th>Marca</th>
-                            </tr>
-                        }
+                                                    setProductSelected(`${stateObj.producto}_${stateObj.marca}`)
 
-                        mapCallback={
-                            (stateObj) => {
-                                return (
-                                    <tr 
-                                        key={`${stateObj.producto}_${stateObj.marca}`}
-                                        
-                                        className={productSelected === `${stateObj.producto}_${stateObj.marca}` ? 
-                                                `${styles.hoveredTR} tableProductSelected` 
-                                            : 
-                                                styles.hoveredTR
+                                                }}
+                                            >
+                                                <td>{stateObj.producto}</td>
+                                                <td>{stateObj.cantidad}</td>
+                                                <td>{stateObj.marca}</td>
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            />
+                        </div>
+                    :
+                        <>
+                            <div className={styles.finanzaYProductoContainer}>
+                                <div className={styles.tableContainer} id="finanzaTable">
+                                    <h2>Finanza</h2>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={arrFinanza}
+
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Total gastado</th>
+                                                <th>Total vendido</th>
+                                                <th>Neto</th>
+                                                <th>Ganancia sobre lo vendido</th>
+                                                
+                                            </tr>
                                         }
-                                        onClick={(e)=>{
-                                            //establecer req body
-                                            document.getElementById('searchBoxInput').value= stateObj.producto
-                                            
-                                            //fetch
-                                            document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
-                                            setProductSelected(`${stateObj.producto}_${stateObj.marca}`)
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr key={stateObj.id}>
+                                                        <td>${stateObj.totalGastado}</td>
+                                                        <td>${stateObj.totalVendido}</td>
+                                                        <td>${stateObj.totalGanancia}</td>
+                                                        <td>${stateObj.totalMargen}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
 
-                                        }}
-                                    >
-                                        <td>{stateObj.producto}</td>
-                                        <td>{stateObj.cantidad}</td>
-                                        <td>{stateObj.marca}</td>
-                                    </tr>
-                                )
-                            }
-                        }
-                    />
-                </div>
+                                <div className={styles.tableContainer}>
+                                    <h2>Producto seleccionado</h2>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={listaProductos}
 
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th>Cantidad Actual</th>
+                                                <th>Marca</th>
+                                            </tr>
+                                        }
 
-                <div className={styles.tableContainer} id="comprasTable">
-                    <h2>Compras</h2>
-                    <TablaReutilizable
-                        searchBoxState={searchBoxState}
-                        arrayState={historialProductos}
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr 
+                                                        key={`${stateObj.producto}_${stateObj.marca}`}
+                                                    >
+                                                        <td>{stateObj.producto}</td>
+                                                        <td>{stateObj.cantidad}</td>
+                                                        <td>{stateObj.marca}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
+                            </div>
 
-                        tableHeaders={
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad ingresada</th>
-                                <th>Costo unitario</th>
-                                <th>Marca</th>
-                                <th>Proveedor</th>
-                                <th>Fecha de ingreso</th>
-                                <th>Hora de ingreso</th>
-                            </tr>
-                        }
+                            <div className={styles.tableContainer} id="comprasTable">
+                                <h2>Compras</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={historialProductos}
 
-                        mapCallback={
-                            (stateObj) => {
-                                return (
-                                    <tr key={stateObj.id}>
-                                        <td>{stateObj.producto}</td>
-                                        <td>{stateObj.cantidad}</td>
-                                        <td>${stateObj.precio_unitario}</td>
-                                        <td>{stateObj.marca}</td>
-                                        <td>{stateObj.proveedor}</td>
-                                        <td>{formatDate(new Date(stateObj.fechaHora))}</td>
-                                        <td>{formatTime(new Date(stateObj.fechaHora))}</td>
-                                    </tr>
-                                )
-                            }
-                        }
-                    />
-                </div>
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad ingresada</th>
+                                            <th>Costo unitario</th>
+                                            <th>Marca</th>
+                                            <th>Proveedor</th>
+                                            <th>Fecha de ingreso</th>
+                                            <th>Hora de ingreso</th>
+                                        </tr>
+                                    }
 
-                <div className={styles.tableContainer} id="ventasTable">
-                    <h2>Ventas</h2>
-                    <TablaReutilizable
-                        searchBoxState={searchBoxState}
-                        arrayState={historialVentas}
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                <tr key={stateObj.id}>
+                                                    <td>{stateObj.producto}</td>
+                                                    <td>{stateObj.cantidad}</td>
+                                                    <td>${stateObj.precio_unitario}</td>
+                                                    <td>{stateObj.marca}</td>
+                                                    <td>{stateObj.proveedor}</td>
+                                                    <td>{formatDate(new Date(stateObj.fechaHora))}</td>
+                                                    <td>{formatTime(new Date(stateObj.fechaHora))}</td>
+                                                </tr>
+                                            )
+                                        }
+                                    }
+                                />
+                            </div>
 
-                        tableHeaders={
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad vendida</th>
-                                <th>Precio unitario de venta</th>
-                                <th>Marca</th>
-                                <th>Fecha de venta</th>
-                                <th>Hora de venta</th>
-                            </tr>
-                        }
+                            <div className={styles.tableContainer} id="ventasTable">
+                                <h2>Ventas</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={historialVentas}
 
-                        mapCallback={
-                            (stateObj) => {
-                                return (
-                                    <tr key={stateObj.id}>
-                                        <td>{stateObj.producto}</td>
-                                        <td>{stateObj.cantidad}</td>
-                                        <td>${stateObj.precio_unitario}</td>
-                                        <td>{stateObj.marca}</td>
-                                        <td>{formatDate(new Date(stateObj.fechaHora))}</td>
-                                        <td>{formatTime(new Date(stateObj.fechaHora))}</td>
-                                    </tr>
-                                )
-                            }
-                        }
-                    />
-                </div>
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad vendida</th>
+                                            <th>Precio unitario de venta</th>
+                                            <th>Marca</th>
+                                            <th>Fecha de venta</th>
+                                            <th>Hora de venta</th>
+                                        </tr>
+                                    }
+
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                <tr key={stateObj.id}>
+                                                    <td>{stateObj.producto}</td>
+                                                    <td>{stateObj.cantidad}</td>
+                                                    <td>${stateObj.precio_unitario}</td>
+                                                    <td>{stateObj.marca}</td>
+                                                    <td>{formatDate(new Date(stateObj.fechaHora))}</td>
+                                                    <td>{formatTime(new Date(stateObj.fechaHora))}</td>
+                                                </tr>
+                                            )
+                                        }
+                                    }
+                                />
+                            </div>
+                        </>
+                     
+                }
                 
             </div>
 
