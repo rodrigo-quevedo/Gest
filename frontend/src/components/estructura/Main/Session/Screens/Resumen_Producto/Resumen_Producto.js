@@ -29,7 +29,9 @@ function Resumen_Producto() {
         document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
         // resetear estilos de producto seleccionado en tabla al clickear en "Lista completa <-|" (sin esto, al clickear ahí, se sigue marcando el último producto clickeado. No debería marcar nada, porque está buscando la lista completa.)
-        document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{setProductSelected(null)})
+        document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{
+            setProductSelected(null)
+        })
 
         // resetear layout al enviar la searchbox vacia
         document.getElementById("searchBoxForm_ListaProductos").addEventListener('submit', (e)=>{
@@ -37,6 +39,7 @@ function Resumen_Producto() {
                 setProductSelected(null)
             }
         })
+        
     }, [])
     
         const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
@@ -65,8 +68,8 @@ function Resumen_Producto() {
         <div>
             <h1>Resumen de producto</h1>
 
-            <h3><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
-            <h3><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
+            <h3 className={styles.infoText}><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
+           
 
             <div className={styles.container}>
 
@@ -128,6 +131,7 @@ function Resumen_Producto() {
 
                                                     setProductSelected(`${stateObj.producto}_${stateObj.marca}`)
 
+
                                                 }}
                                             >
                                                 <td>{stateObj.producto}</td>
@@ -141,9 +145,39 @@ function Resumen_Producto() {
                         </div>
                     :
                         <>
-                            <div className={styles.finanzaYProductoContainer}>
+                            <div className={styles.finanzaYProductoContainer} >
+                                <div className={styles.tableContainer} id="productoTableNotInteractive">
+                                    {/* <h2>Producto seleccionado</h2> */}
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={listaProductos}
+
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Producto seleccionado</th>
+                                                <th>Cantidad Actual</th>
+                                                <th>Marca</th>
+                                            </tr>
+                                        }
+
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr 
+                                                        key={`${stateObj.producto}_${stateObj.marca}`}
+                                                    >
+                                                        <td>{stateObj.producto}</td>
+                                                        <td>{stateObj.cantidad}</td>
+                                                        <td>{stateObj.marca}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
+
                                 <div className={styles.tableContainer} id="finanzaTable">
-                                    <h2>Finanza</h2>
+                                    {/* <h2>Finanza</h2> */}
                                     <TablaReutilizable
                                         searchBoxState={searchBoxState}
                                         arrayState={arrFinanza}
@@ -173,39 +207,12 @@ function Resumen_Producto() {
                                     />
                                 </div>
 
-                                <div className={styles.tableContainer}>
-                                    <h2>Producto seleccionado</h2>
-                                    <TablaReutilizable
-                                        searchBoxState={searchBoxState}
-                                        arrayState={listaProductos}
-
-                                        tableHeaders={
-                                            <tr>
-                                                <th>Producto</th>
-                                                <th>Cantidad Actual</th>
-                                                <th>Marca</th>
-                                            </tr>
-                                        }
-
-                                        mapCallback={
-                                            (stateObj) => {
-                                                return (
-                                                    <tr 
-                                                        key={`${stateObj.producto}_${stateObj.marca}`}
-                                                    >
-                                                        <td>{stateObj.producto}</td>
-                                                        <td>{stateObj.cantidad}</td>
-                                                        <td>{stateObj.marca}</td>
-                                                    </tr>
-                                                )
-                                            }
-                                        }
-                                    />
-                                </div>
+                                
                             </div>
 
                             <div className={styles.tableContainer} id="comprasTable">
                                 <h2>Compras</h2>
+                                <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={historialProductos}
