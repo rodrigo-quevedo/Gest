@@ -24,7 +24,12 @@ import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUp
 
 function Resumen_Producto() {
 
+    
+
     useEffect(()=>{
+        // cambiar titulo
+        document.title = "Resumen"
+
         // cuando carga la pagina, buscar todo el historial
         document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
@@ -103,7 +108,7 @@ function Resumen_Producto() {
                 {
                     productSelected === null ? 
                         <div className={styles.tableContainer} id="productosTable">
-                            <h2>Productos (filtrar y/o clickear para seleccionar)</h2>
+                            <h2>Lista de productos (click en producto para seleccionarlo)</h2>
                             <TablaReutilizable
                                 searchBoxState={searchBoxState}
                                 arrayState={listaProductos}
@@ -199,11 +204,12 @@ function Resumen_Producto() {
                                         mapCallback={
                                             (stateObj) => {
                                                 return (
+                                                    //doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format#description
                                                     <tr key={stateObj.id}>
-                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
-                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
-                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
-                                                        <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
+                                                        <td>${new Intl.NumberFormat("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
+                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
+                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
+                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
                                                     </tr>
                                                 )
                                             }
@@ -239,7 +245,7 @@ function Resumen_Producto() {
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
+                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{stateObj.proveedor}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
@@ -275,7 +281,7 @@ function Resumen_Producto() {
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${new Intl.NumberFormat("en-IN", {minimumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
+                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
                                                     <td>{formatTime(new Date(stateObj.fechaHora))}</td>
