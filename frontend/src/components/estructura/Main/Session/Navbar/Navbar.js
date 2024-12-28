@@ -53,7 +53,7 @@ export default function Navbar (
                 </span>
             </button>
 
-            <button 
+            {/* <button 
 
                 className={
                     sessionScreen === SESSION_SCREENS.LISTA_PRODUCTOS ?
@@ -72,7 +72,7 @@ export default function Navbar (
                 <span className={styles.icon}>
                     <FaClipboardList/>
                 </span>
-            </button>
+            </button> */}
 
             <button 
 
@@ -95,26 +95,6 @@ export default function Navbar (
                 </span>
             </button>
             
-            <button 
-
-                className={
-                    sessionScreen === SESSION_SCREENS.HISTORIAL_PRODUCTOS ?
-                        styles.seleccionado
-                    : 
-                        null
-                }
-
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)
-                    setDesplegado(false)
-                }}
-
-            >
-                Historial de productos
-                <span className={styles.icon}>
-                    <HiClipboardDocumentList/>
-                </span>
-            </button>
             
             <button 
 
@@ -136,7 +116,28 @@ export default function Navbar (
                     <FaCashRegister/>
                 </span>
             </button>
-            
+
+            <button 
+
+                className={
+                    sessionScreen === SESSION_SCREENS.HISTORIAL_PRODUCTOS ?
+                        styles.seleccionado
+                    : 
+                        null
+                }
+
+                onClick={()=>{
+                    setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)
+                    setDesplegado(false)
+                }}
+
+                >
+                Historial de productos
+                <span className={styles.icon}>
+                    <HiClipboardDocumentList/>
+                </span>
+            </button>
+
             <button 
 
                 className={
