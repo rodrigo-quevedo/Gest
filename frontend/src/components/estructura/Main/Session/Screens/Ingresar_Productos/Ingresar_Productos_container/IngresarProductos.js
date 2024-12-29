@@ -9,6 +9,9 @@ import FormularioReutilizable from '../../../../../../componentes_reutilizables/
 import FormInput from '../../../../../../componentes_reutilizables/FormInput/FormInput';
 import FetchStatusText from '../../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
 
+//icons
+import { RiArrowGoBackFill } from "react-icons/ri";
+
 //config
 import {FETCH_STATUS} from '../../../../../../../config/config'
 import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
@@ -28,6 +31,15 @@ function IngresarProductos () {
 
     return (
         <section className={styles.container}>
+
+                <button 
+                    className={styles.goBackButton}
+                    onClick = {()=> {
+                        
+                    }}
+                >
+                    Volver <RiArrowGoBackFill/>
+                </button>
 
                 <h1>Nuevo producto</h1>
 

@@ -10,6 +10,45 @@
     color: #111134;
 }
 
+/* Cambiar el estilo del button */
+.container form > input {
+    max-width: 100%;
+    width: 100%;
+}
+
+.goBackButton {
+    margin-top: 10px;
+
+    padding: 10px 20px;
+    background: #111134;
+    color: #fff;
+    
+    border: 0;
+    border-radius: 10px;
+
+
+
+    transition: 1s all;
+}
+
+.goBackButton:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #111134;
+
+    transition: 1s all;
+}
+.goBackButton:focus {
+    background: #fff;
+    color: #000
+}
+
+.goBackButton:active {
+    background: #fff;
+    color: #111134;
+    border: 1px solid #000;
+}
+
 
 @media (width < 700px) {
     .container {

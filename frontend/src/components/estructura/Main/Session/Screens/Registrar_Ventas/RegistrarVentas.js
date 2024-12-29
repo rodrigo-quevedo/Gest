@@ -9,6 +9,9 @@ import FormularioReutilizable from '../../../../../componentes_reutilizables/For
 import FormInput from '../../../../../componentes_reutilizables/FormInput/FormInput';
 import FetchStatusText from '../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
 
+//icons
+import { RiArrowGoBackFill } from "react-icons/ri";
+
 //config
 import {FETCH_STATUS} from '../../../../../../config/config'
 import { URL_REGISTRAR_VENTAS } from "../../../../../../config/config"
@@ -28,8 +31,18 @@ function RegistrarVentas () {
 
         <section className={styles.container}>
 
+            <button 
+                className={styles.goBackButton}
+                onClick = {()=> {
+                    
+                }}
+            >
+                Volver <RiArrowGoBackFill/>
+            </button>
+
             <h1>Ingresar una venta</h1>
       
+
             <FormularioReutilizable 
                     fetchStatus={fetchStatus}
                     setFetchStatus={setFetchStatus}
@@ -77,13 +90,6 @@ function RegistrarVentas () {
                                 required='true'
                             />
 
-                            <FormInput 
-                                idInput='proveedor'
-                                type='text'
-                                texto='Proveedor'
-
-                                required='true'
-                            />
                         </>
                     }
                 />
