@@ -17,6 +17,8 @@ import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUp
 
 //icons
 import { PiSealWarningBold } from "react-icons/pi";
+import { FaTruckLoading } from "react-icons/fa";
+import { FaCashRegister } from "react-icons/fa";
 
 //logica de este componente
 import formatDate from '../../../../../../utils/format_date/format_date';
@@ -89,15 +91,7 @@ function Resumen_Producto({
 
             <div className={styles.container}>
 
-                <div 
-                    className={
-                        productSelected === null ?
-                            styles.searchBoxContainerFullWidth
-                        :
-                            styles.searchBoxContainer
-                    }
-                
-                >
+                <div className={styles.searchBoxContainer} >
 
                     <SearchBox_resumen
                         searchBoxState={searchBoxState}
@@ -113,52 +107,76 @@ function Resumen_Producto({
 
                 {
                     productSelected === null ? 
-                        <div className={styles.tableContainer} id="productosTable">
-                            <h2>Lista de productos (click en producto para seleccionarlo)</h2>
-                            <TablaReutilizable
-                                searchBoxState={searchBoxState}
-                                arrayState={listaProductos}
+                        <>
+                            <div className={styles.tableContainer} id="productosTable">
+                                <h2>Lista de productos (click en producto para seleccionarlo)</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={listaProductos}
 
-                                tableHeaders={
-                                    <tr>
-                                        <th>Producto</th>
-                                        <th>Cantidad Actual</th>
-                                        <th>Marca</th>
-                                    </tr>
-                                }
-
-                                mapCallback={
-                                    (stateObj) => {
-                                        return (
-                                            <tr 
-                                                key={stateObj.producto}
-                                                
-                                                className={productSelected === stateObj.producto ? 
-                                                        `${styles.hoveredTR} tableProductSelected` 
-                                                    : 
-                                                        styles.hoveredTR
-                                                }
-                                                onClick={(e)=>{
-                                                    //establecer req body
-                                                    document.getElementById('searchBoxInput').value= stateObj.producto
-                                                    
-                                                    //fetch
-                                                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-
-                                                    setProductSelected(stateObj.producto)
-
-
-                                                }}
-                                            >
-                                                <td>{stateObj.producto}</td>
-                                                <td>{stateObj.cantidad}</td>
-                                                <td>{stateObj.marca}</td>
-                                            </tr>
-                                        )
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad Actual</th>
+                                            <th>Marca</th>
+                                        </tr>
                                     }
-                                }
-                            />
-                        </div>
+
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                <tr 
+                                                    key={stateObj.producto}
+                                                    
+                                                    className={productSelected === stateObj.producto ? 
+                                                            `${styles.hoveredTR} tableProductSelected` 
+                                                        : 
+                                                            styles.hoveredTR
+                                                    }
+                                                    onClick={(e)=>{
+                                                        //establecer req body
+                                                        document.getElementById('searchBoxInput').value= stateObj.producto
+                                                        
+                                                        //fetch
+                                                        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+
+                                                        setProductSelected(stateObj.producto)
+
+
+                                                    }}
+                                                >
+                                                    <td>{stateObj.producto}</td>
+                                                    <td>{stateObj.cantidad}</td>
+                                                    <td>{stateObj.marca}</td>
+                                                </tr>
+                                            )
+                                        }
+                                    }
+                                />
+                            </div>
+
+                            <div className={styles.containerButtonCompraVenta}>
+                                <button 
+                                    className={styles.buttonCompraVenta}
+                                    
+                                >
+                                    Ingresar un producto
+                                    <span className={styles.icon}>
+                                        <FaTruckLoading/>
+                                    </span>
+                                </button>
+
+                                <button 
+                                    className={styles.buttonCompraVenta}
+                                    
+                                >
+                                    Registrar venta
+                                    <span className={styles.icon}>
+                                        <FaCashRegister/>
+                                    </span>
+                                </button>
+                            </div>
+                        </>
                     :
                         <>
                             {/* <div className={styles.finanzaYProductoContainer} > */}

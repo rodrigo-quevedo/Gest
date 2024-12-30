@@ -10,27 +10,7 @@ h1 {
     text-align: center;
     max-width: 100%;
 }
-/* 
-.tableSection {
-    display: grid;
 
-    grid-template-columns: repeat(24, 1fr); 
-    grid-template-areas: 
-        " . p p p p p p p p . f f f f f f f f f f f f f . "        
-        " . c c c c c c c c c c c . v v v v v v v v v v . "
-    ;
-} */
-
-.searchBoxContainerFullWidth {
-    grid-column: 1/-1;
-    grid-row: 1;
-}
-
-/* .finanzaYProductoContainer{
-    grid-column: 11/-2;
-    grid-row: 1;
-    
-} */
 .searchBoxContainer {
     grid-column: 1/-1;
     grid-row: 1;
@@ -48,7 +28,7 @@ h1 {
 
 :global(#productosTable) {
     grid-column: 6/-6;
-    grid-row: 2;
+    grid-row: 2/6;
 }
 
 
@@ -60,6 +40,44 @@ h1 {
     grid-column: 14/-2;
     grid-row: 3;
 }
+
+.containerButtonCompraVenta{
+    grid-column: -5/-1;
+    grid-row: 2;
+}
+.buttonCompraVenta{
+    background: #111134;
+    color: #fff;
+    
+    padding: 50px;
+
+    border: 0;
+    border-radius: 10px;
+
+    max-height: fit-content;
+
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 5px;
+
+    transition: 1s all;
+}
+.buttonCompraVenta:hover{
+    cursor: pointer;
+    background: #000;
+    transition: 1s all;
+}
+.buttonCompraVenta:active{
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: none;
+}
+
+
 
 /* :global(#productoTableNotInteractive) th{
     background: #fff;
@@ -130,17 +148,6 @@ h1 {
         display: block
     }
 
-    /* .tableSection {
-        display: grid;
-    
-        grid-template-columns: repeat(24, 1fr); 
-        grid-template-areas: 
-            " . f f f f f f f f f f f f f f f f f f f f f f . "
-            " . p p p p p p p p p p p p p p p p p p p p p p . "
-            " . c c c c c c c c c c c c c c c c c c c c c c . "
-            " . v v v v v v v v v v v v v v v v v v v v v v . "
-        ;
-    } */
 
     .infoText {
         display: block;
