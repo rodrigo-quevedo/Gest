@@ -22,19 +22,25 @@ function Session() {
     function mostrarScreen(screen) {
         switch(screen) {
             case SESSION_SCREENS.RESUMEN_PRODUCTO: {
-                return <Resumen_Producto />
+                return <Resumen_Producto 
+                            setSessionScreen={setSessionScreen}
+                        />
             }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {
                 return <ListaProductos />
             }
             case SESSION_SCREENS.INGRESAR_PRODUCTOS: {
-                return <IngresarProductos />
+                return <IngresarProductos 
+                            setSessionScreen={setSessionScreen}
+                        />
+            }
+            case SESSION_SCREENS.REGISTRAR_VENTAS : {
+                return <RegistrarVentas 
+                            setSessionScreen={setSessionScreen}
+                        />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {
                 return <HistorialProductos />
-            }
-            case SESSION_SCREENS.REGISTRAR_VENTAS : {
-                return <RegistrarVentas />
             }
             case SESSION_SCREENS.HISTORIAL_VENTAS : {
                 return <HistorialVentas />

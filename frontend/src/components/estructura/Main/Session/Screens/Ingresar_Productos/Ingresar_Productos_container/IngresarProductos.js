@@ -15,11 +15,13 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 //config
 import {FETCH_STATUS} from '../../../../../../../config/config'
 import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
+import {SESSION_SCREENS} from "../../../../../../../config/config"
 
 
 
-
-function IngresarProductos () {
+function IngresarProductos ({
+    setSessionScreen
+}) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
     // Esto va cambiando según lo que pase en el fetch:
@@ -35,7 +37,7 @@ function IngresarProductos () {
                 <button 
                     className={styles.goBackButton}
                     onClick = {()=> {
-                        
+                        setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
                     }}
                 >
                     Volver <RiArrowGoBackFill/>

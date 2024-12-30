@@ -15,11 +15,13 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 //config
 import {FETCH_STATUS} from '../../../../../../config/config'
 import { URL_REGISTRAR_VENTAS } from "../../../../../../config/config"
+import {SESSION_SCREENS} from "../../../../../../config/config"
 
 
 
-
-function RegistrarVentas () {
+function RegistrarVentas ({
+    setSessionScreen
+}) {
     document.querySelector('title').innerText = 'Registrar venta';
 
     // Esto va cambiando según lo que pase en el fetch:
@@ -34,7 +36,7 @@ function RegistrarVentas () {
             <button 
                 className={styles.goBackButton}
                 onClick = {()=> {
-                    
+                    setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
                 }}
             >
                 Volver <RiArrowGoBackFill/>

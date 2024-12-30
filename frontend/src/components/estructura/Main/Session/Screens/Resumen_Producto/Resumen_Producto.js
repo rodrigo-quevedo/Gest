@@ -1,3 +1,4 @@
+//css
 import styles from './Resumen_Producto.module.css'
 
 //react
@@ -6,23 +7,28 @@ import { useState, useEffect } from 'react';
 //config
 import {SEARCHBOX_STATE} from '../../../../../../config/config'
 import { URL_LISTA_PRODUCTOS, URL_HISTORIAL_PRODUCTOS, URL_HISTORIAL_VENTAS } from '../../../../../../config/config';
+import {SESSION_SCREENS} from "../../../../../../config/config"
 
-
+//componentes
 import SearchBox_resumen from '../../../../../componentes_reutilizables/SearchBox_resumen/SearchBox_resumen'
 import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable';
+import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUpButton'
 
-import formatDate from '../../../../../../utils/format_date/format_date';
-import formatTime from '../../../../../../utils/format_date/format_time';
 
+//icons
 import { PiSealWarningBold } from "react-icons/pi";
 
+//logica de este componente
+import formatDate from '../../../../../../utils/format_date/format_date';
+import formatTime from '../../../../../../utils/format_date/format_time';
 import calcularTotalGastado from './finanza/calcularTotalGastado';
 import calcularTotalVendido from './finanza/calcularTotalVendido';
 import calcularGananciaActual from './finanza/calcularGananciaActual';
 
-import GoUpButton from '../../../../../componentes_reutilizables/GoUpButton/GoUpButton'
 
-function Resumen_Producto() {
+function Resumen_Producto({
+    setSessionScreen
+}) {
 
     
 
