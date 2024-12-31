@@ -27,8 +27,10 @@ h1 {
 }
 
 :global(#productosTable) {
-    grid-column: 6/-6;
+    grid-column: 4/-7;
     grid-row: 2/6;
+    
+    margin-right: 10px;
 }
 
 
@@ -42,17 +44,24 @@ h1 {
 }
 
 .containerButtonCompraVenta{
-    grid-column: -5/-1;
+    grid-column: -7/-4;
     grid-row: 2;
+
+    margin-top: 40px;
+}
+.buttonCompraVenta span{
+    margin-top: 10px;
+    font-size: 20px;
 }
 .buttonCompraVenta{
     background: #111134;
     color: #fff;
     
-    padding: 50px;
+    padding: 30px;
 
     border: 0;
     border-radius: 10px;
+    box-shadow: 1px 1px 15px #000;
 
     max-height: fit-content;
 
@@ -63,6 +72,8 @@ h1 {
 
     margin: 5px;
 
+    font-size: 14px;
+
     transition: 1s all;
 }
 .buttonCompraVenta:hover{
@@ -70,11 +81,11 @@ h1 {
     background: #000;
     transition: 1s all;
 }
-.buttonCompraVenta:active{
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
-    transition: none;
+.buttonCompraVenta:active, .buttonCompraVentaSeleccionado{
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    transition: none !important;
 }
 
 

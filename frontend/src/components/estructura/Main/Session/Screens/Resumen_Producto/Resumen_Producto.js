@@ -119,7 +119,15 @@ function Resumen_Producto({
                     productSelected === null ? 
                         <>
                             <div className={styles.tableContainer} id="productosTable">
-                                <h2>Lista de productos (click en producto para seleccionarlo)</h2>
+                                {
+                                    ingresarProducto?
+                                        <h2>Ingresar producto:</h2>
+                                    :
+                                        registrarVenta?
+                                            <h2>Registrar venta:</h2>
+                                        :
+                                        <h2>Lista de productos (click en producto para ver resumen)</h2>
+                                }
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={listaProductos}
@@ -191,7 +199,12 @@ function Resumen_Producto({
 
                             <div className={styles.containerButtonCompraVenta}>
                                 <button 
-                                    className={styles.buttonCompraVenta}
+                                    className={
+                                        ingresarProducto?
+                                            `${styles.buttonCompraVenta} ${styles.buttonCompraVentaSeleccionado}`
+                                        :
+                                            styles.buttonCompraVenta
+                                    }
                                     onClick={()=>{
                                         //activar/desactivar
                                         setIngresarProducto(!ingresarProducto)
@@ -206,10 +219,15 @@ function Resumen_Producto({
                                 </button>
 
                                 <button 
-                                    className={styles.buttonCompraVenta}
+                                    className={
+                                        registrarVenta?
+                                            `${styles.buttonCompraVenta} ${styles.buttonCompraVentaSeleccionado}`
+                                        :
+                                            styles.buttonCompraVenta
+                                    }
                                     onClick={()=>{
                                         //activar/desactivar
-                                        setRegistrarVenta(!ingresarProducto)
+                                        setRegistrarVenta(!registrarVenta)
                                         //siempre setear el otro a false
                                         setIngresarProducto(false)
                                     }}
