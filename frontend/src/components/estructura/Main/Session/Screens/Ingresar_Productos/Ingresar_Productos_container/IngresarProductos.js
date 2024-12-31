@@ -20,7 +20,8 @@ import {SESSION_SCREENS} from "../../../../../../../config/config"
 
 
 function IngresarProductos ({
-    setSessionScreen
+    setSessionScreen,
+    productoAIngresar
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
@@ -58,6 +59,7 @@ function IngresarProductos ({
                                 texto='Nombre del producto'
 
                                 required='true'
+                                value={productoAIngresar?.producto}
                             />
 
                             <FormInput 
@@ -90,6 +92,8 @@ function IngresarProductos ({
                                 texto='Marca'
 
                                 required='true'
+
+                                value={productoAIngresar?.marca}
                             />
 
                             <FormInput 

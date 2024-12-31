@@ -18,12 +18,17 @@ import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
 function Session() {
 
     const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.RESUMEN_PRODUCTO)
+    //ingreso de producto y registro de venta
+    const [productoAIngresar, setProductoAIngresar] = useState(null)
+    const [productoAVender, setProductoAVender] = useState(null)
 
     function mostrarScreen(screen) {
         switch(screen) {
             case SESSION_SCREENS.RESUMEN_PRODUCTO: {
                 return <Resumen_Producto 
                             setSessionScreen={setSessionScreen}
+                            setProductoAIngresar={setProductoAIngresar}
+                            setProductoAVender={setProductoAVender}
                         />
             }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {
@@ -32,11 +37,13 @@ function Session() {
             case SESSION_SCREENS.INGRESAR_PRODUCTOS: {
                 return <IngresarProductos 
                             setSessionScreen={setSessionScreen}
+                            productoAIngresar={productoAIngresar}
                         />
             }
             case SESSION_SCREENS.REGISTRAR_VENTAS : {
                 return <RegistrarVentas 
                             setSessionScreen={setSessionScreen}
+                            productoAVender={productoAVender}
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {

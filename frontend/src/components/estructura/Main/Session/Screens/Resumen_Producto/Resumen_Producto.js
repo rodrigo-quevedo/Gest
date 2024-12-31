@@ -29,7 +29,9 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 
 
 function Resumen_Producto({
-    setSessionScreen
+    setSessionScreen,
+    setProductoAIngresar,
+    setProductoAVender
 }) {
 
     
@@ -55,13 +57,19 @@ function Resumen_Producto({
         
     }, [])
     
+        //logica searchbox
         const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
     
     
+        //logica tablas
         const [listaProductos, setListaProductos] = useState([])
         const [historialProductos, setHistorialProductos] = useState([])
         const [historialVentas, setHistorialVentas] = useState([])
+        const [productSelected, setProductSelected] = useState(null);
         
+
+        
+        //logica finanza
         let totalGastado = calcularTotalGastado(historialProductos)
         let totalVendido = calcularTotalVendido(historialVentas)
         let totalGanancia = (totalVendido - totalGastado).toFixed(2)
@@ -74,8 +82,10 @@ function Resumen_Producto({
             totalMargen
         }]
 
-        const [productSelected, setProductSelected] = useState(null);
 
+        //logica compra y venta
+        const [ingresarProducto, setIngresarProducto] = useState(false)
+        const [registrarVenta, setRegistrarVenta] = useState(false)
 
     return (
         <div>
@@ -133,17 +143,41 @@ function Resumen_Producto({
                                                         : 
                                                             styles.hoveredTR
                                                     }
-                                                    onClick={(e)=>{
-                                                        //establecer req body
-                                                        document.getElementById('searchBoxInput').value= stateObj.producto
-                                                        
-                                                        //fetch
-                                                        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                                                    onClick={
+                                                        ingresarProducto ?
+                                                            
+                                                            // manejar ingresar producto
+                                                            (e)=>{
+                                                                setProductoAIngresar({
+                                                                    producto: stateObj.producto,
+                                                                    marca: stateObj.marca
+                                                                })
 
-                                                        setProductSelected(stateObj.producto)
+                                                                setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)
+                                                            }
+                                                        :
+                                                            registrarVenta ? 
+                                                                // manejar registro venta
+                                                                (e)=>{
+                                                                    setProductoAVender({
+                                                                        producto: stateObj.producto,
+                                                                        marca: stateObj.marca
+                                                                    })
 
+                                                                    setSessionScreen(SESSION_SCREENS.REGISTRAR_VENTAS)
+                                                                }
+                                                            :
+                                                                // manejar resumen producto
+                                                                (e)=>{
+                                                                    //establecer req body
+                                                                    document.getElementById('searchBoxInput').value= stateObj.producto
+                                                                    
+                                                                    //fetch
+                                                                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
 
-                                                    }}
+                                                                    setProductSelected(stateObj.producto)
+                                                                }
+                                                }
                                                 >
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
@@ -158,7 +192,12 @@ function Resumen_Producto({
                             <div className={styles.containerButtonCompraVenta}>
                                 <button 
                                     className={styles.buttonCompraVenta}
-                                    
+                                    onClick={()=>{
+                                        //activar/desactivar
+                                        setIngresarProducto(!ingresarProducto)
+                                        //siempre setear el otro a false
+                                        setRegistrarVenta(false)
+                                    }}
                                 >
                                     Ingresar un producto
                                     <span className={styles.icon}>
@@ -168,7 +207,12 @@ function Resumen_Producto({
 
                                 <button 
                                     className={styles.buttonCompraVenta}
-                                    
+                                    onClick={()=>{
+                                        //activar/desactivar
+                                        setRegistrarVenta(!ingresarProducto)
+                                        //siempre setear el otro a false
+                                        setIngresarProducto(false)
+                                    }}
                                 >
                                     Registrar venta
                                     <span className={styles.icon}>

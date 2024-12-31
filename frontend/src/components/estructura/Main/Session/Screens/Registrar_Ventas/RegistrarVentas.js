@@ -20,7 +20,8 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 
 
 function RegistrarVentas ({
-    setSessionScreen
+    setSessionScreen,
+    productoAVender
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
@@ -58,6 +59,8 @@ function RegistrarVentas ({
                                 texto='Nombre del producto'
 
                                 required='true'
+
+                                value={productoAVender?.producto}
                             />
 
                             <FormInput 
@@ -90,6 +93,8 @@ function RegistrarVentas ({
                                 texto='Marca'
 
                                 required='true'
+
+                                value={productoAVender?.marca}
                             />
 
                         </>
