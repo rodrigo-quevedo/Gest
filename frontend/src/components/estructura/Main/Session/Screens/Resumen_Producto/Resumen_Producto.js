@@ -55,6 +55,7 @@ function Resumen_Producto({
             }
         })
         
+
     }, [])
     
         //logica searchbox
@@ -127,6 +128,21 @@ function Resumen_Producto({
                                             <h2>Registrar venta:</h2>
                                         :
                                         <h2>Lista de productos (click en producto para ver resumen)</h2>
+                                }
+
+                                {
+                                    ingresarProducto?
+                                        <button 
+                                            className={styles.ingresarNuevoProductoButton}
+                                            onClick={()=>{
+                                                setProductoAIngresar(null)
+                                                setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)
+                                            }}
+                                        >
+                                            + Nuevo producto
+                                        </button>
+                                        :
+                                        null
                                 }
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}

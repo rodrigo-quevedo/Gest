@@ -31,6 +31,8 @@ h1 {
     grid-row: 2/6;
     
     margin-right: 10px;
+
+    text-align: center;
 }
 
 
@@ -86,6 +88,29 @@ h1 {
     color: #000 !important;
     border: 1px solid #000 !important;
     transition: none !important;
+}
+.ingresarNuevoProductoButton{
+    background:#111134;
+    color: #fff;
+
+    padding: 10px 20px;
+
+    border: 0;
+    border-radius: 15px;
+    
+    transition: 1s all;
+}
+.ingresarNuevoProductoButton:hover{
+    cursor: pointer;
+
+    background: #000;
+    color: #fff;
+    transition: 1s all;
+}
+.ingresarNuevoProductoButton:active{
+    background: #fff;
+    color: #fff;
+    transition: none;
 }
 
 
