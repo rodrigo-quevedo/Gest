@@ -74,7 +74,7 @@ export default function Navbar (
                 </span>
             </button> */}
 
-            <button 
+            {/* <button 
 
                 className={
                     sessionScreen === SESSION_SCREENS.INGRESAR_PRODUCTOS ? 
@@ -115,7 +115,7 @@ export default function Navbar (
                 <span className={styles.icon}>
                     <FaCashRegister/>
                 </span>
-            </button>
+            </button> */}
 
             <button 
 

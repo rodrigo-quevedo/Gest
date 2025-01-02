@@ -10,10 +10,12 @@ import IngresarProductos from '../Screens/Ingresar_Productos/Ingresar_Productos_
 import HistorialProductos from '../Screens/Historial_Productos/HistorialProductos'
 import RegistrarVentas from '../Screens/Registrar_Ventas/RegistrarVentas'
 import HistorialVentas from '../Screens/Historial_Ventas/HistorialVentas'
+import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
+
 
 import {SESSION_SCREENS} from '../../../../../config/config'
-import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
-// import GoUpButton from '../../../../componentes_reutilizables/GoUpButton/GoUpButton';
+import { FETCH_STATUS } from '../../../../../config/config';
+
 
 function Session({
     setPopupSessionExpired
@@ -24,6 +26,11 @@ function Session({
     const [productoAIngresar, setProductoAIngresar] = useState(null)
     const [productoAVender, setProductoAVender] = useState(null)
 
+    //venta
+    const [ventaFetchStatus, setVentaFetchStatus] = useState({
+        status: FETCH_STATUS.DEFAULT
+    })
+
     function mostrarScreen(screen) {
         switch(screen) {
             case SESSION_SCREENS.RESUMEN_PRODUCTO: {
@@ -32,6 +39,8 @@ function Session({
                             setProductoAIngresar={setProductoAIngresar}
                             setProductoAVender={setProductoAVender}
                             setPopupSessionExpired={setPopupSessionExpired}
+                            ventaFetchStatus={ventaFetchStatus}
+                            setVentaFetchStatus={setVentaFetchStatus}
                         />
             }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {
@@ -47,6 +56,8 @@ function Session({
                 return <RegistrarVentas 
                             setSessionScreen={setSessionScreen}
                             productoAVender={productoAVender}
+                            ventaFetchStatus={ventaFetchStatus}
+                            setVentaFetchStatus={setVentaFetchStatus}
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {

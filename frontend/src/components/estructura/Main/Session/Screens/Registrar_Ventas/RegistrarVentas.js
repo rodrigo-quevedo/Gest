@@ -2,7 +2,7 @@
 import styles from  './RegistrarVentas.module.css'
 
 //react
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 //components
 import FormularioReutilizable from '../../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
@@ -21,14 +21,20 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 
 function RegistrarVentas ({
     setSessionScreen,
-    productoAVender
+    productoAVender,
+    ventaFetchStatus,
+    setVentaFetchStatus
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
-    // Esto va cambiando según lo que pase en el fetch:
-    const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.DEFAULT
-    })
+
+    // Cambiar de screen cuando se complete el fetch (success)
+    useEffect(()=>{
+        if (ventaFetchStatus.status === FETCH_STATUS.SUCCESS){
+            setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
+        }
+    }, [ventaFetchStatus])
+
 
     return (
 
@@ -47,8 +53,8 @@ function RegistrarVentas ({
       
 
             <FormularioReutilizable 
-                    fetchStatus={fetchStatus}
-                    setFetchStatus={setFetchStatus}
+                    fetchStatus={ventaFetchStatus}
+                    setFetchStatus={setVentaFetchStatus}
                     submitMessage={"Ingresando venta..."}
                     fetchURL={URL_REGISTRAR_VENTAS}
                     formInputs={
@@ -102,7 +108,7 @@ function RegistrarVentas ({
                 />
 
                 <FetchStatusText 
-                    fetchStatus={fetchStatus}
+                    fetchStatus={ventaFetchStatus}
                 />
               
         </section>

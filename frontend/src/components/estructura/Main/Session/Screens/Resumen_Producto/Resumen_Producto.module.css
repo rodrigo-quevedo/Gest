@@ -11,6 +11,30 @@ h1 {
     max-width: 100%;
 }
 
+.resutadoSuccessMessage{
+    width: 60%;
+    
+    border-radius: 15px;
+    border: 1px solid #62c908;
+    
+    background: rgba(43, 255, 0, 0.152);
+    color: #62c908;
+    
+    padding: 5px;
+    margin: 10px auto;
+
+}
+.resutadoSuccessMessage button{
+    background: transparent;
+    border: 0;
+
+    font-weight: 900;
+}
+.resutadoSuccessMessage button:hover{
+    cursor: pointer;
+}
+
+
 .searchBoxContainer {
     grid-column: 1/-1;
     grid-row: 1;

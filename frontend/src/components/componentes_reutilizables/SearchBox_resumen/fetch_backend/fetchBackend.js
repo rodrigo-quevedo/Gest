@@ -12,14 +12,11 @@ function fetchBackend (
     setPopupSessionExpired
 ) 
     {
-    console.log('Entrando al fetch GET del searchbox');
-
-    console.log('fetchBody before parse:', fetchBody)
-    
+    // console.log('Entrando al fetch GET del searchbox');
+    // console.log('fetchBody before parse:', fetchBody)
     const fetchUrlQuery = new URLSearchParams(fetchBody)
-    
-    console.log('fetchBody despues del parse:', fetchUrlQuery.toString())
-    
+    // console.log('fetchBody despues del parse:', fetchUrlQuery.toString())
+
 
     fetch(URL + '?'+ fetchUrlQuery, {
         method: 'GET',
@@ -31,8 +28,7 @@ function fetchBackend (
         }
     })
     .then(response => {
-        console.log('respuesta del servidor:')
-        console.log(response)
+        // console.log('respuesta del servidor:', response)
 
         if (response.status === 401) {
             setPopupSessionExpired(true)
@@ -40,8 +36,7 @@ function fetchBackend (
         
         response.json()
         .then( json => {
-                console.log('respuesta del servidor json:')
-                console.log(json)
+                // console.log('respuesta del servidor json:', json)
 
                 if (!json.success) {
                     console.log(`error: ${json.message}`)

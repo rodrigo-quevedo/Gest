@@ -5,7 +5,7 @@ import styles from './Resumen_Producto.module.css'
 import { useState, useEffect } from 'react';
 
 //config
-import {SEARCHBOX_STATE} from '../../../../../../config/config'
+import {FETCH_STATUS, SEARCHBOX_STATE} from '../../../../../../config/config'
 import { URL_LISTA_PRODUCTOS, URL_HISTORIAL_PRODUCTOS, URL_HISTORIAL_VENTAS } from '../../../../../../config/config';
 import {SESSION_SCREENS} from "../../../../../../config/config"
 
@@ -32,7 +32,9 @@ function Resumen_Producto({
     setSessionScreen,
     setProductoAIngresar,
     setProductoAVender,
-    setPopupSessionExpired
+    setPopupSessionExpired,
+    ventaFetchStatus,
+    setVentaFetchStatus
 }) {
 
     
@@ -89,6 +91,50 @@ function Resumen_Producto({
         const [ingresarProducto, setIngresarProducto] = useState(false)
         const [registrarVenta, setRegistrarVenta] = useState(false)
 
+        
+        //logica mensaje exito venta
+        const [mensajeExitoVenta, setMensajeExitoVenta]= useState(null)
+        
+        let exitoVenta =
+            <div 
+                className={ mensajeExitoVenta ? 
+                    styles.resutadoSuccessMessage
+                :
+                    ''
+                }
+            > 
+                {mensajeExitoVenta}
+                {mensajeExitoVenta !== null ? 
+                    <button
+
+                        onClick={()=>{setMensajeExitoVenta(null)}}
+                    >
+                        X
+                    </button>
+                :
+                    null
+                }
+            </div>;
+        
+
+        useEffect(()=>{
+            if (ventaFetchStatus.status === FETCH_STATUS.SUCCESS) {
+                console.log("****************VENTA SUCCESS**********************")
+    
+                //mostrar mensaje success venta
+                setMensajeExitoVenta(ventaFetchStatus.resultado)
+                    
+                     
+                //resetear
+                setVentaFetchStatus({
+                    status: FETCH_STATUS.DEFAULT
+                });
+    
+                
+            }
+
+        }, [ventaFetchStatus])
+
     return (
         <div>
 
@@ -121,7 +167,11 @@ function Resumen_Producto({
                 {
                     productSelected === null ? 
                         <>
+                            
                             <div className={styles.tableContainer} id="productosTable">
+                                
+                                {exitoVenta}
+                                
                                 {
                                     ingresarProducto?
                                         <h2>Ingresar producto:</h2>
