@@ -7,7 +7,7 @@ const isAuthenticated = async (req, res, next)=> {
 
 
     if (req.cookies?.jwt === undefined) {
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: "No hay una cookie 'jwt'."
         })
@@ -23,7 +23,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
 
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: 'JWT: Tipo de dato invalido, debe ser string.'
         })
@@ -38,7 +38,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
 
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: 'JWT: Formato invalido.'
         })
@@ -61,7 +61,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
 
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: 'Se detectó que el JWT es inválido. El mismo no fue producido por el servidor.'
         })
@@ -77,7 +77,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
         
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: 'JWT: Tipo de dato invalido, debe ser string.'
         })
@@ -92,7 +92,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
         
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: 'JWT: Formato invalido.'
         })
@@ -123,7 +123,7 @@ const isAuthenticated = async (req, res, next)=> {
             httpOnly: true
         })
 
-        res.status(400).json({
+        res.status(401).json({
             success: false,
             message: `No se pudo encontrar la sesión. ${err.message}`
         })
