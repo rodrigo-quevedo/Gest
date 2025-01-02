@@ -31,7 +31,8 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 function Resumen_Producto({
     setSessionScreen,
     setProductoAIngresar,
-    setProductoAVender
+    setProductoAVender,
+    setPopupSessionExpired
 }) {
 
     
@@ -113,6 +114,7 @@ function Resumen_Producto({
                         setter_historialProductos={setHistorialProductos}
                         URL_historialVentas={URL_HISTORIAL_VENTAS}
                         setter_historialVentas={setHistorialVentas}
+                        setPopupSessionExpired={setPopupSessionExpired}
                     />
                 </div>
 

@@ -25,7 +25,8 @@ function SearchBox_resumen({
     URL_historialProductos,
     setter_historialProductos,
     URL_historialVentas,
-    setter_historialVentas
+    setter_historialVentas,
+    setPopupSessionExpired
 }) {
 
     useEffect(()=>{
@@ -66,7 +67,8 @@ function SearchBox_resumen({
                                 new FormData(
                                     document.getElementById('searchBoxForm_ListaProductos')
                                 )
-                            )
+                            ),
+                            setPopupSessionExpired
                         )
 
                         fetchBackend(
@@ -77,7 +79,8 @@ function SearchBox_resumen({
                                 new FormData(
                                     document.getElementById('searchBoxForm_ListaProductos')
                                 )
-                            )
+                            ),
+                            setPopupSessionExpired
                         )
 
                         fetchBackend(
@@ -88,7 +91,8 @@ function SearchBox_resumen({
                                 new FormData(
                                     document.getElementById('searchBoxForm_ListaProductos')
                                 )
-                            )
+                            ),
+                            setPopupSessionExpired
                         )
                     }}
                 >

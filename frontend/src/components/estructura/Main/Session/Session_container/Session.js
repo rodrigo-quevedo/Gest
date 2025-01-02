@@ -15,7 +15,9 @@ import {SESSION_SCREENS} from '../../../../../config/config'
 import Resumen_Producto from '../Screens/Resumen_Producto/Resumen_Producto';
 // import GoUpButton from '../../../../componentes_reutilizables/GoUpButton/GoUpButton';
 
-function Session() {
+function Session({
+    setPopupSessionExpired
+}) {
 
     const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.RESUMEN_PRODUCTO)
     //ingreso de producto y registro de venta
@@ -29,6 +31,7 @@ function Session() {
                             setSessionScreen={setSessionScreen}
                             setProductoAIngresar={setProductoAIngresar}
                             setProductoAVender={setProductoAVender}
+                            setPopupSessionExpired={setPopupSessionExpired}
                         />
             }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {

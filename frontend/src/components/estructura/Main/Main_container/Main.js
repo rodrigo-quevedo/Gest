@@ -4,7 +4,8 @@ import Session from '../Session/Session_container/Session'
 function Main (
     {
         isAuth, setIsAuth, 
-        authenticationScreen
+        authenticationScreen,
+        setPopupSessionExpired
     }
 ) {
 
@@ -18,7 +19,10 @@ function Main (
             {/* elegir entre login screens o session screens: */}
             {isAuth ?
 
-                <Session /> 
+                <Session 
+                    setIsAuth={setIsAuth}
+                    setPopupSessionExpired={setPopupSessionExpired}
+                /> 
                 
             : 
 

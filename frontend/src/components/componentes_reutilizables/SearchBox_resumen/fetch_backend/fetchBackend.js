@@ -1,9 +1,17 @@
 import { SEARCHBOX_STATE } from "../../../../config/config"
+import { SESSION_SCREENS } from "../../../../config/config";
 
 // Nota: Solo hace fetchs GET
 // Nota 2: el metodo GET, segun REST, NO ACEPTA request body, solo url query params (lo que sigue al '?')
 
-function fetchBackend (setSearchBoxState, URL, setState, fetchBody) {
+function fetchBackend (
+    setSearchBoxState, 
+    URL, 
+    setState, 
+    fetchBody, 
+    setPopupSessionExpired
+) 
+    {
     console.log('Entrando al fetch GET del searchbox');
 
     console.log('fetchBody before parse:', fetchBody)
@@ -25,6 +33,10 @@ function fetchBackend (setSearchBoxState, URL, setState, fetchBody) {
     .then(response => {
         console.log('respuesta del servidor:')
         console.log(response)
+
+        if (response.status === 401) {
+            setPopupSessionExpired(true)
+        }
         
         response.json()
         .then( json => {
