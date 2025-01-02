@@ -1,8 +1,50 @@
 .container {
-    width: 100vw;
-    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     
-    position: absolute;
+    /* En teoría desde acá puedo setear el height general del Header */
+    max-height: 71.6vh;
+    height: 71.6vh;
 
-    background: red;
+    background: #ddd;
+
+}
+
+.container p {
+    font-size: 22px;
+    font-weight: 500;
+
+    padding-bottom: 15px;
+}
+
+
+.button {
+    margin: 0 20px;
+    padding: 20px 40px;
+
+    color: #fff;
+    background: #4040fe;
+    border: 0;
+    border-radius: 30px;
+    font-size: 1em;
+
+    transition: 1s all;
+}
+
+.button:hover {
+    cursor: pointer;
+    background: #9A9AFF;
+    color: #000;
+
+    transition: 1s all;
+}
+
+.button:active {
+    background: #000;
+    color: purple;
+    
+    transition: none;
 }

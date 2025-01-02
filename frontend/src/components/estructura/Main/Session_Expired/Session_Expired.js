@@ -13,7 +13,7 @@ function Session_Expired ({
             <p>La sesión expiró. Ingrese nuevamente.</p>
             
             <button
-                className={styles.ingresarButton}
+                className={styles.button}
                 onClick={()=>{
                     setIsAuth(false)
                     setPopupSessionExpired(false)
