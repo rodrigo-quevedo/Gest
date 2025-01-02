@@ -13,12 +13,12 @@ const isAuthenticated = require('../../middleware/isAuthenticated')
 const cors_basico = require('../../middleware/cors_basico')
 const validarReqQuerySearchbox = require('../../middleware/validarReqQuerySearchbox')
 const obtenerUsuario = require('../../middleware/obtenerUsuario')
-const validarReqBodyProducto = require("../../middleware/validarReqBodyPoducto")
+const validarReqBodyVenta = require("../../middleware/validarReqBodyVenta")
 
 
 //routing
 router.get('/', cors_basico, isAuthenticated, validarReqQuerySearchbox, obtenerUsuario,  GETcontroller)
-router.post('/', cors_basico, isAuthenticated, validarReqBodyProducto, obtenerUsuario, POSTcontroller)
+router.post('/', cors_basico, isAuthenticated, validarReqBodyVenta, obtenerUsuario, POSTcontroller)
 router.options('/', OPTIONScontroller)
 
 //export

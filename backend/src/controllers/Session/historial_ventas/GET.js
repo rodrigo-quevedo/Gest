@@ -35,7 +35,6 @@ const GET =  async (req, res) => {
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
-                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: venta.fechaHora.toISOString()
                 })
             }
@@ -47,7 +46,6 @@ const GET =  async (req, res) => {
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
-                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: venta.fechaHora.toISOString()
                 })
             }
@@ -59,7 +57,6 @@ const GET =  async (req, res) => {
                     cantidad: venta.cantidad,
                     precio_unitario: venta.precio_unitario.toString(),
                     marca: venta.marca.toUpperCase(),
-                    proveedor: venta.proveedor.toUpperCase(),
                     fechaHora: venta.fechaHora.toISOString()
                 })
             }

@@ -46,13 +46,6 @@ const Historial_VentasSchema = new mongoose.Schema({
                 maxLength: [50, "La cantidad máxima de caracteres es 20."],
                 match: [/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/, "Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."]
             },
-            proveedor:  {
-                type: String,
-                required: [true, "Es obligatorio llenar este campo."],
-                minLength: [6, "La cantidad mínima de caracteres es 6."],
-                maxLength: [50, "La cantidad máxima de caracteres es 20."],
-                match: [/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/, "Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres."]
-            },
             fechaHora : {
                 type : Date,
                 required: [true, "Es obligatorio llenar este campo."]
