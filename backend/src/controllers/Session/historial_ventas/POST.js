@@ -1,5 +1,6 @@
 const Historial_VentasModel = require('../../../models/Session/Historial_Ventas')
 const Lista_ProductosModel = require('../../../models/Session/Lista_Productos')
+const mongodb = require("mongodb")
 
 const POST =  async (req, res) => {
     
@@ -11,7 +12,10 @@ const POST =  async (req, res) => {
     
     const usuarioEncontrado = res.locals.usuarioEncontrado
 
-    let ventaPushedListaProductos;//esto luego se va a mandar como respuesta en caso de exito
+    let ventaPushedListaProductos;
+    
+    //esto luego se va a mandar como respuesta en caso de exito
+    let resultado
 
     const pushVentaHistorial = {
         producto: req.body.producto.toUpperCase(),
@@ -101,7 +105,38 @@ const POST =  async (req, res) => {
             throw new Error('no se pudo actualizar el producto en Lista Productos')
         }            
 
-       
+        //extraer solamente la venta realizada:
+        resultado = pushResult.historialVentas.find((venta)=> {
+            console.log('comparando')
+            console.log(venta, pushVentaHistorial)
+
+            console.log(venta.producto, pushVentaHistorial.producto.toUpperCase(), venta.producto === pushVentaHistorial.producto.toUpperCase())
+            
+            console.log(venta.marca, pushVentaHistorial.marca.toUpperCase(), venta.marca === pushVentaHistorial.marca.toUpperCase())
+            
+            console.log(venta.cantidad, pushVentaHistorial.cantidad, venta.cantidad === pushVentaHistorial.cantidad)
+
+            console.log(venta.precio_unitario, pushVentaHistorial.precio_unitario)
+            console.log(
+                Number (new mongodb.Decimal128(venta.precio_unitario.toString()).toString()), 
+                Number(new mongodb.Decimal128(pushVentaHistorial.precio_unitario.toString()).toString()), 
+                new mongodb.Decimal128(venta.precio_unitario.toString()) === pushVentaHistorial.precio_unitario
+            )
+
+            console.log(venta.fechaHora,pushVentaHistorial.fechaHora,  venta.fechaHora === pushVentaHistorial.fechaHora )
+
+            return(
+                venta.producto === pushVentaHistorial.producto.toUpperCase()
+                &&
+                venta.marca === pushVentaHistorial.marca.toUpperCase()
+                &&
+                venta.cantidad === pushVentaHistorial.cantidad
+                &&
+                Number (new mongodb.Decimal128(venta.precio_unitario.toString()).toString()) === Number(new mongodb.Decimal128(pushVentaHistorial.precio_unitario.toString()).toString())
+                &&
+                venta.fechaHora === pushVentaHistorial.fechaHora
+            )
+            })
     }
     catch(err){
         console.log(err)
@@ -114,11 +149,11 @@ const POST =  async (req, res) => {
         return;
     }
 
-    console.log('ventaPushedListaProductos', ventaPushedListaProductos)
+    console.log('resultado', resultado)
 
     res.status(200).json({
         success: true,
-        message: `Venta ingresada: ${ventaPushedListaProductos}`
+        message: `Venta ingresada con éxito: ${resultado.producto} marca ${resultado?.marca}. Cantidad: ${resultado?.cantidad}. Precio unitario: ${resultado?.precio_unitario}. Total: ${Number.parseFloat(resultado?.cantidad * resultado?.precio_unitario).toFixed(2)}`
     })
         
     return;

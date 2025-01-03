@@ -53,8 +53,8 @@ function fetchBackend (URL, setFetchStatus, fetchBody) {
             if (response.success) {
                 setFetchStatus({
                     status: FETCH_STATUS.SUCCESS,
-                    successMessage: response.message,
-                    resultado: `Venta ingresada con éxito: ${response.message}`,
+                    // successMessage: response.message,
+                    resultado: response.message,
                     errorMessage: null
                 })
             }
