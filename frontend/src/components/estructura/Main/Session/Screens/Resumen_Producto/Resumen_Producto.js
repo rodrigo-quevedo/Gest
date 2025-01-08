@@ -168,16 +168,30 @@ function Resumen_Producto({
                     productSelected === null ? 
                         <>
                             
-                            <div className={styles.tableContainer} id="productosTable">
+                            <div 
+                                className={
+                                    //compra
+                                    ingresarProducto ?
+                                        `${styles.tableContainer} ${styles.tableCompra}`
+                                    :
+                                        //venta
+                                        registrarVenta ? 
+                                            `${styles.tableContainer} ${styles.tableVenta}`
+                                        :
+                                        //lista
+                                        styles.tableContainer
+                                } 
+                                id="productosTable"
+                            >
                                 
                                 {exitoVenta}
                                 
                                 {
                                     ingresarProducto?
-                                        <h2>Ingresar producto:</h2>
+                                        <h2 className={styles.compraTitle}>Ingresar producto:</h2>
                                     :
                                         registrarVenta?
-                                            <h2>Registrar venta:</h2>
+                                            <h2 className={styles.ventaTitle}>Registrar venta:</h2>
                                         :
                                         <h2>Lista de productos (click en producto para ver resumen)</h2>
                                 }

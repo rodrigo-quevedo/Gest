@@ -9,6 +9,10 @@ h1 {
     
     text-align: center;
     max-width: 100%;
+
+    /* Variables para colores */
+    --color-compra: #580CC2 ;
+    --color-venta: #076A48;
 }
 
 .resutadoSuccessMessage{
@@ -109,20 +113,25 @@ h1 {
     background: #000;
     transition: 1s all;
 }
-.buttonVentaSeleccionado{
-    background: #11341d !important;
-    /* color: #fff !important; */
-    border: 1px solid #fff !important;
-    transition: none !important;
-}
 .buttonCompraSeleccionado{
-    background: #341116 !important;
-    /* color: #000 !important; */
-    border: 1px solid #000 !important;
-    transition: none !important;
+    background: var(--color-compra) !important;
+    color: #fff !important;
+    
+    font-size: 16px;
+
+    transform: scale(1.05);
+    margin-bottom: 20px;
+}
+.buttonVentaSeleccionado{
+    background: var(--color-venta) !important;
+    
+    font-size: 16px;
+
+    transform: scale(1.05);
+    margin-top: 20px;
 }
 .ingresarNuevoProductoButton{
-    background:#111134;
+    background: var(--color-compra);
     color: #fff;
 
     padding: 10px 20px;
@@ -146,12 +155,19 @@ h1 {
 }
 
 
+.tableCompra th {
+    background: var(--color-compra)
+}
+.tableVenta th {
+    background: var(--color-venta)
+}
 
 /* :global(#productoTableNotInteractive) th{
     background: #fff;
     color: #4747DA;
     font-weight: 500;
 }
+    
 :global(#productoTableNotInteractive) td{
     background: #fff;
     color: #4747DA;
@@ -198,6 +214,13 @@ h1 {
     font-size: 16px;
 }
 
+.compraTitle {
+    color: var(--color-compra)
+}
+.ventaTitle {
+    color: var(--color-venta)
+}
+
 /* Aca aunque le pongo !important, parece que se sobreescribe en TablaReutilizable */
 .hoveredTR:hover{
     cursor: pointer;
@@ -206,12 +229,12 @@ h1 {
 }
 .hoveredTRIngreso:hover{
     cursor: pointer;
-    background: #341116 !important;
+    background: var(--color-compra) !important;
     color: #fff !important;
 }
 .hoveredTRVenta:hover{
     cursor: pointer;
-    background: #11341d !important;
+    background: var(--color-venta) !important;
     color: #fff !important;
 }
 
