@@ -109,9 +109,15 @@ h1 {
     background: #000;
     transition: 1s all;
 }
-.buttonCompraVenta:active, .buttonCompraVentaSeleccionado{
-    background: #fff !important;
-    color: #000 !important;
+.buttonVentaSeleccionado{
+    background: #11341d !important;
+    /* color: #fff !important; */
+    border: 1px solid #fff !important;
+    transition: none !important;
+}
+.buttonCompraSeleccionado{
+    background: #341116 !important;
+    /* color: #000 !important; */
     border: 1px solid #000 !important;
     transition: none !important;
 }
@@ -196,6 +202,16 @@ h1 {
 .hoveredTR:hover{
     cursor: pointer;
     background: #111134 !important;
+    color: #fff !important;
+}
+.hoveredTRIngreso:hover{
+    cursor: pointer;
+    background: #341116 !important;
+    color: #fff !important;
+}
+.hoveredTRVenta:hover{
+    cursor: pointer;
+    background: #11341d !important;
     color: #fff !important;
 }
 

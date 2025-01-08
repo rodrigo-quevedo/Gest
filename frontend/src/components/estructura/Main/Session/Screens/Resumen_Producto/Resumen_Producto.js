@@ -215,9 +215,17 @@ function Resumen_Producto({
                                                     key={stateObj.producto}
                                                     
                                                     className={productSelected === stateObj.producto ? 
-                                                            `${styles.hoveredTR} tableProductSelected` 
-                                                        : 
-                                                            styles.hoveredTR
+                                                        `${styles.hoveredTR} tableProductSelected` 
+                                                    : 
+                                                        //compra
+                                                        ingresarProducto ? 
+                                                        `${styles.hoveredTRIngreso}`
+                                                        :
+                                                            //venta
+                                                            registrarVenta ?
+                                                            `${styles.hoveredTRVenta}`
+                                                            :
+                                                                styles.hoveredTR
                                                     }
                                                     onClick={
                                                         ingresarProducto ?
@@ -269,7 +277,7 @@ function Resumen_Producto({
                                 <button 
                                     className={
                                         ingresarProducto?
-                                            `${styles.buttonCompraVenta} ${styles.buttonCompraVentaSeleccionado}`
+                                            `${styles.buttonCompraVenta} ${styles.buttonCompraSeleccionado}`
                                         :
                                             styles.buttonCompraVenta
                                     }
@@ -289,7 +297,7 @@ function Resumen_Producto({
                                 <button 
                                     className={
                                         registrarVenta?
-                                            `${styles.buttonCompraVenta} ${styles.buttonCompraVentaSeleccionado}`
+                                            `${styles.buttonCompraVenta} ${styles.buttonVentaSeleccionado}`
                                         :
                                             styles.buttonCompraVenta
                                     }
