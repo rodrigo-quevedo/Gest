@@ -30,11 +30,14 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 
 function Resumen_Producto({
     setSessionScreen,
+    
+    setPopupSessionExpired,
+    
     setProductoAIngresar,
     setProductoAVender,
-    setPopupSessionExpired,
-    ventaFetchStatus,
-    setVentaFetchStatus
+
+    compraVentaFetchStatus,
+    setCompraVentaFetchStatus
 }) {
 
     
@@ -93,21 +96,21 @@ function Resumen_Producto({
 
         
         //logica mensaje exito venta
-        const [mensajeExitoVenta, setMensajeExitoVenta]= useState(null)
+        const [mensajeExitoCompraVenta, setMensajeExitoCompraVenta]= useState(null)
         
-        let exitoVenta =
+        let exitoCompraVenta =
             <div 
-                className={ mensajeExitoVenta ? 
+                className={ mensajeExitoCompraVenta ? 
                     styles.resutadoSuccessMessage
                 :
                     ''
                 }
             > 
-                {mensajeExitoVenta}
-                {mensajeExitoVenta !== null ? 
+                {mensajeExitoCompraVenta}
+                {mensajeExitoCompraVenta !== null ? 
                     <button
 
-                        onClick={()=>{setMensajeExitoVenta(null)}}
+                        onClick={()=>{setMensajeExitoCompraVenta(null)}}
                     >
                         X
                     </button>
@@ -118,22 +121,22 @@ function Resumen_Producto({
         
 
         useEffect(()=>{
-            if (ventaFetchStatus.status === FETCH_STATUS.SUCCESS) {
-                console.log("****************VENTA SUCCESS**********************")
+            if (compraVentaFetchStatus.status === FETCH_STATUS.SUCCESS) {
+                // console.log("*******************SUCCESS**********************")
     
                 //mostrar mensaje success venta
-                setMensajeExitoVenta(ventaFetchStatus.resultado)
+                setMensajeExitoCompraVenta(compraVentaFetchStatus.resultado)
                     
                      
                 //resetear
-                setVentaFetchStatus({
+                setCompraVentaFetchStatus({
                     status: FETCH_STATUS.DEFAULT
                 });
     
                 
             }
 
-        }, [ventaFetchStatus])
+        }, [compraVentaFetchStatus])
 
     return (
         <div>
@@ -184,7 +187,7 @@ function Resumen_Producto({
                                 id="productosTable"
                             >
                                 
-                                {exitoVenta}
+                                {exitoCompraVenta}
                                 
                                 {
                                     ingresarProducto?
@@ -228,9 +231,7 @@ function Resumen_Producto({
                                                 <tr 
                                                     key={stateObj.producto}
                                                     
-                                                    className={productSelected === stateObj.producto ? 
-                                                        `${styles.hoveredTR} tableProductSelected` 
-                                                    : 
+                                                    className={
                                                         //compra
                                                         ingresarProducto ? 
                                                         `${styles.hoveredTRIngreso}`

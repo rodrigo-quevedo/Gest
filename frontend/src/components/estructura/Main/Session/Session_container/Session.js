@@ -27,7 +27,7 @@ function Session({
     const [productoAVender, setProductoAVender] = useState(null)
 
     //venta
-    const [ventaFetchStatus, setVentaFetchStatus] = useState({
+    const [compraVentaFetchStatus, setCompraVentaFetchStatus] = useState({
         status: FETCH_STATUS.DEFAULT
     })
 
@@ -36,11 +36,14 @@ function Session({
             case SESSION_SCREENS.RESUMEN_PRODUCTO: {
                 return <Resumen_Producto 
                             setSessionScreen={setSessionScreen}
+                            
+                            setPopupSessionExpired={setPopupSessionExpired}
+
                             setProductoAIngresar={setProductoAIngresar}
                             setProductoAVender={setProductoAVender}
-                            setPopupSessionExpired={setPopupSessionExpired}
-                            ventaFetchStatus={ventaFetchStatus}
-                            setVentaFetchStatus={setVentaFetchStatus}
+                            
+                            compraVentaFetchStatus={compraVentaFetchStatus}
+                            setCompraVentaFetchStatus={setCompraVentaFetchStatus}
                         />
             }
             case SESSION_SCREENS.LISTA_PRODUCTOS: {
@@ -49,15 +52,21 @@ function Session({
             case SESSION_SCREENS.INGRESAR_PRODUCTOS: {
                 return <IngresarProductos 
                             setSessionScreen={setSessionScreen}
+
                             productoAIngresar={productoAIngresar}
+
+                            compraFetchStatus={compraVentaFetchStatus}
+                            setCompraFetchStatus={setCompraVentaFetchStatus}
                         />
             }
             case SESSION_SCREENS.REGISTRAR_VENTAS : {
                 return <RegistrarVentas 
                             setSessionScreen={setSessionScreen}
+
                             productoAVender={productoAVender}
-                            ventaFetchStatus={ventaFetchStatus}
-                            setVentaFetchStatus={setVentaFetchStatus}
+                            
+                            ventaFetchStatus={compraVentaFetchStatus}
+                            setVentaFetchStatus={setCompraVentaFetchStatus}
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {

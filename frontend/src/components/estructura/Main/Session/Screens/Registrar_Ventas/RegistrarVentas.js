@@ -21,7 +21,9 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 
 function RegistrarVentas ({
     setSessionScreen,
+    
     productoAVender,
+    
     ventaFetchStatus,
     setVentaFetchStatus
 }) {

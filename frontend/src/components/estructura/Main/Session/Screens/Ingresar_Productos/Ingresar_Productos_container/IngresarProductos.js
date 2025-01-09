@@ -2,7 +2,7 @@
 import styles from './IngresarProductos.module.css'
 
 //react
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 //components
 import FormularioReutilizable from '../../../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
@@ -21,15 +21,20 @@ import {SESSION_SCREENS} from "../../../../../../../config/config"
 
 function IngresarProductos ({
     setSessionScreen,
-    productoAIngresar
+
+    productoAIngresar,
+
+    compraFetchStatus,
+    setCompraFetchStatus
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
-    // Esto va cambiando según lo que pase en el fetch:
-    const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.DEFAULT
-    })
-
+    //volver a Resumen Producto una vez se realizó el fetch con éxito:
+    useEffect(()=>{
+        if (compraFetchStatus.status === FETCH_STATUS.SUCCESS){
+            setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
+        }
+    },[compraFetchStatus])
 
 
     return (
@@ -47,8 +52,8 @@ function IngresarProductos ({
                 <h1>Nuevo producto</h1>
 
                 <FormularioReutilizable 
-                    fetchStatus={fetchStatus}
-                    setFetchStatus={setFetchStatus}
+                    fetchStatus={compraFetchStatus}
+                    setFetchStatus={setCompraFetchStatus}
                     submitMessage={"Ingresando producto..."}
                     fetchURL={URL_INGRESAR_PRODUCTOS}
                     formInputs={
@@ -108,7 +113,7 @@ function IngresarProductos ({
                 />
 
                 <FetchStatusText 
-                    fetchStatus={fetchStatus}
+                    fetchStatus={compraFetchStatus}
                 />
 
         </section>

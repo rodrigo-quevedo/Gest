@@ -13,7 +13,7 @@ function elegirTexto (fetchStatus) {
         }
 
         case FETCH_STATUS.SUCCESS : {
-            return fetchStatus.successMessage
+            return fetchStatus.resultado
         }
 
         case FETCH_STATUS.ERROR: {
