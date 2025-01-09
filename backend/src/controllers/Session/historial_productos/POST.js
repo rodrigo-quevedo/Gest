@@ -14,7 +14,8 @@ const POST =  async (req, res) => {
         const usuarioEncontrado = res.locals.usuarioEncontrado
     
 
-    let productoPusheadoListaProductos;//esto luego se va a mandar como respuesta en caso de exito
+    let listaProductosActualizada;
+    let historialActualizado;
 
     const pushObjHistorial = {
         producto: req.body.producto.toUpperCase(),
@@ -71,19 +72,19 @@ const POST =  async (req, res) => {
         
         //agregar compra al historial de productos
         historialProductoUsuario.historialProductos.push(pushObjHistorial)//push (para pushear tengo que usar el array)
-        const pushResult = await historialProductoUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
-        console.log(`Producto ingresado (push result): ${pushResult}`)
+        historialActualizado = await historialProductoUsuario.save(); //save (en cambio para el save() tengo que usar el documento)//si esto tira error, lo agarra el catch
+        console.log(`Producto ingresado (push result): ${historialActualizado}`)
 
         // si no lo tiene, agregarlo a lista productos
         if (!prodEncontradoEnListaProductos) {
 
             listaProductosUsuario.listaProductos.push(pushObjListaProd)//aca si hago el push nomas
-            productoPusheadoListaProductos = await listaProductosUsuario.save()//save //esto tira un Error, asique lo agarra el catch
+            listaProductosActualizada = await listaProductosUsuario.save()//save //esto tira un Error, asique lo agarra el catch
 
         }
         // pero si lo tiene, actualizar el array lista productos
         else {
-            productoPusheadoListaProductos = await Lista_ProductosModel.findOneAndUpdate(
+            listaProductosActualizada = await Lista_ProductosModel.findOneAndUpdate(
                 {
                     _id: usuarioEncontrado.idListaProductos,
                     "listaProductos._id" : prodEncontradoEnListaProductos._id
@@ -98,9 +99,9 @@ const POST =  async (req, res) => {
                 }
             )
             .exec()
-            console.log("productoPusheadoListaProductos:", productoPusheadoListaProductos)
+            console.log("productoPusheadoListaProductos:", listaProductosActualizada)
 
-            if (!productoPusheadoListaProductos){
+            if (!listaProductosActualizada){
                 console.log('no se pudo actualizar el producto en Lista Productos')
                 throw new Error('no se pudo actualizar el producto en Lista Productos')
             }            
@@ -119,11 +120,28 @@ const POST =  async (req, res) => {
         return;
     }
 
-    console.log('productoPusheadoListaProductos', productoPusheadoListaProductos)
+    console.log('listaProductosActualizada', listaProductosActualizada)
+
+
+    let resultado = historialActualizado.historialProductos.find((productoObj)=>{
+        // console.log(Number(productoObj.precio_unitario), pushObjHistorial.precio_unitario)
+
+        return (
+            productoObj.producto.toUpperCase() === pushObjHistorial.producto.toUpperCase()
+            &&
+            productoObj.marca.toUpperCase() === pushObjHistorial.marca.toUpperCase()
+            &&
+            productoObj.proveedor.toUpperCase() === pushObjHistorial.proveedor.toUpperCase()
+            &&
+            productoObj.cantidad === pushObjHistorial.cantidad
+            &&
+            Number(productoObj.precio_unitario) === pushObjHistorial.precio_unitario
+        )
+    })
 
     res.status(200).json({
         success: true,
-        message: `Producto ingresado: ${productoPusheadoListaProductos}`
+        message: `Producto ingresado: ${resultado.producto}. Cantidad: ${resultado.cantidad}. Precio unitario: $${resultado.precio_unitario}. Total: $${resultado.precio_unitario * resultado.cantidad}`
     })
         
     return;
