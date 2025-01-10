@@ -2,7 +2,7 @@
 import styles from './SearchBox.module.css'
 
 // react
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // icons
 import { FaSearch } from "react-icons/fa";
@@ -15,18 +15,20 @@ import {SEARCHBOX_STATE} from '../../../config/config'
 
 // logica
 import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
-import fetchBackend from './fetch_backend/fetchBackend';
+import busqueda_local from '../../../utils/busqueda_local/busqueda_local';
+
 
 function SearchBox_resumen({
     searchBoxState,
     setSearchBoxState,
-    URL_lista,
-    setter_lista,
-    URL_historialProductos,
-    setter_historialProductos,
-    URL_historialVentas,
-    setter_historialVentas,
-    setPopupSessionExpired
+
+    listaProductos,
+    historialProductos,
+    historialVentas,
+
+    setListaProductosResult,
+    setHistorialProductosResult,
+    setHistorialVentasResult
 }) {
 
     useEffect(()=>{
@@ -35,6 +37,7 @@ function SearchBox_resumen({
         }
     }, [searchBoxState])
 
+    
 
     return (
         <div className={styles.searchBoxContainer}>
@@ -42,7 +45,7 @@ function SearchBox_resumen({
                 onClick={()=>{
                     document.getElementById('searchBoxInput').value = ''
 
-                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                    document.getElementById('searchBoxForm').requestSubmit()
                 }}
                 className={styles.resetButton}
                 id="searchBoxListaCompletaButton"
@@ -53,47 +56,72 @@ function SearchBox_resumen({
 
             <div className={styles.formAndButtonContainer}>
                 <form 
-                    id="searchBoxForm_ListaProductos"
+                    id="searchBoxForm"
+                    
                     onSubmit={(e)=>{
                         e.preventDefault()
 
                         setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
-                        fetchBackend(
-                            setSearchBoxState, 
-                            URL_lista, 
-                            setter_lista,
-                            Object.fromEntries(
-                                new FormData(
-                                    document.getElementById('searchBoxForm_ListaProductos')
-                                )
-                            ),
-                            setPopupSessionExpired
+                        // lista productos
+                        busqueda_local (
+                            setSearchBoxState,
+                            listaProductos,
+                            setListaProductosResult,
+                            document.getElementById('searchBoxInput').value
                         )
 
-                        fetchBackend(
-                            setSearchBoxState, 
-                            URL_historialProductos, 
-                            setter_historialProductos,
-                            Object.fromEntries(
-                                new FormData(
-                                    document.getElementById('searchBoxForm_ListaProductos')
-                                )
-                            ),
-                            setPopupSessionExpired
+                        // historial productos
+                        busqueda_local (
+                            setSearchBoxState,
+                            historialProductos,
+                            setHistorialProductosResult,
+                            document.getElementById('searchBoxInput').value
                         )
 
-                        fetchBackend(
-                            setSearchBoxState, 
-                            URL_historialVentas, 
-                            setter_historialVentas,
-                            Object.fromEntries(
-                                new FormData(
-                                    document.getElementById('searchBoxForm_ListaProductos')
-                                )
-                            ),
-                            setPopupSessionExpired
+                        // historial ventas
+                        busqueda_local (
+                            setSearchBoxState,
+                            historialVentas,
+                            setHistorialVentasResult,
+                            document.getElementById('searchBoxInput').value
                         )
+
+                        // fetchBackend(
+                        //     setSearchBoxState, 
+                        //     URL_lista, 
+                        //     setter_lista,
+                        //     Object.fromEntries(
+                        //         new FormData(
+                        //             document.getElementById('searchBoxForm')
+                        //         )
+                        //     ),
+                        //     setPopupSessionExpired
+                        // )
+
+                        // fetchBackend(
+                        //     setSearchBoxState, 
+                        //     URL_historialProductos, 
+                        //     setter_historialProductos,
+                        //     Object.fromEntries(
+                        //         new FormData(
+                        //             document.getElementById('searchBoxForm')
+                        //         )
+                        //     ),
+                        //     setPopupSessionExpired
+                        // )
+
+                        // fetchBackend(
+                        //     setSearchBoxState, 
+                        //     URL_historialVentas, 
+                        //     setter_historialVentas,
+                        //     Object.fromEntries(
+                        //         new FormData(
+                        //             document.getElementById('searchBoxForm')
+                        //         )
+                        //     ),
+                        //     setPopupSessionExpired
+                        // )
                     }}
                 >
                     <div 
@@ -159,7 +187,7 @@ function SearchBox_resumen({
                 </form>
                 <button
                     onClick={()=>{
-                        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                        document.getElementById('searchBoxForm').requestSubmit()
                     }}
                     className={styles.submitButton}
                 >

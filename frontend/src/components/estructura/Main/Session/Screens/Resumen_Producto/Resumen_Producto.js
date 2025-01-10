@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 
 //config
 import {FETCH_STATUS, SEARCHBOX_STATE} from '../../../../../../config/config'
-import { URL_LISTA_PRODUCTOS, URL_HISTORIAL_PRODUCTOS, URL_HISTORIAL_VENTAS } from '../../../../../../config/config';
 import {SESSION_SCREENS} from "../../../../../../config/config"
 
 //componentes
@@ -28,16 +27,15 @@ import calcularTotalVendido from './finanza/calcularTotalVendido';
 import calcularGananciaActual from './finanza/calcularGananciaActual';
 
 
+
 function Resumen_Producto({
     setSessionScreen,
 
-    listaProductos, setListaProductos,
-    historialProductos, setHistorialProductos,
-    historialVentas, setHistorialVentas,
+    searchBoxState, setSearchBoxState,
 
-    hacerFetch, setHacerFetch,
-    
-    setPopupSessionExpired,
+    listaProductos, 
+    historialProductos,
+    historialVentas, 
     
     setProductoAIngresar,
     setProductoAVender,
@@ -46,17 +44,23 @@ function Resumen_Producto({
     setCompraVentaFetchStatus
 }) {
 
+    //arrays a mostrar:
+    const [listaProductosResult, setListaProductosResult] = useState(listaProductos)
+    const [historialProductosResult, setHistorialProductosResult] = useState(historialProductos)
+    const [historialVentasResult, setHistorialVentasResult] = useState(historialVentas)
     
+    useEffect(()=>{
+        //cuando carga la pagina, mostrar toda la lista de productos
+        if (searchBoxState === SEARCHBOX_STATE.FETCH_SUCCESS){
+            document.getElementById("searchBoxForm").requestSubmit();
+            setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
+        }
+    }, [searchBoxState])
+
 
     useEffect(()=>{
         // cambiar titulo
         document.title = "Resumen"
-
-        // cuando carga la pagina por 1ra vez, fetchear todo (lista productos, historial productos, historial ventas)
-        if (hacerFetch) {
-            document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-            setHacerFetch(false)
-        }
 
         // resetear estilos de producto seleccionado en tabla al clickear en "Lista completa <-|" (sin esto, al clickear ahí, se sigue marcando el último producto clickeado. No debería marcar nada, porque está buscando la lista completa.)
         document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{
@@ -64,7 +68,7 @@ function Resumen_Producto({
         })
 
         // resetear layout al enviar la searchbox vacia
-        document.getElementById("searchBoxForm_ListaProductos").addEventListener('submit', (e)=>{
+        document.getElementById("searchBoxForm").addEventListener('submit', (e)=>{
             if (document.getElementById("searchBoxInput").value === ""){
                 setProductSelected(null)
             }
@@ -73,28 +77,22 @@ function Resumen_Producto({
 
     }, [])
     
-        //logica searchbox
-        const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
-    
-    
         //logica tablas
-        
         const [productSelected, setProductSelected] = useState(null);
         
-
         
         //logica finanza
         let totalGastado = calcularTotalGastado(historialProductos)
         let totalVendido = calcularTotalVendido(historialVentas)
         let totalGanancia = (totalVendido - totalGastado).toFixed(2)
         let totalMargen = calcularGananciaActual(historialProductos, historialVentas)
-        //pongo todo en un array para poder usar TablaReutilizable
-        let arrFinanza = [{
-            totalGastado,
-            totalVendido,
-            totalGanancia,
-            totalMargen
-        }]
+            //pongo todo en un array para poder usar TablaReutilizable
+            let arrFinanza = [{
+                totalGastado,
+                totalVendido,
+                totalGanancia,
+                totalMargen
+            }]
 
 
         //logica compra y venta
@@ -103,8 +101,7 @@ function Resumen_Producto({
 
         
         //logica mensaje exito venta
-        const [mensajeExitoCompraVenta, setMensajeExitoCompraVenta]= useState(null)
-        
+        const [mensajeExitoCompraVenta, setMensajeExitoCompraVenta]= useState(null)     
         let exitoCompraVenta =
             <div 
                 className={ mensajeExitoCompraVenta ? 
@@ -124,11 +121,12 @@ function Resumen_Producto({
                 :
                     null
                 }
-            </div>;
-        
-
-        useEffect(()=>{
-            if (compraVentaFetchStatus.status === FETCH_STATUS.SUCCESS) {
+            </div>
+        ;
+        useEffect(()=>
+        {
+            if (compraVentaFetchStatus.status === FETCH_STATUS.SUCCESS) 
+            {
                 // console.log("*******************SUCCESS**********************")
     
                 //mostrar mensaje success venta
@@ -138,12 +136,11 @@ function Resumen_Producto({
                 //resetear
                 setCompraVentaFetchStatus({
                     status: FETCH_STATUS.DEFAULT
-                });
-    
-                
+                });   
             }
-
         }, [compraVentaFetchStatus])
+
+
 
     return (
         <div>
@@ -164,14 +161,16 @@ function Resumen_Producto({
                     <SearchBox_resumen
                         searchBoxState={searchBoxState}
                         setSearchBoxState={setSearchBoxState}
-                        URL_lista={URL_LISTA_PRODUCTOS}
-                        setter_lista={setListaProductos}
-                        URL_historialProductos={URL_HISTORIAL_PRODUCTOS}
-                        setter_historialProductos={setHistorialProductos}
-                        URL_historialVentas={URL_HISTORIAL_VENTAS}
-                        setter_historialVentas={setHistorialVentas}
-                        setPopupSessionExpired={setPopupSessionExpired}
+                        
+                        listaProductos={listaProductos}
+                        historialProductos={historialProductos}
+                        historialVentas={historialVentas}
+
+                        setListaProductosResult={setListaProductosResult}
+                        setHistorialProductosResult={setHistorialProductosResult}
+                        setHistorialVentasResult={setHistorialVentasResult}
                     />
+
                 </div>
 
                 {
@@ -222,7 +221,7 @@ function Resumen_Producto({
                                 }
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
-                                    arrayState={listaProductos}
+                                    arrayState={listaProductosResult}
 
                                     tableHeaders={
                                         <tr>
@@ -279,7 +278,7 @@ function Resumen_Producto({
                                                                     document.getElementById('searchBoxInput').value= stateObj.producto
                                                                     
                                                                     //fetch
-                                                                    document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+                                                                    document.getElementById('searchBoxForm').requestSubmit()
 
                                                                     setProductSelected(stateObj.producto)
                                                                 }
@@ -344,7 +343,7 @@ function Resumen_Producto({
                                     <h2>Producto seleccionado</h2>
                                     <TablaReutilizable
                                         searchBoxState={searchBoxState}
-                                        arrayState={listaProductos}
+                                        arrayState={listaProductosResult}
 
                                         tableHeaders={
                                             <tr>
@@ -409,7 +408,7 @@ function Resumen_Producto({
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
-                                    arrayState={historialProductos}
+                                    arrayState={historialProductosResult}
 
                                     tableHeaders={
                                         <tr>
@@ -446,7 +445,7 @@ function Resumen_Producto({
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
-                                    arrayState={historialVentas}
+                                    arrayState={historialVentasResult}
 
                                     tableHeaders={
                                         <tr>
