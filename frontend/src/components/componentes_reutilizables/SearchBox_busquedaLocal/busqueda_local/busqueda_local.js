@@ -2,24 +2,27 @@ import {SEARCHBOX_STATE} from '../../../../config/config'
 
 
 function busqueda_local(setSearchBoxState, array, setArrayResultado, productoString) {
-    let arrResultado = array.find((arrObj)=>{
+    let arrResultado = array.filter((arrObj)=>{
 
         // buscar todo
         if (productoString === ''){
             return arrObj
         }
 
-        // busqueda especifica
-        return (
-            arrObj.producto.toUpperCase() === productoString.toUpperCase()
-        )
+        //busqueda parecida
+        else if (arrObj.producto.toUpperCase().includes(productoString.toUpperCase()) ) {
+            return arrObj
+        }
+
+        // busqueda exacta
+        else if (arrObj.producto.toUpperCase() === productoString.toUpperCase()) {
+            return arrObj
+        }
+
     })
 
-    if (arrResultado === null) {
-        setArrayResultado([])
-        setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
-        return;
-    }
+    // console.log('arrResultado', arrResultado)
+
     setArrayResultado(arrResultado)
     setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
 
