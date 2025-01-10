@@ -94,7 +94,9 @@ function Session({
                 />
             }
             case SESSION_SCREENS.HISTORIAL_VENTAS : {
-                return <HistorialVentas />
+                return <HistorialVentas 
+                    HistorialVentas={historialVentas}
+                />
             }
 
         }

@@ -5,7 +5,7 @@ import styles from './HistorialVentas.module.css'
 import {useState, useEffect} from 'react'
 
 //componentes
-import SearchBox from '../../../../../componentes_reutilizables/SearchBox/SearchBox';
+import SearchBox_busquedaLocal from '../../../../../componentes_reutilizables/SearchBox_busquedaLocal/SearchBox_busquedaLocal'
 import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable'
 
 //config
@@ -14,36 +14,34 @@ import {URL_HISTORIAL_VENTAS} from '../../../../../../config/config'
 
 
 
-function HistorialVentas () {
+function HistorialVentas ({
+    HistorialVentas
+}) {
     document.querySelector('title').innerText = 'Historial de ventas';
 
     
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
+    
+    // se muestra todo el historial cuando carga la pagina
+    const [arrayResultado, setArrayResultado] = useState(HistorialVentas)
 
-
-    const [listaVentas, setListaVentas] = useState([])
-
-
-    // cuando carga la pagina, buscar todo el historial
-    useEffect(()=>{
-        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-    }, [])
 
     return (
         <section className={styles.container}>
 
             <h1>Historia de Ventas</h1>
 
-            <SearchBox 
+            <SearchBox_busquedaLocal 
                 searchBoxState={searchBoxState}
                 setSearchBoxState={setSearchBoxState}
-                URL={URL_HISTORIAL_VENTAS}
-                setter={setListaVentas}
+
+                array={HistorialVentas}
+                setArrayResultado={setArrayResultado}
             />
 
             <TablaReutilizable 
                 searchBoxState={searchBoxState}
-                arrayState={listaVentas}
+                arrayState={arrayResultado}
                 tableHeaders={
                     <tr>
                         <th>Producto</th>
