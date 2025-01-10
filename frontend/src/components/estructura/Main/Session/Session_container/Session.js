@@ -21,15 +21,24 @@ function Session({
     setPopupSessionExpired
 }) {
 
+    // session screen
     const [sessionScreen, setSessionScreen] = useState(SESSION_SCREENS.RESUMEN_PRODUCTO)
-    //ingreso de producto y registro de venta
+    
+    // ingreso de producto y registro de venta
     const [productoAIngresar, setProductoAIngresar] = useState(null)
     const [productoAVender, setProductoAVender] = useState(null)
+        // fetch status
+        const [compraVentaFetchStatus, setCompraVentaFetchStatus] = useState({
+            status: FETCH_STATUS.DEFAULT
+        })
 
-    //venta
-    const [compraVentaFetchStatus, setCompraVentaFetchStatus] = useState({
-        status: FETCH_STATUS.DEFAULT
-    })
+    const [listaProductos, setListaProductos] = useState([])
+    const [historialProductos, setHistorialProductos] = useState([])
+    const [historialVentas, setHistorialVentas] = useState([])
+        // hacer fetch o usar la data que ya hay
+        const [hacerFetch, setHacerFetch] = useState(true)
+
+
 
     function mostrarScreen(screen) {
         switch(screen) {
@@ -37,6 +46,16 @@ function Session({
                 return <Resumen_Producto 
                             setSessionScreen={setSessionScreen}
                             
+                            listaProductos={listaProductos} 
+                            setListaProductos={setListaProductos}
+                            historialProductos={historialProductos} 
+                            setHistorialProductos={setHistorialProductos}
+                            historialVentas={historialVentas} 
+                            setHistorialVentas={setHistorialVentas}
+
+                            hacerFetch={hacerFetch}
+                            setHacerFetch={setHacerFetch}
+
                             setPopupSessionExpired={setPopupSessionExpired}
 
                             setProductoAIngresar={setProductoAIngresar}
@@ -70,7 +89,9 @@ function Session({
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {
-                return <HistorialProductos />
+                return <HistorialProductos 
+                    historialProductos={historialProductos}
+                />
             }
             case SESSION_SCREENS.HISTORIAL_VENTAS : {
                 return <HistorialVentas />

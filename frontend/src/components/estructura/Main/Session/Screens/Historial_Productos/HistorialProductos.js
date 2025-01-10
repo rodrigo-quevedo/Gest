@@ -9,48 +9,39 @@ import {SEARCHBOX_STATE} from '../../../../../../config/config'
 import { URL_HISTORIAL_PRODUCTOS } from '../../../../../../config/config';
 
 //componentes
-import SearchBox from '../../../../../componentes_reutilizables/SearchBox/SearchBox';
+import SearchBox_busquedaLocal from '../../../../../componentes_reutilizables/SearchBox_busquedaLocal/SearchBox_busquedaLocal';
 import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReutilizable/TablaReutilizable'
 
-function HistorialProductos () {
+function HistorialProductos ({
+    historialProductos
+}
+) {
     document.querySelector('title').innerText = 'Historial de productos';
-
-    // cuando carga la pagina, buscar todo el historial
-    useEffect(()=>{
-        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
-    }, [])
 
     const [searchBoxState, setSearchBoxState] = useState(SEARCHBOX_STATE.DEFAULT)
 
+    // se muestra todo el historial cuando carga la pagina
+    const [arrayResultado, setArrayResultado] = useState(historialProductos)
 
-    const [listaProductos, setListaProductos] = useState([{
-        id: 0,
-        producto: '-',
-        cantidad: '-',
-        precio_unitario: '-',
-        marca: '-',
-        proveedor: '-',
-        fechaHora: '-'
-    }])
+    
+
 
     return (
         <section className={styles.container}>
 
              <h1>Historial de Ingreso de Productos</h1>
 
-             <SearchBox
-                // Estos states son independientes, se usan para las clases del mismo componente SearchBox.
+            <SearchBox_busquedaLocal
                 searchBoxState={searchBoxState}
                 setSearchBoxState={setSearchBoxState}
-                // Pasandole otra URL puedo utilizar el componente SearchBox en otro lugar.
-                // URL={URL_LISTA_PRODUCTOS}
-                URL={URL_HISTORIAL_PRODUCTOS}
-                setter={setListaProductos}
+
+                array={historialProductos}
+                setArrayResultado={setArrayResultado}
             />
 
             <TablaReutilizable
                 searchBoxState={searchBoxState}
-                arrayState={listaProductos}
+                arrayState={arrayResultado}
 
                 tableHeaders={
                     <tr>

@@ -30,6 +30,12 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 
 function Resumen_Producto({
     setSessionScreen,
+
+    listaProductos, setListaProductos,
+    historialProductos, setHistorialProductos,
+    historialVentas, setHistorialVentas,
+
+    hacerFetch, setHacerFetch,
     
     setPopupSessionExpired,
     
@@ -46,8 +52,11 @@ function Resumen_Producto({
         // cambiar titulo
         document.title = "Resumen"
 
-        // cuando carga la pagina, buscar todo el historial
-        document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+        // cuando carga la pagina por 1ra vez, fetchear todo (lista productos, historial productos, historial ventas)
+        if (hacerFetch) {
+            document.getElementById('searchBoxForm_ListaProductos').requestSubmit()
+            setHacerFetch(false)
+        }
 
         // resetear estilos de producto seleccionado en tabla al clickear en "Lista completa <-|" (sin esto, al clickear ahí, se sigue marcando el último producto clickeado. No debería marcar nada, porque está buscando la lista completa.)
         document.getElementById("searchBoxListaCompletaButton").addEventListener('click', ()=>{
@@ -69,9 +78,7 @@ function Resumen_Producto({
     
     
         //logica tablas
-        const [listaProductos, setListaProductos] = useState([])
-        const [historialProductos, setHistorialProductos] = useState([])
-        const [historialVentas, setHistorialVentas] = useState([])
+        
         const [productSelected, setProductSelected] = useState(null);
         
 
