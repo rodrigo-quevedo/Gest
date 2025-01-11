@@ -12,6 +12,9 @@ import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReu
 import {SEARCHBOX_STATE} from '../../../../../../config/config'
 import {URL_HISTORIAL_VENTAS} from '../../../../../../config/config'
 
+//logica formateo de fecha y hora
+import formatDate from '../../../../../../utils/format_date/format_date';
+import formatTime from '../../../../../../utils/format_date/format_time';
 
 
 function HistorialVentas ({
@@ -39,34 +42,36 @@ function HistorialVentas ({
                 setArrayResultado={setArrayResultado}
             />
 
-            <TablaReutilizable 
-                searchBoxState={searchBoxState}
-                arrayState={arrayResultado}
-                tableHeaders={
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Marca</th>
-                        <th>Proveedor</th>
-                        <th>Fecha y Hora</th>
-                    </tr>
-                }
-                mapCallback={
-                    (productoObj) => {
-                        return (
-                            <tr key={productoObj.id}>
-                                <td>{productoObj.producto}</td>
-                                <td>{productoObj.cantidad}</td>
-                                <td>${productoObj.precio_unitario}</td>
-                                <td>{productoObj.marca}</td>
-                                <td>{productoObj.proveedor}</td>
-                                <td>{productoObj.fechaHora}</td>
-                            </tr>
-                        )
+            <div className={styles.tableContainer}>
+                <TablaReutilizable 
+                    searchBoxState={searchBoxState}
+                    arrayState={arrayResultado}
+                    tableHeaders={
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Marca</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                        </tr>
                     }
-                }
-            />
+                    mapCallback={
+                        (productoObj) => {
+                            return (
+                                <tr key={productoObj.id}>
+                                    <td>{productoObj.producto}</td>
+                                    <td>{productoObj.cantidad}</td>
+                                    <td>${productoObj.precio_unitario}</td>
+                                    <td>{productoObj.marca}</td>
+                                    <td>{formatDate(new Date(productoObj.fechaHora))}</td>
+                                    <td>{formatTime(new Date(productoObj.fechaHora))}</td>
+                                </tr>
+                            )
+                        }
+                    }
+                />
+            </div>
 
         </section>
     )

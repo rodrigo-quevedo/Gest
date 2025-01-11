@@ -5,3 +5,17 @@
 .container > h1 {
     color: #111134;
 }
+
+/* Table styles */
+.tableContainer {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.tableContainer table > thead > tr > th { 
+    width: fit-content;
+}
+
+.tableContainer table tr {
+    font-size: 1.33vw !important;
+}
