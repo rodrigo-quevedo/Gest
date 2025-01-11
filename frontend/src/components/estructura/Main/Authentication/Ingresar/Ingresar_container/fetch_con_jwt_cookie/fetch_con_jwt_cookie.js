@@ -46,10 +46,24 @@ const fetch_con_jwt_cookie = (setFirstJwtFetch, setFetchStatus, setIsAuth)=> {
     )
 
     .catch((err)=>    
+    {
+        if (err.toString() === "TypeError: Failed to fetch"){
+            console.log("Error en la conexion con el servidor (TypeError: Failed to fetch)")
+
+            setFetchStatus({
+                status: FETCH_STATUS.ERROR,
+                errorMessage: `Error en la conexion con el servidor (${err}).`
+            })
+
+            return;
+
+        }
+        
         setFetchStatus({
             status: FETCH_STATUS.ERROR,
             errorMessage: `No se pudo ingresar con la sesión guardada en el navegador. ${err}`
         })
+    }
     )
 
 }

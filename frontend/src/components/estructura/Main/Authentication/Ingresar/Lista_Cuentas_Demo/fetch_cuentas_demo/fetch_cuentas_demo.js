@@ -32,6 +32,11 @@ const fetch_cuentas_demo = (setFirstFetch, setCuentasDemo) => {
     })
     
     .catch((err)=>{
+        if (err === "TypeError: Failed to fetch"){
+            console.log(`Error en la conexion con el servidor (${err})`)
+            return;
+        }
+
         console.log(`Frontend: Error while parsing. ${err}`);
         return null;
     })
