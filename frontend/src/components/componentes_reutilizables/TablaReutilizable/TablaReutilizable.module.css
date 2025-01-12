@@ -13,6 +13,7 @@
     font-size: 13px;
 
     text-align: center;
+
 }
 
 .tableContainerLoaded {
@@ -78,21 +79,35 @@
 }
 
 
+.tableContainer table > tbody > tr > td {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.tableContainer table > thead > tr > th { 
+    width: fit-content;
+}
+
+
+
+
+
+
 @media (width < 700px) {
-    .tableContainer {
-        font-size: 2vw;
-    }
+    /* .tableContainer {
+        font-size: 10px !important;
+    } */
 
     .tableContainer > table > thead > tr > th,
     .tableContainer > table > tbody > tr > td {
-        max-width: 10vw !important;
+        max-width: min-content !important;
         width: 10vw !important;
         min-width: fit-content !important;
     }
 }
 
-@media (width < 400px) {
-    .tableContainer {
-        font-size: 3vw;
+@media (width < 500px){
+    .tableContainer{
+        font-size: 10px !important;
     }
 }
