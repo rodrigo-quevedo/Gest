@@ -19,3 +19,50 @@
 .tableContainer table tr {
     font-size: 1.33vw !important;
 }
+
+.tableContainer table > tbody > tr > td:nth-child(odd){
+    background: #8e8eff5e;
+}
+.tableContainer table > tbody > tr > td:nth-child(even){
+    background: #afafff5e;
+}
+
+
+.tableContainer table > tbody > tr:nth-child(even){
+    /* background: #afafff5e !important; */
+}
+
+@media (width < 900px){
+    .tableContainer table tr {
+        font-size: 1.63vw !important;
+    }
+}
+@media (width < 700px){
+    .tableContainer table tr {
+        font-size: 1.83vw !important;
+    }
+}
+@media (width < 600px){
+    .tableContainer table tr {
+        font-size: 2.03vw !important;
+    }
+}
+@media (width < 450px){
+    .tableContainer table tr {
+        font-size: 9px !important;   
+    }
+}
+/* A partir de aca deberia quedarse en ese tamaño y hacer overflow */
+
+@media (width < 400px){
+    .tableContainer {
+        border-spacing: 10px;
+    }
+    .tableContainer table tr td{
+        box-sizing: content-box;
+    }
+
+    .tableContainer table > thead > tr > th{
+        color: red;
+    }
+}
