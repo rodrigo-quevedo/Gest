@@ -15,7 +15,8 @@ import {URL_HISTORIAL_VENTAS} from '../../../../../../config/config'
 //logica formateo de fecha y hora
 import formatDate from '../../../../../../utils/format_date/format_date';
 import formatTime from '../../../../../../utils/format_date/format_time';
-
+//formateo precio
+import formatPrice from '../../../../../../utils/format_prices/formatPrices'
 
 function HistorialVentas ({
     HistorialVentas
@@ -51,6 +52,7 @@ function HistorialVentas ({
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
+                            <th>Total vendido</th>
                             <th>Marca</th>
                             <th>Fecha</th>
                             <th>Hora</th>
@@ -62,7 +64,8 @@ function HistorialVentas ({
                                 <tr key={productoObj.id}>
                                     <td>{productoObj.producto}</td>
                                     <td>{productoObj.cantidad}</td>
-                                    <td>${productoObj.precio_unitario}</td>
+                                    <td>${formatPrice(productoObj.precio_unitario)}</td>
+                                    <td>${formatPrice(productoObj.precio_unitario * productoObj.cantidad)}</td>
                                     <td>{productoObj.marca}</td>
                                     <td>{formatDate(new Date(productoObj.fechaHora))}</td>
                                     <td>{formatTime(new Date(productoObj.fechaHora))}</td>

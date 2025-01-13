@@ -15,7 +15,8 @@ import TablaReutilizable from '../../../../../componentes_reutilizables/TablaReu
 //logica formateo de fecha y hora
 import formatDate from '../../../../../../utils/format_date/format_date';
 import formatTime from '../../../../../../utils/format_date/format_time';
-
+//formateo precios
+import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
 function HistorialProductos ({
     historialProductos
@@ -54,6 +55,7 @@ function HistorialProductos ({
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio Unitario</th>
+                            <th>Total gastado</th>
                             <th>Marca</th>
                             <th>Proveedor</th>
                             <th>Fecha</th>
@@ -67,7 +69,8 @@ function HistorialProductos ({
                                 <tr key={stateObj.id}>
                                     <td>{stateObj.producto}</td>
                                     <td>{stateObj.cantidad}</td>
-                                    <td>${stateObj.precio_unitario}</td>
+                                    <td>${formatPrice(stateObj.precio_unitario)}</td>
+                                    <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
                                     <td>{stateObj.marca}</td>
                                     <td>{stateObj.proveedor}</td>
                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
