@@ -17,6 +17,9 @@ import {FETCH_STATUS} from '../../../../../../config/config'
 import { URL_REGISTRAR_VENTAS } from "../../../../../../config/config"
 import {SESSION_SCREENS} from "../../../../../../config/config"
 
+//logica interna
+import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
+
 
 
 function RegistrarVentas ({
@@ -25,7 +28,9 @@ function RegistrarVentas ({
     productoAVender,
     
     ventaFetchStatus,
-    setVentaFetchStatus
+    setVentaFetchStatus,
+
+    historialProductos
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
@@ -53,6 +58,10 @@ function RegistrarVentas ({
 
             <h1>Ingresar una venta</h1>
       
+            <ListaPreciosCompra 
+                productoAVender={productoAVender}
+                historialProductos={historialProductos}
+            />
 
             <FormularioReutilizable 
                     fetchStatus={ventaFetchStatus}

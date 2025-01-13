@@ -129,6 +129,8 @@ function Session({
                             
                             ventaFetchStatus={compraVentaFetchStatus}
                             setVentaFetchStatus={setCompraVentaFetchStatus}
+
+                            historialProductos={historialProductos}
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {

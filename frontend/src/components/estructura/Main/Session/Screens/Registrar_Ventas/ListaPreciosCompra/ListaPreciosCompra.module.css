@@ -1,0 +1,32 @@
+.container{
+    border: 1px solid #111134;
+    /* color: #fff; */
+
+    border-radius: 10px;
+    
+    padding: 0 15px;
+}
+
+.title {
+    text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+
+    padding-top: 10px;
+}
+
+.title span {
+    font-weight: 700;
+}
+
+.tableContainer {
+    width: 100%;
+    text-align: center;
+
+    padding-bottom: 20px;
+}
+
+.tableContainer th, .tableContainer td{
+    max-width: 33%;
+    width: 33%;
+}
