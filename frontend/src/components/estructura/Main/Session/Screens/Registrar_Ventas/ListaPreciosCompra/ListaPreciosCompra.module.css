@@ -30,3 +30,23 @@
     max-width: 33%;
     width: 33%;
 }
+
+@media (width < 400px){
+    .container{    
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #111134 transparent;
+    }
+
+    .title, .tableContainer{
+        font-size: 13px;
+    }
+
+    .tableContainer th:nth-child(1) {
+        padding-left: 0;
+        padding-right:8px;
+    }
+    .tableContainer th {
+        padding: 0 8px;
+    }
+}
