@@ -4,7 +4,7 @@ h1 {
 .container{
     display: grid;
     grid-template-columns: repeat(24, 1fr);
-    grid-template-rows: repeat(3, minmax(1fr, auto));
+    grid-template-rows: repeat(4, minmax(1fr, auto));
     
     
     text-align: center;
@@ -45,17 +45,8 @@ h1 {
     grid-column: 1/-1;
     grid-row: 1;
 }
-:global(#finanzaTable) {
-    /* grid-column: 14/-2;
-    grid-row: 1; */
-    grid-column: 14/-2;
-    grid-row: 2;
-}
-:global(#productoTableNotInteractive){
-    grid-column: 2/13;
-    grid-row: 2;
-}
 
+/* LAYOUT */
 :global(#productosTable) {
     grid-column: 4/-7;
     grid-row: 2/6;
@@ -64,16 +55,61 @@ h1 {
 
     text-align: center;
 }
-
-
-:global(#comprasTable) {
+:global(#productoTableNotInteractive){
     grid-column: 2/13;
+    grid-row: 2;
+}
+:global(#finanzaTable) {
+    grid-column: 14/-2;
+    grid-row: 2;
+}
+:global(#comprasTable) {
+    grid-column:  5/-5;
     grid-row: 3;
 }
 :global(#ventasTable) {
-    grid-column: 14/-2;
-    grid-row: 3;
+    grid-column: 5/-5;
+    grid-row: 4;
 }
+@media (width < 1050px) {
+    :global(#productoTableNotInteractive){
+        grid-column: 2/-14;
+        grid-row: 2;
+    }
+    :global(#finanzaTable) {
+        grid-column: 2/-10;
+        grid-row: 3;
+    }
+
+    :global(#comprasTable) {
+        grid-column:  2/-2;
+        grid-row: 4;
+        
+        text-align: center;
+    }
+    :global(#comprasTable) h2, :global(#ventasTable) h2 {
+        display: inline;
+    }
+    :global(#ventasTable) {
+        grid-column: 2/-2;
+        grid-row: 5;
+
+        text-align: center;
+    }
+}
+@media (width < 800px) {
+    :global(#finanzaTable) {
+        grid-column: 2/-2;
+        grid-row: 3;
+    }
+}
+
+/* ProductosTable (clickeable) */
+:global(#productoTableNotInteractive) table th,:global(#productoTableNotInteractive) table td  {
+    max-width: 33.3% !important;
+    width: 33.3% !important;
+}
+
 
 .containerButtonCompraVenta{
     grid-column: -7/-4;
@@ -212,6 +248,12 @@ h1 {
 .tableContainer > h2 {
     text-align: left;
     font-size: 16px;
+}
+
+:global(#productosTable) table td, :global(#productosTable) table th  {
+    max-width: 33.3% !important;
+    width: 33.3% !important;
+    /* color: red; */
 }
 
 .compraTitle {

@@ -25,7 +25,8 @@ import formatTime from '../../../../../../utils/format_date/format_time';
 import calcularTotalGastado from './finanza/calcularTotalGastado';
 import calcularTotalVendido from './finanza/calcularTotalVendido';
 import calcularGananciaActual from './finanza/calcularGananciaActual';
-
+//formateo precios
+import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
 
 function Resumen_Producto({
@@ -415,6 +416,7 @@ function Resumen_Producto({
                                             <th>Producto</th>
                                             <th>Cantidad ingresada</th>
                                             <th>Costo unitario</th>
+                                            <th>Costo total</th>
                                             <th>Marca</th>
                                             <th>Proveedor</th>
                                             <th>Fecha de ingreso</th>
@@ -428,7 +430,8 @@ function Resumen_Producto({
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
+                                                    <td>${formatPrice(stateObj.precio_unitario)}</td>
+                                                    <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{stateObj.proveedor}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
@@ -452,6 +455,7 @@ function Resumen_Producto({
                                             <th>Producto</th>
                                             <th>Cantidad vendida</th>
                                             <th>Precio unitario de venta</th>
+                                            <th>Venta total</th>
                                             <th>Marca</th>
                                             <th>Fecha de venta</th>
                                             <th>Hora de venta</th>
@@ -464,7 +468,8 @@ function Resumen_Producto({
                                                 <tr key={stateObj.id}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
-                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.precio_unitario)}</td>
+                                                    <td>${formatPrice(stateObj.precio_unitario)}</td>
+                                                    <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
                                                     <td>{stateObj.marca}</td>
                                                     <td>{formatDate(new Date(stateObj.fechaHora))}</td>
                                                     <td>{formatTime(new Date(stateObj.fechaHora))}</td>
