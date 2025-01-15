@@ -198,10 +198,10 @@ function Resumen_Producto({
                                 
                                 {
                                     ingresarProducto?
-                                        <h2 className={styles.compraTitle}>Ingresar producto:</h2>
+                                        <h2 className={styles.compraTitle}>Ingresar producto (click en producto para ingresar más del mismo):</h2>
                                     :
                                         registrarVenta?
-                                            <h2 className={styles.ventaTitle}>Registrar venta:</h2>
+                                            <h2 className={styles.ventaTitle}>Registrar venta (click en producto para vender):</h2>
                                         :
                                         <h2>Lista de productos (click en producto para ver resumen)</h2>
                                 }
