@@ -2,7 +2,7 @@
 import styles from './Navbar.module.css'
 
 //react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //icons
 import { TbFileAnalytics } from "react-icons/tb";
@@ -17,21 +17,37 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 
 // config
-import { SESSION_SCREENS } from '../../../../../config/config';
+import {SESSION_SCREENS } from '../../../../../config/config';
+import  { SEARCHBOX_STATE} from '../../../../../config/config';
+
 
 
 export default function Navbar (
     {
         sessionScreen,
-        setSessionScreen
+        setSessionScreen,
+
+        searchBoxState
     }
 ) {
 
     const [desplegado, setDesplegado] = useState(true);
 
 
+
     if (desplegado) return (
-        <nav  role="navigation" className={styles.navContainer}>
+        <nav  
+            role="navigation" 
+            
+            className={
+                searchBoxState === SEARCHBOX_STATE.SUBMIT ? 
+                `${styles.navContainer} ${styles.navContainerDisabled}`
+                :   
+                styles.navContainer
+            }
+            
+            id="navContainer"
+        >
             <button 
 
                 className={
@@ -41,9 +57,13 @@ export default function Navbar (
                         null
                 }
 
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
-                    setDesplegado(false)
+                onClick={
+                    //deshabilitar si el fetch esta cargando
+                    searchBoxState === SEARCHBOX_STATE.SUBMIT ? null 
+                    :
+                    ()=>{
+                        setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
+                        setDesplegado(false)
                 }}
 
                 >
@@ -126,10 +146,15 @@ export default function Navbar (
                         null
                 }
 
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)
-                    setDesplegado(false)
-                }}
+                onClick={
+                    //deshabilitar si el fetch esta cargando
+                    searchBoxState === SEARCHBOX_STATE.SUBMIT ? null 
+                    :
+                    ()=>{
+                        setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)
+                        setDesplegado(false)
+                    }
+                }
 
                 >
                 Historial de productos
@@ -147,9 +172,13 @@ export default function Navbar (
                         null
                 }
 
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.HISTORIAL_VENTAS)
-                    setDesplegado(false)
+                onClick={
+                    //deshabilitar si el fetch esta cargando
+                    searchBoxState === SEARCHBOX_STATE.SUBMIT ? null 
+                    :
+                    ()=>{
+                        setSessionScreen(SESSION_SCREENS.HISTORIAL_VENTAS)
+                        setDesplegado(false)
                 }}
 
             >

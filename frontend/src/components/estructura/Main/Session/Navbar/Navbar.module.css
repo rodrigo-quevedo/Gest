@@ -23,6 +23,14 @@
     transition: 1s all;
 }
 
+/* Deshabilitar navbar cuando se esta haciendo fetch al backend */
+.navContainerDisabled, .navContainerDisabled button{
+    background: #000 !important; 
+    color: #fff !important;
+}
+.navContainerDisabled button{
+    pointer-events: none;
+}
 
 .navContainer > button, .dropDownNav > button {
     display: flex;

@@ -158,6 +158,10 @@ function Session({
 
                 //setear la session screen [ListaProductos/IngresarProductos/HistorialProductos/RegistrarVentas/HistorialVentas]:
                 setSessionScreen={setSessionScreen}
+
+                // bloquear navegacion cuando se esta realizando el fetch
+                searchBoxState={searchBoxState}
+
             />
 
         </section>
