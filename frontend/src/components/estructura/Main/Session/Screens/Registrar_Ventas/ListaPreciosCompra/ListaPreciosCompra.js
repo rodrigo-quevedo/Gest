@@ -33,7 +33,7 @@ function ListaPreciosCompra({
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>
-                Costo de: <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
+                Costos registrados de: <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
             </h2>
             
             <table className={styles.tableContainer}>

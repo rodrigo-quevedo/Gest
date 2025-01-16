@@ -27,6 +27,7 @@
 .navContainerDisabled, .navContainerDisabled button{
     background: #000 !important; 
     color: #fff !important;
+    cursor: wait;
 }
 .navContainerDisabled button{
     pointer-events: none;

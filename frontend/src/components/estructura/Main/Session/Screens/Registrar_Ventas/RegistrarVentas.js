@@ -7,6 +7,7 @@ import {useEffect, useState} from 'react'
 //components
 import FormularioReutilizable from '../../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
 import FormInput from '../../../../../componentes_reutilizables/FormInput/FormInput';
+import PrecioInput from '../../../../../componentes_reutilizables/PrecioInput/PrecioInput';
 import FetchStatusText from '../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
 
 //icons
@@ -42,6 +43,9 @@ function RegistrarVentas ({
         }
     }, [ventaFetchStatus])
 
+
+    //calcular precio unitario/total
+    const [cantidad, setCantidad] = useState(null)
 
     return (
 
@@ -81,6 +85,16 @@ function RegistrarVentas ({
                             />
 
                             <FormInput 
+                                idInput='marca'
+                                type='text'
+                                texto='Marca'
+
+                                required='true'
+
+                                value={productoAVender?.marca}
+                            />
+
+                            <FormInput 
                                 idInput='cantidad'
                                 type='number'
                                 texto='Cantidad'
@@ -90,9 +104,23 @@ function RegistrarVentas ({
                                 esPrecio='false'
 
                                 required='true'
+
+                                setCantidad={setCantidad} //para calcular precio unitario/total
                             />
 
-                            <FormInput 
+                            <PrecioInput
+                                required='true'
+
+                                idInputPrecioUnitario='inputPrecioUnitarioVenta'
+                                name='precio_unitario'
+                                
+                                min='0'
+                                max='999999999'
+
+                                cantidad={cantidad} //para calcular precio unitario/total
+                            />
+                            
+                            {/* <FormInput 
                                 idInput='precio_unitario'
                                 type='number'
                                 texto='Precio unitario'
@@ -102,17 +130,9 @@ function RegistrarVentas ({
                                 esPrecio='true'
 
                                 required='true'
-                            />
+                            /> */}
 
-                            <FormInput 
-                                idInput='marca'
-                                type='text'
-                                texto='Marca'
-
-                                required='true'
-
-                                value={productoAVender?.marca}
-                            />
+                           
 
                         </>
                     }

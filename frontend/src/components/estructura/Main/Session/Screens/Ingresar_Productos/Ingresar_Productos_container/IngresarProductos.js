@@ -7,6 +7,7 @@ import {useEffect, useState} from 'react'
 //components
 import FormularioReutilizable from '../../../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
 import FormInput from '../../../../../../componentes_reutilizables/FormInput/FormInput';
+import PrecioInput from '../../../../../../componentes_reutilizables/PrecioInput/PrecioInput';
 import FetchStatusText from '../../../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
 
 //icons
@@ -35,6 +36,10 @@ function IngresarProductos ({
             setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
         }
     },[compraFetchStatus])
+
+
+    //calcular precio unitario/total
+    const [cantidad, setCantidad] = useState(null)
 
 
     return (
@@ -68,6 +73,16 @@ function IngresarProductos ({
                             />
 
                             <FormInput 
+                                idInput='marca'
+                                type='text'
+                                texto='Marca'
+
+                                required='true'
+
+                                value={productoAIngresar?.marca}
+                            />
+
+                            <FormInput 
                                 idInput='cantidad'
                                 type='number'
                                 texto='Cantidad'
@@ -79,27 +94,18 @@ function IngresarProductos ({
                                 required='true'
                             />
 
-                            <FormInput 
-                                idInput='precio_unitario'
-                                type='number'
-                                texto='Precio unitario'
-
-                                min='0.01'
-                                max='999999999.99'
-                                esPrecio='true'
-
-                                required='true'
-                            />
-
-                            <FormInput 
-                                idInput='marca'
-                                type='text'
-                                texto='Marca'
-
+                            <PrecioInput
                                 required='true'
 
-                                value={productoAIngresar?.marca}
+                                idInputPrecioUnitario='inputPrecioUnitarioCompra'
+                                name='precio_unitario'
+                                
+                                min='0'
+                                max='999999999'
+
+                                cantidad={cantidad} //para calcular precio unitario/total
                             />
+
 
                             <FormInput 
                                 idInput='proveedor'
