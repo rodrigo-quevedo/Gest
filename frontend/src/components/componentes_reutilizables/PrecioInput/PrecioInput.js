@@ -12,33 +12,32 @@ function PrecioInput({
     min,
     max,
 
-    cantidad // este se va a usar para calcular el precio unitario y total    
+    hayPrecioUnitario, setHayPrecioUnitario
 }) 
 {
 
-    // cambiar entre precio unitario / precio total
-    const [precioUnitario, setPrecioUnitario] = useState(true)
+
 
     return (
         <div className={styles.container}>
-            {precioUnitario ?
+            {hayPrecioUnitario ?
                 <div>
                     <label 
                         htmlFor={idInputPrecioUnitario}
-                        onClick={()=>{setPrecioUnitario(true)}}
+                        onClick={()=>{setHayPrecioUnitario(true)}}
                     >
                         Precio Unitario
                     </label>  
-                    <span onClick={()=>{setPrecioUnitario(false)}}>
+                    <span onClick={()=>{setHayPrecioUnitario(false)}}>
                         Precio Total
                     </span>
                 </div>
                 :
                 <div>
-                    <span onClick={()=>{setPrecioUnitario(true)}}>Precio Unitario</span>
+                    <span onClick={()=>{setHayPrecioUnitario(true)}}>Precio Unitario</span>
                     <label 
                         htmlFor={idInputPrecioUnitario}
-                        onClick={()=>{setPrecioUnitario(false)}}
+                        onClick={()=>{setHayPrecioUnitario(false)}}
                     >
                         Precio Total
                     </label>
@@ -58,6 +57,8 @@ function PrecioInput({
                 step="0.01"
                 min={min}
                 max={max}
+
+                title={`Solo se permiten números con 2 decimales a lo sumo. El minimo es ${min} y el máximo es ${max}.`}
             />
 
             

@@ -18,6 +18,9 @@ import {FETCH_STATUS} from '../../../../../../../config/config'
 import { URL_INGRESAR_PRODUCTOS } from "../../../../../../../config/config"
 import {SESSION_SCREENS} from "../../../../../../../config/config"
 
+//logica interna
+import useCalcularPrecioTotal from '../../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
+
 
 
 function IngresarProductos ({
@@ -38,9 +41,13 @@ function IngresarProductos ({
     },[compraFetchStatus])
 
 
-    //calcular precio unitario/total
-    const [cantidad, setCantidad] = useState(null)
+    // cambiar entre precio unitario / precio total
+    const [hayPrecioUnitario, setHayPrecioUnitario] = useState(true)
+    const [total, setTotal] = useState(0)
 
+    // hook para calcular el precio   
+    useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioCompra')
+    
 
     return (
         <section className={styles.container}>
@@ -56,7 +63,11 @@ function IngresarProductos ({
 
                 <h1>Nuevo producto</h1>
 
+                <h2> Total de gasto: $ {total} </h2>
+
                 <FormularioReutilizable 
+                    hayPrecioUnitario={hayPrecioUnitario}
+
                     fetchStatus={compraFetchStatus}
                     setFetchStatus={setCompraFetchStatus}
                     submitMessage={"Ingresando producto..."}
@@ -103,7 +114,9 @@ function IngresarProductos ({
                                 min='0'
                                 max='999999999'
 
-                                cantidad={cantidad} //para calcular precio unitario/total
+                                //para calcular precio unitario/total
+                                hayPrecioUnitario={hayPrecioUnitario} 
+                                setHayPrecioUnitario={setHayPrecioUnitario}
                             />
 
 

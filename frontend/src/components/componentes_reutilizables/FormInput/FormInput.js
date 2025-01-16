@@ -125,6 +125,8 @@ function FormInput ({
                             
                             min={min}
                             max={max}
+
+                            title={`Solo se permiten números ENTEROS entre ${min} y ${max}.`}
                         />
                     </div>
                 )

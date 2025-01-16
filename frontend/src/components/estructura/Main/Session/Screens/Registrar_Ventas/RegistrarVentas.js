@@ -20,7 +20,7 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 
 //logica interna
 import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
-
+import useCalcularPrecioTotal from '../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
 
 
 function RegistrarVentas ({
@@ -44,8 +44,12 @@ function RegistrarVentas ({
     }, [ventaFetchStatus])
 
 
-    //calcular precio unitario/total
-    const [cantidad, setCantidad] = useState(null)
+    // cambiar entre precio unitario / precio total
+    const [hayPrecioUnitario, setHayPrecioUnitario] = useState(true)
+    const [total, setTotal] = useState(0)
+
+    // hook para calcular el precio   
+    useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioVenta')
 
     return (
 
@@ -62,12 +66,16 @@ function RegistrarVentas ({
 
             <h1>Ingresar una venta</h1>
       
+            <h2> Total de venta: $ {total} </h2>
+
             <ListaPreciosCompra 
                 productoAVender={productoAVender}
                 historialProductos={historialProductos}
             />
 
             <FormularioReutilizable 
+                    hayPrecioUnitario={hayPrecioUnitario}
+
                     fetchStatus={ventaFetchStatus}
                     setFetchStatus={setVentaFetchStatus}
                     submitMessage={"Ingresando venta..."}
@@ -105,7 +113,7 @@ function RegistrarVentas ({
 
                                 required='true'
 
-                                setCantidad={setCantidad} //para calcular precio unitario/total
+                                
                             />
 
                             <PrecioInput
@@ -117,23 +125,10 @@ function RegistrarVentas ({
                                 min='0'
                                 max='999999999'
 
-                                cantidad={cantidad} //para calcular precio unitario/total
+                                //para calcular precio unitario/total
+                                hayPrecioUnitario={hayPrecioUnitario}
+                                setHayPrecioUnitario={setHayPrecioUnitario}
                             />
-                            
-                            {/* <FormInput 
-                                idInput='precio_unitario'
-                                type='number'
-                                texto='Precio unitario'
-
-                                min='0'
-                                max='999999999'
-                                esPrecio='true'
-
-                                required='true'
-                            /> */}
-
-                           
-
                         </>
                     }
                 />
