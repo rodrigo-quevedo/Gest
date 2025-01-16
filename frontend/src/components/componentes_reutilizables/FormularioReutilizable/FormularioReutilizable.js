@@ -22,7 +22,9 @@ function FormularioReutilizable({
     setFetchStatus,
     submitMessage,
     fetchURL,
-    formInputs
+    formInputs,
+
+    hayPrecioUnitario
 }) {
 
     //para cambiar de estilos, simplemente hay que crear una variable que tenga adentro el estilo. Despues se puede poner un if() que evalúe un parámetro y elija.
@@ -67,7 +69,8 @@ function FormularioReutilizable({
                         new FormData(
                             document.getElementById('formularioReutilizable')
                         )
-                    )
+                    ),
+                    hayPrecioUnitario
                 );
                 
 

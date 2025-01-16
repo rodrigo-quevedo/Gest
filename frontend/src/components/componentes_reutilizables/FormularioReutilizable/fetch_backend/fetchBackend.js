@@ -3,7 +3,7 @@ import { FETCH_STATUS } from "../../../../config/config"
 
 
 
-function fetchBackend (URL, setFetchStatus, fetchBody) {
+function fetchBackend (URL, setFetchStatus, fetchBody, hayPrecioUnitario) {
     console.log('Entrando al fetch');
     
     
@@ -25,6 +25,11 @@ function fetchBackend (URL, setFetchStatus, fetchBody) {
         // > Number(undefined)
         // NaN
         // >
+
+    // parsear precio total a precio unitario
+    if (! hayPrecioUnitario) {
+        fetchBody.precio_unitario = (fetchBody.precio_unitario / fetchBody.cantidad).toFixed(2)
+    }
 
 
     fetch(URL, {
