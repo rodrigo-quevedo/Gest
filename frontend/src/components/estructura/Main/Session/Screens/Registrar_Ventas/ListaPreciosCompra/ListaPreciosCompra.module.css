@@ -19,6 +19,16 @@
     font-weight: 700;
 }
 
+/* .container p {
+    text-align: left;
+    font-weight: 700;
+}
+.container p span {
+    text-decoration: underline;
+    color: #111134;
+}  */
+    
+
 .tableContainer {
     width: 100%;
     text-align: center;

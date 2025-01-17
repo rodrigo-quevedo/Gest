@@ -111,7 +111,7 @@ function IngresarProductos ({
                                 idInputPrecioUnitario='inputPrecioUnitarioCompra'
                                 name='precio_unitario'
                                 
-                                min='0'
+                                min='0.01'
                                 max='999999999'
 
                                 //para calcular precio unitario/total

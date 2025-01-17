@@ -10,6 +10,16 @@
     color: #111134;
 }
 
+.container p {
+    text-align: left;
+    font-weight: 700;
+    font-size: 18px;
+}
+.container p span {
+    text-decoration: underline;
+    color: #111134;
+} 
+
 /* Cambiar el estilo del button */
 .container form > input {
     max-width: 100%;

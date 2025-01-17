@@ -31,7 +31,8 @@ function RegistrarVentas ({
     ventaFetchStatus,
     setVentaFetchStatus,
 
-    historialProductos
+    historialProductos,
+    listaProductos
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
@@ -51,6 +52,17 @@ function RegistrarVentas ({
     // hook para calcular el precio   
     useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioVenta')
 
+    // extraer cantidad actual
+    let cantidadActual = listaProductos.find((productoObj)=>{
+        return (
+            productoAVender.producto.toUpperCase() === productoObj.producto.toUpperCase()
+            &&
+            productoAVender.marca.toUpperCase() === productoObj.marca.toUpperCase()
+        )
+    })
+    cantidadActual = cantidadActual?.cantidad;
+
+
     return (
 
         <section className={styles.container}>
@@ -66,12 +78,16 @@ function RegistrarVentas ({
 
             <h1>Ingresar una venta</h1>
       
-            <h2> Total de venta: $ {total} </h2>
+            
 
             <ListaPreciosCompra 
                 productoAVender={productoAVender}
                 historialProductos={historialProductos}
+                listaProductos={listaProductos}
             />
+
+            <p><span>Cantidad disponible:</span> {cantidadActual}</p>
+            <h2> Total de venta: $ {total} </h2>
 
             <FormularioReutilizable 
                     hayPrecioUnitario={hayPrecioUnitario}
@@ -107,8 +123,8 @@ function RegistrarVentas ({
                                 type='number'
                                 texto='Cantidad'
 
-                                min='0'
-                                max='9999'
+                                min='1'
+                                max={`${cantidadActual}`}
                                 esPrecio='false'
 
                                 required='true'
@@ -122,7 +138,7 @@ function RegistrarVentas ({
                                 idInputPrecioUnitario='inputPrecioUnitarioVenta'
                                 name='precio_unitario'
                                 
-                                min='0'
+                                min='0.01'
                                 max='999999999'
 
                                 //para calcular precio unitario/total

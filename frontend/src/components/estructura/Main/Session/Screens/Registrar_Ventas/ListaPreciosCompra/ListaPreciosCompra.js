@@ -5,7 +5,8 @@ import formatDate from '../../../../../../../utils/format_date/format_date'
 
 function ListaPreciosCompra({
     productoAVender, 
-    historialProductos
+    historialProductos,
+    listaProductos
 }){
 
     // extraer precios
@@ -28,13 +29,23 @@ function ListaPreciosCompra({
         )
     })
 
+    // // extraer cantidad actual
+    // let cantidadActual = listaProductos.find((productoObj)=>{
+    //     return (
+    //         productoAVender.producto.toUpperCase() === productoObj.producto.toUpperCase()
+    //         &&
+    //         productoAVender.marca.toUpperCase() === productoObj.marca.toUpperCase()
+    //     )
+    // })
+    // cantidadActual = cantidadActual?.cantidad;
 
     // devolver jsx con data inyectada
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>
-                Costos registrados de: <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
+                Historial de productos: <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
             </h2>
+            
             
             <table className={styles.tableContainer}>
                 <tr>
@@ -44,6 +55,8 @@ function ListaPreciosCompra({
                 </tr>
                 {preciosArr}
             </table>
+
+            {/* <p><span>Cantidad disponible:</span> {cantidadActual}</p> */}
         </div>
     )
 }
