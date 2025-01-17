@@ -1,6 +1,6 @@
 import styles from './PrecioInput.module.css'
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 function PrecioInput({
     required,
@@ -16,7 +16,16 @@ function PrecioInput({
 }) 
 {
 
+    // enfocar input cuando se clickea "precio unitario" o "precio total"
+    const [focus, setFocus] = useState(false)
 
+    useEffect(()=>{
+        if (focus) {
+            document.getElementById(idInputPrecioUnitario).focus()
+            setFocus(false)
+        }
+        
+    }, [focus])
 
     return (
         <div className={styles.container}>
@@ -24,20 +33,32 @@ function PrecioInput({
                 <div>
                     <label 
                         htmlFor={idInputPrecioUnitario}
-                        onClick={()=>{setHayPrecioUnitario(true)}}
+                        onClick={()=>{
+                            setHayPrecioUnitario(true)
+                            setFocus(true)
+                        }}
                     >
                         Precio Unitario
                     </label>  
-                    <span onClick={()=>{setHayPrecioUnitario(false)}}>
+                    <span onClick={()=>{
+                        setHayPrecioUnitario(false)
+                        setFocus(true)
+                    }}>
                         Precio Total
                     </span>
                 </div>
                 :
                 <div>
-                    <span onClick={()=>{setHayPrecioUnitario(true)}}>Precio Unitario</span>
+                    <span onClick={()=>{
+                        setHayPrecioUnitario(true)
+                        setFocus(true)
+                    }}>Precio Unitario</span>
                     <label 
                         htmlFor={idInputPrecioUnitario}
-                        onClick={()=>{setHayPrecioUnitario(false)}}
+                        onClick={()=>{
+                            setHayPrecioUnitario(false)
+                            setFocus(true)
+                        }}
                     >
                         Precio Total
                     </label>
