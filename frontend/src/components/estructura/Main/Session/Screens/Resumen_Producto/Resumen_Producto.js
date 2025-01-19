@@ -100,6 +100,18 @@ function Resumen_Producto({
         const [ingresarProducto, setIngresarProducto] = useState(false)
         const [registrarVenta, setRegistrarVenta] = useState(false)
 
+        //logica mensaje error fetch (lista productos, historial productos, historial ventas)
+        const [mensajeErrorFetch, setMensajeErrorFetch] = useState(null)
+        useEffect(()=>{
+            if (searchBoxState === SEARCHBOX_STATE.ERROR){
+                setMensajeErrorFetch(
+                    <p className={styles.mensajeErrorFetch}>
+                        Hubo un error al obtener los datos desde el servidor. Recargue la página o presione F5.
+                    </p>
+                )
+                setSearchBoxState(SEARCHBOX_STATE.DEFAULT)
+            }
+        }, [searchBoxState])
         
         //logica mensaje exito venta
         const [mensajeExitoCompraVenta, setMensajeExitoCompraVenta]= useState(null)     
@@ -154,6 +166,7 @@ function Resumen_Producto({
 
             <h3 className={styles.infoText}><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
            
+            {mensajeErrorFetch}
 
             <div className={styles.container}>
 
@@ -173,6 +186,8 @@ function Resumen_Producto({
                     />
 
                 </div>
+
+               
 
                 {
                     productSelected === null ? 

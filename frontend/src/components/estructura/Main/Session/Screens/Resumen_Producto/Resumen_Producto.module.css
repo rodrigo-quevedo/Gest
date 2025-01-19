@@ -15,6 +15,17 @@ h1 {
     --color-venta: #076A48;
 }
 
+.mensajeErrorFetch {
+    border-radius: 15px;
+    border: 1px solid #c90808;
+    
+    background: rgba(255, 0, 0, 0.152);
+    color: #c90808;
+    
+    padding: 5px;
+    margin: 10px auto;
+}
+
 .resutadoSuccessMessage{
     /* width: 60%; */
     

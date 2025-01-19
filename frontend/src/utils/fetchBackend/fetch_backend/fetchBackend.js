@@ -53,14 +53,14 @@ function fetchBackend (
 
         .catch(err=> {
             console.log('Error al parsear.', err)
-            setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
+            setSearchBoxState(SEARCHBOX_STATE.ERROR)
         });
 
     })
 
     .catch(err => {
         console.log('Error del fetch.', err)
-        setSearchBoxState(SEARCHBOX_STATE.FETCH_SUCCESS)
+        setSearchBoxState(SEARCHBOX_STATE.ERROR)
     })
 
 }
