@@ -29,7 +29,9 @@ function IngresarProductos ({
     productoAIngresar,
 
     compraFetchStatus,
-    setCompraFetchStatus
+    setCompraFetchStatus,
+
+    setPopupSessionExpired
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
@@ -67,6 +69,8 @@ function IngresarProductos ({
 
                 <FormularioReutilizable 
                     hayPrecioUnitario={hayPrecioUnitario}
+
+                    setPopupSessionExpired={setPopupSessionExpired}
 
                     fetchStatus={compraFetchStatus}
                     setFetchStatus={setCompraFetchStatus}

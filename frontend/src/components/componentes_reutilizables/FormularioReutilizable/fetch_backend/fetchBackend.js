@@ -3,7 +3,14 @@ import { FETCH_STATUS } from "../../../../config/config"
 
 
 
-function fetchBackend (URL, setFetchStatus, fetchBody, hayPrecioUnitario) {
+function fetchBackend (
+    URL, 
+    setFetchStatus, 
+    fetchBody, 
+    hayPrecioUnitario,
+    setPopupSessionExpired
+) {
+
     console.log('Entrando al fetch');
     
     
@@ -52,8 +59,16 @@ function fetchBackend (URL, setFetchStatus, fetchBody, hayPrecioUnitario) {
         body: JSON.stringify(fetchBody)
     })
 
-    .then(res=> { console.log(res); res.json()
-        .then((response)=> {
+    .then(res=> { 
+        console.log(res); 
+        
+        // manejar sesion expirada
+        if (res.status === 401) {
+            setPopupSessionExpired(true)
+        }
+
+        // manejar body de la Response
+        res.json().then((response)=> {
 
             if (response.success) {
                 setFetchStatus({
@@ -87,6 +102,19 @@ function fetchBackend (URL, setFetchStatus, fetchBody, hayPrecioUnitario) {
     )
     .catch(err=>{
         
+        // manejar error de conexion con el servidor
+        if (err.toString() === "TypeError: Failed to fetch"){
+            console.log("Error en la conexion con el servidor (TypeError: Failed to fetch)")
+
+            setFetchStatus({
+                status: FETCH_STATUS.ERROR,
+                errorMessage: `Error en la conexion con el servidor (${err}).`
+            })
+
+            return;
+
+        }
+
         console.log('Frontend error: while fetching.')
         console.log(err)
         

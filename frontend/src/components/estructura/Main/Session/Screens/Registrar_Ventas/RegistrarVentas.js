@@ -32,7 +32,9 @@ function RegistrarVentas ({
     setVentaFetchStatus,
 
     historialProductos,
-    listaProductos
+    listaProductos,
+
+    setPopupSessionExpired
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
@@ -91,6 +93,8 @@ function RegistrarVentas ({
 
             <FormularioReutilizable 
                     hayPrecioUnitario={hayPrecioUnitario}
+
+                    setPopupSessionExpired={setPopupSessionExpired}
 
                     fetchStatus={ventaFetchStatus}
                     setFetchStatus={setVentaFetchStatus}
