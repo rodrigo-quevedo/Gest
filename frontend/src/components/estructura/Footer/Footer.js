@@ -7,8 +7,8 @@ function Footer (){
     return (
         <footer className={styles.footer}>
         <p>Inicio del proyecto: 22 de Agosto de 2024.</p>
-        <p>Última update: Diciembre de 2024</p>
-        <p>Rodrigo Martín Quevedo - Programador Web</p>
+        <p>Última update: 19 de Enero de 2025</p>
+        <p>Rodrigo Martín Quevedo - Desarrollador Fullstack</p>
         <nav className={styles.footerNavbar}>
             <a href="https://github.com/rodrigo-quevedo"><FaGithub /> Mira mis otros proyectos</a>
             <a href="https://www.linkedin.com/in/martinquevedo"><FaLinkedin/> Agregame a LinkedIn</a>
