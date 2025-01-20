@@ -1,0 +1,38 @@
+.hide, .hide *{
+    visibility: hidden;
+}
+
+.autosugerenciasContainer{
+    margin: 0;
+    
+    position: absolute;
+    left: 0px;
+    top: 100%;
+
+    width: 100%;
+    
+    background: #fff;
+
+    border: 1px solid #111134; 
+    border-radius: 2.5px;
+    color: #111134;
+
+    overflow: hidden;
+
+    padding-top: 5px;
+    padding-left: 0;
+
+    list-style-type: none;
+
+    text-align: left;
+}
+.autosugerenciasContainer li {
+    padding: 5px !important;
+    margin: 0 !important;
+}
+.autosugerenciasContainer li:hover {
+    background: #111134;
+    color: #fff;
+
+    cursor: pointer;
+}
