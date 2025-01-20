@@ -20,23 +20,15 @@ function fetchBackend (
     if (fetchBody.cantidad) fetchBody.cantidad = Number(fetchBody.cantidad)
     
     if (fetchBody.precio_unitario) fetchBody.precio_unitario = Number(fetchBody.precio_unitario)
-    //Number(undefined) devuelve NaN:
-        // > const a = {}
-        // undefined
-        // > a.nonexistent = Number(a.nonexistent)
-        // NaN
-        // > a
-        // { nonexistent: NaN }
-        // > Number(null)
-        // 0
-        // > Number(undefined)
-        // NaN
-        // >
 
+    
     // parsear precio total a precio unitario
     if (! hayPrecioUnitario) {
         fetchBody.precio_unitario = (fetchBody.precio_unitario / fetchBody.cantidad).toFixed(2)
+
+        fetchBody.precio_unitario = Number(fetchBody.precio_unitario)
     }
+
 
 
     fetch(URL, {
