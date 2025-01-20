@@ -17,6 +17,9 @@ import {SEARCHBOX_STATE} from '../../../config/config'
 import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
 import busqueda_local from '../../../utils/busqueda_local/busqueda_local';
 
+//subcomponentes
+import Autosugerencias from '../Autosugerencias/Autosugerencias';
+
 
 function SearchBox_resumen({
     searchBoxState,
@@ -37,7 +40,18 @@ function SearchBox_resumen({
         }
     }, [searchBoxState])
 
-    
+    // logica autosugerencia 
+    const [busquedaString, setBusquedaString] = useState('')
+    useEffect(()=>{
+        document.getElementById('searchBoxInput').addEventListener('input', ()=>{
+            setBusquedaString(document.getElementById('searchBoxInput').value)
+
+            setSearchBoxState(SEARCHBOX_STATE.CLICKED)
+        })
+    }, [])
+
+
+
 
     return (
         <div className={styles.searchBoxContainer}>
@@ -87,41 +101,6 @@ function SearchBox_resumen({
                             document.getElementById('searchBoxInput').value
                         )
 
-                        // fetchBackend(
-                        //     setSearchBoxState, 
-                        //     URL_lista, 
-                        //     setter_lista,
-                        //     Object.fromEntries(
-                        //         new FormData(
-                        //             document.getElementById('searchBoxForm')
-                        //         )
-                        //     ),
-                        //     setPopupSessionExpired
-                        // )
-
-                        // fetchBackend(
-                        //     setSearchBoxState, 
-                        //     URL_historialProductos, 
-                        //     setter_historialProductos,
-                        //     Object.fromEntries(
-                        //         new FormData(
-                        //             document.getElementById('searchBoxForm')
-                        //         )
-                        //     ),
-                        //     setPopupSessionExpired
-                        // )
-
-                        // fetchBackend(
-                        //     setSearchBoxState, 
-                        //     URL_historialVentas, 
-                        //     setter_historialVentas,
-                        //     Object.fromEntries(
-                        //         new FormData(
-                        //             document.getElementById('searchBoxForm')
-                        //         )
-                        //     ),
-                        //     setPopupSessionExpired
-                        // )
                     }}
                 >
                     <div 
@@ -149,6 +128,16 @@ function SearchBox_resumen({
                         }}
 
                     >
+                        {/* Autosugerencias */}
+                        <Autosugerencias 
+                            listaProductos={listaProductos}
+                            busquedaString={busquedaString}
+
+                            searchBoxState={searchBoxState}
+                        />
+                    
+
+
                         {/* SearchBox Icon */}
                         {
                             searchBoxState === SEARCHBOX_STATE.SUBMIT ?
@@ -173,7 +162,10 @@ function SearchBox_resumen({
                             //Puedo apretar ENTER y que me traiga todo, por lo que required='false', pero no hace falta ponerlo, ya que false es el defaut
 
                             //esto lo agregué para cuando el usuario hace tab en vez de clickear:
-                            onFocus={()=>setSearchBoxState(SEARCHBOX_STATE.CLICKED)}
+                            onFocus={()=>{
+                                setSearchBoxState(SEARCHBOX_STATE.CLICKED);
+                            }
+                            }
 
                             maxLength='50'
                             // Me conviene que pueda estar vacio para mandar {} y usarlo en el find()
@@ -182,6 +174,8 @@ function SearchBox_resumen({
                         />
 
                     </div>
+
+
 
 
                 </form>
