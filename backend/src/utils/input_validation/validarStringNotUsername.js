@@ -1,31 +1,18 @@
+const InputValidationError = require('../../utils/CustomErrors/InputValidationError/InputValidationError')
+
 const validarStringNotUsername = (atributo, input, res) => {
 
     if (!input) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: El campo es obligatorio.`
-        })
-
-        return;
+        throw new InputValidationError(`${atributo}: El campo es obligatorio.`)
     }
 
     if (typeof input !== 'string') {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${input}' es inválido. El campo debe ser tipo String.`
-        })
-
-        return;
+        throw new InputValidationError(`${atributo}: '${input}' es inválido. El campo debe ser tipo String.`)
     }
 
 
     if (/^[a-zA-ZÀ-ÿñÑ0-9 .]{6,50}$/.test(input) === false) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${input}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`
-        })
-
-        return;
+        throw new InputValidationError(`${atributo}: '${input}' es inválido. Solo son válidos: letras mayúsculas, letras minúsculas, números, el punto (.) y los espacios. NO se aceptan caracteres especiales. Mínimo 6 y máximo 50 caracteres.`)
     }
 }
 

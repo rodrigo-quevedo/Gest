@@ -1,11 +1,9 @@
-const validarPrecioFloat2Decimales = (atributo, input, res, min, max) => {
-    if (!input) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: El campo es obligatorio.`
-        })
+const InputValidationError = require('../../utils/CustomErrors/InputValidationError/InputValidationError')
 
-        return;
+const validarPrecioFloat2Decimales = (atributo, input, res, min, max) => {
+
+    if (!input) {
+        throw new InputValidationError(`${atributo}: El campo es obligatorio.`)
     }
 
     //el float es más complicado, porque es check integer + check cantidad de decimales (2 decimales)
@@ -29,21 +27,11 @@ const validarPrecioFloat2Decimales = (atributo, input, res, min, max) => {
             )
         )
     ) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${input}' es inválido. El campo debe ser Integer, o Float con 1 o 2 decimales.`
-        })
-
-        return;
+        throw new InputValidationError(`${atributo}: '${input}' es inválido. El campo debe ser Integer, o Float con 1 o 2 decimales.`)
     }
 
     if (input < min || input > max) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${req.body.precio_unitario}' es inválido. Valor min es ${min} y max es ${max}`
-        })
-
-        return;
+        throw new InputValidationError(`${atributo}: '${req.body.precio_unitario}' es inválido. Valor min es ${min} y max es ${max}`)
     }
 }
 

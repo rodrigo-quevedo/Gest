@@ -1,11 +1,8 @@
+const InputValidationError = require('../../utils/CustomErrors/InputValidationError/InputValidationError')
+
 const validarCantidadInteger = (atributo, input, res, min, max) => {
     if (!input) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: El campo es obligatorio.`
-        })
-    
-        return;
+        throw new InputValidationError(`${atributo}: El campo es obligatorio.`)
     }
     
     if (
@@ -13,21 +10,11 @@ const validarCantidadInteger = (atributo, input, res, min, max) => {
         isNaN(input) ||
         parseInt(input, 10) !== input
     ) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${input}' es inválido. El campo debe ser tipo Integer.`
-        })
-    
-        return;
+        throw new InputValidationError( `${atributo}: '${input}' es inválido. El campo debe ser tipo Integer.`)
     }
     
     if (input < min || input > max) {
-        res.status(400).json({
-            success: false,
-            message: `${atributo}: '${input}' es inválido. El minimo es ${min} y el máximo es ${max}.`
-        })
-    
-        return;
+        throw new InputValidationError(`${atributo}: '${input}' es inválido. El minimo es ${min} y el máximo es ${max}.`)
     }
 }
 
