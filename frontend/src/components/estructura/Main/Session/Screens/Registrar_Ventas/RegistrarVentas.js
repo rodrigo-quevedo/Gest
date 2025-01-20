@@ -34,7 +34,9 @@ function RegistrarVentas ({
     historialProductos,
     listaProductos,
 
-    setPopupSessionExpired
+    setPopupSessionExpired,
+
+    setHacerFetch
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
@@ -43,6 +45,8 @@ function RegistrarVentas ({
     useEffect(()=>{
         if (ventaFetchStatus.status === FETCH_STATUS.SUCCESS){
             setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
+
+            setHacerFetch(true)
         }
     }, [ventaFetchStatus])
 

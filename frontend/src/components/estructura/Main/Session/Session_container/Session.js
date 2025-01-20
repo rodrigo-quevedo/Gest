@@ -119,6 +119,8 @@ function Session({
 
                             compraFetchStatus={compraVentaFetchStatus}
                             setCompraFetchStatus={setCompraVentaFetchStatus}
+
+                            setHacerFetch={setHacerFetch}
                         />
             }
             case SESSION_SCREENS.REGISTRAR_VENTAS : {
@@ -132,6 +134,8 @@ function Session({
 
                             historialProductos={historialProductos}
                             listaProductos={listaProductos}
+
+                            setHacerFetch={setHacerFetch}
                         />
             }
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {

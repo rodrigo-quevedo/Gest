@@ -31,7 +31,9 @@ function IngresarProductos ({
     compraFetchStatus,
     setCompraFetchStatus,
 
-    setPopupSessionExpired
+    setPopupSessionExpired,
+
+    setHacerFetch
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
@@ -39,6 +41,8 @@ function IngresarProductos ({
     useEffect(()=>{
         if (compraFetchStatus.status === FETCH_STATUS.SUCCESS){
             setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
+
+            setHacerFetch(true)
         }
     },[compraFetchStatus])
 
