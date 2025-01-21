@@ -1,5 +1,8 @@
 .hide, .hide *{
-    visibility: hidden;
+    /* Visibility hidden -> Rompe el layout, y se empieza a mostrar espacio en blanco al final del <html> */
+    /* visibility: hidden;  */
+    
+    display: none;
 }
 
 .autosugerenciasContainer{

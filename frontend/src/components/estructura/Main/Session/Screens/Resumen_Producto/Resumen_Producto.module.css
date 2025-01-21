@@ -13,6 +13,8 @@ h1 {
     /* Variables para colores */
     --color-compra: #580CC2 ;
     --color-venta: #076A48;
+
+    --table-column-color: #8181ff51;
 }
 
 .mensajeErrorFetch {
@@ -167,6 +169,15 @@ h1 {
         grid-column: 2/-2;
         grid-row: 3;
     }
+}
+
+/* Estilos de tabla */
+:global(#productoTableNotInteractive) table > tbody > tr > td:nth-child(even),
+:global(#finanzaTable) table > tbody > tr > td:nth-child(even),
+:global(#comprasTable) table > tbody > tr > td:nth-child(even),
+:global(#ventasTable) table > tbody > tr > td:nth-child(even)
+{
+    background: var(--table-column-color);
 }
 
 /* ProductosTable (clickeable) */
