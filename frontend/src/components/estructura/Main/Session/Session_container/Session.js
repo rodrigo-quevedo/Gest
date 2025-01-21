@@ -141,11 +141,13 @@ function Session({
             case SESSION_SCREENS.HISTORIAL_PRODUCTOS: {
                 return <HistorialProductos 
                     historialProductos={historialProductos}
+                    listaProductos={listaProductos}
                 />
             }
             case SESSION_SCREENS.HISTORIAL_VENTAS : {
                 return <HistorialVentas 
                     HistorialVentas={historialVentas}
+                    listaProductos={listaProductos}
                 />
             }
 

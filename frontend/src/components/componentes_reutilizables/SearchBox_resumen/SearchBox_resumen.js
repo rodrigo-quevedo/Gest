@@ -18,7 +18,7 @@ import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
 import busqueda_local from '../../../utils/busqueda_local/busqueda_local';
 
 //subcomponentes
-import Autosugerencias from '../Autosugerencias/Autosugerencias';
+import Autosugerencias_nombreProducto from '../Autosugerencias_nombreProducto/Autosugerencias_nombreProducto';
 
 
 function SearchBox_resumen({
@@ -57,6 +57,8 @@ function SearchBox_resumen({
         <div className={styles.searchBoxContainer}>
             <button
                 onClick={()=>{
+                    setBusquedaString('')
+
                     document.getElementById('searchBoxInput').value = ''
 
                     document.getElementById('searchBoxForm').requestSubmit()
@@ -129,11 +131,14 @@ function SearchBox_resumen({
 
                     >
                         {/* Autosugerencias */}
-                        <Autosugerencias 
+                        <Autosugerencias_nombreProducto 
                             listaProductos={listaProductos}
                             busquedaString={busquedaString}
 
                             searchBoxState={searchBoxState}
+
+                            inputId={'searchBoxInput'}
+                            formId={'searchBoxForm'}
                         />
                     
 

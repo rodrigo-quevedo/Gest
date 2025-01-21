@@ -19,7 +19,8 @@ import formatTime from '../../../../../../utils/format_date/format_time';
 import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
 function HistorialProductos ({
-    historialProductos
+    historialProductos,
+    listaProductos
 }
 ) {
     document.querySelector('title').innerText = 'Historial de productos';
@@ -43,6 +44,8 @@ function HistorialProductos ({
 
                 array={historialProductos}
                 setArrayResultado={setArrayResultado}
+
+                listaProductos={listaProductos}
             />
 
             <div className={styles.tableContainer}>

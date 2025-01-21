@@ -2,7 +2,7 @@
 import styles from './SearchBox.module.css'
 
 // react
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // icons
 import { FaSearch } from "react-icons/fa";
@@ -18,6 +18,9 @@ import elegirSearchboxClass from './elegir_component_class/elegirSearchboxClass'
 // import fetchBackend from './fetch_backend/fetchBackend';
 import busqueda_local from './busqueda_local/busqueda_local';
 
+//subcomponentes
+import Autosugerencias_nombreProducto from '../Autosugerencias_nombreProducto/Autosugerencias_nombreProducto';
+
 
 // Searchbox es un componente que va (preferentemente, pero no es obligatorio) en conjunto con una tabla.
 // Recibe un array como input, y devuelve un array filtrado como resultado.
@@ -28,7 +31,10 @@ function SearchBox_busquedaLocal({
     // Array input
     array,
     // Array resultado
-    setArrayResultado
+    setArrayResultado,
+
+    //lista productos para Autosugerencia
+    listaProductos
 }) {
 
     // Esto se activa SOLO cuando el usuario hizo un submit. Funciona así:
@@ -50,10 +56,23 @@ function SearchBox_busquedaLocal({
     }, [searchBoxState])
 
 
+    // logica autosugerencia 
+    const [busquedaString, setBusquedaString] = useState('')
+    useEffect(()=>{
+        document.getElementById('searchBoxInput').addEventListener('input', ()=>{
+            setBusquedaString(document.getElementById('searchBoxInput').value)
+
+            setSearchBoxState(SEARCHBOX_STATE.CLICKED)
+        })
+    }, [])
+
+
     return (
         <div className={styles.searchBoxContainer}>
             <button
                 onClick={()=>{
+                    setBusquedaString('')
+
                     document.getElementById('searchBoxInput').value = ''
 
                     document.getElementById('searchBoxForm_busquedaLocal').requestSubmit()
@@ -111,6 +130,18 @@ function SearchBox_busquedaLocal({
                     }}
 
                 >
+                    {/* Autosugerencias */}
+                    <Autosugerencias_nombreProducto 
+                        listaProductos={listaProductos}
+                        busquedaString={busquedaString}
+
+                        searchBoxState={searchBoxState}
+
+                        inputId={'searchBoxInput'}
+                        formId={'searchBoxForm_busquedaLocal'}
+                    />
+
+
                     {/* SearchBox Icon */}
                     {
                         searchBoxState === SEARCHBOX_STATE.SUBMIT ?
