@@ -5,16 +5,18 @@ import {useState, useEffect} from 'react'
 import { SEARCHBOX_STATE } from '../../../config/config'
 
 
-function buscar(busquedaString){
-    document.getElementById('searchBoxInput').value = busquedaString
-    document.getElementById('searchBoxForm').requestSubmit()
+function buscar(busquedaString, inputId, formId){
+    document.getElementById(inputId).value = busquedaString
+    document.getElementById(formId).requestSubmit()
 }
 
-function Autosugerencias({
+function Autosugerencias_nombreProducto({
     listaProductos,
     busquedaString,
 
-    searchBoxState
+    searchBoxState,
+
+    inputId, formId
 }){
 
 
@@ -33,7 +35,7 @@ function Autosugerencias({
 
                 if (prodObj.producto === ''){
                     return (
-                        <li onMouseDown={()=>{buscar(prodObj.producto)}} >
+                        <li onMouseDown={()=>{buscar(prodObj.producto, inputId, formId)}} >
                             {prodObj.producto}
                         </li>
                     )
@@ -41,7 +43,7 @@ function Autosugerencias({
                 
                 if (prodObj.producto.toUpperCase().includes(busquedaString.toUpperCase())){
                     return (
-                        <li onMouseDown={()=> {buscar(prodObj.producto)}} >
+                        <li onMouseDown={()=> {buscar(prodObj.producto, inputId, formId)}} >
                             {prodObj.producto}
                         </li>
                     )
@@ -51,4 +53,4 @@ function Autosugerencias({
     )
 }
 
-export default Autosugerencias
+export default Autosugerencias_nombreProducto
