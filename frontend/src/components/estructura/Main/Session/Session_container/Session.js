@@ -108,9 +108,9 @@ function Session({
                             setCompraVentaFetchStatus={setCompraVentaFetchStatus}
                         />
             }
-            case SESSION_SCREENS.LISTA_PRODUCTOS: {
-                return <ListaProductos />
-            }
+            // case SESSION_SCREENS.LISTA_PRODUCTOS: {
+            //     return <ListaProductos />
+            // }
             case SESSION_SCREENS.INGRESAR_PRODUCTOS: {
                 return <IngresarProductos 
                             setSessionScreen={setSessionScreen}
@@ -121,6 +121,9 @@ function Session({
                             setCompraFetchStatus={setCompraVentaFetchStatus}
 
                             setHacerFetch={setHacerFetch}
+
+                            listaProductos={listaProductos}
+                            historialProductos={historialProductos}
                         />
             }
             case SESSION_SCREENS.REGISTRAR_VENTAS : {

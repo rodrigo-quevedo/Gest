@@ -12,8 +12,24 @@
 
 /* Cambiar el estilo del button */
 .container form > input {
-    max-width: 45% !important;
+    max-width: 47% !important;
 }
+
+
+/* Adaptacion de inputs a Autosugerencia */
+.container form > div  {
+    min-width: 45% !important;
+    max-width: 45% !important;
+    margin: 0 auto !important;
+}
+.container form > div > div {
+    min-width: 100%;
+}
+.completeInputContainer{
+    /* position: relative -> crea un nuevo stacking context, le sirve al autosugerenciaContainer para usar position: absolute y posicionarlo con top: 100%, left: 0px; */
+    position: relative;
+}
+ 
 
 
 .goBackButton {

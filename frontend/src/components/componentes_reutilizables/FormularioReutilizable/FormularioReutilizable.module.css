@@ -4,7 +4,7 @@
     flex-direction: row;
 
     justify-content: flex-start;
-    align-items: center;
+    align-items: center !important;
 
     /* max-height: 50vh; */
 }

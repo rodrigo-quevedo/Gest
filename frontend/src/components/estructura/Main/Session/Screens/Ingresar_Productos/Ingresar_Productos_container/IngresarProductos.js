@@ -20,6 +20,11 @@ import {SESSION_SCREENS} from "../../../../../../../config/config"
 
 //logica interna
 import useCalcularPrecioTotal from '../../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
+import useActivarAutosugerencia from '../../../../../../../hooks/activarAutosugerencia/useActivarAutosugerencia';
+
+
+//autosugerencias
+import Autosugerencias_productoFormulario from '../../../../../../componentes_reutilizables/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
 
 
 
@@ -33,7 +38,9 @@ function IngresarProductos ({
 
     setPopupSessionExpired,
 
-    setHacerFetch
+    setHacerFetch,
+
+    listaProductos, historialProductos
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
@@ -54,6 +61,28 @@ function IngresarProductos ({
     // hook para calcular el precio   
     useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioCompra')
     
+    //logica autosugerencias
+    const [productoSearchString, setProductoSearchString] = useState('')
+    const [productoInputActivo, setProductoInputActivo] = useState(false)
+    useActivarAutosugerencia('producto', setProductoSearchString, setProductoInputActivo)
+    
+    const [marcaSearchString, setMarcaSearchString] = useState('')
+    const [marcaInputActivo, setMarcaInputActivo] = useState(false)
+    useActivarAutosugerencia('marca', setMarcaSearchString, setMarcaInputActivo)
+
+    const [cantidadSearchString, setCantidadSearchString] = useState('')
+    const [cantidadInputActivo, setCantidadInputActivo] = useState(false)
+    useActivarAutosugerencia('cantidad', setCantidadSearchString, setCantidadInputActivo)
+
+    const [precioSearchString, setPrecioSearchString] = useState('')
+    const [precioInputActivo, setPrecioInputActivo] = useState(false)
+    useActivarAutosugerencia('inputPrecioUnitarioCompra', setPrecioSearchString, setPrecioInputActivo)
+
+    const [proveedorSearchString, setProveedorSearchString] = useState('')
+    const [proveedorInputActivo, setProveedorInputActivo] = useState(false)
+    useActivarAutosugerencia('proveedor', setProveedorSearchString, setProveedorInputActivo)
+
+
 
     return (
         <section className={styles.container}>
@@ -82,59 +111,78 @@ function IngresarProductos ({
                     fetchURL={URL_INGRESAR_PRODUCTOS}
                     formInputs={
                         <>
-                            <FormInput 
-                                idInput='producto'
-                                type='text'
-                                texto='Nombre del producto'
+                            <div className={styles.completeInputContainer}>
+                                <FormInput 
+                                    idInput='producto'
+                                    type='text'
+                                    texto='Nombre del producto'
 
-                                required='true'
-                                value={productoAIngresar?.producto}
-                            />
+                                    required='true'
+                                    value={productoAIngresar?.producto}
+                                />
+                                <Autosugerencias_productoFormulario 
+                                    productoSearchString={productoSearchString}
+                                    setProductoSearchString={setProductoSearchString}
 
-                            <FormInput 
-                                idInput='marca'
-                                type='text'
-                                texto='Marca'
+                                    productoInputActivo={productoInputActivo}
+                                    setProductoInputActivo={setProductoInputActivo}
 
-                                required='true'
+                                    listaProductos={listaProductos}
+                                />
+                        
+                            </div>
 
-                                value={productoAIngresar?.marca}
-                            />
+                            <div>    
+                                <FormInput 
+                                    idInput='marca'
+                                    type='text'
+                                    texto='Marca'
+                                    
+                                    required='true'
+                                    
+                                    value={productoAIngresar?.marca}
+                                />
+                            </div>
 
-                            <FormInput 
-                                idInput='cantidad'
-                                type='number'
-                                texto='Cantidad'
+                            <div>
+                                <FormInput 
+                                    idInput='cantidad'
+                                    type='number'
+                                    texto='Cantidad'
 
-                                min='1'
-                                max='9999'
-                                esPrecio='false'
+                                    min='1'
+                                    max='9999'
+                                    esPrecio='false'
 
-                                required='true'
-                            />
+                                    required='true'
+                                />
+                            </div>
 
-                            <PrecioInput
-                                required='true'
+                            <div>
+                                <PrecioInput
+                                    required='true'
 
-                                idInputPrecioUnitario='inputPrecioUnitarioCompra'
-                                name='precio_unitario'
-                                
-                                min='0.01'
-                                max='999999999'
+                                    idInputPrecioUnitario='inputPrecioUnitarioCompra'
+                                    name='precio_unitario'
+                                    
+                                    min='0.01'
+                                    max='999999999'
 
-                                //para calcular precio unitario/total
-                                hayPrecioUnitario={hayPrecioUnitario} 
-                                setHayPrecioUnitario={setHayPrecioUnitario}
-                            />
+                                    //para calcular precio unitario/total
+                                    hayPrecioUnitario={hayPrecioUnitario} 
+                                    setHayPrecioUnitario={setHayPrecioUnitario}
+                                />
+                            </div>
 
+                            <div>
+                                <FormInput 
+                                    idInput='proveedor'
+                                    type='text'
+                                    texto='Proveedor'
 
-                            <FormInput 
-                                idInput='proveedor'
-                                type='text'
-                                texto='Proveedor'
-
-                                required='true'
-                            />
+                                    required='true'
+                                />
+                            </div>
                         </>
                     }
                 />
