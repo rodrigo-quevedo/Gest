@@ -26,6 +26,11 @@
     list-style-type: none;
 
     text-align: left;
+
+    max-height: 40vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #111134 transparent;
 }
 .autosugerenciaContainer li {
     padding: 5px !important;

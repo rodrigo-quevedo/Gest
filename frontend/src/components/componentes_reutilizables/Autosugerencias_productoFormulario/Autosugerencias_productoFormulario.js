@@ -1,4 +1,4 @@
-import styles from './Autosugerencias_productoFormulario.module.css'
+import styles from './AutosugerenciasFormulario.module.css'
 
 
 function Autosugerencias_productoFormulario({
