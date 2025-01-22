@@ -19,6 +19,15 @@ function Autosugerencias_nombreProducto({
     inputId, formId
 }){
 
+    // Hacer lista productos sin repeticiones:
+    let listaProductosSinRepetir = [];
+    let listaProductosRepetidos = listaProductos.map((prodObj)=> {return prodObj.producto});
+    listaProductosRepetidos.forEach((producto, index)=>{
+        if (listaProductosRepetidos.indexOf(producto) === index){
+            listaProductosSinRepetir.push(producto)
+        }
+    })
+    //
 
     return (
         <ul 
@@ -31,20 +40,20 @@ function Autosugerencias_nombreProducto({
             }
 
         >
-            {listaProductos?.map((prodObj)=>{
+            {listaProductosSinRepetir?.map((producto)=>{
 
-                if (prodObj.producto === ''){
+                if (producto === ''){
                     return (
-                        <li onMouseDown={()=>{buscar(prodObj.producto, inputId, formId)}} >
-                            {prodObj.producto}
+                        <li onMouseDown={()=>{buscar(producto, inputId, formId)}} >
+                            {producto}
                         </li>
                     )
                 }
                 
-                if (prodObj.producto.toUpperCase().includes(busquedaString.toUpperCase())){
+                if (producto.toUpperCase().includes(busquedaString.toUpperCase())){
                     return (
-                        <li onMouseDown={()=> {buscar(prodObj.producto, inputId, formId)}} >
-                            {prodObj.producto}
+                        <li onMouseDown={()=> {buscar(producto, inputId, formId)}} >
+                            {producto}
                         </li>
                     )
                 }

@@ -251,7 +251,7 @@ function Resumen_Producto({
                                         (stateObj) => {
                                             return (
                                                 <tr 
-                                                    key={stateObj.producto}
+                                                    key={`${stateObj.producto}_${stateObj.marca}`}
                                                     
                                                     className={
                                                         //compra
@@ -354,70 +354,69 @@ function Resumen_Producto({
                         </>
                     :
                         <>
-                            {/* <div className={styles.finanzaYProductoContainer} > */}
-                                <div className={styles.tableContainer} id="productoTableNotInteractive">
-                                    <h2>Producto seleccionado</h2>
-                                    <TablaReutilizable
-                                        searchBoxState={searchBoxState}
-                                        arrayState={listaProductosResult}
+                            
+                            <div className={styles.tableContainer} id="productoTableNotInteractive">
+                                <h2>Producto seleccionado</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={listaProductosResult}
 
-                                        tableHeaders={
-                                            <tr>
-                                                <th>Producto seleccionado</th>
-                                                <th>Cantidad Actual</th>
-                                                <th>Marca</th>
-                                            </tr>
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Producto seleccionado</th>
+                                            <th>Cantidad Actual</th>
+                                            <th>Marca</th>
+                                        </tr>
+                                    }
+
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                <tr 
+                                                    key={`${stateObj.producto}_${stateObj.marca}`}
+                                                >
+                                                    <td>{stateObj.producto}</td>
+                                                    <td>{stateObj.cantidad}</td>
+                                                    <td>{stateObj.marca}</td>
+                                                </tr>
+                                            )
                                         }
+                                    }
+                                />
+                            </div>
 
-                                        mapCallback={
-                                            (stateObj) => {
-                                                return (
-                                                    <tr 
-                                                        key={stateObj.producto}
-                                                    >
-                                                        <td>{stateObj.producto}</td>
-                                                        <td>{stateObj.cantidad}</td>
-                                                        <td>{stateObj.marca}</td>
-                                                    </tr>
-                                                )
-                                            }
+                            <div className={styles.tableContainer} id="finanzaTable">
+                                <h2>Finanza</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={arrFinanza}
+
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Total gastado</th>
+                                            <th>Total vendido</th>
+                                            <th>Neto</th>
+                                            <th>Ganancia sobre lo vendido</th>     
+                                        </tr>
+                                    }
+
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                //doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format#description
+                                                <tr key={stateObj.id}>
+                                                    <td>${new Intl.NumberFormat("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
+                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
+                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
+                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
+                                                </tr>
+                                            )
                                         }
-                                    />
-                                </div>
+                                    }
+                                />
+                            </div>
 
-                                <div className={styles.tableContainer} id="finanzaTable">
-                                    <h2>Finanza</h2>
-                                    <TablaReutilizable
-                                        searchBoxState={searchBoxState}
-                                        arrayState={arrFinanza}
-
-                                        tableHeaders={
-                                            <tr>
-                                                <th>Total gastado</th>
-                                                <th>Total vendido</th>
-                                                <th>Neto</th>
-                                                <th>Ganancia sobre lo vendido</th>     
-                                            </tr>
-                                        }
-
-                                        mapCallback={
-                                            (stateObj) => {
-                                                return (
-                                                    //doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format#description
-                                                    <tr key={stateObj.id}>
-                                                        <td>${new Intl.NumberFormat("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
-                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
-                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
-                                                        <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
-                                                    </tr>
-                                                )
-                                            }
-                                        }
-                                    />
-                                </div>
-
-                                
-                            {/* </div> */}
+                    
 
                             <div className={styles.tableContainer} id="comprasTable">
                                 <h2>Compras</h2>
