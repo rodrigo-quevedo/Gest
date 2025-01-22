@@ -25,7 +25,7 @@ import useActivarAutosugerencia from '../../../../../../../hooks/activarAutosuge
 
 //autosugerencias
 import Autosugerencias_productoFormulario from '../../../../../../componentes_reutilizables/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
-
+import Autosugerencias_marcaFormulario from '../../../../../../componentes_reutilizables/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
 
 
 function IngresarProductos ({
@@ -132,7 +132,7 @@ function IngresarProductos ({
                         
                             </div>
 
-                            <div>    
+                            <div className={styles.completeInputContainer}> 
                                 <FormInput 
                                     idInput='marca'
                                     type='text'
@@ -141,6 +141,17 @@ function IngresarProductos ({
                                     required='true'
                                     
                                     value={productoAIngresar?.marca}
+                                />
+                                <Autosugerencias_marcaFormulario 
+                                    productoSearchString={productoSearchString}
+
+                                    marcaSearchString={marcaSearchString}
+                                    setMarcaSearchString={setMarcaSearchString}
+
+                                    marcaInputActivo={marcaInputActivo}
+                                    setMarcaInputActivo={setMarcaInputActivo}
+
+                                    listaProductos={listaProductos}
                                 />
                             </div>
 
