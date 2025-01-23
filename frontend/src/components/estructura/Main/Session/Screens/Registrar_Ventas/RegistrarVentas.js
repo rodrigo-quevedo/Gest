@@ -21,12 +21,13 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 //logica interna
 import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
 import useCalcularPrecioTotal from '../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
+import useActivarAutosugerencia from '../../../../../../hooks/activarAutosugerencia/useActivarAutosugerencia';
 
 //autosugerencias
-// import Autosugerencias_productoFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
-// import Autosugerencias_marcaFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
-// import Autosugerencias_cantidadFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
-// import Autosugerencias_precioFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_precioFormulario/Autosugerencias_precioFormulario';
+import Autosugerencias_productoFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
+import Autosugerencias_marcaFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
+import Autosugerencias_cantidadFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
+import Autosugerencias_precioFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_precioFormulario/Autosugerencias_precioFormulario';
 
 
 function RegistrarVentas ({
@@ -37,7 +38,7 @@ function RegistrarVentas ({
     ventaFetchStatus,
     setVentaFetchStatus,
 
-    historialProductos,
+    historialVentas,
     listaProductos,
 
     setPopupSessionExpired,
@@ -78,6 +79,23 @@ function RegistrarVentas ({
         )
     })
     cantidadActual = cantidadActual?.cantidad;
+
+     //logica autosugerencias
+     const [productoSearchString, setProductoSearchString] = useState('')
+     const [productoInputActivo, setProductoInputActivo] = useState(false)
+     useActivarAutosugerencia('producto', setProductoSearchString, setProductoInputActivo)
+     
+     const [marcaSearchString, setMarcaSearchString] = useState('')
+     const [marcaInputActivo, setMarcaInputActivo] = useState(false)
+     useActivarAutosugerencia('marca', setMarcaSearchString, setMarcaInputActivo)
+
+     const [cantidadSearchString, setCantidadSearchString] = useState('')
+     const [cantidadInputActivo, setCantidadInputActivo] = useState(false)
+     useActivarAutosugerencia('cantidad', setCantidadSearchString, setCantidadInputActivo)
+ 
+     const [precioSearchString, setPrecioSearchString] = useState('')
+     const [precioInputActivo, setPrecioInputActivo] = useState(false)
+     useActivarAutosugerencia('inputPrecioUnitarioVenta', setPrecioSearchString, setPrecioInputActivo)
 
 
     return (
@@ -123,6 +141,7 @@ function RegistrarVentas ({
                                     value={productoAVender?.producto}
                                 />
 
+
                                 <FormInput 
                                     idInput='marca'
                                     type='text'
@@ -133,33 +152,59 @@ function RegistrarVentas ({
                                     value={productoAVender?.marca}
                                 />
 
-                                <FormInput 
-                                    idInput='cantidad'
-                                    type='number'
-                                    texto='Cantidad'
+                                <div className={styles.completeInputContainer} >
+                                    <FormInput 
+                                        idInput='cantidad'
+                                        type='number'
+                                        texto='Cantidad'
+                                        
+                                        min='1'
+                                        max={`${cantidadActual}`}
+                                        esPrecio='false'
+                                        
+                                        required='true'    
+                                    />
+                                    <Autosugerencias_cantidadFormulario 
+                                        productoSearchString={productoSearchString}
 
-                                    min='1'
-                                    max={`${cantidadActual}`}
-                                    esPrecio='false'
+                                        cantidadInputActivo={cantidadInputActivo}
+                                        setCantidadInputActivo={setCantidadInputActivo}
 
-                                    required='true'
+                                        cantidadSearchString={cantidadSearchString}
+                                        setCantidadSearchString={setCantidadInputActivo}
 
-                                    
-                                />
+                                        listaProductos={listaProductos}
+                                        historialProductos={historialVentas}
+                                    />
+                                </div>
+                                
+                                <div className={styles.completeInputContainer} >
+                                    <PrecioInput
+                                        required='true'
 
-                                <PrecioInput
-                                    required='true'
+                                        idInputPrecioUnitario='inputPrecioUnitarioVenta'
+                                        name='precio_unitario'
+                                        
+                                        min='0.01'
+                                        max='999999999'
 
-                                    idInputPrecioUnitario='inputPrecioUnitarioVenta'
-                                    name='precio_unitario'
-                                    
-                                    min='0.01'
-                                    max='999999999'
+                                        //para calcular precio unitario/total
+                                        hayPrecioUnitario={hayPrecioUnitario}
+                                        setHayPrecioUnitario={setHayPrecioUnitario}
+                                    />
+                                    <Autosugerencias_precioFormulario 
+                                        productoSearchString={productoSearchString}
 
-                                    //para calcular precio unitario/total
-                                    hayPrecioUnitario={hayPrecioUnitario}
-                                    setHayPrecioUnitario={setHayPrecioUnitario}
-                                />
+                                        precioInputActivo={precioInputActivo}
+                                        setPrecioInputActivo={setPrecioInputActivo}
+
+                                        precioSearchString={precioSearchString}
+                                        setPrecioSearchString={setPrecioInputActivo}
+
+                                        listaProductos={listaProductos}
+                                        historialProductos={historialVentas}
+                                    />
+                                </div>
                             </>
                         }
                     />

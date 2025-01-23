@@ -135,7 +135,7 @@ function Session({
                             ventaFetchStatus={compraVentaFetchStatus}
                             setVentaFetchStatus={setCompraVentaFetchStatus}
 
-                            historialProductos={historialProductos}
+                            historialVentas={historialVentas}
                             listaProductos={listaProductos}
 
                             setHacerFetch={setHacerFetch}
