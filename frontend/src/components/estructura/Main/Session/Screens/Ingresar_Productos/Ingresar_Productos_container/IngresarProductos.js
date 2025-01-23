@@ -183,7 +183,7 @@ function IngresarProductos ({
                                 />
                             </div>
 
-                            <div>
+                            <div className={styles.completeInputContainer} >
                                 <PrecioInput
                                     required='true'
 
@@ -196,6 +196,18 @@ function IngresarProductos ({
                                     //para calcular precio unitario/total
                                     hayPrecioUnitario={hayPrecioUnitario} 
                                     setHayPrecioUnitario={setHayPrecioUnitario}
+                                />
+                                <Autosugerencias_cantidadFormulario 
+                                    productoSearchString={productoSearchString}
+
+                                    cantidadInputActivo={precioInputActivo}
+                                    setCantidadInputActivo={setPrecioInputActivo}
+
+                                    cantidadSearchString={precioSearchString}
+                                    setCantidadSearchString={setPrecioInputActivo}
+
+                                    listaProductos={listaProductos}
+                                    historialProductos={historialProductos}
                                 />
                             </div>
 
