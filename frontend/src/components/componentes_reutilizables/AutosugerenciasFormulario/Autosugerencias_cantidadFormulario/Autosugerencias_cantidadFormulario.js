@@ -18,17 +18,8 @@ function Autosugerencias_cantidadFormulario({
 }){
 
     // No repetir productos
-    let listaCantidadesRepetidas = historialProductos.map((compraObj)=>{return compraObj.cantidad})
-
+    let listaCantidadesRepetidas = [];
     let listaCantidadesSinRepetir = [];
-    listaCantidadesRepetidas.forEach((cantidad, index)=>{
-        if (listaCantidadesRepetidas.indexOf(cantidad) === index){
-            listaCantidadesSinRepetir.push(cantidad)
-        }
-    })
-
-        // Ordenar alfabeticamente
-        listaCantidadesSinRepetir.sort()
     //
 
 
@@ -55,15 +46,9 @@ function Autosugerencias_cantidadFormulario({
                 &&
                 cantidadSearchString === ''
             ){ // para cada producto de la lista de productos igual al input
-                arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
-                    <li
-                        onMouseDown={()=>{
-                            manejarClick('cantidad', prodObj.cantidad, setCantidadSearchString, setCantidadInputActivo)
-                        }}
-                    >
-                        {prodObj.cantidad}
-                    </li>
-                )
+
+                //fix para que no haya cantidades repetidas
+                listaCantidadesRepetidas.push(prodObj.cantidad)
             }
 
 
@@ -73,18 +58,39 @@ function Autosugerencias_cantidadFormulario({
                 &&
                 prodObj.cantidad.toString().includes(cantidadSearchString.toUpperCase())
             ){ // para cada producto de la lista de productos igual al input Y con marca parecida/igual
-                arrayListItems.push( // se va a agregar un <li> con su marca correspondiente
-                    <li
-                        onMouseDown={()=>{
-                            manejarClick('cantidad', prodObj.cantidad, setCantidadSearchString, setCantidadInputActivo)
-                        }}
-                    >
-                        {prodObj.cantidad}
-                    </li>
-                )
+               
+                //fix para que no haya cantidades repetidas
+                listaCantidadesRepetidas.push(prodObj.cantidad)
             }
         })
     }
+
+    // Cantidades no repetidas
+    listaCantidadesRepetidas.forEach((cantidad, index)=>{
+        if (listaCantidadesRepetidas.indexOf(cantidad) === index){
+            listaCantidadesSinRepetir.push(cantidad)
+        }
+    })
+
+    // Ordenar de menor a mayor
+    listaCantidadesSinRepetir.sort((a,b)=>{
+        if ( Number(a) < Number(b) ) return -1;
+        else return 0;
+    })
+
+
+    listaCantidadesSinRepetir.forEach((cantidad)=>{
+        arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
+            <li
+                onMouseDown={()=>{
+                    manejarClick('cantidad', cantidad, setCantidadSearchString, setCantidadInputActivo)
+                }}
+            >
+                {cantidad}
+            </li>
+        )
+    })
+
 
 
     return (

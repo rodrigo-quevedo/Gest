@@ -18,18 +18,8 @@ function Autosugerencias_precioFormulario({
 }){
 
     // No repetir precios
-    let listaPreciosRepetidos = historialProductos.map((compraObj)=>{return compraObj.precio_unitario})
-
+    let listaPreciosRepetidos = []
     let listaPreciosSinRepetir = [];
-    listaPreciosRepetidos.forEach((precio, index)=>{
-        if (listaPreciosRepetidos.indexOf(precio) === index) {
-            listaPreciosSinRepetir.push(precio)
-        }
-    })
-
-        // Ordenar alfabeticamente
-        listaPreciosSinRepetir.sort()
-    //
 
 
     // Array de productos sin repetir
@@ -55,17 +45,10 @@ function Autosugerencias_precioFormulario({
                 &&
                 precioSearchString === ''
             ){ // para cada producto de la lista de productos igual al input
-                arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
-                    <li
-                        key={`${prodObj.producto}_${prodObj.marca}`}
-
-                        onMouseDown={()=>{
-                            manejarClick('inputPrecioUnitarioCompra', prodObj.precio_unitario, setPrecioSearchString, setPrecioInputActivo)
-                        }}
-                    >
-                        {prodObj.precio_unitario}
-                    </li>
-                )
+                
+                //fix para que no haya cantidades repetidas
+                listaPreciosRepetidos.push(prodObj.precio_unitario)
+                
             }
 
 
@@ -75,20 +58,40 @@ function Autosugerencias_precioFormulario({
                 &&
                 prodObj.precio_unitario.toString().includes(precioSearchString.toUpperCase())
             ){ // para cada producto de la lista de productos igual al input Y con marca parecida/igual
-                arrayListItems.push( // se va a agregar un <li> con su marca correspondiente
-                    <li
-                        key={`${prodObj.producto}_${prodObj.marca}`}
 
-                        onMouseDown={()=>{
-                            manejarClick('inputPrecioUnitarioCompra', prodObj.precio_unitario, setPrecioSearchString, setPrecioInputActivo)
-                        }}
-                    >
-                        {prodObj.precio_unitario}
-                    </li>
-                )
+                 //fix para que no haya cantidades repetidas
+                 listaPreciosRepetidos.push(prodObj.precio_unitario)
             }
         })
     }
+
+    // No repetir precios
+    listaPreciosRepetidos.forEach((precio, index)=>{
+        if (listaPreciosRepetidos.indexOf(precio) === index) {
+            listaPreciosSinRepetir.push(precio)
+        }
+    })
+
+        // Ordenar alfabeticamente
+        listaPreciosSinRepetir.sort((a,b)=>{
+            if ( Number(a) < Number(b) ) return -1;
+            else return 0;
+        })
+    //
+
+    listaPreciosSinRepetir.forEach((precio)=>{
+        arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
+            <li
+                // key={`${prodObj.producto}_${prodObj.marca}`}
+
+                onMouseDown={()=>{
+                    manejarClick('inputPrecioUnitarioCompra', precio, setPrecioSearchString, setPrecioInputActivo)
+                }}
+            >
+                {precio}
+            </li>
+        )
+    })
 
 
     return (
@@ -100,24 +103,9 @@ function Autosugerencias_precioFormulario({
                 styles.hide
             }
         >
-            {arrayListItems}
-            {/* {listaCantidadesSinRepetir.map((cantidad)=>{
-                if (cantidadSearchString === ''){
-                    return (
-                        <li onMouseDown={()=>{manejarClick('cantidad', cantidad, setCantidadInputActivo, setCantidadSearchString)}}>
-                            {cantidad}
-                        </li>
-                    )
-                }
-                else if (cantidad?.includes(cantidadSearchString.toUpperCase())){
-                    return (
-                        <li onMouseDown={()=>{manejarClick('cantidad', cantidad, setCantidadInputActivo, setCantidadSearchString)}}>
-                            {cantidad}
-                        </li>
-                    )
-                }
-            })}  */}
-            
+
+            {arrayListItems} 
+
         </ul>
     )
 }
