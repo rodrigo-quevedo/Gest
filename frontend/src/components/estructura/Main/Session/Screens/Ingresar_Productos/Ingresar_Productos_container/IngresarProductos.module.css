@@ -30,6 +30,10 @@
     position: relative;
 }
  
+/* Corregir ultima autosugerencia */
+.completeInputContainer:last-of-type > ul {
+    max-height: 25vh !important;
+}
 
 
 .goBackButton {

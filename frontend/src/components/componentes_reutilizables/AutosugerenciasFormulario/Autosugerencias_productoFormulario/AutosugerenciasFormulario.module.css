@@ -10,6 +10,8 @@
     left: 10px;
     top: calc(100% - 15px);
 
+    z-index: 99;
+
     width: 100%;
     
     background: #fff;

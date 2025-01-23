@@ -29,6 +29,9 @@ function Autosugerencias_nombreProducto({
     })
     //
 
+    // Ordenar en orden alfabetico
+    listaProductosSinRepetir.sort();
+
     return (
         <ul 
             className={

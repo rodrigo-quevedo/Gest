@@ -16,7 +16,6 @@ function Autosugerencias_proveedorFormulario({
 
     // No repetir productos
     let listaProveedoresRepetidos = historialProductos.map((compraObj)=>{return compraObj.proveedor})
-    console.log('proveedores repetidos:',listaProveedoresRepetidos)
 
     let listaProveedoresSinRepetir = [];
     listaProveedoresRepetidos.forEach((proveedor, index)=>{
@@ -28,7 +27,6 @@ function Autosugerencias_proveedorFormulario({
     // Ordenar alfabeticamente
     listaProveedoresSinRepetir.sort()
     //
-    console.log('proveedores sin repetir:',listaProveedoresSinRepetir)
 
 
 
