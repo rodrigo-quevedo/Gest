@@ -43,13 +43,13 @@ function ListaPreciosCompra({
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>
-                Historial de productos: <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
+                Compras registradas de <span>{productoAVender?.producto}</span> marca <span>{productoAVender?.marca}</span>
             </h2>
             
             
             <table className={styles.tableContainer}>
                 <tr>
-                    <th>Cantidad ingresada</th>
+                    <th>Cantidad comprada</th>
                     <th>Costo unitario</th>
                     <th>Fecha</th>
                 </tr>

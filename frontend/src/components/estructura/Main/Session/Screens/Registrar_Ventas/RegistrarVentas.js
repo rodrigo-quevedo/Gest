@@ -22,6 +22,12 @@ import {SESSION_SCREENS} from "../../../../../../config/config"
 import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
 import useCalcularPrecioTotal from '../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
 
+//autosugerencias
+// import Autosugerencias_productoFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
+// import Autosugerencias_marcaFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
+// import Autosugerencias_cantidadFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
+// import Autosugerencias_precioFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_precioFormulario/Autosugerencias_precioFormulario';
+
 
 function RegistrarVentas ({
     setSessionScreen,
@@ -40,6 +46,10 @@ function RegistrarVentas ({
 }) {
     document.querySelector('title').innerText = 'Registrar venta';
 
+    // Mover la pantalla al formulario
+    useEffect(()=>{
+        document.getElementById('cantidad').focus();
+    }, [])
 
     // Cambiar de screen cuando se complete el fetch (success)
     useEffect(()=>{
@@ -92,75 +102,78 @@ function RegistrarVentas ({
                 listaProductos={listaProductos}
             />
 
-            <p><span>Cantidad disponible:</span> {cantidadActual}</p>
-            <h2> Total de venta: $ {total} </h2>
 
-            <FormularioReutilizable 
-                    hayPrecioUnitario={hayPrecioUnitario}
+            <div className={styles.formularioVentaContainer}>
+                <p><span>Cantidad disponible:</span> {cantidadActual}</p>
+                <h2> Total de venta: $ {total} </h2>
 
-                    setPopupSessionExpired={setPopupSessionExpired}
+                <FormularioReutilizable 
+                        hayPrecioUnitario={hayPrecioUnitario}
 
-                    fetchStatus={ventaFetchStatus}
-                    setFetchStatus={setVentaFetchStatus}
-                    submitMessage={"Ingresando venta..."}
-                    fetchURL={URL_REGISTRAR_VENTAS}
-                    formInputs={
-                        <>
-                            <FormInput 
-                                idInput='producto'
-                                type='text'
-                                texto='Nombre del producto'
+                        setPopupSessionExpired={setPopupSessionExpired}
 
-                                required='true'
+                        fetchStatus={ventaFetchStatus}
+                        setFetchStatus={setVentaFetchStatus}
+                        submitMessage={"Ingresando venta..."}
+                        fetchURL={URL_REGISTRAR_VENTAS}
+                        formInputs={
+                            <>
+                                <FormInput 
+                                    idInput='producto'
+                                    type='text'
+                                    texto='Nombre del producto'
 
-                                value={productoAVender?.producto}
-                            />
+                                    required='true'
 
-                            <FormInput 
-                                idInput='marca'
-                                type='text'
-                                texto='Marca'
+                                    value={productoAVender?.producto}
+                                />
 
-                                required='true'
+                                <FormInput 
+                                    idInput='marca'
+                                    type='text'
+                                    texto='Marca'
 
-                                value={productoAVender?.marca}
-                            />
+                                    required='true'
 
-                            <FormInput 
-                                idInput='cantidad'
-                                type='number'
-                                texto='Cantidad'
+                                    value={productoAVender?.marca}
+                                />
 
-                                min='1'
-                                max={`${cantidadActual}`}
-                                esPrecio='false'
+                                <FormInput 
+                                    idInput='cantidad'
+                                    type='number'
+                                    texto='Cantidad'
 
-                                required='true'
+                                    min='1'
+                                    max={`${cantidadActual}`}
+                                    esPrecio='false'
 
-                                
-                            />
+                                    required='true'
 
-                            <PrecioInput
-                                required='true'
+                                    
+                                />
 
-                                idInputPrecioUnitario='inputPrecioUnitarioVenta'
-                                name='precio_unitario'
-                                
-                                min='0.01'
-                                max='999999999'
+                                <PrecioInput
+                                    required='true'
 
-                                //para calcular precio unitario/total
-                                hayPrecioUnitario={hayPrecioUnitario}
-                                setHayPrecioUnitario={setHayPrecioUnitario}
-                            />
-                        </>
-                    }
-                />
+                                    idInputPrecioUnitario='inputPrecioUnitarioVenta'
+                                    name='precio_unitario'
+                                    
+                                    min='0.01'
+                                    max='999999999'
 
-                <FetchStatusText 
-                    fetchStatus={ventaFetchStatus}
-                />
+                                    //para calcular precio unitario/total
+                                    hayPrecioUnitario={hayPrecioUnitario}
+                                    setHayPrecioUnitario={setHayPrecioUnitario}
+                                />
+                            </>
+                        }
+                    />
+
+                    <FetchStatusText 
+                        fetchStatus={ventaFetchStatus}
+                    />
               
+              </div>
         </section>
 
     )
