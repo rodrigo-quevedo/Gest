@@ -26,6 +26,9 @@ function Autosugerencias_marcaFormulario({
             listaMarcasSinRepetir.push(marca.toUpperCase())
         }
     })
+        // ordenar alfabeticamente
+        listaMarcasSinRepetir.sort()
+
     //
 
     // Array de productos sin repetir
