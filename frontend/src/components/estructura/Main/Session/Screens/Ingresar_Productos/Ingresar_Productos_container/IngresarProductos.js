@@ -47,6 +47,17 @@ function IngresarProductos ({
 }) {
     document.querySelector('title').innerText = 'Ingresar producto';
 
+    // Focus
+    useEffect(()=>{
+        if (productoAIngresar !== null){
+            document.getElementById('cantidad').focus();
+        }
+        else {
+            document.getElementById('producto').focus();
+        }
+    }, [])
+
+
     //volver a Resumen Producto una vez se realizó el fetch con éxito:
     useEffect(()=>{
         if (compraFetchStatus.status === FETCH_STATUS.SUCCESS){
@@ -101,143 +112,146 @@ function IngresarProductos ({
 
                 <h1>Nuevo producto</h1>
 
-                <h2> Total de gasto: $ {total} </h2>
+                <div className={styles.formularioVentaContainer}>
 
-                <FormularioReutilizable 
-                    hayPrecioUnitario={hayPrecioUnitario}
+                    <h2> Total de gasto: $ {total} </h2>
 
-                    setPopupSessionExpired={setPopupSessionExpired}
+                    <FormularioReutilizable 
+                        hayPrecioUnitario={hayPrecioUnitario}
 
-                    fetchStatus={compraFetchStatus}
-                    setFetchStatus={setCompraFetchStatus}
-                    submitMessage={"Ingresando producto..."}
-                    fetchURL={URL_INGRESAR_PRODUCTOS}
-                    formInputs={
-                        <>
-                            <div className={styles.completeInputContainer}>
-                                <FormInput 
-                                    idInput='producto'
-                                    type='text'
-                                    texto='Nombre del producto'
+                        setPopupSessionExpired={setPopupSessionExpired}
 
-                                    required='true'
-                                    value={productoAIngresar?.producto}
-                                />
-                                <Autosugerencias_productoFormulario 
-                                    productoSearchString={productoSearchString}
-                                    setProductoSearchString={setProductoSearchString}
+                        fetchStatus={compraFetchStatus}
+                        setFetchStatus={setCompraFetchStatus}
+                        submitMessage={"Ingresando producto..."}
+                        fetchURL={URL_INGRESAR_PRODUCTOS}
+                        formInputs={
+                            <>
+                                <div className={styles.completeInputContainer}>
+                                    <FormInput 
+                                        idInput='producto'
+                                        type='text'
+                                        texto='Nombre del producto'
 
-                                    productoInputActivo={productoInputActivo}
-                                    setProductoInputActivo={setProductoInputActivo}
+                                        required='true'
+                                        value={productoAIngresar?.producto}
+                                    />
+                                    <Autosugerencias_productoFormulario 
+                                        productoSearchString={productoSearchString}
+                                        setProductoSearchString={setProductoSearchString}
 
-                                    listaProductos={listaProductos}
-                                />
-                        
-                            </div>
+                                        productoInputActivo={productoInputActivo}
+                                        setProductoInputActivo={setProductoInputActivo}
 
-                            <div className={styles.completeInputContainer}> 
-                                <FormInput 
-                                    idInput='marca'
-                                    type='text'
-                                    texto='Marca'
-                                    
-                                    required='true'
-                                    
-                                    value={productoAIngresar?.marca}
-                                />
-                                <Autosugerencias_marcaFormulario 
-                                    productoSearchString={productoSearchString}
+                                        listaProductos={listaProductos}
+                                    />
+                            
+                                </div>
 
-                                    marcaSearchString={marcaSearchString}
-                                    setMarcaSearchString={setMarcaSearchString}
+                                <div className={styles.completeInputContainer}> 
+                                    <FormInput 
+                                        idInput='marca'
+                                        type='text'
+                                        texto='Marca'
+                                        
+                                        required='true'
+                                        
+                                        value={productoAIngresar?.marca}
+                                    />
+                                    <Autosugerencias_marcaFormulario 
+                                        productoSearchString={productoSearchString}
 
-                                    marcaInputActivo={marcaInputActivo}
-                                    setMarcaInputActivo={setMarcaInputActivo}
+                                        marcaSearchString={marcaSearchString}
+                                        setMarcaSearchString={setMarcaSearchString}
 
-                                    listaProductos={listaProductos}
-                                />
-                            </div>
+                                        marcaInputActivo={marcaInputActivo}
+                                        setMarcaInputActivo={setMarcaInputActivo}
 
-                            <div className={styles.completeInputContainer} >
-                                <FormInput 
-                                    idInput='cantidad'
-                                    type='number'
-                                    texto='Cantidad'
+                                        listaProductos={listaProductos}
+                                    />
+                                </div>
 
-                                    min='1'
-                                    max='9999'
-                                    esPrecio='false'
+                                <div className={styles.completeInputContainer} >
+                                    <FormInput 
+                                        idInput='cantidad'
+                                        type='number'
+                                        texto='Cantidad'
 
-                                    required='true'
-                                />
-                                <Autosugerencias_cantidadFormulario 
-                                    productoSearchString={productoSearchString}
+                                        min='1'
+                                        max='9999'
+                                        esPrecio='false'
 
-                                    cantidadInputActivo={cantidadInputActivo}
-                                    setCantidadInputActivo={setCantidadInputActivo}
+                                        required='true'
+                                    />
+                                    <Autosugerencias_cantidadFormulario 
+                                        productoSearchString={productoSearchString}
 
-                                    cantidadSearchString={cantidadSearchString}
-                                    setCantidadSearchString={setCantidadInputActivo}
+                                        cantidadInputActivo={cantidadInputActivo}
+                                        setCantidadInputActivo={setCantidadInputActivo}
 
-                                    listaProductos={listaProductos}
-                                    historialProductos={historialProductos}
-                                />
-                            </div>
+                                        cantidadSearchString={cantidadSearchString}
+                                        setCantidadSearchString={setCantidadInputActivo}
 
-                            <div className={styles.completeInputContainer} >
-                                <PrecioInput
-                                    required='true'
+                                        listaProductos={listaProductos}
+                                        historialProductos={historialProductos}
+                                    />
+                                </div>
 
-                                    idInputPrecioUnitario='inputPrecioUnitarioCompra'
-                                    name='precio_unitario'
-                                    
-                                    min='0.01'
-                                    max='999999999'
+                                <div className={styles.completeInputContainer} >
+                                    <PrecioInput
+                                        required='true'
 
-                                    //para calcular precio unitario/total
-                                    hayPrecioUnitario={hayPrecioUnitario} 
-                                    setHayPrecioUnitario={setHayPrecioUnitario}
-                                />
-                                <Autosugerencias_precioFormulario 
-                                    productoSearchString={productoSearchString}
+                                        idInputPrecioUnitario='inputPrecioUnitarioCompra'
+                                        name='precio_unitario'
+                                        
+                                        min='0.01'
+                                        max='999999999'
 
-                                    precioInputActivo={precioInputActivo}
-                                    setPrecioInputActivo={setPrecioInputActivo}
+                                        //para calcular precio unitario/total
+                                        hayPrecioUnitario={hayPrecioUnitario} 
+                                        setHayPrecioUnitario={setHayPrecioUnitario}
+                                    />
+                                    <Autosugerencias_precioFormulario 
+                                        productoSearchString={productoSearchString}
 
-                                    precioSearchString={precioSearchString}
-                                    setPrecioSearchString={setPrecioInputActivo}
+                                        precioInputActivo={precioInputActivo}
+                                        setPrecioInputActivo={setPrecioInputActivo}
 
-                                    listaProductos={listaProductos}
-                                    historialProductos={historialProductos}
-                                />
-                            </div>
+                                        precioSearchString={precioSearchString}
+                                        setPrecioSearchString={setPrecioInputActivo}
 
-                            <div className={styles.completeInputContainer} >
-                                <FormInput 
-                                    idInput='proveedor'
-                                    type='text'
-                                    texto='Proveedor'
+                                        listaProductos={listaProductos}
+                                        historialProductos={historialProductos}
+                                    />
+                                </div>
 
-                                    required='true'
-                                />
-                                <Autosugerencias_proveedorFormulario 
-                                    proveedorInputActivo={proveedorInputActivo}
-                                    setProveedorInputActivo={setProveedorInputActivo}
+                                <div className={styles.completeInputContainer} >
+                                    <FormInput 
+                                        idInput='proveedor'
+                                        type='text'
+                                        texto='Proveedor'
 
-                                    proveedorSearchString={proveedorSearchString}
-                                    setProveedorSearchString={setProveedorSearchString}
+                                        required='true'
+                                    />
+                                    <Autosugerencias_proveedorFormulario 
+                                        proveedorInputActivo={proveedorInputActivo}
+                                        setProveedorInputActivo={setProveedorInputActivo}
 
-                                    historialProductos={historialProductos}
-                                />
-                            </div>
-                        </>
-                    }
-                />
+                                        proveedorSearchString={proveedorSearchString}
+                                        setProveedorSearchString={setProveedorSearchString}
 
-                <FetchStatusText 
-                    fetchStatus={compraFetchStatus}
-                />
+                                        historialProductos={historialProductos}
+                                    />
+                                </div>
+                            </>
+                        }
+                    />
 
+                    <FetchStatusText 
+                        fetchStatus={compraFetchStatus}
+                    />
+
+                </div>
         </section>
     )
 

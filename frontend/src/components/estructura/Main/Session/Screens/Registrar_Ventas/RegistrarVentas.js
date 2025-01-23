@@ -49,6 +49,7 @@ function RegistrarVentas ({
     // Mover la pantalla al formulario
     useEffect(()=>{
         document.getElementById('cantidad').focus();
+        
     }, [])
 
     // Cambiar de screen cuando se complete el fetch (success)
@@ -94,13 +95,7 @@ function RegistrarVentas ({
 
             <h1>Ingresar una venta</h1>
       
-            
 
-            <ListaPreciosCompra 
-                productoAVender={productoAVender}
-                historialProductos={historialProductos}
-                listaProductos={listaProductos}
-            />
 
 
             <div className={styles.formularioVentaContainer}>
@@ -172,6 +167,14 @@ function RegistrarVentas ({
                     <FetchStatusText 
                         fetchStatus={ventaFetchStatus}
                     />
+
+                                
+
+                {/* <ListaPreciosCompra 
+                    productoAVender={productoAVender}
+                    historialProductos={historialProductos}
+                    listaProductos={listaProductos}
+                /> */}
               
               </div>
         </section>
