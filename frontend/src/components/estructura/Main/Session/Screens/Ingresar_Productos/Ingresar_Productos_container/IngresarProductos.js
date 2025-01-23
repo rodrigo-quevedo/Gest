@@ -222,6 +222,8 @@ function IngresarProductos ({
 
                                         listaProductos={listaProductos}
                                         historialProductos={historialProductos}
+
+                                        inputId='inputPrecioUnitarioCompra'
                                     />
                                 </div>
 

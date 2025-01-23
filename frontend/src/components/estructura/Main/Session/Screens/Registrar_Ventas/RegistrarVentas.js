@@ -203,6 +203,8 @@ function RegistrarVentas ({
 
                                         listaProductos={listaProductos}
                                         historialProductos={historialVentas}
+
+                                        inputId='inputPrecioUnitarioVenta'
                                     />
                                 </div>
                             </>

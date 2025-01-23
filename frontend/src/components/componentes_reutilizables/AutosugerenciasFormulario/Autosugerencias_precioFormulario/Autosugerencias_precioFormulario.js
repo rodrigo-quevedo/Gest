@@ -13,7 +13,9 @@ function Autosugerencias_precioFormulario({
     precioInputActivo, setPrecioInputActivo,
 
     listaProductos,
-    historialProductos
+    historialProductos,
+
+    inputId
 
 }){
 
@@ -85,7 +87,7 @@ function Autosugerencias_precioFormulario({
                 // key={`${prodObj.producto}_${prodObj.marca}`}
 
                 onMouseDown={()=>{
-                    manejarClick('inputPrecioUnitarioCompra', precio, setPrecioSearchString, setPrecioInputActivo)
+                    manejarClick(inputId, precio, setPrecioSearchString, setPrecioInputActivo)
                 }}
             >
                 {precio}
