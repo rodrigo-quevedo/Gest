@@ -28,6 +28,7 @@ import Autosugerencias_productoFormulario from '../../../../../../componentes_re
 import Autosugerencias_marcaFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
 import Autosugerencias_proveedorFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_proveedorFormulario/Autosugerencias_proveedorFormulario';
 import Autosugerencias_cantidadFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
+import Autosugerencias_precioFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_precioFormulario/Autosugerencias_precioFormulario';
 
 
 function IngresarProductos ({
@@ -197,14 +198,14 @@ function IngresarProductos ({
                                     hayPrecioUnitario={hayPrecioUnitario} 
                                     setHayPrecioUnitario={setHayPrecioUnitario}
                                 />
-                                <Autosugerencias_cantidadFormulario 
+                                <Autosugerencias_precioFormulario 
                                     productoSearchString={productoSearchString}
 
-                                    cantidadInputActivo={precioInputActivo}
-                                    setCantidadInputActivo={setPrecioInputActivo}
+                                    precioInputActivo={precioInputActivo}
+                                    setPrecioInputActivo={setPrecioInputActivo}
 
-                                    cantidadSearchString={precioSearchString}
-                                    setCantidadSearchString={setPrecioInputActivo}
+                                    precioSearchString={precioSearchString}
+                                    setPrecioSearchString={setPrecioInputActivo}
 
                                     listaProductos={listaProductos}
                                     historialProductos={historialProductos}
