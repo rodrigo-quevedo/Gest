@@ -24,8 +24,9 @@ import useActivarAutosugerencia from '../../../../../../../hooks/activarAutosuge
 
 
 //autosugerencias
-import Autosugerencias_productoFormulario from '../../../../../../componentes_reutilizables/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
-import Autosugerencias_marcaFormulario from '../../../../../../componentes_reutilizables/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
+import Autosugerencias_productoFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
+import Autosugerencias_marcaFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
+import Autosugerencias_proveedorFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_proveedorFormulario/Autosugerencias_proveedorFormulario';
 
 
 function IngresarProductos ({
@@ -185,13 +186,22 @@ function IngresarProductos ({
                                 />
                             </div>
 
-                            <div>
+                            <div className={styles.completeInputContainer} >
                                 <FormInput 
                                     idInput='proveedor'
                                     type='text'
                                     texto='Proveedor'
 
                                     required='true'
+                                />
+                                <Autosugerencias_proveedorFormulario 
+                                    proveedorInputActivo={proveedorInputActivo}
+                                    setProveedorInputActivo={setProveedorInputActivo}
+
+                                    proveedorSearchString={proveedorSearchString}
+                                    setProveedorSearchString={setProveedorSearchString}
+
+                                    historialProductos={historialProductos}
                                 />
                             </div>
                         </>
