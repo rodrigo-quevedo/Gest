@@ -27,6 +27,7 @@ import useActivarAutosugerencia from '../../../../../../../hooks/activarAutosuge
 import Autosugerencias_productoFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
 import Autosugerencias_marcaFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
 import Autosugerencias_proveedorFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_proveedorFormulario/Autosugerencias_proveedorFormulario';
+import Autosugerencias_cantidadFormulario from '../../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
 
 
 function IngresarProductos ({
@@ -156,7 +157,7 @@ function IngresarProductos ({
                                 />
                             </div>
 
-                            <div>
+                            <div className={styles.completeInputContainer} >
                                 <FormInput 
                                     idInput='cantidad'
                                     type='number'
@@ -167,6 +168,18 @@ function IngresarProductos ({
                                     esPrecio='false'
 
                                     required='true'
+                                />
+                                <Autosugerencias_cantidadFormulario 
+                                    productoSearchString={productoSearchString}
+
+                                    cantidadInputActivo={cantidadInputActivo}
+                                    setCantidadInputActivo={setCantidadInputActivo}
+
+                                    cantidadSearchString={cantidadSearchString}
+                                    setCantidadSearchString={setCantidadInputActivo}
+
+                                    listaProductos={listaProductos}
+                                    historialProductos={historialProductos}
                                 />
                             </div>
 
