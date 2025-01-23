@@ -58,6 +58,7 @@ function Autosugerencias_precioFormulario({
                 arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
                     <li
                         key={`${prodObj.producto}_${prodObj.marca}`}
+
                         onMouseDown={()=>{
                             manejarClick('inputPrecioUnitarioCompra', prodObj.precio_unitario, setPrecioSearchString, setPrecioInputActivo)
                         }}
@@ -76,6 +77,8 @@ function Autosugerencias_precioFormulario({
             ){ // para cada producto de la lista de productos igual al input Y con marca parecida/igual
                 arrayListItems.push( // se va a agregar un <li> con su marca correspondiente
                     <li
+                        key={`${prodObj.producto}_${prodObj.marca}`}
+
                         onMouseDown={()=>{
                             manejarClick('inputPrecioUnitarioCompra', prodObj.precio_unitario, setPrecioSearchString, setPrecioInputActivo)
                         }}

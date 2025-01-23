@@ -5,20 +5,24 @@ function useActivarAutosugerencia(
     setProductoSearchString,
     setProductoInputActivo
 ) {
-        useEffect(()=>{
-            document.getElementById(elementId).addEventListener('click', ()=>{
-                setProductoInputActivo(true)
-            })
+    useEffect(()=>{
+        // Fix para cuando no uso el botón "Nuevo Producto"
+        setProductoSearchString(document.getElementById(elementId).value)
+        //
 
-            document.getElementById(elementId).addEventListener('input', ()=>{
-                setProductoSearchString(document.getElementById(elementId).value)
-                
-                setProductoInputActivo(true)
-            })
-            document.getElementById(elementId).addEventListener('blur', ()=>{
-                setProductoInputActivo(false)
-            })
-        }, [])
+        document.getElementById(elementId).addEventListener('click', ()=>{
+            setProductoInputActivo(true)
+        })
+
+        document.getElementById(elementId).addEventListener('input', ()=>{
+            setProductoSearchString(document.getElementById(elementId).value)
+            
+            setProductoInputActivo(true)
+        })
+        document.getElementById(elementId).addEventListener('blur', ()=>{
+            setProductoInputActivo(false)
+        })
+    }, [])
 }
 
 export default useActivarAutosugerencia
