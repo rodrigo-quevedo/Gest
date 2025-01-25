@@ -21,6 +21,7 @@ import {SESSION_SCREENS} from "../../../../../../../config/config"
 //logica interna
 import useCalcularPrecioTotal from '../../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
 import useActivarAutosugerencia from '../../../../../../../hooks/activarAutosugerencia/useActivarAutosugerencia';
+import formatPrice from '../../../../../../../utils/format_prices/formatPrices';
 
 
 //autosugerencias
@@ -71,9 +72,10 @@ function IngresarProductos ({
     // cambiar entre precio unitario / precio total
     const [hayPrecioUnitario, setHayPrecioUnitario] = useState(true)
     const [total, setTotal] = useState(0)
+    const [calcularTotal, setCalcularTotal] = useState(true)
 
     // hook para calcular el precio   
-    useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioCompra')
+    useCalcularPrecioTotal(calcularTotal, setCalcularTotal, hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioCompra')
     
     //logica autosugerencias
     const [productoSearchString, setProductoSearchString] = useState('')
@@ -97,7 +99,6 @@ function IngresarProductos ({
     useActivarAutosugerencia('proveedor', setProveedorSearchString, setProveedorInputActivo)
 
 
-
     return (
         <section className={styles.container}>
 
@@ -114,7 +115,7 @@ function IngresarProductos ({
 
                 <div className={styles.formularioVentaContainer}>
 
-                    <h2> Total de gasto: $ {total} </h2>
+                    <h2> Total de gasto: $ {formatPrice(total)} </h2>
 
                     <FormularioReutilizable 
                         hayPrecioUnitario={hayPrecioUnitario}
@@ -171,7 +172,10 @@ function IngresarProductos ({
                                     />
                                 </div>
 
-                                <div className={styles.completeInputContainer} >
+                                <div 
+                                    className={styles.completeInputContainer} 
+                                    id='cantidadInputContainer'
+                                >
                                     <FormInput 
                                         idInput='cantidad'
                                         type='number'
@@ -194,10 +198,17 @@ function IngresarProductos ({
 
                                         listaProductos={listaProductos}
                                         historialProductos={historialProductos}
+
+                                        inputId='inputPrecioUnitarioCompra'
+
+                                        setCalcularTotal={setCalcularTotal}
                                     />
                                 </div>
 
-                                <div className={styles.completeInputContainer} >
+                                <div 
+                                    className={styles.completeInputContainer} 
+                                    id='precioInputContainer'
+                                >
                                     <PrecioInput
                                         required='true'
 
@@ -224,6 +235,8 @@ function IngresarProductos ({
                                         historialProductos={historialProductos}
 
                                         inputId='inputPrecioUnitarioCompra'
+
+                                        setCalcularTotal={setCalcularTotal}
                                     />
                                 </div>
 

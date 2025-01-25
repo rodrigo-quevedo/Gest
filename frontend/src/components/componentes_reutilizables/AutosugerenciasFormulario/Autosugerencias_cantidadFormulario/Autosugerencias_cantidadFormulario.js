@@ -6,6 +6,7 @@ function manejarClick(elementId, producto, setProductoInputActivo, setProductoSe
     setProductoSearchString(producto)
 }
 
+
 function Autosugerencias_cantidadFormulario({
     productoSearchString,
     
@@ -13,8 +14,9 @@ function Autosugerencias_cantidadFormulario({
     cantidadInputActivo, setCantidadInputActivo,
 
     listaProductos,
-    historialProductos
+    historialProductos,
 
+    setCalcularTotal
 }){
 
     // No repetir productos
@@ -82,7 +84,8 @@ function Autosugerencias_cantidadFormulario({
     listaCantidadesSinRepetir.forEach((cantidad)=>{
         arrayListItems.push( // se va a agregar un <li> con su cantidad correspondiente
             <li
-                onMouseDown={()=>{
+                onMouseDown={()=>{ 
+                    setCalcularTotal(true)
                     manejarClick('cantidad', cantidad, setCantidadSearchString, setCantidadInputActivo)
                 }}
             >
@@ -90,6 +93,7 @@ function Autosugerencias_cantidadFormulario({
             </li>
         )
     })
+
 
 
 
@@ -103,22 +107,6 @@ function Autosugerencias_cantidadFormulario({
             }
         >
             {arrayListItems}
-            {/* {listaCantidadesSinRepetir.map((cantidad)=>{
-                if (cantidadSearchString === ''){
-                    return (
-                        <li onMouseDown={()=>{manejarClick('cantidad', cantidad, setCantidadInputActivo, setCantidadSearchString)}}>
-                            {cantidad}
-                        </li>
-                    )
-                }
-                else if (cantidad?.includes(cantidadSearchString.toUpperCase())){
-                    return (
-                        <li onMouseDown={()=>{manejarClick('cantidad', cantidad, setCantidadInputActivo, setCantidadSearchString)}}>
-                            {cantidad}
-                        </li>
-                    )
-                }
-            })}  */}
             
         </ul>
     )

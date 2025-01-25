@@ -19,13 +19,13 @@ import { URL_REGISTRAR_VENTAS } from "../../../../../../config/config"
 import {SESSION_SCREENS} from "../../../../../../config/config"
 
 //logica interna
-import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
+// import ListaPreciosCompra from './ListaPreciosCompra/ListaPreciosCompra';
 import useCalcularPrecioTotal from '../../../../../../hooks/calcularPrecioTotal/useCalcularPrecoTotal';
 import useActivarAutosugerencia from '../../../../../../hooks/activarAutosugerencia/useActivarAutosugerencia';
+import formatPrice from '../../../../../../utils/format_prices/formatPrices';
+
 
 //autosugerencias
-import Autosugerencias_productoFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_productoFormulario/Autosugerencias_productoFormulario';
-import Autosugerencias_marcaFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_marcaFormulario/Autosugerencias_marcaFormulario';
 import Autosugerencias_cantidadFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_cantidadFormulario/Autosugerencias_cantidadFormulario';
 import Autosugerencias_precioFormulario from '../../../../../componentes_reutilizables/AutosugerenciasFormulario/Autosugerencias_precioFormulario/Autosugerencias_precioFormulario';
 
@@ -66,9 +66,10 @@ function RegistrarVentas ({
     // cambiar entre precio unitario / precio total
     const [hayPrecioUnitario, setHayPrecioUnitario] = useState(true)
     const [total, setTotal] = useState(0)
+    const [calcularTotal, setCalcularTotal] = useState(true)
 
     // hook para calcular el precio   
-    useCalcularPrecioTotal(hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioVenta')
+    useCalcularPrecioTotal(calcularTotal, setCalcularTotal, hayPrecioUnitario, setTotal, 'cantidad', 'inputPrecioUnitarioVenta')
 
     // extraer cantidad actual
     let cantidadActual = listaProductos.find((productoObj)=>{
@@ -118,7 +119,7 @@ function RegistrarVentas ({
 
             <div className={styles.formularioVentaContainer}>
                 <p><span>Cantidad disponible:</span> {cantidadActual}</p>
-                <h2> Total de venta: $ {total} </h2>
+                <h2> Total de venta: $ {formatPrice(total)} </h2>
 
                 <FormularioReutilizable 
                         hayPrecioUnitario={hayPrecioUnitario}
@@ -152,7 +153,10 @@ function RegistrarVentas ({
                                     value={productoAVender?.marca}
                                 />
 
-                                <div className={styles.completeInputContainer} >
+                                <div 
+                                    className={styles.completeInputContainer} 
+                                    id='cantidadInputContainer'
+                                >
                                     <FormInput 
                                         idInput='cantidad'
                                         type='number'
@@ -175,10 +179,15 @@ function RegistrarVentas ({
 
                                         listaProductos={listaProductos}
                                         historialProductos={historialVentas}
+
+                                        setCalcularTotal={setCalcularTotal}
                                     />
                                 </div>
                                 
-                                <div className={styles.completeInputContainer} >
+                                <div 
+                                    className={styles.completeInputContainer} 
+                                    id='precioInputContainer'
+                                >
                                     <PrecioInput
                                         required='true'
 
@@ -205,6 +214,8 @@ function RegistrarVentas ({
                                         historialProductos={historialVentas}
 
                                         inputId='inputPrecioUnitarioVenta'
+
+                                        setCalcularTotal={setCalcularTotal}
                                     />
                                 </div>
                             </>
@@ -215,13 +226,6 @@ function RegistrarVentas ({
                         fetchStatus={ventaFetchStatus}
                     />
 
-                                
-
-                {/* <ListaPreciosCompra 
-                    productoAVender={productoAVender}
-                    historialProductos={historialProductos}
-                    listaProductos={listaProductos}
-                /> */}
               
               </div>
         </section>

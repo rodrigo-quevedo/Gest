@@ -15,8 +15,9 @@ function Autosugerencias_precioFormulario({
     listaProductos,
     historialProductos,
 
-    inputId
+    inputId,
 
+    setCalcularTotal
 }){
 
     // No repetir precios
@@ -87,6 +88,7 @@ function Autosugerencias_precioFormulario({
                 // key={`${prodObj.producto}_${prodObj.marca}`}
 
                 onMouseDown={()=>{
+                    setCalcularTotal(true)
                     manejarClick(inputId, precio, setPrecioSearchString, setPrecioInputActivo)
                 }}
             >
