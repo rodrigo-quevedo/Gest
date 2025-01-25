@@ -45,6 +45,38 @@
     transition: .1s font-weight;
 }
 
+@media(width < 950px){
+    .container div > label, .container div span {
+        font-size: 13px;
+    }
+}
+@media(width < 750px){
+    .container div > label, .container div span {
+        font-size: 12px;
+    }
+
+    .container div label:hover, 
+    .container div span:hover {
+        font-size: 11.5px;
+    }
+}
+@media (width < 700px){
+    .container div > label, .container div span {
+        font-size: 15px;
+    }
+
+    .container div label:hover, 
+    .container div span:hover {
+        font-size: 15px;
+    }
+}
+@media (width < 400px){
+    .container div > label, .container div span {
+        display: inline-block;
+        width: 80%;
+    }
+}
+
 .container label {
     background: #111134;
     color: #fff;
