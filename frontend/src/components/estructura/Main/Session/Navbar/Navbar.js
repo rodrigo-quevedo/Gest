@@ -63,7 +63,6 @@ export default function Navbar (
                     :
                     ()=>{
                         setSessionScreen(SESSION_SCREENS.RESUMEN_PRODUCTO)
-                        setDesplegado(false)
                 }}
 
                 >
@@ -72,70 +71,6 @@ export default function Navbar (
                     <TbFileAnalytics/>
                 </span>
             </button>
-
-            {/* <button 
-
-                className={
-                    sessionScreen === SESSION_SCREENS.LISTA_PRODUCTOS ?
-                        styles.seleccionado 
-                    : 
-                        null
-                }
-
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.LISTA_PRODUCTOS)
-                    setDesplegado(false)
-                }}
-
-            >
-                Lista de productos 
-                <span className={styles.icon}>
-                    <FaClipboardList/>
-                </span>
-            </button> */}
-
-            {/* <button 
-
-                className={
-                    sessionScreen === SESSION_SCREENS.INGRESAR_PRODUCTOS ? 
-                        styles.seleccionado 
-                    : 
-                        null
-                }
-
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)
-                    setDesplegado(false)
-                }}
-
-            >
-                Ingresar productos
-                <span className={styles.icon}>
-                    <FaTruckLoading/>
-                </span>
-            </button>
-            
-            
-            <button 
-
-                className={
-                    sessionScreen === SESSION_SCREENS.REGISTRAR_VENTAS ?
-                        styles.seleccionado 
-                    : 
-                        null
-                }
-
-                onClick={()=>{
-                    setSessionScreen(SESSION_SCREENS.REGISTRAR_VENTAS)
-                    setDesplegado(false)
-                }}
-
-            >
-                Registrar venta
-                <span className={styles.icon}>
-                    <FaCashRegister/>
-                </span>
-            </button> */}
 
             <button 
 
@@ -152,7 +87,6 @@ export default function Navbar (
                     :
                     ()=>{
                         setSessionScreen(SESSION_SCREENS.HISTORIAL_PRODUCTOS)
-                        setDesplegado(false)
                     }
                 }
 
@@ -178,7 +112,6 @@ export default function Navbar (
                     :
                     ()=>{
                         setSessionScreen(SESSION_SCREENS.HISTORIAL_VENTAS)
-                        setDesplegado(false)
                 }}
 
             >
