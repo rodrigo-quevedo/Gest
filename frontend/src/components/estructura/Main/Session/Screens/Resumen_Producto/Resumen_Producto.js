@@ -95,6 +95,25 @@ function Resumen_Producto({
                 totalGanancia,
                 totalMargen
             }]
+            
+
+        //pongo todo en un array para poder usar TablaReutilizable
+        const [arrFinanzaProducto, setArrFinanzaProducto] = useState(null)
+        useEffect(()=>{
+            setArrFinanzaProducto(
+                [{
+                    totalGastadoProducto: calcularTotalGastado(historialProductosResult),
+                    totalVendidoProducto: calcularTotalGastado(historialVentasResult),
+                    totalGananciaProducto: (
+                        calcularTotalGastado(historialVentasResult)
+                        - 
+                        calcularTotalGastado(historialProductosResult)
+                    ).toFixed(2),
+                    totalMargenProducto: calcularGananciaActual(historialProductosResult, historialVentasResult)
+                }]
+            ) 
+        }, [historialProductosResult, historialVentasResult])
+
 
 
         //logica compra y venta
@@ -409,12 +428,41 @@ function Resumen_Producto({
                                     mapCallback={
                                         (stateObj) => {
                                             return (
-                                                //doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format#description
                                                 <tr key={stateObj.id}>
-                                                    <td>${new Intl.NumberFormat("en-US",{minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGastado)}</td>
-                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalVendido)}</td>
-                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalGanancia)}</td>
-                                                    <td>${new Intl.NumberFormat("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(stateObj.totalMargen)}</td>
+                                                    <td>${formatPrice(stateObj.totalGastado)}</td>
+                                                    <td>${formatPrice(stateObj.totalVendido)}</td>
+                                                    <td>${formatPrice(stateObj.totalGanancia)}</td>
+                                                    <td>${formatPrice(stateObj.totalMargen)}</td>
+                                                </tr>
+                                            )
+                                        }
+                                    }
+                                />
+                            </div>
+
+                            <div className={styles.tableContainer} id="productoFinanzaTable">
+                                <h2>Finanza (producto seleccionado)</h2>
+                                <TablaReutilizable
+                                    searchBoxState={searchBoxState}
+                                    arrayState={arrFinanzaProducto}
+
+                                    tableHeaders={
+                                        <tr>
+                                            <th>Total gastado</th>
+                                            <th>Total vendido</th>
+                                            <th>Neto</th>
+                                            <th>Ganancia sobre lo vendido</th>     
+                                        </tr>
+                                    }
+
+                                    mapCallback={
+                                        (stateObj) => {
+                                            return (
+                                                <tr key={stateObj.id}>
+                                                    <td>${formatPrice(stateObj.totalGastadoProducto)}</td>
+                                                    <td>${formatPrice(stateObj.totalVendidoProducto)}</td>
+                                                    <td>${formatPrice(stateObj.totalGananciaProducto)}</td>
+                                                    <td>${formatPrice(stateObj.totalMargenProducto)}</td>
                                                 </tr>
                                             )
                                         }
