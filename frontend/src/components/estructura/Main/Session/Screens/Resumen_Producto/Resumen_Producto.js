@@ -28,6 +28,8 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 //formateo precios
 import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
+// graficos
+import useCrearGraficos from '../../../../../../hooks/useCrearGraficos/useCrearGraficos';
 
 function Resumen_Producto({
     setSessionScreen,
@@ -173,6 +175,10 @@ function Resumen_Producto({
             }
         }, [compraVentaFetchStatus])
 
+
+        //graficos 
+        useCrearGraficos('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras')
+        useCrearGraficos('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas')
 
 
     return (
@@ -475,6 +481,11 @@ function Resumen_Producto({
                             <div className={styles.tableContainer} id="comprasTable">
                                 <h2>Compras</h2>
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
+
+                                <div>
+                                    <canvas id="comprasProductoGrafico"></canvas>
+                                </div>
+
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={historialProductosResult}
@@ -514,6 +525,11 @@ function Resumen_Producto({
                             <div className={styles.tableContainer} id="ventasTable">
                                 <h2>Ventas</h2>
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
+
+                                <div>
+                                    <canvas id="ventasProductoGrafico"></canvas>
+                                </div>
+
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={historialVentasResult}
