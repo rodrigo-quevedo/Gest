@@ -64,6 +64,13 @@ function SearchBox_busquedaLocal({
 
             setSearchBoxState(SEARCHBOX_STATE.CLICKED)
         })
+
+        document.getElementById('searchBoxInput').addEventListener('keydown', (e)=>{
+            if (e.code === 'Escape'){
+                console.log('ESC activado')
+                e.currentTarget.blur();
+            }
+        })
     }, [])
 
 

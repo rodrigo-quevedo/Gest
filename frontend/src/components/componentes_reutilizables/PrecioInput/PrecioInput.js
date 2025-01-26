@@ -2,6 +2,9 @@ import styles from './PrecioInput.module.css'
 
 import {useState, useEffect} from 'react'
 
+import useSalirESC from '../../../hooks/salirESC/useSalirESC'
+
+
 function PrecioInput({
     required,
     
@@ -15,6 +18,9 @@ function PrecioInput({
     hayPrecioUnitario, setHayPrecioUnitario
 }) 
 {
+
+    //Salir con ESC
+    useSalirESC(idInputPrecioUnitario)
 
     // enfocar input cuando se clickea "precio unitario" o "precio total"
     const [focus, setFocus] = useState(false)

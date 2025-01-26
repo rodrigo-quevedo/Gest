@@ -1,5 +1,8 @@
 import styles from './FormInput.module.css'
 
+import useSalirESC from '../../../hooks/salirESC/useSalirESC'
+
+
 function FormInput ({
     idInput,
     type,
@@ -11,6 +14,10 @@ function FormInput ({
     required,
     value
 }) {
+
+    //Salir con ESC
+    useSalirESC(idInput)
+
 
     switch(type) {
 

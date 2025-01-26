@@ -50,6 +50,13 @@ function SearchBox_resumen({
 
             setSearchBoxState(SEARCHBOX_STATE.CLICKED)
         })
+
+        document.getElementById('searchBoxInput').addEventListener('keydown', (e)=>{
+            if (e.code === 'Escape'){
+                console.log('ESC activado')
+                e.currentTarget.blur();
+            }
+        })
     }, [])
 
 
@@ -125,6 +132,8 @@ function SearchBox_resumen({
                     }}
                 >
                     <div 
+                        id='blurDiv'
+
                         className={ 
                             elegirSearchboxClass(searchBoxState, styles, SEARCHBOX_STATE)
                         }
