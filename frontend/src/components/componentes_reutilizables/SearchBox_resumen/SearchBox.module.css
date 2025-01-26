@@ -20,6 +20,11 @@
 
 }
 
+.desactivar{
+    display: none;
+}
+
+
 .searchBox {
     display: flex;
     align-items: center;
@@ -160,11 +165,11 @@
 
 .resetButton:hover {
     cursor:pointer;
-
-    background: #000;
-    color: #00f;
-
-    /* transform: scale(1.1); */
+    
+    transform: scale(1.08);
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px #000;
+    
     transition: all 0.5s;
 }
 

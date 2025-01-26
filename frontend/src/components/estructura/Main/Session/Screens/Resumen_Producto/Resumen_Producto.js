@@ -80,7 +80,8 @@ function Resumen_Producto({
     
         //logica tablas
         const [productSelected, setProductSelected] = useState(null);
-        
+        const [marcaSelected, setMarcaSelected] = useState(null)
+
         
         //logica finanza
         let totalGastado = calcularTotalGastado(historialProductos)
@@ -183,6 +184,9 @@ function Resumen_Producto({
                         setListaProductosResult={setListaProductosResult}
                         setHistorialProductosResult={setHistorialProductosResult}
                         setHistorialVentasResult={setHistorialVentasResult}
+
+                        marcaSelected={marcaSelected}
+                        setMarcaSelected={setMarcaSelected}
                     />
 
                 </div>
@@ -297,6 +301,8 @@ function Resumen_Producto({
                                                                     document.getElementById('searchBoxForm').requestSubmit()
 
                                                                     setProductSelected(stateObj.producto)
+
+                                                                    setMarcaSelected(stateObj.marca)
                                                                 }
                                                 }
                                                 >
@@ -386,7 +392,7 @@ function Resumen_Producto({
                             </div>
 
                             <div className={styles.tableContainer} id="finanzaTable">
-                                <h2>Finanza</h2>
+                                <h2>Finanza (todos los productos)</h2>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={arrFinanza}

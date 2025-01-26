@@ -31,7 +31,9 @@ function SearchBox_resumen({
 
     setListaProductosResult,
     setHistorialProductosResult,
-    setHistorialVentasResult
+    setHistorialVentasResult,
+
+    marcaSelected, setMarcaSelected
 }) {
 
     useEffect(()=>{
@@ -62,6 +64,8 @@ function SearchBox_resumen({
                     document.getElementById('searchBoxInput').value = ''
 
                     document.getElementById('searchBoxForm').requestSubmit()
+
+                    setMarcaSelected(null)
                 }}
                 className={styles.resetButton}
                 id="searchBoxListaCompletaButton"
@@ -70,7 +74,15 @@ function SearchBox_resumen({
             </button>
 
 
-            <div className={styles.formAndButtonContainer}>
+            <div 
+                className={
+                    marcaSelected ?
+                    `${styles.formAndButtonContainer} ${styles.desactivar}`
+                    :
+                    styles.formAndButtonContainer
+                }
+
+            >
                 <form 
                     id="searchBoxForm"
                     
@@ -79,12 +91,17 @@ function SearchBox_resumen({
 
                         setSearchBoxState(SEARCHBOX_STATE.SUBMIT)
 
+                        if (document.getElementById('searchBoxInput').value === ''){
+                            setMarcaSelected(null)
+                        }
+
                         // lista productos
                         busqueda_local (
                             setSearchBoxState,
                             listaProductos,
                             setListaProductosResult,
-                            document.getElementById('searchBoxInput').value
+                            document.getElementById('searchBoxInput').value,
+                            marcaSelected
                         )
 
                         // historial productos
@@ -92,7 +109,8 @@ function SearchBox_resumen({
                             setSearchBoxState,
                             historialProductos,
                             setHistorialProductosResult,
-                            document.getElementById('searchBoxInput').value
+                            document.getElementById('searchBoxInput').value,
+                            marcaSelected
                         )
 
                         // historial ventas
@@ -100,7 +118,8 @@ function SearchBox_resumen({
                             setSearchBoxState,
                             historialVentas,
                             setHistorialVentasResult,
-                            document.getElementById('searchBoxInput').value
+                            document.getElementById('searchBoxInput').value,
+                            marcaSelected
                         )
 
                     }}
@@ -188,7 +207,12 @@ function SearchBox_resumen({
                     onClick={()=>{
                         document.getElementById('searchBoxForm').requestSubmit()
                     }}
-                    className={styles.submitButton}
+                    className={
+                        marcaSelected ?
+                        `${styles.desactivar} ${styles.submitButton}`
+                        :
+                        styles.submitButton
+                    }
                 >
                     <AiOutlineEnter/>
                 </button>
