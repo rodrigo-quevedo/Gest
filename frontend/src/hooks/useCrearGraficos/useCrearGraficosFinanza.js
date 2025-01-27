@@ -7,7 +7,7 @@ function useCrearGraficosFinanza(idCanvas, arrayData, marcaSelected, label, gene
     useEffect(()=>{
         if (!marcaSelected) return;
 
-        console.log('arrayData:', arrayData)
+        // console.log('arrayData:', arrayData)
         // arrData : {totalGastado, totalVendido, totalGanancia, totalMargen}
         let arrLabels = ['Gastado', 'Vendido', 'Neto', 'Ganancia']
         let arrData;

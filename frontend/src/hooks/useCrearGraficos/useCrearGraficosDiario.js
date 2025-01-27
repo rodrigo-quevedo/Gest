@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 
 import Chart from 'chart.js/auto'
 
-function useCrearGraficosDiario(idCanvas, arrayData, marcaSelected, label){
+function useCrearGraficosDiario(idCanvas, arrayData, marcaSelected, label, esCompra){
 
     useEffect(()=>{
         if (!marcaSelected) return;
@@ -94,7 +94,7 @@ function useCrearGraficosDiario(idCanvas, arrayData, marcaSelected, label){
                     {
                         label: label,
                         data: arrCompleto.map(x=>x.cantidad),
-                        backgroundColor: '#f00'
+                        backgroundColor: esCompra? '#f00': '#0f0'
                     }
                 ]
             }

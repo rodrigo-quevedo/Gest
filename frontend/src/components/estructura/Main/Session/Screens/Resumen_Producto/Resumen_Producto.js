@@ -179,8 +179,8 @@ function Resumen_Producto({
 
 
         //graficos 
-        useCrearGraficosDiario('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras (diario)')
-        useCrearGraficosDiario('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas (diario)')
+        useCrearGraficosDiario('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras (diario)', true)
+        useCrearGraficosDiario('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas (diario)', false)
 
         useCrearGraficosFinanza('finanzaGeneralGrafico', arrFinanza, marcaSelected, "Finanza (todos los productos)", true)
         useCrearGraficosFinanza('finanzaProductoGrafico', arrFinanzaProducto, marcaSelected, "Finanza (producto seleccionado)", false)
@@ -459,7 +459,7 @@ function Resumen_Producto({
                             </div>
 
                             <div className={styles.tableContainer} id="productoFinanzaTable">
-                                <h2>Finanza (producto seleccionado)</h2>
+                                <h2>Finanza ({productSelected} marca {marcaSelected})</h2>
 
                                 <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="finanzaProductoGrafico"></canvas>
