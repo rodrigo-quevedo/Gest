@@ -193,3 +193,9 @@
         max-width: 80%;
     }
 }
+
+/* Fix buscar marca */
+:global(#searchBoxInputMarca) {
+    display: none;
+    /* position: absolute; */
+}

@@ -69,6 +69,7 @@ function SearchBox_resumen({
                     setBusquedaString('')
 
                     document.getElementById('searchBoxInput').value = ''
+                    document.getElementById('searchBoxInputMarca').value = ''
 
                     document.getElementById('searchBoxForm').requestSubmit()
 
@@ -108,7 +109,7 @@ function SearchBox_resumen({
                             listaProductos,
                             setListaProductosResult,
                             document.getElementById('searchBoxInput').value,
-                            marcaSelected
+                            document.getElementById('searchBoxInputMarca').value
                         )
 
                         // historial productos
@@ -117,7 +118,7 @@ function SearchBox_resumen({
                             historialProductos,
                             setHistorialProductosResult,
                             document.getElementById('searchBoxInput').value,
-                            marcaSelected
+                            document.getElementById('searchBoxInputMarca').value
                         )
 
                         // historial ventas
@@ -126,7 +127,7 @@ function SearchBox_resumen({
                             historialVentas,
                             setHistorialVentasResult,
                             document.getElementById('searchBoxInput').value,
-                            marcaSelected
+                            document.getElementById('searchBoxInputMarca').value
                         )
 
                     }}
@@ -208,7 +209,11 @@ function SearchBox_resumen({
 
                     </div>
 
-
+                     {/* Fix para buscar por marca: */}
+                    <input                 
+                            id="searchBoxInputMarca"
+                            type='text'
+                    />
 
 
                 </form>

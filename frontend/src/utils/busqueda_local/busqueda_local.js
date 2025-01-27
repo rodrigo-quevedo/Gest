@@ -2,9 +2,11 @@ import {SEARCHBOX_STATE} from '../../config/config'
 
 
 function busqueda_local(setSearchBoxState, array, setArrayResultado, productoString, marcaSelected) {
+    // console.log('marcaSelected state:',marcaSelected)
+
     let arrResultado = array.filter((arrObj)=>{
 
-        if (marcaSelected === null) {
+        if (marcaSelected === '') { //lista productos
             // buscar todo
             if (productoString === ''){
                 return arrObj
@@ -21,26 +23,31 @@ function busqueda_local(setSearchBoxState, array, setArrayResultado, productoStr
             }
         }
 
-        else {
+        else {// historiales
             // buscar todo
-            if (productoString === '' && marcaSelected === arrObj.marca){
-                return arrObj
-            }
+            // if (
+            //     (productoString === '')
+            //     && 
+            //     (marcaSelected === arrObj.marca)
+            // ){
+            //     return arrObj
+            // }
     
             //busqueda parecida
-            else if (
-                arrObj.producto.toUpperCase().includes(productoString.toUpperCase()) 
-                &&
-                marcaSelected === arrObj.marca
-            ) {
-                return arrObj
-            }
+            // else if (
+            //     arrObj.producto.toUpperCase().includes(productoString.toUpperCase()) 
+            //     &&
+            //     marcaSelected === arrObj.marca
+            // ) {
+            //     return arrObj
+            // }
     
             // busqueda exacta
-            else if (
+            // else if (
+            if (
                 arrObj.producto.toUpperCase() === productoString.toUpperCase()
                 &&
-                marcaSelected === arrObj.marca
+                marcaSelected.toUpperCase() === arrObj.marca.toUpperCase()
             ) {
                 return arrObj
             }

@@ -322,6 +322,8 @@ function Resumen_Producto({
                                                                     //establecer req body
                                                                     document.getElementById('searchBoxInput').value= stateObj.producto
                                                                     
+                                                                    document.getElementById('searchBoxInputMarca').value= stateObj.marca
+                                                                    
                                                                     //fetch
                                                                     document.getElementById('searchBoxForm').requestSubmit()
 
@@ -482,7 +484,7 @@ function Resumen_Producto({
                                 <h2>Compras</h2>
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
 
-                                <div>
+                                <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="comprasProductoGrafico"></canvas>
                                 </div>
 
@@ -526,7 +528,7 @@ function Resumen_Producto({
                                 <h2>Ventas</h2>
                                 <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
 
-                                <div>
+                                <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="ventasProductoGrafico"></canvas>
                                 </div>
 

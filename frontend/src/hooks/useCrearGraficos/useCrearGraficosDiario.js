@@ -46,7 +46,16 @@ function useCrearGraficosDiario(idCanvas, arrayData, marcaSelected, label){
             if (new Date(a.fechaHora) < new Date(b.fechaHora)) return -1
             else return 0
         })
-        let primeraFecha = new Date(arrFechahoraCantidadSinRepetir[0].fechaHora)
+
+        let primeraFecha;
+        //chequear si el array esta vacio
+        if (arrFechahoraCantidadSinRepetir.length === 0) {
+            primeraFecha = new Date()
+        }
+        else {
+            primeraFecha = new Date(arrFechahoraCantidadSinRepetir[0].fechaHora)
+        }
+
         // let ultimaFecha = new Date(arrFechahoraCantidadSinRepetir[arrFechahoraCantidadSinRepetir.length-1].fechaHora)
         // console.log(primeraFecha)
         // console.log(ultimaFecha)
