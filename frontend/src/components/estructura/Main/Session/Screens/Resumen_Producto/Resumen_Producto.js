@@ -29,7 +29,7 @@ import calcularGananciaActual from './finanza/calcularGananciaActual';
 import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
 // graficos
-import useCrearGraficos from '../../../../../../hooks/useCrearGraficos/useCrearGraficos';
+import useCrearGraficosDiario from '../../../../../../hooks/useCrearGraficos/useCrearGraficosDiario';
 
 function Resumen_Producto({
     setSessionScreen,
@@ -177,8 +177,8 @@ function Resumen_Producto({
 
 
         //graficos 
-        useCrearGraficos('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras')
-        useCrearGraficos('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas')
+        useCrearGraficosDiario('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras (diario)')
+        useCrearGraficosDiario('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas (diario)')
 
 
     return (
