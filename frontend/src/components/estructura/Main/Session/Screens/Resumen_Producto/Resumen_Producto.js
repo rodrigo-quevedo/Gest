@@ -30,6 +30,8 @@ import formatPrice from '../../../../../../utils/format_prices/formatPrices';
 
 // graficos
 import useCrearGraficosDiario from '../../../../../../hooks/useCrearGraficos/useCrearGraficosDiario';
+import useCrearGraficosFinanza from '../../../../../../hooks/useCrearGraficos/useCrearGraficosFinanza';
+
 
 function Resumen_Producto({
     setSessionScreen,
@@ -179,6 +181,9 @@ function Resumen_Producto({
         //graficos 
         useCrearGraficosDiario('comprasProductoGrafico', historialProductosResult, marcaSelected, 'Cantidad de compras (diario)')
         useCrearGraficosDiario('ventasProductoGrafico', historialVentasResult, marcaSelected, 'Cantidad de ventas (diario)')
+
+        useCrearGraficosFinanza('finanzaGeneralGrafico', arrFinanza, marcaSelected, "Finanza (todos los productos)", true)
+        useCrearGraficosFinanza('finanzaProductoGrafico', arrFinanzaProducto, marcaSelected, "Finanza (producto seleccionado)", false)
 
 
     return (
@@ -420,6 +425,11 @@ function Resumen_Producto({
 
                             <div className={styles.tableContainer} id="finanzaTable">
                                 <h2>Finanza (todos los productos)</h2>
+
+                                <div className={styles.graficoCompraVentaContainer}>
+                                    <canvas id="finanzaGeneralGrafico"></canvas>
+                                </div>
+
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={arrFinanza}
@@ -450,6 +460,11 @@ function Resumen_Producto({
 
                             <div className={styles.tableContainer} id="productoFinanzaTable">
                                 <h2>Finanza (producto seleccionado)</h2>
+
+                                <div className={styles.graficoCompraVentaContainer}>
+                                    <canvas id="finanzaProductoGrafico"></canvas>
+                                </div>
+
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={arrFinanzaProducto}
