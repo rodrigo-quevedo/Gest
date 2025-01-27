@@ -9,7 +9,7 @@ function useCrearGraficosFinanza(idCanvas, arrayData, marcaSelected, label, gene
 
         console.log('arrayData:', arrayData)
         // arrData : {totalGastado, totalVendido, totalGanancia, totalMargen}
-        let arrLabels = ['Gastado', 'Vendido', 'Neto', 'Ganancia sobre lo vendido']
+        let arrLabels = ['Gastado', 'Vendido', 'Neto', 'Ganancia']
         let arrData;
         if (general){
             arrData = [(Number(arrayData[0].totalGastado) * -1), arrayData[0].totalVendido, arrayData[0].totalGanancia, arrayData[0].totalMargen]
@@ -24,10 +24,20 @@ function useCrearGraficosFinanza(idCanvas, arrayData, marcaSelected, label, gene
 
         //---> Todo esto es para poder usar diferentes colores en el grafico
             //gastos
-            let arrGastos = [arrData[0], 0, (arrData[2] < 0) ? arrData[2] : 0, 0]
+            let arrGastos = [
+                arrData[0], 
+                0, 
+                (arrData[2] < 0) ? arrData[2] : 0,
+                (arrData[3] < 0) ? arrData[3] : 0
+            ]
 
             //ventas
-            let arrVentas = [0, arrData[1], (arrData[2] > 0) ? arrData[2] : 0, arrData[3]]
+            let arrVentas = [
+                0, 
+                arrData[1], 
+                (arrData[2] > 0) ? arrData[2] : 0, 
+                (arrData[3] > 0) ? arrData[3] : 0
+            ]
 
         //
 
@@ -63,7 +73,15 @@ function useCrearGraficosFinanza(idCanvas, arrayData, marcaSelected, label, gene
                             lineWidth: ({ tick }) => tick.value == 0 ? 1 : 0.2,
                             color: '#000'
                         }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
                     }
+                    
                 },
                 plugins: {
                   legend: {
