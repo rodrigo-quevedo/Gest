@@ -335,6 +335,13 @@ function Resumen_Producto({
                                                                     setProductSelected(stateObj.producto)
 
                                                                     setMarcaSelected(stateObj.marca)
+
+                                                                    //ir arriba de todo
+                                                                    window.scrollTo({
+                                                                        top: 0,
+                                                                        left: 0,
+                                                                        behavior: 'smooth'
+                                                                    })
                                                                 }
                                                 }
                                                 >

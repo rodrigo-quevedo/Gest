@@ -96,11 +96,11 @@ function fetchBackend (
         
         // manejar error de conexion con el servidor
         if (err.toString() === "TypeError: Failed to fetch"){
-            console.log("Error en la conexion con el servidor (TypeError: Failed to fetch)")
+            console.log("Error en la conexion con el servidor (TypeError: Failed to fetch). Recargue la página o presione F5.")
 
             setFetchStatus({
                 status: FETCH_STATUS.ERROR,
-                errorMessage: `Error en la conexion con el servidor (${err}).`
+                errorMessage: `Error en la conexion con el servidor (${err}). Recargue la página o presione F5.`
             })
 
             return;
