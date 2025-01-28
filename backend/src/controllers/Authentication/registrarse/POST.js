@@ -20,8 +20,6 @@ const POST =  async (req, res) => {
 
     //validacion
 
-
-
     if (req.body.usuario === undefined) {
         res.status(400).json({
             success: false,
@@ -43,6 +41,33 @@ const POST =  async (req, res) => {
         res.status(400).json({
             success: false,
             message: 'confirmPassword: El campo es obligatorio.'
+        })
+
+        return;
+    }
+
+
+    if (typeof req.body.usuario !== 'string') {
+        res.status(400).json({
+            success: false,
+            message: 'usuario: El campo debe ser tipo string.'
+        })
+
+        return;
+    }
+    if (typeof req.body.password !== 'string') {
+        res.status(400).json({
+            success: false,
+            message: 'password: El campo debe ser tipo string.'
+        })
+
+        return;
+    }
+
+    if (typeof req.body.confirmPassword !== 'string') {
+        res.status(400).json({
+            success: false,
+            message: 'confirmPassword: El campo debe ser tipo string.'
         })
 
         return;
@@ -88,23 +113,24 @@ const POST =  async (req, res) => {
         return;
     }
 
-    //validar si el usuario no existe:
-    const usuarioExistente = await UsuariosModel.find({usuario: req.body.usuario}).exec()
-
-    if (usuarioExistente) {
-        console.log(`El usuario ${usuarioExistente} ya existe`)
-
-        res.status(400).json({
-            success: false,
-            message: `El usuario ya existe: ${usuarioCreado.usuario}`
-        })
-
-        return
-    }
-
-
-    //una vez validado que el usuario no existe, se puede crear el usuario:
     try {
+        //validar si el usuario no existe:
+        const usuarioExistente = await UsuariosModel.findOne({usuario: req.body.usuario}).exec()
+        console.log('usuarioExistente:',usuarioExistente)
+
+        if (usuarioExistente) {
+            console.log(`El usuario ${usuarioExistente} ya existe`)
+
+            res.status(400).json({
+                success: false,
+                message: `El usuario ya existe: ${usuarioExistente.usuario}`
+            })
+
+            return
+        }
+
+
+        //una vez validado que el usuario no existe, se puede crear el usuario:
 
         //crear lista productos, historial productos, historial ventas para un nuevo usuario
         const listaProductosCreada = await Lista_ProductosModel.create({
@@ -168,8 +194,14 @@ const POST =  async (req, res) => {
                 success: false,
                 message: `El usuario '${req.body.usuario}' ya existe.`
             });
+            return
         }
 
+        //server response
+        res.status(500).json({
+            success: false,
+            message: err
+        })
 
     }
 }
