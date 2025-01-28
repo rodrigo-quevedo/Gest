@@ -21,6 +21,15 @@ const POST =  async (req, res) => {
     //validacion
 
 
+
+    if (req.body.usuario === undefined) {
+        res.status(400).json({
+            success: false,
+            message: 'usuario: El campo es obligatorio.'
+        })
+
+        return;
+    }
     if (req.body.password === undefined) {
         res.status(400).json({
             success: false,
@@ -49,6 +58,15 @@ const POST =  async (req, res) => {
         return;
     }
 
+
+    if (/^[a-zA-ZÀ-ÿñÑ0-9]{6,20}$/.test(req.body.usuario) === false) {
+        res.status(400).json({
+            success: false,
+            message: "usuario: Solo son válidos las letras mayúsculas, las letras minúsculas y los números. NO se aceptan caracteres especiales. Mínimo 6 y máximo 20 caracteres."
+        })
+
+        return;
+    }
     
     //hago la validacion aca en vez de en el schema para poder meter la password encriptada en el schema de 'password' 
     //(la password encriptada va a tener otro formato)
@@ -71,7 +89,7 @@ const POST =  async (req, res) => {
     }
 
     //validar si el usuario no existe:
-    const usuarioExistente = await UsuariosModel.find({usuario: nombreUsuario}).exec()
+    const usuarioExistente = await UsuariosModel.find({usuario: req.body.usuario}).exec()
 
     if (usuarioExistente) {
         console.log(`El usuario ${usuarioExistente} ya existe`)
