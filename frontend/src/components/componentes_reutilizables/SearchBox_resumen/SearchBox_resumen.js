@@ -56,7 +56,14 @@ function SearchBox_resumen({
                 console.log('ESC activado')
                 e.currentTarget.blur();
             }
+
+            else if (e.code === 'Enter'){
+                document.getElementById('searchBoxForm').requestSubmit()
+            }
+
         })
+
+        
     }, [])
 
 
@@ -213,6 +220,7 @@ function SearchBox_resumen({
                     <input                 
                             id="searchBoxInputMarca"
                             type='text'
+                            autoComplete='off'
                     />
 
 

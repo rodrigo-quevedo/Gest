@@ -25,26 +25,26 @@ function busqueda_local(setSearchBoxState, array, setArrayResultado, productoStr
 
         else {// historiales
             // buscar todo
-            // if (
-            //     (productoString === '')
-            //     && 
-            //     (marcaSelected === arrObj.marca)
-            // ){
-            //     return arrObj
-            // }
+            if (
+                (productoString === '')
+                && 
+                (marcaSelected === arrObj.marca)
+            ){
+                return arrObj
+            }
     
-            //busqueda parecida
-            // else if (
-            //     arrObj.producto.toUpperCase().includes(productoString.toUpperCase()) 
-            //     &&
-            //     marcaSelected === arrObj.marca
-            // ) {
-            //     return arrObj
-            // }
+            // busqueda parecida
+            else if (
+                arrObj.producto.toUpperCase().includes(productoString.toUpperCase()) 
+                &&
+                marcaSelected === arrObj.marca
+            ) {
+                return arrObj
+            }
     
             // busqueda exacta
-            // else if (
-            if (
+            else if (
+            // if (
                 arrObj.producto.toUpperCase() === productoString.toUpperCase()
                 &&
                 marcaSelected.toUpperCase() === arrObj.marca.toUpperCase()
