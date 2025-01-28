@@ -1,14 +1,15 @@
 {
-  "name": "backend",
+  "name": "gest-backend-api",
   "version": "1.0.0",
   "main": "/src/bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "bcrypt", "cookies"],
+  "author": "Rodrigo M. Quevedo <https://github.com/rodrigo-quevedo>",
+  "license": "MIT",
+  "description": "API de aplicación web fullstack (stack MERN) pensada para un negocio que quiere tener control sobre su inventario.",
+  "private": true,
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
