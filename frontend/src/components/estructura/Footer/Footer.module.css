@@ -1,63 +1,142 @@
+
 .footer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
-    margin: 0;
-
-    max-height: 12vh;
-    height: 12vh;
-
-    font-size: .7em;
-    background: #000;
-    color: #fff;
-}
-
-.footer > * {
-    width: 20%;
-}
-
-.footerNavbar {
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to right, #111111, #1a1a1a);
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+    gap: 2rem;
     width: 100%;
+    box-sizing: border-box;
+}
+
+.infoContainer {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.groupTitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #666;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.versionRow {
+    display: flex;
     align-items: center;
-    text-align: center;
+    gap: 0.8rem;
+    font-size: 0.8rem;
+}
 
+.versionBadge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
-    padding: 10px;
+.current {
+    background-color: #ff00ea;
+    color: #fff;
+    box-shadow: 0 0 8px rgba(255, 0, 234, 0.4);
+}
+
+.legacy {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #aaa;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dateText {
+    color: #ccc;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.dateLabel {
+    color: #666;
+    font-weight: 600;
+}
+
+.separator {
+    color: #444;
+}
+
+.devContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.devName {
     margin: 0;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
 }
 
-.footerNavbar > a {
-    color: #ff00ea;
+.devRole {
+    font-size: 0.75rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.socialNav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
     text-decoration: none;
-    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
-.footerNavbar > a:visited {
-    color: cyan;
+.socialLink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.footerNavbar > a:hover,
-.footerNavbar > a:focus  {
-    color: orange;
+.icon {
+    font-size: 1.2rem;
 }
 
-@media (width < 600px) {
+/* Responsive Design */
+@media (max-width: 960px) {
     .footer {
-        max-height: fit-content;
-        height: fit-content;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+        text-align: center;
     }
-}
 
-@media (width > 600px)
-and (height > 300px) 
-and (height < 750px) {
-    .footer {
-        max-height: fit-content;
-        height: fit-content;
+    .socialNav {
+        width: 100%;
+        justify-content: center;
     }
 }

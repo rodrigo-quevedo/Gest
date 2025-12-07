@@ -1,98 +1,189 @@
+/* Container adapts to parent width */
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: calc(50vw - 10px);
-    max-height: fit-content;
-    
+    width: 100%;
+    margin-top: 1rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
     text-align: center;
-    
-    border-radius: 15px;
-    background: #AFAFFF;
-    box-shadow: 1px 1px 10px #999, -1px -1px 10px #999;
-
-    transition: 1s all;
+    margin-bottom: 1.5rem;
 }
 
-.container:hover {
-    background: #7e7eff;
-    box-shadow: none;
-
-    transform: scale(1.01);
-
-    transition: 1s all;
+.title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.3rem 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.container > h2 {
-    font-size: 2em;
+.subtitle {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
 }
 
-.container > p {
-    font-size: 1.2em;
+/* Grid layout for cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    width: 100%;
 }
 
-.container > ul {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-
-    padding: 0;
-
-    list-style-type: none;
-}
-
-.botonCuenta {
+/* Glassmorphism Card Style */
+.card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    max-width: 110px;
-    margin: 10px;
-
-    padding: 20px;
-    border-radius: 5px;
-    border: 0;
-    box-shadow: 1px 1px 10px #000;
-
-    background: #111134;
-    color: #fff;
-
-    animation: 3s infinite cuentaDemo;
-}
-@keyframes cuentaDemo {
-    0% {color: #fff}
-    40% {color: #111134}
-    100% {color: #fff}
-}
-
-.cuentaDemoIcon {
-    font-size: 30px;
-}
-
-.botonCuenta:hover,
-.botonCuenta:focus {
+    justify-content: center;
+    padding: 1rem;
+    
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    
     cursor: pointer;
-
-    color: #fff !important;
-    background: #2c2c8a;
-
-    transform: scale(1.1);
-    transition: 1s all;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    color: #fff;
+    
+    /* Reset button styles */
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
 }
 
-.botonCuenta:active {
-    background: #fff;
-    color: #111134 !important;
-
-    transition: none;
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(165, 180, 252, 0.4); /* Indigo-200 tint */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
+.card:active {
+    transform: scale(0.98);
+}
 
-@media (width < 700px) {
-    .container{
-        width: 90vw;
+.cardActive {
+    background: rgba(165, 180, 252, 0.2);
+    border-color: #a5b4fc;
+    box-shadow: 0 0 0 2px rgba(165, 180, 252, 0.3);
+}
 
-        margin: 30px auto 0;
+/* Icons */
+.iconWrapper {
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    transition: background 0.3s ease;
+}
+
+.card:hover .iconWrapper {
+    background: rgba(165, 180, 252, 0.3);
+    color: #fff;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    z-index: 1;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.role {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Loading Overlay */
+.loadingOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Skeleton Loading */
+.skeleton {
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skeletonIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 0.8rem;
+    animation: pulse 1.5s infinite;
+}
+
+.skeletonText {
+    width: 60px;
+    height: 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.4; }
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
-
 }
+
+/* When constrained in side-column (desktop), force 1 or 2 cols */
+/* This relies on the container width, so auto-fit handles it, 
+   but we ensure min-width isn't too large */

@@ -12,7 +12,11 @@
     background-size: cover;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #ffffff;
-    padding: 20px;
+    
+    /* Top padding is CRITICAL because Header is absolute. 
+       140px ensures content starts below the header comfortably. */
+    padding: 140px 20px 40px 20px; 
+    
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -67,13 +71,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .ingresarSection:hover {
-    transform: translateY(-5px);
     box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
     border-color: rgba(255, 255, 255, 0.2);
+}
+
+.loginContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -234,6 +244,7 @@
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .demoTitle {
@@ -244,9 +255,42 @@
     letter-spacing: 1px;
 }
 
-/* Adjusting the Demo Accounts component might clean up layout, but we'll contain it here */
+/* Responsive Design (Mobile First by default) */
 
-/* Responsive Design */
+/* Desktop / Tablet optimization */
+@media (min-width: 968px) {
+    .ingresarSection {
+        flex-direction: row;
+        align-items: stretch;
+        max-width: 900px; /* Wider card */
+        padding: 4rem;
+        gap: 4rem;
+    }
+
+    .loginContent {
+        flex: 1; /* Take appropriate space */
+        align-items: flex-start; /* Align text left */
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 4rem;
+    }
+
+    .title, .subtitle {
+        text-align: left;
+    }
+
+    .subtitle {
+        margin-bottom: 3rem;
+    }
+
+    .demoSection {
+        width: 320px; /* Fixed width for demo side */
+        margin-top: 0;
+        border-top: none;
+        padding-top: 0;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 600px) {
     .ingresarSection {
         padding: 2rem 1.5rem;
@@ -258,3 +302,4 @@
         font-size: 2rem;
     }
 }
+

@@ -3,18 +3,20 @@
     justify-content: space-between;
     align-items: center;
 
-    max-height: 16.5vh;
-    height: 16.5vh;
+    height: 100px; /* Fixed robust height */
+    width: 100%;
 
-    position: sticky;
+    position: absolute; /* Overlay on top of content */
     top: 0;
+    left: 0;
 
-    padding: 0 20px;
+    padding: 0 40px;
+    box-sizing: border-box;
 
     color: #fff;
-    background: #111134;
-
-    z-index: 99;
+    background: transparent; /* Let the page background shine through */
+    
+    z-index: 1000;
 }
 
 .websiteBanner {
@@ -26,10 +28,13 @@
 .websiteBanner > h1 {
     margin: 0;
     padding: 0;
-    padding-left: 20px;
     
+    font-size: min(4vw, 22px);
+    font-weight: 300; 
+    letter-spacing: 0.5px;
+    position: relative;
+    bottom: 8px;
 
-    font-size: min(4vw, 25px);
 }
 
 .websiteBanner > img {
@@ -37,33 +42,48 @@
     max-width: 90px;
 }
 
+/* Explicit separator to control height independently of image whitespace */
+.separator {
+    height: 60px; /* Fixed height that looks "cropped" relative to the 90px container */
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 20px;
+    align-self: center;
+    position: relative;
+    top: 5px;
+}
+
 /* A los 700 px se rompe el Header,
 hace falta media query ahí. */
 
-@media (width < 700px) {
+@media (max-width: 850px) {
     .headerContainer {
         flex-direction: column;
-        max-height: fit-content;
-        height: fit-content;
-        padding: 20px;
-
-        position: static;
+        height: auto;
+        padding: 20px 10px;
+        gap: 15px;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, transparent 100%); /* improved readability */
     }
 
-    .websiteBanner {
-        flex-direction: column;
-        padding-bottom: 20px;
+    .websiteBanner > h1 {
+        font-size: 1.1rem;
+        top: 3px; /* Restored desktop positioning */
+        white-space: normal;
+        line-height: 1.2;
     }
 
+    .websiteBanner > img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+    }
+    
+    .separator {
+        height: 60px;
+        margin: 0 16px;
+        top: 5px; /* Restored desktop positioning */
+    }
 }
-
-/* El height en pantallas altas no alcanza */
-/* @media (height > 650px) {
-    .headerContainer {
-        max-height: 21.5vh;
-        height: 21.5vh;
-    }
-} */
 
 /* @media 
     (width > 300px) 

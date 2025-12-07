@@ -86,59 +86,61 @@ function Ingresar ({ setIsAuth }) {
             
             <section className={styles.ingresarSection}>
                 
-                <h1 className={styles.title}>Bienvenido</h1>
-                <p className={styles.subtitle}>Ingresa a tu cuenta para continuar</p>
+                <div className={styles.loginContent}>
+                    <h1 className={styles.title}>Bienvenido</h1>
+                    <p className={styles.subtitle}>Ingresa a tu cuenta para continuar</p>
 
-                <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
-                    
-                    <div className={styles.inputGroup}>
-                        <input 
-                            className={styles.input}
-                            type="text" 
-                            id="usuario"
-                            name="usuario"
-                            placeholder=" " /* Space required for CSS :placeholder-shown trick */
-                            value={credenciales.usuario}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <label className={styles.label} htmlFor="usuario">Usuario</label>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                        <input 
-                            className={styles.input}
-                            type="password" 
-                            id="password"
-                            name="password"
-                            placeholder=" "
-                            value={credenciales.password}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <label className={styles.label} htmlFor="password">Contraseña</label>
-                    </div>
-
-                    {fetchStatus.errorMessage && (
-                        <div className={styles.errorMessage}>
-                            {fetchStatus.errorMessage}
+                    <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
+                        
+                        <div className={styles.inputGroup}>
+                            <input 
+                                className={styles.input}
+                                type="text" 
+                                id="usuario"
+                                name="usuario"
+                                placeholder=" " /* Space required for CSS :placeholder-shown trick */
+                                value={credenciales.usuario}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <label className={styles.label} htmlFor="usuario">Usuario</label>
                         </div>
-                    )}
 
-                    <button 
-                        type="submit" 
-                        className={styles.submitButton}
-                        disabled={fetchStatus.status === FETCH_STATUS.SUBMIT}
-                    >
-                        {fetchStatus.status === FETCH_STATUS.SUBMIT ? (
-                            <>
-                                <span className={styles.loadingSpinner}></span>
-                                Iniciando sesión...
-                            </>
-                        ) : 'Ingresar'}
-                    </button>
+                        <div className={styles.inputGroup}>
+                            <input 
+                                className={styles.input}
+                                type="password" 
+                                id="password"
+                                name="password"
+                                placeholder=" "
+                                value={credenciales.password}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <label className={styles.label} htmlFor="password">Contraseña</label>
+                        </div>
 
-                </form>
+                        {fetchStatus.errorMessage && (
+                            <div className={styles.errorMessage}>
+                                {fetchStatus.errorMessage}
+                            </div>
+                        )}
+
+                        <button 
+                            type="submit" 
+                            className={styles.submitButton}
+                            disabled={fetchStatus.status === FETCH_STATUS.SUBMIT}
+                        >
+                            {fetchStatus.status === FETCH_STATUS.SUBMIT ? (
+                                <>
+                                    <span className={styles.loadingSpinner}></span>
+                                    Iniciando sesión...
+                                </>
+                            ) : 'Ingresar'}
+                        </button>
+
+                    </form>
+                </div>
 
                 <div className={styles.demoSection}>
                     <span className={styles.demoTitle}>Cuentas Demo</span>
