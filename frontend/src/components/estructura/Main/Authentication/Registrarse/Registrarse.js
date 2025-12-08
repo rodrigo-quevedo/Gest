@@ -1,80 +1,148 @@
 //css
 import styles from './Registrarse.module.css'
 
-//components
-import FormInput from '../../../../componentes_reutilizables/FormInput/FormInput';
-import FormularioReutilizable from '../../../../componentes_reutilizables/FormularioReutilizable/FormularioReutilizable';
-import FetchStatusText from '../../../../componentes_reutilizables/FetchStatusText/FetchStatusText';
-
 //react
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //config
 import { FETCH_STATUS } from '../../../../../config/config';
 import { URL_REGISTRARSE } from '../../../../../config/config';
-import { FORM_STYLE_TYPE} from "../../../../../config/config"
+
+//helper
+import fetchBackend from '../../../../componentes_reutilizables/FormularioReutilizable/fetch_backend/fetchBackend';
 
 
-
-function Registrarse (
-) {
+function Registrarse () {
     document.querySelector('title').innerText = 'Registrarse';
 
-    // Esto va cambiando según lo que pase en el fetch:
-    const [fetchStatus, setFetchStatus] = useState({
-        status: FETCH_STATUS.DEFAULT
+    const [status, setStatus] = useState({
+        status: FETCH_STATUS.DEFAULT, // Use property 'status' to match Ingresar.js pattern mostly
+        errorMessage: null
     })
 
+    const [credenciales, setCredenciales] = useState({
+        usuario: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const handleInputChange = (e) => {
+        setCredenciales({
+            ...credenciales,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (credenciales.password !== credenciales.confirmPassword) {
+            setStatus({
+                status: FETCH_STATUS.DEFAULT,
+                errorMessage: 'Las contraseñas no coinciden'
+            })
+            return;
+        }
+
+        setStatus({ status: FETCH_STATUS.SUBMIT, errorMessage: null })
+
+        fetchBackend(
+            URL_REGISTRARSE,
+            setStatus,
+            { 
+                usuario: credenciales.usuario, 
+                password: credenciales.password 
+            }, 
+            false,
+            null
+        );
+    }
+    
+    // Reset error when typing
+    useEffect(() => {
+        if(status.errorMessage) {
+            setStatus(prev => ({ ...prev, errorMessage: null }))
+        }
+    }, [credenciales])
+
+
     return (
-
         <div className={styles.container}>
+            
+            <section className={styles.registrarseSection}>
+                
+                <div className={styles.registerContent}>
+                    <h1 className={styles.title}>Crear Cuenta</h1>
+                    <p className={styles.subtitle}>Únete a nosotros para empezar</p>
 
-            <h1>Registrarse</h1>
+                    <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
+                        
+                        <div className={styles.inputGroup}>
+                            <input 
+                                className={styles.input}
+                                type="text" 
+                                id="usuario"
+                                name="usuario"
+                                placeholder=" " 
+                                value={credenciales.usuario}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <label className={styles.label} htmlFor="usuario">Usuario</label>
+                        </div>
 
+                        <div className={styles.inputGroup}>
+                            <input 
+                                className={styles.input}
+                                type="password" 
+                                id="password"
+                                name="password"
+                                placeholder=" "
+                                value={credenciales.password}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <label className={styles.label} htmlFor="password">Contraseña</label>
+                        </div>
 
-            <FormularioReutilizable 
-                styleType={FORM_STYLE_TYPE.VERTICAL}
-                fetchStatus={fetchStatus}
-                setFetchStatus={setFetchStatus}
-                submitMessage={"Registrando usuario..."}
-                fetchURL={URL_REGISTRARSE}
-                formInputs={
-                    <>
-                        <FormInput 
-                            idInput='usuario'
-                            type='text'
-                            texto='Usuario'
+                        <div className={styles.inputGroup}>
+                            <input 
+                                className={styles.input}
+                                type="password" 
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder=" "
+                                value={credenciales.confirmPassword}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <label className={styles.label} htmlFor="confirmPassword">Repetir contraseña</label>
+                        </div>
 
-                            required='true'
+                        {status.errorMessage && (
+                            <div className={styles.errorMessage}>
+                                {status.errorMessage}
+                            </div>
+                        )}
 
-                            esUsuario='true'
-                        />
+                        <button 
+                            type="submit" 
+                            className={styles.submitButton}
+                            disabled={status.status === FETCH_STATUS.SUBMIT}
+                        >
+                            {status.status === FETCH_STATUS.SUBMIT ? (
+                                <>
+                                    <span className={styles.loadingSpinner}></span>
+                                    Registrando...
+                                </>
+                            ) : 'Registrarse'}
+                        </button>
 
-                        <FormInput 
-                            idInput='password'
-                            type='password'
-                            texto='Contraseña'
+                    </form>
+                </div>
 
-                            required='true'
-                        />
-
-                        <FormInput 
-                            idInput='confirmPassword'
-                            type='password'
-                            texto='Repetir contraseña'
-
-                            required='true'
-                        />
-                    </>
-                }
-            />
-
-            <FetchStatusText 
-                fetchStatus={fetchStatus}
-            />
-
+            </section>
         </div>
-
     )
 }
 
