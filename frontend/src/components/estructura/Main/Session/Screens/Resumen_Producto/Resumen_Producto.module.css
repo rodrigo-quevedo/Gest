@@ -1,394 +1,290 @@
-h1 {
-    text-align: center;
-}
-.container{
-    display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    grid-template-rows: repeat(4, minmax(1fr, auto));
-    
-    
-    text-align: center;
-    max-width: 100%;
+/* Global Vars & Reset */
+.mainContainer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: #333;
 
-    /* Variables para colores */
-    --color-compra: #580CC2 ;
-    --color-venta: #076A48;
-
-    --table-column-color: #8181ff51;
-}
-
-.mensajeErrorFetch {
-    border-radius: 15px;
-    border: 1px solid #c90808;
-    
-    background: rgba(255, 0, 0, 0.152);
-    color: #c90808;
-    
-    padding: 5px;
-    margin: 10px auto;
-}
-
-.resutadoSuccessMessage{
-    /* width: 60%; */
-    
-    border-radius: 15px;
-    border: 1px solid #62c908;
-    
-    background: rgba(43, 255, 0, 0.152);
-    color: #62c908;
-    
-    padding: 5px;
-    margin: 10px auto;
-
-    display: flex;
-    justify-content: space-between;
-}
-.resutadoSuccessMessage button{
-    background: transparent;
-    border: 0;
-
-    font-weight: 900;
-}
-.resutadoSuccessMessage button:hover{
-    cursor: pointer;
-}
-
-
-.searchBoxContainer {
-    grid-column: 1/-1;
-    grid-row: 1;
-}
-
-/* LAYOUT interactive*/
-:global(#productosTable) {
-    grid-column: 4/-7;
-    grid-row: 2/6;
-    
-    margin-right: 10px;
-
-    text-align: center;
-}
-.containerButtonCompraVenta{
-    grid-column: -7/-4;
-    grid-row: 2;
-
-    margin-top: 40px;
-}
-@media (width < 600px){
-    .containerButtonCompraVenta{
-        grid-column: 2/-2;
-        grid-row: 2;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        margin-top: 0px;
-    }
-    :global(#productosTable) {
-        grid-column: 2/-2;
-        grid-row: 3;
-    }
-
-    .containerButtonCompraVenta button{
-        width: 45%;
-        max-height: 80%;
-        height: 80%;
-
-        box-sizing: border-box;
-    }
-
-
-}
-
-/* fix de tablas en mobile */
-@media (width < 500px){
-    .container table {
-        font-size: 13px;
-    }
-    :global(#productoTableNotInteractive){
-        grid-column: 2/-2 !important;
-    }
-    .buttonCompraVenta{
-        transition: 0.8s all !important;
-    }
-    .buttonCompraSeleccionado, .buttonVentaSeleccionado {
-        margin-top: 0 !important;
-        
-        transform: scale(1.05) !important;
-        transition: 0.5s all !important;
-    }
-}
-
-
-/* LAYOUT resumen */
-:global(#productoTableNotInteractive){
-    grid-column: 5/-5;
-    grid-row: 2;
-}
-:global(#finanzaTable) {
-    grid-column: 2/13;
-    grid-row: 3;
-}
-:global(#productoFinanzaTable){
-    grid-column: 14/-2;
-    grid-row: 3;
-}
-:global(#comprasTable) {
-    grid-column:  5/-5;
-    grid-row: 4;
-}
-:global(#ventasTable) {
-    grid-column: 5/-5;
-    grid-row: 5;
-}
-@media (width < 1050px) {
-    :global(#productoTableNotInteractive){
-        grid-column: 3/-3;
-        grid-row: 2;
-    }
-    :global(#finanzaTable) {
-        grid-column: 3/-3;
-        grid-row: 3;
-    }
-    :global(#productoFinanzaTable){
-        grid-column: 3/-3;
-        grid-row: 4;
-    }
-    :global(#comprasTable) {
-        grid-column:  2/-2;
-        grid-row: 5;
-        
-        text-align: center;
-    }
-    :global(#comprasTable) h2, :global(#ventasTable) h2 {
-        display: inline;
-    }
-    :global(#ventasTable) {
-        grid-column: 2/-2;
-        grid-row: 6;
-
-        text-align: center;
-    }
-}
-@media (width < 800px) {
-    :global(#finanzaTable) {
-        grid-column: 2/-2;
-        grid-row: 3;
-    }
-    :global(#productoFinanzaTable) {
-        grid-column: 2/-2;
-    }
-}
-
-/* Estilos de tabla */
-:global(#productoTableNotInteractive) table > tbody > tr > td:nth-child(even),
-:global(#finanzaTable) table > tbody > tr > td:nth-child(even),
-:global(#productoFinanzaTable) table > tbody > tr > td:nth-child(even),
-:global(#comprasTable) table > tbody > tr > td:nth-child(even),
-:global(#ventasTable) table > tbody > tr > td:nth-child(even)
-{
-    background: var(--table-column-color);
-}
-
-/* ProductosTable (clickeable) */
-:global(#productoTableNotInteractive) table th,:global(#productoTableNotInteractive) table td  {
-    max-width: 33.3% !important;
-    width: 33.3% !important;
-}
-
-
-
-.buttonCompraVenta span{
-    margin-top: 10px;
-    font-size: 20px;
-}
-.buttonCompraVenta{
-    background: #111134;
-    color: #fff;
-    
-    padding: 30px;
-
-    border: 0;
-    border-radius: 10px;
-    box-shadow: 1px 1px 15px #000;
-
-    max-height: fit-content;
-
-    /* text-align: center; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 30px;
 
-    margin: 5px;
-
-    font-size: 14px;
-
-    transition: 1s all;
-}
-.buttonCompraVenta:hover{
-    cursor: pointer;
-    background: #000;
-    transition: 1s all;
-}
-.buttonCompraSeleccionado{
-    background: var(--color-compra) !important;
-    color: #fff !important;
-    
-    font-size: 16px;
-
-    transform: scale(1.05);
-    margin-bottom: 20px;
-}
-.buttonVentaSeleccionado{
-    background: var(--color-venta) !important;
-    
-    font-size: 16px;
-
-    transform: scale(1.05);
-    margin-top: 20px;
-}
-.ingresarNuevoProductoButton{
-    background: var(--color-compra);
-    color: #fff;
-
-    padding: 10px 20px;
-
-    border: 0;
-    border-radius: 15px;
-    
-    transition: 1s all;
-}
-.ingresarNuevoProductoButton:hover{
-    cursor: pointer;
-
-    background: #000;
-    color: #fff;
-    transition: 1s all;
-}
-.ingresarNuevoProductoButton:active{
-    background: #fff;
-    color: #fff;
-    transition: none;
+    /* Fix Header Overlap & Screen Height */
+    padding-top: 120px; /* 100px Header + 20px gap */
+    height: 100vh;
+    overflow-y: auto;
 }
 
-
-.tableCompra th {
-    background: var(--color-compra)
-}
-.tableVenta th {
-    background: var(--color-venta)
-}
-
-/* :global(#productoTableNotInteractive) th{
-    background: #fff;
-    color: #4747DA;
-    font-weight: 500;
-}
-    
-:global(#productoTableNotInteractive) td{
-    background: #fff;
-    color: #4747DA;
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
     font-weight: 700;
-    
-    font-size: 16px;
-} */
-
-/* :global(#finanzaTable) th {
-    background: #4747DA;
-    color: #000;
-    font-weight: 500;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.1);
 }
-:global(#finanzaTable) td{
-    background: #fff;
-    color: #000;
-    
-    font-size: 18px;
-} */
 
+h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    padding-bottom: 10px;
+}
 
 .infoText {
-    /* display: flex;
-    justify-content: left;
-    align-items: center; */
- 
     text-align: center;
-    
-    gap: 3px;
-    color: rgb(0, 38, 255);
-    
-    font-weight: 500;
-    font-size: 15px;
-    
-    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #666;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* Glassmorphism Cards */
+.glassContainer {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glassContainer:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Specific Sections */
+.searchSection {
+    position: relative;
+    z-index: 10;
+}
+
+.actionsSection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+}
+
+.fullWidthSection {
+    width: 100%;
+}
+
+/* Buttons */
+.buttonCompraVenta {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 16px;
+    padding: 20px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #444;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 250px;
+    justify-content: center;
+}
+
+.buttonCompraVenta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    color: #000;
+}
+
+.buttonCompraVenta span {
+    font-size: 1.5rem;
+    color: #667eea;
+}
+
+/* Active States */
+.buttonCompraSeleccionado {
+    background: linear-gradient(135deg, #580CC2 0%, #764ba2 100%);
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 20px rgba(88, 12, 194, 0.3);
+}
+
+.buttonCompraSeleccionado span {
+    color: white;
+}
+
+.buttonVentaSeleccionado {
+    background: linear-gradient(135deg, #076A48 0%, #0ba360 100%);
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 20px rgba(7, 106, 72, 0.3);
+}
+
+.buttonVentaSeleccionado span {
+    color: white;
 }
 
 
-.tableContainer{
-    text-align: left;
-}
-.tableContainer > h2 {
-    text-align: left;
-    font-size: 16px;
-}
-
-:global(#productosTable) table td, :global(#productosTable) table th  {
-    max-width: 33.3% !important;
-    width: 33.3% !important;
-    /* color: red; */
+/* Messages */
+.mensajeErrorFetch {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    color: #c0392b;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
 }
 
+.resutadoSuccessMessage {
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: #27ae60;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.resutadoSuccessMessage button {
+    background: none;
+    border: none;
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.resutadoSuccessMessage button:hover {
+    opacity: 1;
+}
+
+/* New Product Button */
+.ingresarNuevoProductoButton {
+    background: #580CC2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.ingresarNuevoProductoButton:hover {
+    background: #4a0aa3;
+}
+
+
+/* Table Container Overrides */
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tableContainer h2 {
+    margin-top: 0;
+}
+
+/* Chart Container */
+.graficoCompraVentaContainer {
+    width: 100%;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+
+/* Table Row Hover Colors */
+.hoveredTR:hover {
+    background-color: rgba(100, 100, 255, 0.1) !important;
+    cursor: pointer;
+}
+.hoveredTRIngreso:hover {
+    background-color: rgba(88, 12, 194, 0.1) !important;
+    cursor: pointer;
+}
+.hoveredTRVenta:hover {
+    background-color: rgba(7, 106, 72, 0.1) !important;
+    cursor: pointer;
+}
+
+
+/* Color titles */
 .compraTitle {
-    color: var(--color-compra)
+    color: #580CC2;
 }
+
 .ventaTitle {
-    color: var(--color-venta)
-}
-
-/* Aca aunque le pongo !important, parece que se sobreescribe en TablaReutilizable */
-.hoveredTR:hover{
-    cursor: pointer;
-    background: #111134 !important;
-    color: #fff !important;
-}
-.hoveredTRIngreso:hover{
-    cursor: pointer;
-    background: var(--color-compra) !important;
-    color: #fff !important;
-}
-.hoveredTRVenta:hover{
-    cursor: pointer;
-    background: var(--color-venta) !important;
-    color: #fff !important;
+    color: #076A48;
 }
 
 
+/* Responsive */
+@media (max-width: 900px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+}
 
-@media (width < 700px) {
-
-    .finanzaContainer > span{
-        display: block
+@media (max-width: 600px) {
+    .mainContainer {
+        padding: 10px;
+    }
+    
+    .glassContainer {
+        padding: 20px 15px;
+        border-radius: 15px;
     }
 
+    h1 {
+        font-size: 1.8rem;
+    }
 
     .infoText {
-        display: block;
-
-        margin: 3px;
-
-        font-weight: 500;
-        font-size: 10px;
+        font-size: 0.8rem;
+        flex-direction: column;
     }
 
-    .infoText svg {
-        margin-right: 3px;
+    .actionsSection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .buttonCompraVenta {
+        width: 100%;
     }
 
-}
-
-
-/* Graficos */
-.graficoCompraVentaContainer {
-    width: 95% !important;
-    margin: 0 auto !important;
+    /* Mobile Header Fix */
+    .mainContainer {
+        padding-top: 240px; /* Estimated height for mobile header */
+        height: 100vh;
+    }
 }

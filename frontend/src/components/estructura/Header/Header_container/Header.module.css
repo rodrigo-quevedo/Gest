@@ -3,10 +3,10 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 100px; /* Fixed robust height */
+    height: 80px; /* Reduced height for a sleeker look */
     width: 100%;
 
-    position: absolute; /* Overlay on top of content */
+    position: absolute;
     top: 0;
     left: 0;
 
@@ -14,84 +14,85 @@
     box-sizing: border-box;
 
     color: #fff;
-    background: transparent; /* Let the page background shine through */
+    /* Glassmorphism Background */
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     
     z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .websiteBanner {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 20px;
 }
 
 .websiteBanner > h1 {
     margin: 0;
     padding: 0;
     
-    font-size: min(4vw, 22px);
-    font-weight: 300; 
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500; 
     letter-spacing: 0.5px;
-    position: relative;
-    bottom: 8px;
-
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.2;
 }
 
 .websiteBanner > img {
-    width: 20vw;
-    max-width: 90px;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
 }
 
-/* Explicit separator to control height independently of image whitespace */
 .separator {
-    height: 60px; /* Fixed height that looks "cropped" relative to the 90px container */
+    height: 32px;
     width: 1px;
-    background-color: rgba(255, 255, 255, 0.4);
-    margin: 0 20px;
-    align-self: center;
-    position: relative;
-    top: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: block;
 }
 
-/* A los 700 px se rompe el Header,
-hace falta media query ahí. */
-
+/* Mobile Responsiveness */
 @media (max-width: 850px) {
     .headerContainer {
-        flex-direction: column;
         height: auto;
-        padding: 20px 10px;
-        gap: 15px;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, transparent 100%); /* improved readability */
+        min-height: 70px;
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 12px;
+        background: rgba(15, 23, 42, 0.85); /* Slightly darker for better mobile readability */
     }
 
-    .websiteBanner > h1 {
-        font-size: 1.1rem;
-        top: 3px; /* Restored desktop positioning */
-        white-space: normal;
-        line-height: 1.2;
+    .websiteBanner {
+        width: 100%;
+        justify-content: flex-start; /* Align specifically to start */
+        gap: 12px;
     }
 
     .websiteBanner > img {
-        width: 90px;
-        height: 90px;
-        object-fit: contain;
+        height: 32px;
+        width: 32px; /* Fixed square for logo on mobile */
+    }
+
+    .websiteBanner > h1 {
+        font-size: 1rem;
+        font-weight: 600;
+        white-space: normal;
+        text-align: left;
     }
     
     .separator {
-        height: 60px;
-        margin: 0 16px;
-        top: 5px; /* Restored desktop positioning */
+        height: 24px;
+        margin: 0 4px; /* Reduced margin */
+        display: none; /* Often cleaner to hide separator on very small stacked views, but let's keep it if horizontal */
     }
+    
+    /* If flex-direction is column, the separator might need to be hidden or adjusted. 
+       However, websiteBanner is still row. So separator is fine. */
 }
-
-/* @media 
-    (width > 300px) 
-and (width < 600px) 
-and (height > 650px)
-and (height < 920px) {
-    .headerContainer {
-        max-height: 28.5vh;
-        height: 28.5vh;
-    }
-} */

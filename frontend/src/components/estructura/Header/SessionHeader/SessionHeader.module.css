@@ -1,52 +1,51 @@
-/* Hay bastante superposición con el LogginHeader.module.css */
 .navContainer {
-    padding: 0 2vw 0 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .headerNavButton {
-    margin: 0 2.5px;
-
-    padding: 20px;
-
-    border-radius: 100px;
-    border: 0;
-
-    font-size: min(3vw, 15px);
-    background: transparent;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
-
-    transition: 1s all;
+    
+    padding: 10px 24px;
+    border-radius: 9999px; /* Pill shape */
+    
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Subtle border for contrast against glass background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .headerNavButton:hover {
-    cursor: pointer;
-
-    background:#000;
-    color: #9999ff;
-
-    transition: 1s all;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .headerNavButton:active {
-    color: purple;
-    
-    transition: none;
+    transform: translateY(0px);
+    background: rgba(255, 255, 255, 0.15);
 }
 
-@media (width < 700px) {
+@media (max-width: 850px) {
     .navContainer {
-        display: flex;
-        flex-direction: column;
         width: 100%;
+        justify-content: flex-end; /* Align right on mobile or stack depending on need */
     }
 
     .headerNavButton {
-        width: 100%;
-        margin: 5px;
-
-        background: #fff;
-        color: #272778;
+        width: 100%; /* Full width on mobile often looks better for touch targets, but let's check context */
+        text-align: center;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.15); /* Slightly more visible on mobile */
     }
-
-    
 }

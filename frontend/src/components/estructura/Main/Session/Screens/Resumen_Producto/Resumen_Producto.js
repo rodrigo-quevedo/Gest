@@ -187,88 +187,112 @@ function Resumen_Producto({
 
 
     return (
-        <div>
+        <div className={styles.mainContainer}>
 
             {productSelected !== null ? 
-                <h1>Resumen de producto: {productSelected}</h1>
+                <h1>Resumen: {productSelected}</h1>
             :
-                <h1>Resumen de producto</h1>
+                <h1>Resumen General</h1>
             }
 
-            <h3 className={styles.infoText}><PiSealWarningBold/>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz" o a "ARRoz".</h3>
+            <div className={styles.infoText}>
+                <PiSealWarningBold/>
+                <span>NO se distingue entre mayúscula y minúscula, ej: "ARROZ" es un producto IGUAL que "Arroz".</span>
+            </div>
            
             {mensajeErrorFetch}
 
-            <div className={styles.container}>
+            {/* SECTION 1: SEARCH */}
+            <div className={`${styles.glassContainer} ${styles.searchSection}`}>
+                <SearchBox_resumen
+                    searchBoxState={searchBoxState}
+                    setSearchBoxState={setSearchBoxState}
+                    
+                    listaProductos={listaProductos}
+                    historialProductos={historialProductos}
+                    historialVentas={historialVentas}
 
-                <div className={styles.searchBoxContainer} >
+                    setListaProductosResult={setListaProductosResult}
+                    setHistorialProductosResult={setHistorialProductosResult}
+                    setHistorialVentasResult={setHistorialVentasResult}
 
-                    <SearchBox_resumen
-                        searchBoxState={searchBoxState}
-                        setSearchBoxState={setSearchBoxState}
-                        
-                        listaProductos={listaProductos}
-                        historialProductos={historialProductos}
-                        historialVentas={historialVentas}
+                    marcaSelected={marcaSelected}
+                    setMarcaSelected={setMarcaSelected}
+                />
+            </div>
 
-                        setListaProductosResult={setListaProductosResult}
-                        setHistorialProductosResult={setHistorialProductosResult}
-                        setHistorialVentasResult={setHistorialVentasResult}
-
-                        marcaSelected={marcaSelected}
-                        setMarcaSelected={setMarcaSelected}
-                    />
-
-                </div>
-
-               
-
-                {
-                    productSelected === null ? 
-                        <>
-                            
-                            <div 
+            {/* SECTION 2: CONTENT */}
+            {
+                productSelected === null ? 
+                    <>
+                        {/* GENERAL VIEW */}
+                        <div className={styles.actionsSection}>
+                            <button 
                                 className={
-                                    //compra
-                                    ingresarProducto ?
-                                        `${styles.tableContainer} ${styles.tableCompra}`
+                                    ingresarProducto?
+                                        `${styles.buttonCompraVenta} ${styles.buttonCompraSeleccionado}`
                                     :
-                                        //venta
-                                        registrarVenta ? 
-                                            `${styles.tableContainer} ${styles.tableVenta}`
-                                        :
-                                        //lista
-                                        styles.tableContainer
-                                } 
-                                id="productosTable"
+                                        styles.buttonCompraVenta
+                                }
+                                onClick={()=>{
+                                    setIngresarProducto(!ingresarProducto)
+                                    setRegistrarVenta(false)
+                                }}
                             >
-                                
-                                {exitoCompraVenta}
-                                
-                                {
-                                    ingresarProducto?
-                                        <h2 className={styles.compraTitle}>Ingresar producto (click en producto para ingresar más del mismo):</h2>
-                                    :
-                                        registrarVenta?
-                                            <h2 className={styles.ventaTitle}>Registrar venta (click en producto para vender):</h2>
-                                        :
-                                        <h2>Lista de productos (click en producto para ver resumen)</h2>
-                                }
+                                <span className={styles.icon}>
+                                    <FaTruckLoading/>
+                                </span>
+                                Ingresar un producto
+                            </button>
 
-                                {
-                                    ingresarProducto?
-                                        <button 
-                                            className={styles.ingresarNuevoProductoButton}
-                                            onClick={()=>{
-                                                setProductoAIngresar(null)
-                                                setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)
-                                            }}
-                                        >
-                                            + Nuevo producto
-                                        </button>
-                                        :
-                                        null
+                            <button 
+                                className={
+                                    registrarVenta?
+                                        `${styles.buttonCompraVenta} ${styles.buttonVentaSeleccionado}`
+                                    :
+                                        styles.buttonCompraVenta
                                 }
+                                onClick={()=>{
+                                    setRegistrarVenta(!registrarVenta)
+                                    setIngresarProducto(false)
+                                }}
+                            >
+                                <span className={styles.icon}>
+                                    <FaCashRegister/>
+                                </span>
+                                Registrar venta
+                            </button>
+                        </div>
+
+                        <div className={styles.glassContainer}>   
+                            {exitoCompraVenta}
+                            
+                            {
+                                ingresarProducto?
+                                    <h2 className={styles.compraTitle}>Ingresar producto (click en producto para ingresar más):</h2>
+                                :
+                                    registrarVenta?
+                                        <h2 className={styles.ventaTitle}>Registrar venta (click en producto para vender):</h2>
+                                    :
+                                    <h2>Lista de productos (click para ver resumen)</h2>
+                            }
+
+                            {
+                                ingresarProducto?
+                                    <button 
+                                        className={styles.ingresarNuevoProductoButton}
+                                        onClick={()=>{
+                                            setProductoAIngresar(null)
+                                            setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)
+                                        }}
+                                    >
+                                        + Nuevo producto
+                                    </button>
+                                    :
+                                    null
+                            }
+                            
+                            <div className={styles.tableContainer}>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={listaProductosResult}
@@ -288,13 +312,11 @@ function Resumen_Producto({
                                                     key={`${stateObj.producto}_${stateObj.marca}`}
                                                     
                                                     className={
-                                                        //compra
                                                         ingresarProducto ? 
-                                                        `${styles.hoveredTRIngreso}`
+                                                        styles.hoveredTRIngreso
                                                         :
-                                                            //venta
                                                             registrarVenta ?
-                                                            `${styles.hoveredTRVenta}`
+                                                            styles.hoveredTRVenta
                                                             :
                                                                 styles.hoveredTR
                                                     }
@@ -324,19 +346,11 @@ function Resumen_Producto({
                                                             :
                                                                 // manejar resumen producto
                                                                 (e)=>{
-                                                                    //establecer req body
                                                                     document.getElementById('searchBoxInput').value= stateObj.producto
-                                                                    
                                                                     document.getElementById('searchBoxInputMarca').value= stateObj.marca
-                                                                    
-                                                                    //fetch
                                                                     document.getElementById('searchBoxForm').requestSubmit()
-
                                                                     setProductSelected(stateObj.producto)
-
                                                                     setMarcaSelected(stateObj.marca)
-
-                                                                    //ir arriba de todo
                                                                     window.scrollTo({
                                                                         top: 0,
                                                                         left: 0,
@@ -354,72 +368,28 @@ function Resumen_Producto({
                                     }
                                 />
                             </div>
-
-                            <div className={styles.containerButtonCompraVenta}>
-                                <button 
-                                    className={
-                                        ingresarProducto?
-                                            `${styles.buttonCompraVenta} ${styles.buttonCompraSeleccionado}`
-                                        :
-                                            styles.buttonCompraVenta
-                                    }
-                                    onClick={()=>{
-                                        //activar/desactivar
-                                        setIngresarProducto(!ingresarProducto)
-                                        //siempre setear el otro a false
-                                        setRegistrarVenta(false)
-                                    }}
-                                >
-                                    Ingresar un producto
-                                    <span className={styles.icon}>
-                                        <FaTruckLoading/>
-                                    </span>
-                                </button>
-
-                                <button 
-                                    className={
-                                        registrarVenta?
-                                            `${styles.buttonCompraVenta} ${styles.buttonVentaSeleccionado}`
-                                        :
-                                            styles.buttonCompraVenta
-                                    }
-                                    onClick={()=>{
-                                        //activar/desactivar
-                                        setRegistrarVenta(!registrarVenta)
-                                        //siempre setear el otro a false
-                                        setIngresarProducto(false)
-                                    }}
-                                >
-                                    Registrar venta
-                                    <span className={styles.icon}>
-                                        <FaCashRegister/>
-                                    </span>
-                                </button>
-                            </div>
-                        </>
-                    :
-                        <>
-                            
-                            <div className={styles.tableContainer} id="productoTableNotInteractive">
-                                <h2>Producto seleccionado</h2>
+                        </div>
+                    </>
+                :
+                    <>
+                        {/* SPECIFIC VIEW */}
+                        <div className={styles.glassContainer}>
+                            <h2>Producto seleccionado</h2>
+                            <div className={styles.tableContainer}>
                                 <TablaReutilizable
                                     searchBoxState={searchBoxState}
                                     arrayState={listaProductosResult}
-
                                     tableHeaders={
                                         <tr>
-                                            <th>Producto seleccionado</th>
+                                            <th>Producto</th>
                                             <th>Cantidad Actual</th>
                                             <th>Marca</th>
                                         </tr>
                                     }
-
                                     mapCallback={
                                         (stateObj) => {
                                             return (
-                                                <tr 
-                                                    key={`${stateObj.producto}_${stateObj.marca}`}
-                                                >
+                                                <tr key={`${stateObj.producto}_${stateObj.marca}`}>
                                                     <td>{stateObj.producto}</td>
                                                     <td>{stateObj.cantidad}</td>
                                                     <td>{stateObj.marca}</td>
@@ -429,170 +399,155 @@ function Resumen_Producto({
                                     }
                                 />
                             </div>
+                        </div>
 
-                            <div className={styles.tableContainer} id="finanzaTable">
+                        <div className={styles.statsGrid}>
+                            <div className={styles.glassContainer}>
                                 <h2>Finanza (todos los productos)</h2>
-
                                 <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="finanzaGeneralGrafico"></canvas>
                                 </div>
-
-                                <TablaReutilizable
-                                    searchBoxState={searchBoxState}
-                                    arrayState={arrFinanza}
-
-                                    tableHeaders={
-                                        <tr>
-                                            <th>Total gastado</th>
-                                            <th>Total vendido</th>
-                                            <th>Neto</th>
-                                            <th>Ganancia sobre lo vendido</th>     
-                                        </tr>
-                                    }
-
-                                    mapCallback={
-                                        (stateObj) => {
-                                            return (
-                                                <tr key={stateObj.id}>
-                                                    <td>${formatPrice(stateObj.totalGastado)}</td>
-                                                    <td>${formatPrice(stateObj.totalVendido)}</td>
-                                                    <td>${formatPrice(stateObj.totalGanancia)}</td>
-                                                    <td>${formatPrice(stateObj.totalMargen)}</td>
-                                                </tr>
-                                            )
+                                <div className={styles.tableContainer}>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={arrFinanza}
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Gastado</th>
+                                                <th>Vendido</th>
+                                                <th>Neto</th>
+                                                <th>Ganancia</th>     
+                                            </tr>
                                         }
-                                    }
-                                />
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr key={stateObj.id}>
+                                                        <td>${formatPrice(stateObj.totalGastado)}</td>
+                                                        <td>${formatPrice(stateObj.totalVendido)}</td>
+                                                        <td>${formatPrice(stateObj.totalGanancia)}</td>
+                                                        <td>${formatPrice(stateObj.totalMargen)}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
                             </div>
 
-                            <div className={styles.tableContainer} id="productoFinanzaTable">
-                                <h2>Finanza ({productSelected} marca {marcaSelected})</h2>
-
+                            <div className={styles.glassContainer}>
+                                <h2>Finanza ({productSelected} {marcaSelected})</h2>
                                 <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="finanzaProductoGrafico"></canvas>
                                 </div>
-
-                                <TablaReutilizable
-                                    searchBoxState={searchBoxState}
-                                    arrayState={arrFinanzaProducto}
-
-                                    tableHeaders={
-                                        <tr>
-                                            <th>Total gastado</th>
-                                            <th>Total vendido</th>
-                                            <th>Neto</th>
-                                            <th>Ganancia sobre lo vendido</th>     
-                                        </tr>
-                                    }
-
-                                    mapCallback={
-                                        (stateObj) => {
-                                            return (
-                                                <tr key={stateObj.id}>
-                                                    <td>${formatPrice(stateObj.totalGastadoProducto)}</td>
-                                                    <td>${formatPrice(stateObj.totalVendidoProducto)}</td>
-                                                    <td>${formatPrice(stateObj.totalGananciaProducto)}</td>
-                                                    <td>${formatPrice(stateObj.totalMargenProducto)}</td>
-                                                </tr>
-                                            )
+                                <div className={styles.tableContainer}>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={arrFinanzaProducto}
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Gastado</th>
+                                                <th>Vendido</th>
+                                                <th>Neto</th>
+                                                <th>Ganancia</th>     
+                                            </tr>
                                         }
-                                    }
-                                />
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr key={stateObj.id}>
+                                                        <td>${formatPrice(stateObj.totalGastadoProducto)}</td>
+                                                        <td>${formatPrice(stateObj.totalVendidoProducto)}</td>
+                                                        <td>${formatPrice(stateObj.totalGananciaProducto)}</td>
+                                                        <td>${formatPrice(stateObj.totalMargenProducto)}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
                             </div>
+                        </div>
+                
+                        <div className={styles.fullWidthSection}>
+                            <div className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para: {Intl.DateTimeFormat().resolvedOptions().timeZone}</div>
+                        </div>
 
-                    
-
-                            <div className={styles.tableContainer} id="comprasTable">
-                                <h2>Compras</h2>
-                                <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
-
+                        <div className={styles.statsGrid}>
+                            <div className={styles.glassContainer}>
+                                <h2>Compras (Historial)</h2>
                                 <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="comprasProductoGrafico"></canvas>
                                 </div>
-
-                                <TablaReutilizable
-                                    searchBoxState={searchBoxState}
-                                    arrayState={historialProductosResult}
-
-                                    tableHeaders={
-                                        <tr>
-                                            <th>Producto</th>
-                                            <th>Cantidad ingresada</th>
-                                            <th>Costo unitario</th>
-                                            <th>Costo total</th>
-                                            <th>Marca</th>
-                                            <th>Proveedor</th>
-                                            <th>Fecha de ingreso</th>
-                                            <th>Hora de ingreso</th>
-                                        </tr>
-                                    }
-
-                                    mapCallback={
-                                        (stateObj) => {
-                                            return (
-                                                <tr key={stateObj.id}>
-                                                    <td>{stateObj.producto}</td>
-                                                    <td>{stateObj.cantidad}</td>
-                                                    <td>${formatPrice(stateObj.precio_unitario)}</td>
-                                                    <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
-                                                    <td>{stateObj.marca}</td>
-                                                    <td>{stateObj.proveedor}</td>
-                                                    <td>{formatDate(new Date(stateObj.fechaHora))}</td>
-                                                    <td>{formatTime(new Date(stateObj.fechaHora))}</td>
-                                                </tr>
-                                            )
+                                <div className={styles.tableContainer}>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={historialProductosResult}
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Cant.</th>
+                                                <th>Costo U.</th>
+                                                <th>Total</th>
+                                                <th>Marca</th>
+                                                <th>Fecha</th>
+                                            </tr>
                                         }
-                                    }
-                                />
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr key={stateObj.id}>
+                                                        <td>{stateObj.cantidad}</td>
+                                                        <td>${formatPrice(stateObj.precio_unitario)}</td>
+                                                        <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
+                                                        <td>{stateObj.marca}</td>
+                                                        <td>{formatDate(new Date(stateObj.fechaHora))} {formatTime(new Date(stateObj.fechaHora))}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
                             </div>
 
-                            <div className={styles.tableContainer} id="ventasTable">
-                                <h2>Ventas</h2>
-                                <h3 className={styles.infoText}><PiSealWarningBold/>Fechas y horas configuradas para la zona horaria de este dispositivo: {Intl.DateTimeFormat().resolvedOptions().timeZone}</h3>
-
+                            <div className={styles.glassContainer}>
+                                <h2>Ventas (Historial)</h2>
                                 <div className={styles.graficoCompraVentaContainer}>
                                     <canvas id="ventasProductoGrafico"></canvas>
                                 </div>
-
-                                <TablaReutilizable
-                                    searchBoxState={searchBoxState}
-                                    arrayState={historialVentasResult}
-
-                                    tableHeaders={
-                                        <tr>
-                                            <th>Producto</th>
-                                            <th>Cantidad vendida</th>
-                                            <th>Precio unitario de venta</th>
-                                            <th>Venta total</th>
-                                            <th>Marca</th>
-                                            <th>Fecha de venta</th>
-                                            <th>Hora de venta</th>
-                                        </tr>
-                                    }
-
-                                    mapCallback={
-                                        (stateObj) => {
-                                            return (
-                                                <tr key={stateObj.id}>
-                                                    <td>{stateObj.producto}</td>
-                                                    <td>{stateObj.cantidad}</td>
-                                                    <td>${formatPrice(stateObj.precio_unitario)}</td>
-                                                    <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
-                                                    <td>{stateObj.marca}</td>
-                                                    <td>{formatDate(new Date(stateObj.fechaHora))}</td>
-                                                    <td>{formatTime(new Date(stateObj.fechaHora))}</td>
-                                                </tr>
-                                            )
+                                <div className={styles.tableContainer}>
+                                    <TablaReutilizable
+                                        searchBoxState={searchBoxState}
+                                        arrayState={historialVentasResult}
+                                        tableHeaders={
+                                            <tr>
+                                                <th>Cant.</th>
+                                                <th>Precio U.</th>
+                                                <th>Total</th>
+                                                <th>Marca</th>
+                                                <th>Fecha</th>
+                                            </tr>
                                         }
-                                    }
-                                />
+                                        mapCallback={
+                                            (stateObj) => {
+                                                return (
+                                                    <tr key={stateObj.id}>
+                                                        <td>{stateObj.cantidad}</td>
+                                                        <td>${formatPrice(stateObj.precio_unitario)}</td>
+                                                        <td>${formatPrice(stateObj.precio_unitario * stateObj.cantidad)}</td>
+                                                        <td>{stateObj.marca}</td>
+                                                        <td>{formatDate(new Date(stateObj.fechaHora))} {formatTime(new Date(stateObj.fechaHora))}</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        }
+                                    />
+                                </div>
                             </div>
-                        </>
-                     
-                }
-                
-            </div>
-
+                        </div>
+                    </>
+                 
+            }
+            
             <GoUpButton/>
         </div>
     )
