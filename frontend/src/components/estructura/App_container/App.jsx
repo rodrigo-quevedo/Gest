@@ -31,18 +31,19 @@ function App() {
     return (
         <>
             <Header 
-                //elegir entre [Ingresar/Registrarse] o [CerrarSesion]:
+                // [Login/Register] or [Logout] buttons:
                 isAuth={isAuth} 
                 
-                //elegir entre Ingresar o Registrarse (esto es para darle un estilo distinto al botón del menu seleccionado):
+                // [Login/Register] button styles:
                 authenticationScreen={authenticationScreen} 
                 
-                //setear [Ingresar/Registrarse] al hacer click:
+                //set [Login/Register] when clicking:
                 setAuthenticationScreen={setAuthenticationScreen} 
                 
-                //activar el popup [CerrarSesion] al hacer click: setPopupCerrarSesion(true)
+                //activate [Logout] popup when clicking:
                 setPopupCerrarSesion={setPopupCerrarSesion} 
 
+                // language :
                 language={language}
                 setLanguage={setLanguage}
             />
@@ -60,24 +61,24 @@ function App() {
                     popupCerrarSesion ? 
                     
                         <CerrarSesion
-                            //cerrar la sesión: setIsAuth(false)
+                            //close session: setIsAuth(false)
                             setIsAuth={setIsAuth} 
                             
-                            //cerrar el popup Cerrar Sesión: setPopupCerrarSesion(false)
+                            //close the [Logout] popup: setPopupCerrarSesion(false)
                             setPopupCerrarSesion={setPopupCerrarSesion} 
                         />
                     :
                         <Main 
-                            //elegir entre authentication screens o session screens:
+                            // [Login/Register] or [Session]:
                             isAuth={isAuth}
 
-                            //ingresar a la sesión con una cuenta: setIsAuth(true)
+                            // session with an account: setIsAuth(true)
                             setIsAuth={setIsAuth} 
 
-                            //elegir authentication screen [Ingresar/Registrarse]:
+                            // [Login/Register] screen:
                             authenticationScreen={authenticationScreen}
 
-                            //verificar si la sesion expiró
+                            //session has expired
                             setPopupSessionExpired={setPopupSessionExpired}
                         />
 

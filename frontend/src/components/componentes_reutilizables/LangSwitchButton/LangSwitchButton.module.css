@@ -1,0 +1,123 @@
+.languageSegmentWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.languageSegmentWrapStart {
+    margin-left: 0;
+}
+
+.languageSegmentHeading {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+}
+
+.languageSegment {
+    display: inline-flex;
+    gap: 2px;
+    padding: 0px ;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* border: 1px solid rgba(255, 255, 255, 0.14); */
+    border-radius: 10px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.languageSegmentBtnInner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.languageFlag {
+    flex-shrink: 0;
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+    transition:
+        opacity 0.2s ease,
+        filter 0.2s ease;
+}
+
+.languageSegmentBtn {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 36px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        font-weight 0.2s ease;
+}
+
+.languageSegmentBtn:not(.languageSegmentBtnActive) {
+    color: rgba(255, 255, 255, 0.34);
+    padding: 0 7px;
+    transform: scale(0.85);
+    transition: all 0.3s ease;
+}
+
+.languageSegmentBtn:not(.languageSegmentBtnActive) .languageFlag {
+    opacity: 0.42;
+    filter: saturate(0.25) brightness(0.42);
+}
+
+.languageSegmentBtn:hover:not(.languageSegmentBtnActive) {
+    color: rgba(0, 0, 0, 0.72);
+    background: rgba(255, 255, 255, 0.734);
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+.languageSegmentBtn:hover:not(.languageSegmentBtnActive) .languageFlag {
+    opacity: 0.78;
+    filter: saturate(0.85) brightness(1);
+}
+
+.languageSegmentBtnActive {
+    font-weight: 600;
+    color: #fff;
+    /* background: rgba(255, 255, 255, 0.26); */
+    padding: 0px 10px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.18),
+        /* inset 0 1px 0 rgba(255, 255, 255, 0.22) */
+        ;
+    transition: all 0.3s ease;
+}
+
+.languageSegmentBtnActive .languageFlag {
+    opacity: 1;
+    filter: none;
+}
+
+.languageSegmentBtn:focus {
+    outline: none;
+}
+
+.languageSegmentBtn:focus-visible {
+    outline: 2px solid rgba(96, 165, 250, 0.95);
+    outline-offset: 2px;
+    z-index: 1;
+}

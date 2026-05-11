@@ -3,6 +3,7 @@
   "header.languageSelectAria": "Choose interface language",
   "header.language.es": "Español",
   "header.language.en": "English",
+  "header.navAriaLabel": "Account and language",
   "header.alt": "Gest - Inventory Manager",
   "header.title": "Inventory Manager",
   "authentication.login": "Login",

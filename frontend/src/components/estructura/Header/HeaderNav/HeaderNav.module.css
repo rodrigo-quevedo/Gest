@@ -1,0 +1,103 @@
+.headerNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.headerNavActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.headerNavButton {
+    margin: 0 5px;
+    padding: 10px 24px;
+    border-radius: 100px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.buttonSeleccionado {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(165, 180, 252, 0.5);
+    color: #fff;
+    font-weight: 600;
+
+    box-shadow:
+        0 0 15px rgba(99, 102, 241, 0.2),
+        inset 0 0 10px rgba(99, 102, 241, 0.1);
+
+    transform: translateY(-1px);
+}
+
+.headerNavButton:hover:not(.buttonSeleccionado):not(.headerNavButtonSolid) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.headerNavButton:active {
+    transform: scale(0.96);
+}
+
+/* Single CTA when authenticated */
+.headerNavButtonSolid {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.headerNavButtonSolid:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.headerNavButtonSolid:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 850px) {
+    .headerNav {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .headerNavActions {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+        position: relative;
+        bottom: 5px;
+    }
+
+    .headerNavButton {
+        width: auto;
+        flex: 0 1 auto;
+        min-width: 120px;
+        margin: 0 5px;
+        padding: 10px 0;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+}
