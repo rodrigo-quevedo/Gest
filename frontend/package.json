@@ -1,9 +1,13 @@
 {
   "name": "gest-frontend",
-  "keywords": ["React", "chart.js", "react-icons"],
+  "keywords": [
+    "React",
+    "chart.js",
+    "react-icons"
+  ],
   "author": "Rodrigo M. Quevedo <https://github.com/rodrigo-quevedo>",
   "license": "MIT",
-  "description": "Cliente SPA React de aplicación web fullstack (stack MERN) pensada para un negocio que quiere tener control sobre su inventario.",
+  "description": "Full-stack web application client-side React package for businesses that want to have control over their inventory.",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -14,20 +18,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
-    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "browserslist": {
     "production": [
@@ -40,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.11"
   }
 }

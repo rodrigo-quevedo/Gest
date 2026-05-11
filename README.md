@@ -65,7 +65,7 @@ npm install
 
 2. En la carpeta `frontend`, crear archivo `.env.development.local` con las siguientes variables de entorno:
 
-- `REACT_APP_URL_EXPRESS_APP`: URL de la API. Necesario para hacer los fetch a la API.
+- `VITE_URL_EXPRESS_APP`: URL de la API. Necesario para hacer los fetch a la API.
 
 3. Desde la carpeta `frontend`, ejecutar:
 

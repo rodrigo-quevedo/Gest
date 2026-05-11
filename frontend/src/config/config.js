@@ -1,6 +1,6 @@
 // en entorno de development: estoy usando un .env para esta variable
 // en entorno production: cargo esta variable en el hosting
-export const URL_EXPRESS_APP = process.env.REACT_APP_URL_EXPRESS_APP 
+export const URL_EXPRESS_APP = import.meta.env.VITE_URL_EXPRESS_APP 
 
 //session URL
 export const URL_LISTA_PRODUCTOS = URL_EXPRESS_APP + '/productos' //GET

@@ -12,4 +12,4 @@ function formatTime(d){
 }
 
 
-module.exports = formatTime
+export default formatTime;

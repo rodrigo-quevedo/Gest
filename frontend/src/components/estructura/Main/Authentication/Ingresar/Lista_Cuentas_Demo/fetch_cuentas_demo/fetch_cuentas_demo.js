@@ -1,4 +1,4 @@
-const {URL_CUENTAS_DEMO} = require('../../../../../../../config/config')
+import {URL_CUENTAS_DEMO} from '../../../../../../../config/config';
 
 
 const fetch_cuentas_demo = (setFirstFetch, setCuentasDemo) => {
