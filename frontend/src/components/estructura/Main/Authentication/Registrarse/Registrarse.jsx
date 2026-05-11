@@ -3,6 +3,7 @@ import styles from './Registrarse.module.css'
 
 //react
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next'
 
 //config
 import { FETCH_STATUS } from '../../../../../config/config';
@@ -13,7 +14,8 @@ import fetchBackend from '../../../../componentes_reutilizables/FormularioReutil
 
 
 function Registrarse () {
-    document.querySelector('title').innerText = 'Registrarse';
+    const { t } = useTranslation()
+    document.querySelector('title').innerText = t('registrarse.pageTitle');
 
     const [status, setStatus] = useState({
         status: FETCH_STATUS.DEFAULT, // Use property 'status' to match Ingresar.js pattern mostly
@@ -39,7 +41,7 @@ function Registrarse () {
         if (credenciales.password !== credenciales.confirmPassword) {
             setStatus({
                 status: FETCH_STATUS.DEFAULT,
-                errorMessage: 'Las contraseñas no coinciden'
+                errorMessage: t('registrarse.errors.passwordMismatch')
             })
             return;
         }
@@ -72,8 +74,8 @@ function Registrarse () {
             <section className={styles.registrarseSection}>
                 
                 <div className={styles.registerContent}>
-                    <h1 className={styles.title}>Crear Cuenta</h1>
-                    <p className={styles.subtitle}>Únete a nosotros para empezar</p>
+                    <h1 className={styles.title}>{t('registrarse.title')}</h1>
+                    <p className={styles.subtitle}>{t('registrarse.subtitle')}</p>
 
                     <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
                         
@@ -88,7 +90,7 @@ function Registrarse () {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <label className={styles.label} htmlFor="usuario">Usuario</label>
+                            <label className={styles.label} htmlFor="usuario">{t('registrarse.usernameLabel')}</label>
                         </div>
 
                         <div className={styles.inputGroup}>
@@ -102,7 +104,7 @@ function Registrarse () {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <label className={styles.label} htmlFor="password">Contraseña</label>
+                            <label className={styles.label} htmlFor="password">{t('registrarse.passwordLabel')}</label>
                         </div>
 
                         <div className={styles.inputGroup}>
@@ -116,7 +118,7 @@ function Registrarse () {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <label className={styles.label} htmlFor="confirmPassword">Repetir contraseña</label>
+                            <label className={styles.label} htmlFor="confirmPassword">{t('registrarse.confirmPasswordLabel')}</label>
                         </div>
 
                         {status.errorMessage && (
@@ -133,9 +135,9 @@ function Registrarse () {
                             {status.status === FETCH_STATUS.SUBMIT ? (
                                 <>
                                     <span className={styles.loadingSpinner}></span>
-                                    Registrando...
+                                    {t('registrarse.loading')}
                                 </>
-                            ) : 'Registrarse'}
+                            ) : t('registrarse.submit')}
                         </button>
 
                     </form>

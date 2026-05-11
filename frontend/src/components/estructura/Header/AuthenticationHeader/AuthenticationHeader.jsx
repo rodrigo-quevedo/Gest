@@ -1,8 +1,11 @@
 import styles from './AuthenticationHeader.module.css'
 
+import { useTranslation } from 'react-i18next'
 import {AUTHENTICATION_SCREENS} from '../../../../config/config'
 
 function AuthenticationHeader ({authenticationScreen, setAuthenticationScreen}) {
+    const { t } = useTranslation()
+
     return (
         <nav className={styles.navContainer}>
             
@@ -16,7 +19,7 @@ function AuthenticationHeader ({authenticationScreen, setAuthenticationScreen}) 
 
                 onClick={ ()=> {setAuthenticationScreen(AUTHENTICATION_SCREENS.LOGIN)} }
             >
-                Ingresar
+                {t('authentication.login')}
             </button>
             
             <button 
@@ -29,7 +32,7 @@ function AuthenticationHeader ({authenticationScreen, setAuthenticationScreen}) 
 
                 onClick={ ()=> {setAuthenticationScreen(AUTHENTICATION_SCREENS.REGISTRARSE)} }
             >
-                Registrarse
+                {t('authentication.register')}
             </button>
 
 

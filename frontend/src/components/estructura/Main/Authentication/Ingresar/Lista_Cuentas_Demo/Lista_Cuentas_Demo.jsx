@@ -1,6 +1,7 @@
 import styles from './Lista_Cuentas_Demo.module.css'
 
 import {useState, useEffect} from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { FaUserAlt } from "react-icons/fa";
 
@@ -11,6 +12,7 @@ function Lista_Cuentas_Demo ({
     setCredenciales,
     setCanUpdate
 }) {
+    const { t } = useTranslation()
 
     const [cuentasDemo, setCuentasDemo] = useState(null)
     const [firstFetch, setFirstFetch] = useState(false)
@@ -43,8 +45,8 @@ function Lista_Cuentas_Demo ({
     return (
         <section className={styles.container}>
             <div className={styles.header}>
-                <h2 className={styles.title}>Cuentas Demo</h2>
-                <p className={styles.subtitle}>Prueba el sistema con datos precargados</p>
+                <h2 className={styles.title}>{t('listaCuentasDemo.title')}</h2>
+                <p className={styles.subtitle}>{t('listaCuentasDemo.subtitle')}</p>
             </div>
 
             <div className={styles.grid}>
@@ -58,14 +60,14 @@ function Lista_Cuentas_Demo ({
                                 handleAccountClick(cuenta)
                             }}
                             type="button"
-                            aria-label={`Usar cuenta demo de ${cuenta.usuario}`}
+                            aria-label={t('listaCuentasDemo.demoAccountAriaLabel', { usuario: cuenta.usuario })}
                         >
                             <div className={styles.iconWrapper}>
                                 <FaUserAlt className={styles.icon} />
                             </div>
                             <div className={styles.cardContent}>
                                 <span className={styles.username}>{cuenta.usuario}</span>
-                                <span className={styles.role}>Click para usar</span>
+                                <span className={styles.role}>{t('listaCuentasDemo.clickToUse')}</span>
                             </div>
                             {selectedAccount === cuenta.usuario && (
                                 <div className={styles.loadingOverlay}>

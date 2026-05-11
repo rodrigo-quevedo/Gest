@@ -7,6 +7,7 @@ import Session_Expired from '../Main/Session_Expired/Session_Expired'
 import Footer from '../Footer/Footer'
 
 import {AUTHENTICATION_SCREENS} from '../../../config/config'
+import { useTranslation } from 'react-i18next'
 
 function App() {
     const [isAuth, setIsAuth] = useState(false);
@@ -16,7 +17,16 @@ function App() {
     
     const [authenticationScreen, setAuthenticationScreen] = useState(AUTHENTICATION_SCREENS.LOGIN)
 
-    
+    const {i18n} = useTranslation();
+
+    const languageBase = (i18n.resolvedLanguage || i18n.language || 'es').split('-')[0];
+    const language = languageBase === 'en' ? 'en' : 'es';
+
+    const setLanguage = (lng) => {
+      if (lng !== 'es' && lng !== 'en') return;
+      i18n.changeLanguage(lng);
+      localStorage.setItem('language', lng);
+    };
 
     return (
         <>
@@ -32,6 +42,9 @@ function App() {
                 
                 //activar el popup [CerrarSesion] al hacer click: setPopupCerrarSesion(true)
                 setPopupCerrarSesion={setPopupCerrarSesion} 
+
+                language={language}
+                setLanguage={setLanguage}
             />
 
             {

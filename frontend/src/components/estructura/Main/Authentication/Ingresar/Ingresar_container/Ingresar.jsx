@@ -6,6 +6,7 @@ import Lista_Cuentas_Demo from '../Lista_Cuentas_Demo/Lista_Cuentas_Demo'
 
 //react
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next'
 
 //config
 import { FETCH_STATUS } from '../../../../../../config/config';
@@ -17,7 +18,8 @@ import fetchBackend from '../../../../../componentes_reutilizables/FormularioReu
 
 
 function Ingresar ({ setIsAuth }) {
-    document.querySelector('title').innerText = 'Ingresar';
+    const { t } = useTranslation()
+    document.querySelector('title').innerText = t('ingresar.pageTitle');
 
     // State for credentials
     const [credenciales, setCredenciales] = useState({
@@ -87,8 +89,8 @@ function Ingresar ({ setIsAuth }) {
             <section className={styles.ingresarSection}>
                 
                 <div className={styles.loginContent}>
-                    <h1 className={styles.title}>Bienvenido</h1>
-                    <p className={styles.subtitle}>Ingresa a tu cuenta para continuar</p>
+                    <h1 className={styles.title}>{t('ingresar.welcome')}</h1>
+                    <p className={styles.subtitle}>{t('ingresar.subtitle')}</p>
 
                     <form className={styles.form} onSubmit={handleSubmit} autoComplete="off">
                         
@@ -103,7 +105,7 @@ function Ingresar ({ setIsAuth }) {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <label className={styles.label} htmlFor="usuario">Usuario</label>
+                            <label className={styles.label} htmlFor="usuario">{t('ingresar.usernameLabel')}</label>
                         </div>
 
                         <div className={styles.inputGroup}>
@@ -117,7 +119,7 @@ function Ingresar ({ setIsAuth }) {
                                 onChange={handleInputChange}
                                 required
                             />
-                            <label className={styles.label} htmlFor="password">Contraseña</label>
+                            <label className={styles.label} htmlFor="password">{t('ingresar.passwordLabel')}</label>
                         </div>
 
                         {fetchStatus.errorMessage && (
@@ -134,16 +136,16 @@ function Ingresar ({ setIsAuth }) {
                             {fetchStatus.status === FETCH_STATUS.SUBMIT ? (
                                 <>
                                     <span className={styles.loadingSpinner}></span>
-                                    Iniciando sesión...
+                                    {t('ingresar.loading')}
                                 </>
-                            ) : 'Ingresar'}
+                            ) : t('ingresar.submit')}
                         </button>
 
                     </form>
                 </div>
 
                 <div className={styles.demoSection}>
-                    <span className={styles.demoTitle}>Cuentas Demo</span>
+                    <span className={styles.demoTitle}>{t('listaCuentasDemo.title')}</span>
                     <Lista_Cuentas_Demo 
                         setCredenciales={setCredenciales}
                         setCanUpdate={setCanUpdate}
