@@ -1,0 +1,148 @@
+﻿.searchBoxContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+:global(#searchBoxForm_ListaProductos) {
+    display: inline-flex;
+    width: 100%;
+    max-width: 100%;
+}
+
+.formAndButtonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.desactivar {
+    display: none;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 260px;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--ws-border);
+    border-radius: 999px;
+    background: var(--ws-surface);
+    color: var(--ws-text);
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.searchBox > input {
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 0;
+    font-size: 0.95rem;
+    color: var(--ws-text);
+    background: transparent;
+    min-width: 0;
+}
+
+.searchBox:hover,
+.searchBox:focus-within {
+    border-color: var(--ws-accent);
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12);
+}
+
+.searchBoxSelected {
+    border-color: var(--ws-accent);
+}
+
+.searchBoxSubmitted {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.searchBoxFetchSuccess {
+    border-color: var(--ws-border);
+}
+
+.loadingIcon {
+    width: 20px;
+    height: 20px;
+    color: var(--ws-accent);
+    animation: rotateLoadingIcon 1s infinite linear;
+}
+
+@keyframes rotateLoadingIcon {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(720deg);
+    }
+}
+
+.submitButton,
+.resetButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: var(--ws-radius-sm);
+    border: 1px solid var(--ws-border);
+    font-weight: 700;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.submitButton {
+    background: var(--ws-accent);
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.submitButton:hover {
+    background: #1d4ed8;
+    box-shadow: var(--ws-shadow-sm);
+}
+
+.resetButton {
+    background: var(--ws-surface-muted);
+    color: var(--ws-text);
+}
+
+.resetButton:hover {
+    background: var(--ws-surface);
+    transform: translateY(-1px);
+}
+
+.submitButton > *,
+.resetButton > * {
+    font-size: 1rem;
+}
+
+@media (max-width: 750px) {
+    .searchBoxContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 300px) {
+    .formAndButtonContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    :global(#searchBoxForm_ListaProductos) {
+        max-width: 100%;
+    }
+}
+
+/* Fix buscar marca */
+:global(#searchBoxInputMarca) {
+    display: none;
+}

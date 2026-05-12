@@ -24,3 +24,6 @@ yarn-error.log*
 
 # cosas que no voy a usar
 deprecated_or_not_used
+
+# ai guidelines
+.cursorrules

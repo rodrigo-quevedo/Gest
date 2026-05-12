@@ -1,0 +1,22 @@
+/* Minimal Enterprise SaaS — scoped tokens (.cursorrules) */
+.wsApp {
+  --ws-bg: #f8fafc;
+  --ws-surface: #ffffff;
+  --ws-surface-muted: #f1f5f9;
+  --ws-border: #e2e8f0;
+  --ws-border-strong: #cbd5e1;
+  --ws-text: #0f172a;
+  --ws-text-secondary: #475569;
+  --ws-text-muted: #64748b;
+  --ws-accent: #2563eb;
+  --ws-accent-soft: #eff6ff;
+  --ws-success: #16a34a;
+  --ws-danger: #dc2626;
+  --ws-warning: #ca8a04;
+  --ws-radius-sm: 8px;
+  --ws-radius: 12px;
+  --ws-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --ws-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --ws-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ws-sidebar-w: 256px;
+}

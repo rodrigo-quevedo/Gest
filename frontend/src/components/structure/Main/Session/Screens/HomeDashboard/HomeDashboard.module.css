@@ -1,0 +1,161 @@
+.page {
+  padding: 4px 0 8px;
+  box-sizing: border-box;
+}
+
+.pageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ws-text);
+  letter-spacing: -0.03em;
+}
+
+.pageMeta {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--ws-text-secondary);
+  max-width: 56ch;
+  line-height: 1.5;
+}
+
+.pageActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btnPrimary {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--ws-accent);
+  border: none;
+  border-radius: var(--ws-radius-sm);
+  cursor: pointer;
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.btnPrimary:hover {
+  filter: brightness(1.05);
+}
+
+.btnSecondary {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ws-text-secondary);
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--ws-radius-sm);
+  cursor: pointer;
+}
+
+.btnSecondary:hover {
+  background: var(--ws-surface-muted);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.trendSection {
+  margin-top: 8px;
+  padding: 18px;
+  border-radius: var(--ws-radius-sm);
+  border: 1px solid var(--ws-border);
+  background: var(--ws-surface);
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.sectionHeading {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ws-text);
+}
+
+.sectionLead {
+  margin: 0 0 16px;
+  font-size: 0.8rem;
+  color: var(--ws-text-muted);
+}
+
+.trendBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-height: 132px;
+  padding: 8px 4px 0;
+  border-top: 1px solid var(--ws-border);
+}
+
+.trendCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.trendBarTrack {
+  flex: 1;
+  width: min(100%, 40px);
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.trendBar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.88), rgba(37, 99, 235, 0.28));
+  transition: height 0.2s ease;
+}
+
+.trendLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--ws-text-muted);
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .pageHeader {
+    flex-direction: column;
+  }
+
+  .trendBars {
+    gap: 4px;
+  }
+}

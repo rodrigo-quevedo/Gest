@@ -1,0 +1,35 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+.inputContainer > * {
+    text-align: left;
+}
+
+.inputContainer > label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ws-text-secondary);
+}
+
+.inputContainer > input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--ws-border);
+    border-radius: var(--ws-radius-sm);
+    background: var(--ws-surface);
+    color: var(--ws-text);
+    font-size: 0.95rem;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.inputContainer > input:focus,
+.inputContainer > input:hover {
+    outline: none;
+    border-color: var(--ws-accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    background: var(--ws-surface);
+}

@@ -1,0 +1,78 @@
+.page {
+  padding: 8px 0 12px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ws-text);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  color: var(--ws-text-secondary);
+  line-height: 1.6;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  padding: 18px 16px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.statCard p {
+  margin: 0 0 10px;
+  font-size: 0.84rem;
+  color: var(--ws-text-secondary);
+}
+
+.statCard strong {
+  font-size: 1.35rem;
+  color: var(--ws-text);
+}
+
+.searchWrapper {
+  margin-bottom: 20px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.tableWrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px;
+}
+
+.tableWrapper th,
+.tableWrapper td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--ws-border);
+  font-size: 0.92rem;
+  color: var(--ws-text);
+}
+
+.tableWrapper th {
+  color: var(--ws-text-secondary);
+  font-weight: 600;
+}
+
+.tableWrapper tbody tr:hover {
+  background: var(--ws-surface-muted);
+}

@@ -1,0 +1,151 @@
+.aside {
+  width: var(--ws-sidebar-w);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px 20px 20px;
+  box-sizing: border-box;
+  border-right: 1px solid var(--ws-border);
+  background: var(--ws-surface);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 16px;
+  margin-bottom: 4px;
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.02em;
+}
+
+.brandText {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ws-text);
+  letter-spacing: -0.02em;
+}
+
+.brandSub {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  color: var(--ws-text-muted);
+  font-weight: 500;
+}
+
+.mobileToggle {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ws-text);
+  background: var(--ws-surface-muted);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--ws-radius-sm);
+  cursor: pointer;
+}
+
+.navScroll {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.groupLabel {
+  margin: 16px 8px 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ws-text-muted);
+}
+
+.groupLabel:first-of-type {
+  margin-top: 0;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ws-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--ws-radius-sm);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.navButton:hover:not(:disabled) {
+  background: var(--ws-surface-muted);
+  color: var(--ws-text);
+}
+
+.navButton:focus-visible {
+  outline: 2px solid var(--ws-accent);
+  outline-offset: 2px;
+}
+
+.active {
+  background: var(--ws-accent-soft);
+  color: var(--ws-accent);
+  font-weight: 600;
+  border-left-color: var(--ws-accent);
+}
+
+.icon {
+  display: inline-flex;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.navDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: wait;
+}
+
+.collapsed .navScroll {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .aside {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--ws-border);
+    padding: 12px;
+  }
+
+  .mobileToggle {
+    display: flex;
+  }
+}

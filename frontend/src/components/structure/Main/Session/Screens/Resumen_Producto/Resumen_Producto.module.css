@@ -1,0 +1,149 @@
+.page {
+  padding: 8px 0 16px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ws-text);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--ws-text-secondary);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primaryButton,
+.secondaryButton {
+  border: none;
+  border-radius: var(--ws-radius-sm);
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primaryButton {
+  background: var(--ws-accent);
+  color: #fff;
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.primaryButton:hover {
+  filter: brightness(1.05);
+}
+
+.secondaryButton {
+  background: var(--ws-surface);
+  color: var(--ws-text);
+  border: 1px solid var(--ws-border);
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metricCard {
+  padding: 18px 16px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.metricCard span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--ws-text-secondary);
+  font-size: 0.9rem;
+}
+
+.metricCard strong {
+  font-size: 1.5rem;
+  color: var(--ws-text);
+}
+
+.positive {
+  color: #16a34a;
+}
+
+.negative {
+  color: #dc2626;
+}
+
+.searchSection {
+  padding: 22px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  box-shadow: var(--ws-shadow-sm);
+  margin-bottom: 24px;
+}
+
+.searchHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.searchHeader h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--ws-text);
+}
+
+.searchHeader p {
+  margin: 6px 0 0;
+  color: var(--ws-text-secondary);
+  line-height: 1.5;
+}
+
+.filterTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--ws-surface-muted);
+  border: 1px solid var(--ws-border);
+  color: var(--ws-text-secondary);
+  font-size: 0.85rem;
+}
+
+.panels {
+  display: grid;
+  gap: 18px;
+}
+
+.summaryText {
+  color: var(--ws-text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+  }
+}

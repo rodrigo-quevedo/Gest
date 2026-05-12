@@ -1,0 +1,35 @@
+.submitButton {
+    border-radius: var(--ws-radius-sm);
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    background: var(--ws-accent);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+    width: auto;
+}
+
+.submitButton:hover {
+    background: #1d4ed8;
+    box-shadow: var(--ws-shadow-sm);
+}
+
+.submitButton:focus-visible {
+    outline: 2px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 2px;
+}
+
+.submitButton:active {
+    transform: translateY(1px);
+}
+
+/* Uso !important porque estas propiedades están sobreescribiendo a las de otras clases */
+.loading {
+    background: var(--ws-surface-muted) !important;
+    color: var(--ws-text-muted) !important;
+    border-color: var(--ws-border) !important;
+    cursor: progress !important;
+    pointer-events: none !important;
+}

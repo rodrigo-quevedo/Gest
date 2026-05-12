@@ -1,0 +1,23 @@
+.surface {
+  flex: 1;
+  min-height: 0;
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--ws-radius);
+  box-shadow: var(--ws-shadow-sm);
+  padding: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.inner {
+  padding: 20px 22px 28px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+@media (max-width: 600px) {
+  .inner {
+    padding: 16px;
+  }
+}

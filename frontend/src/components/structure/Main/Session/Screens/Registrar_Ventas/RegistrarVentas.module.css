@@ -1,0 +1,87 @@
+.page {
+  padding: 12px 0 16px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--ws-border);
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface);
+  color: var(--ws-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.label {
+  margin: 0 0 4px;
+  color: var(--ws-text-secondary);
+  font-size: 0.88rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ws-text);
+}
+
+.panel {
+  padding: 24px;
+  border-radius: var(--ws-radius-sm);
+  border: 1px solid var(--ws-border);
+  background: var(--ws-surface);
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.statusInfo,
+.summaryBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface-muted);
+  margin-bottom: 18px;
+}
+
+.statusInfo p,
+.summaryBlock span {
+  margin: 0;
+  color: var(--ws-text-secondary);
+  font-size: 0.92rem;
+}
+
+.statusInfo strong,
+.summaryBlock strong {
+  font-size: 1.35rem;
+  color: var(--ws-text);
+}
+
+.formSection {
+  display: grid;
+  gap: 22px;
+}
+
+.completeInputContainer {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

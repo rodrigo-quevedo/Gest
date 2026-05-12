@@ -1,0 +1,73 @@
+﻿.tableContainer {
+    overflow: auto;
+    border: 1px solid var(--ws-border);
+    border-radius: var(--ws-radius-sm);
+    background: var(--ws-surface);
+    box-shadow: var(--ws-shadow-sm);
+    margin: 12px 0;
+    min-width: 100%;
+}
+
+.tableContainerLoaded {
+    transition: box-shadow .25s ease;
+}
+
+.tableContainerLoading {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.tableContainerLoading * {
+    color: var(--ws-text-muted);
+}
+
+.tableContainer > table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.92rem;
+}
+
+.tableContainer > table > thead {
+    background: var(--ws-surface-muted);
+    color: var(--ws-text-secondary);
+}
+
+.tableContainer > table > thead > tr > th {
+    box-sizing: border-box;
+    padding: 14px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    text-align: left;
+}
+
+.tableContainer > table > tbody > tr {
+    border-bottom: 1px solid var(--ws-border);
+}
+
+.tableContainer > table > tbody > tr:hover {
+    background: var(--ws-surface-muted);
+}
+
+.tableContainer table > tbody > tr > td {
+    padding: 14px 16px;
+    color: var(--ws-text);
+}
+
+.tableContainer table > thead > tr > th {
+    width: auto;
+}
+
+@media (max-width: 700px) {
+    .tableContainer > table > thead > tr > th,
+    .tableContainer > table > tbody > tr > td {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 500px) {
+    .tableContainer {
+        font-size: 0.88rem;
+    }
+}

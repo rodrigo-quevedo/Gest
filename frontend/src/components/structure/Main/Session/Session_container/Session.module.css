@@ -1,0 +1,14 @@
+.sessionContainer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 69.5vh;
+  padding: 0 1vw 1vw 0;
+  margin-top: 80px;
+}
+
+@media (width < 900px) {
+  .sessionContainer {
+    padding: 0 0 12px 0;
+  }
+}

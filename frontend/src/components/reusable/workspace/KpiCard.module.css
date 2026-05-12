@@ -1,0 +1,46 @@
+.card {
+  padding: 16px 18px;
+  border-radius: var(--ws-radius-sm);
+  background: var(--ws-surface);
+  border: 1px solid var(--ws-border);
+  box-shadow: var(--ws-shadow-sm);
+  min-height: 104px;
+  box-sizing: border-box;
+}
+
+.label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ws-text-muted);
+}
+
+.value {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ws-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.context {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--ws-text-secondary);
+  line-height: 1.35;
+}
+
+.variantPositive .value {
+  color: var(--ws-success);
+}
+
+.variantNegative .value {
+  color: var(--ws-danger);
+}
+
+.variantWarning .value {
+  color: var(--ws-warning);
+}
