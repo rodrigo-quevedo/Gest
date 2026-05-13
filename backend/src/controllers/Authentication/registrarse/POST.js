@@ -5,6 +5,7 @@ const Historial_ProductosModel = require('../../../models/Session/Historial_Prod
 const Historial_VentasModel = require('../../../models/Session/Historial_Ventas')
 
 const bcrypt = require('bcrypt')
+const { getCorsOrigin } = require('../../../utils/cors/getAllowedOrigins');
 
 const POST =  async (req, res) => {
 
@@ -13,10 +14,15 @@ const POST =  async (req, res) => {
     console.log(`body de la request:`, req.body)
 
     //CORS
-    res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
-        "Access-Control-Allow-Credentials": "true"
-    })
+    const origin = req.headers.origin;
+    const allowedOrigin = getCorsOrigin(origin, process.env.URL_REACT_CLIENT);
+    
+    if (allowedOrigin) {
+        res.header({
+            "Access-Control-Allow-Origin": allowedOrigin,
+            "Access-Control-Allow-Credentials": "true"
+        });
+    }
 
     //validacion
 

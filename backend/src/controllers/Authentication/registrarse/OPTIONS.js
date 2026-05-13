@@ -1,3 +1,5 @@
+const { getCorsOrigin } = require('../../../utils/cors/getAllowedOrigins');
+
 const OPTIONS = (req, res) => {
 
     //logs
@@ -5,12 +7,17 @@ const OPTIONS = (req, res) => {
     console.log(`body de la request:`, req.body)
 
     //CORS
-    res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
-        "Access-Control-Allow-Methods" : "POST",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Credentials": "true"
-    })
+    const origin = req.headers.origin;
+    const allowedOrigin = getCorsOrigin(origin, process.env.URL_REACT_CLIENT);
+    
+    if (allowedOrigin) {
+        res.header({
+            "Access-Control-Allow-Origin": allowedOrigin,
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Credentials": "true"
+        });
+    }
     
     //response
     res.json(JSON.stringify({
