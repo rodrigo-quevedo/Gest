@@ -1,3 +1,5 @@
+const { getCorsOrigin } = require('../../../utils/cors/getAllowedOrigins');
+
 const UsuariosModel = require('../../../models/Authentication/Usuarios')
 
 const bcrypt = require('bcrypt')
@@ -9,10 +11,17 @@ const GET =  async (req, res) => {
     console.log(`body de la request:`, req.body)
 
     //CORS
-    res.header({
-        "Access-Control-Allow-Origin" : process.env.URL_REACT_CLIENT,
-        "Access-Control-Allow-Credentials": "true"
-    })
+    const origin = req.headers.origin;
+    const allowedOrigin = getCorsOrigin(origin, process.env.URL_REACT_CLIENT);
+    
+    if (allowedOrigin) {
+        res.header({
+            "Access-Control-Allow-Origin": allowedOrigin,
+            //cookie cors
+            "Access-Control-Allow-Credentials": "true"
+        });
+    }
+    
 
     //respuesta del servidor
     try {
