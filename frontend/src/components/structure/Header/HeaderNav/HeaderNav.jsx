@@ -16,11 +16,6 @@ function HeaderNav({
 
     return (
         <div className={styles.headerNav}>
-            <LangSwitchButton
-                language={language}
-                setLanguage={setLanguage}
-                edgeAlign="start"
-            />
             <nav className={styles.headerNavActions} aria-label={t('header.navAriaLabel')}>
                 {isAuth ? (
                     <button

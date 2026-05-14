@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IoNotificationsOutline } from 'react-icons/io5';
 import { SESSION_SCREENS, SEARCHBOX_STATE } from '../../../config/config';
+import LangSwitchButton from '../../reusable/LangSwitchButton/LangSwitchButton';
 import styles from './WorkspaceTopBar.module.css';
 
-function WorkspaceTopBar({ setSessionScreen, searchBoxState }) {
+function WorkspaceTopBar({ setSessionScreen, searchBoxState, language, setLanguage }) {
   const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const inputRef = useRef(null);
@@ -62,6 +64,21 @@ function WorkspaceTopBar({ setSessionScreen, searchBoxState }) {
           onClick={() => setSessionScreen(SESSION_SCREENS.INGRESAR_PRODUCTOS)}
         >
           {t('workspace.topBar.addProduct')}
+        </button>
+
+        <LangSwitchButton
+          language={language}
+          setLanguage={setLanguage}
+          edgeAlign="start"
+        />
+
+        <button
+          type="button"
+          className={styles.btnIcon}
+          disabled={navLocked}
+          aria-label={t('workspace.topBar.notifications')}
+        >
+          <IoNotificationsOutline />
         </button>
 
         <div className={styles.profile} aria-label={t('workspace.topBar.profileAria')}>

@@ -15,7 +15,7 @@ import { SESSION_SCREENS } from '../../../../../config/config';
 import { FETCH_STATUS } from '../../../../../config/config';
 import { useSessionData } from '../../../../../context/SessionDataContext';
 
-function Session() {
+function Session({ language, setLanguage }) {
   const {
     listaProductos,
     historialProductos,
@@ -146,6 +146,8 @@ function Session() {
         sessionScreen={sessionScreen}
         setSessionScreen={setSessionScreen}
         searchBoxState={searchBoxState}
+        language={language}
+        setLanguage={setLanguage}
       >
         {renderScreen()}
       </WorkspaceLayout>

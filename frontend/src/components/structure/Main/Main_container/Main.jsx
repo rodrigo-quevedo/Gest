@@ -6,7 +6,8 @@ function Main (
     {
         isAuth, setIsAuth, 
         authenticationScreen,
-        setPopupSessionExpired
+        setPopupSessionExpired,
+        language, setLanguage
     }
 ) {
 
@@ -21,7 +22,10 @@ function Main (
             {isAuth ?
 
                 <SessionDataProvider setPopupSessionExpired={setPopupSessionExpired}>
-                    <Session />
+                    <Session 
+                        language={language}
+                        setLanguage={setLanguage}
+                    />
                 </SessionDataProvider>
                 
             : 

@@ -14,13 +14,17 @@ function Header({isAuth, authenticationScreen, setAuthenticationScreen, setPopup
 
             {/* Website logo + title */}
             <div className={styles.websiteBanner}>
+              <div className={styles.imageContainer}>  
                 <img 
                     src={website_icon} 
                     alt={t('header.alt')}
-                />
+                    />
+              </div>
+
+              <div className={styles.bannerTextContainer}>
                 <div className={styles.separator}></div>
                 <h1>{t('header.title')}</h1>
-
+              </div>
             </div>
 
 

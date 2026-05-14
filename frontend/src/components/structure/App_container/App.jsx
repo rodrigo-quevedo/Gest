@@ -30,7 +30,7 @@ function App() {
 
     return (
         <>
-            <Header 
+            {!isAuth && <Header 
                 // [Login/Register] or [Logout] buttons:
                 isAuth={isAuth} 
                 
@@ -46,7 +46,7 @@ function App() {
                 // language :
                 language={language}
                 setLanguage={setLanguage}
-            />
+            />}
 
             {
                 popupSessionExpired ?
@@ -79,6 +79,10 @@ function App() {
                             authenticationScreen={authenticationScreen}
 
                             setPopupSessionExpired={setPopupSessionExpired}
+
+                            // language:
+                            language={language}
+                            setLanguage={setLanguage}
                         />
 
             
